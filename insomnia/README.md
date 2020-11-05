@@ -24,14 +24,14 @@ Go to 'Manage Environments'
 
 ```
 {
-  "base_url": "{{ scheme }}://{{ tenantSubdomain }}{{ base_path }}.platform.staging.mattrlabs.io"
+  "base_url": "{{ scheme }}://{{ tenantSubdomain }}{{ base_path }}"
 }
 ```
 The Base Environment pulls together variables from the Sub Environment to help form the requests.
 
 In the Sub Environment
-* Add in your provided Tenant Subdomain (e.g. your-tenant.platform.mattr.global the protocol is **not** required ), Client ID and Client Secret.
-* 
+* Add in your provided Tenant Subdomain (e.g. `your-tenant.platform.mattr.global` the protocol is **not** required ), Client ID and Client Secret.
+
 ```
 {
   "scheme": "https",
