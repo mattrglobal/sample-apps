@@ -1,7 +1,7 @@
 # Insomnia Core
+Insomnia Core is a Desktop API client for REST and GraphQL. Make requests, inspect responses.
 
 ## Install
-Insomnia Core is a Desktop API client for REST and GraphQL. Make requests, inspect responses.
 
 Download from their [downloads page](https://insomnia.rest/download/core/?)
 
