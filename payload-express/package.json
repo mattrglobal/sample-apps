@@ -10,6 +10,7 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ngrok": "^3.3.0"
   }
 }
