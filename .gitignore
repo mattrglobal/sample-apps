@@ -38,7 +38,7 @@ Desktop.ini
 ######################
 # Mac OSX
 ######################
-*/.DS_Store
+*.DS_Store
 
 # Thumbnails
 ._*

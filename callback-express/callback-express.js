@@ -12,6 +12,7 @@ app.use(bodyParser.json())
 app.post('/callback', function (req, res) {
   const body = req.body
   console.log(body)
+  res.sendStatus(200)
 })
 
 // listen on port 2000
