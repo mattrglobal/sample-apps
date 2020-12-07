@@ -32,7 +32,7 @@ const ngrok = require('ngrok');
 
     ngrokUrl = await ngrok.connect(2001);
 
-// Construct the didcomm URL and check Ngrok from .env is running
+// Construct the didcomm URL and check Ngrok is running
     var https = require('https');
     var ngrokTest = `${ngrokUrl}/test`
     let p = new Promise((resolve, reject) => {
@@ -62,7 +62,7 @@ const ngrok = require('ngrok');
     console.log('ngrok callback URL to use in the presentation request: ', ngrokUrl + '/callback');
     const jws = await askQuestion("Please provide the JWS");
 
-    // add jws from argument and the tenant from .env
+    // add jws provided by the user and the tenant from .env
     var tenant = process.env.TENANT;
     jwsUrl = `https://${tenant}.platform.mattr.global/?request=${jws}`;
 
