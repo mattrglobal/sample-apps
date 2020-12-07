@@ -1,0 +1,15 @@
+{
+  "name": "payload-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "payload-express.js",
+  "scripts": {
+    "start": "node payload-express.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
