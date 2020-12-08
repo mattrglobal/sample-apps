@@ -12,8 +12,9 @@ In order for a MATTR Mobile Wallet app to read the Presentation Request the term
 Pre-requisites:
 
 * You'll need a valid Access token for the MATTR Platform, if you do not have a tenent setup (get started here)[https://mattr.global/get-started/].
-* Setup a valid Verifier DID and Presentation Request Template and know the ID's of each
-* Have your local development environment setup with Node and NPM/Yarn
+* Have a valid [Verifier DID](https://learn.mattr.global/api-ref#operation/retrieveListOfDids) and [Presentation Request Template](https://learn.mattr.global/api-ref#operation/createPresTemplate) and know the ID's of each.
+* Download the MATTR Mobile Wallet app and hold a Credential matching the Presentation Request 
+* Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet
 
 Clone the sample-apps repo
 Change to the `verify-callback-express` directory
@@ -37,30 +38,31 @@ VERIFIERDID=<verifier-did>
 * Add a DID to `VERIFIERDID` that that [exists on your tenant](https://learn.mattr.global/api-ref#operation/retrieveListOfDids)
 
 
-Append you valid Platform access token to the end of the start command to start the Express server
+### Start the server
+Append your valid Platform access token to the end of the start command to start the Express server
 ```
 npm start <access_token>
 ```
 
+> The access token is stored in memory and used to make API calls to your tenant over HTTPS
 
 
+## Steps
+The App starts an Ngrok tunnel to your localhost.
 
-# Generate QR code and URL shortener in Express
+The App will call out to your tenant to:
+1. Create a Presentation Request.
+2. Look-up the DIDUrl of the Verifier DID
+3. Sign the Presentation Request with the Verifier DIDUrl
 
-Runs a QR code generator in the terminal and allows for shortened DIDcomm URLs to be provided to Mobile Wallet app
+It uses the signed Presentation Request JWS to display a QR Code. Open the MATTR Mobile Wallet holding a matching Verifiable Credential and scan the QR code.
+Or, copy the displayed Deeplink URL and sent via alternate messaging means to the mobile device with the MATTR Mobile App and open the link.
 
-To run
-Once you have a valid JWS from of a Signed Presentation Request from your MATTR tenant.
+The 'Verification Request' screen should be displayed.
 
 
-```
-cd payload-express
-node payload-express.js <jws of signed presentation request>
-```
-
-# Sample Callback Route Handler in Express
-
-A simple package listens to calls to a `/callback` route and parses the JSON body to the console.
 
 ## Uses
-This is provided as a rudimentary method to test Verifying Credentials using the Callback method.
+This app is provided as a learning tool to test Verifying Credentials using the Callback method.
+
+It is not intended to run any production workloads.
