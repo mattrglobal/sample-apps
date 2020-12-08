@@ -25,109 +25,76 @@ app.listen(2001, function (err) {
     console.log('Server started on port 2001')
 })
 
-// Start ngrok
 var ngrokUrl;
 const ngrok = require('ngrok');
 (async function () {
 
+    // Start ngrok
     ngrokUrl = await ngrok.connect(2001);
 
 // Construct the didcomm URL and check Ngrok is running
-    var https = require('https');
-    var ngrokTest = `${ngrokUrl}/test`
-    let p = new Promise((resolve, reject) => {
-        const req = https.get(ngrokTest, function (res) {
-            console.log("Ngrok statusCode: ", res.statusCode);
-            resolve();
-        });
-        req.end();
-    });
-    await p;
-
-
-       // Ask the user for the Acces Token
-       const readline = require('readline');
-
-       function askQuestion(query) {
-           const rl = readline.createInterface({
-               input: process.stdin,
-               output: process.stdout,
-           });
-   
-           return new Promise(resolve => rl.question(query, answer => {
-               rl.close();
-               resolve(answer);
-           }))
-       }
-   
-       // const token = await askQuestion("Please provide the Access token for your tenant");
-       const token = process.argv[2]
-
-    // Provision Presentation Request 
     var got = require('got')
+    var response = await got.get(`${ngrokUrl}/test`);
+    console.log("Ngrok statusCode: ", response.statusCode);
 
+    // Obtain the Access Token
+    const token = process.argv[2]
+
+    // Provision Presentation Request
     var tenant = process.env.TENANT;
     var presReq = `https://${tenant}.platform.mattr.global/v1/presentations/requests`
     console.log(presReq);
 
-   
-        var {body, statusCode} = await got.post(presReq, {
-            
-            headers: {
-                    "Authorization": `Bearer ${token}`
-                },
-            json: {
-                "challenge": "GW8FGpP6jhFrl37yQZIM6w",
-                "did": process.env.VERIFIERDID,
-                "templateId": process.env.TEMPLATEID,
-                "expiresTime": 1638836401000,
-                "callbackUrl": `${ngrokUrl}/callback`
-            },
-            responseType: 'json'
-        });
-        console.log(statusCode);
-        console.log(body.request);
-       const requestPayload = body.request
+    response = await got.post(presReq, {
+
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        json: {
+            "challenge": "GW8FGpP6jhFrl37yQZIM6w",
+            "did": process.env.VERIFIERDID,
+            "templateId": process.env.TEMPLATEID,
+            "expiresTime": 1638836401000,
+            "callbackUrl": `${ngrokUrl}/callback`
+        },
+        responseType: 'json'
+    });
+    console.log(response.statusCode);
+    const requestPayload = response.body.request;
+    console.log(requestPayload);
 
     // Get DIDUrl from Verifier DID Doc
     var dids = `https://${tenant}.platform.mattr.global/v1/dids/` + process.env.VERIFIERDID
     console.log(dids);
-   
-        var {body} = await got.get(dids, {
-            
-            headers: {
-                    "Authorization": `Bearer ${token}`
-                },
-            responseType: 'json'
-        });
-     //   console.log(statusCode);
-        console.log(body.didDocument.publicKey[0].id);
-        const didUrl = body.didDocument.publicKey[0].id;
- 
+
+    response = await got.get(dids, {
+
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        responseType: 'json'
+    });
+    console.log(response.body.didDocument.publicKey[0].id);
+    const didUrl = response.body.didDocument.publicKey[0].id;
 
     // Sign payload
     var signMes = `https://${tenant}.platform.mattr.global/v1/messaging/sign`
     console.log(signMes);
 
-   
-        var {body} = await got.post(signMes, {
-            
-            headers: {
-                    "Authorization": `Bearer ${token}`
-                },
-            json: {
-                "didUrl": didUrl,
-                "payload": requestPayload 
-            },
-            responseType: 'json'
-        });
-       // console.log(statusCode);
-        console.log(body);
+    response = await got.post(signMes, {
 
-        const jws = body
+        headers: {
+            "Authorization": `Bearer ${token}`
+        },
+        json: {
+            "didUrl": didUrl,
+            "payload": requestPayload
+        },
+        responseType: 'json'
+    });
+    const jws = response.body
+    console.log(jws);
 
-    // add jws provided by the user and the tenant from .env
-    
     jwsUrl = `https://${tenant}.platform.mattr.global/?request=${jws}`;
 
     var didcommUrl = `didcomm://${ngrokUrl}/qr`;
