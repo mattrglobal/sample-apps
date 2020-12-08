@@ -44,26 +44,90 @@ const ngrok = require('ngrok');
     });
     await p;
 
-    // Ask the user for the JWS
-    const readline = require('readline');
 
-    function askQuestion(query) {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
+       // Ask the user for the Acces Token
+       const readline = require('readline');
+
+       function askQuestion(query) {
+           const rl = readline.createInterface({
+               input: process.stdin,
+               output: process.stdout,
+           });
+   
+           return new Promise(resolve => rl.question(query, answer => {
+               rl.close();
+               resolve(answer);
+           }))
+       }
+   
+       // const token = await askQuestion("Please provide the Access token for your tenant");
+       const token = process.argv[2]
+
+    // Provision Presentation Request 
+    var got = require('got')
+
+    var tenant = process.env.TENANT;
+    var presReq = `https://${tenant}.platform.mattr.global/v1/presentations/requests`
+    console.log(presReq);
+
+   
+        var {body, statusCode} = await got.post(presReq, {
+            
+            headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+            json: {
+                "challenge": "GW8FGpP6jhFrl37yQZIM6w",
+                "did": process.env.VERIFIERDID,
+                "templateId": process.env.TEMPLATEID,
+                "expiresTime": 1638836401000,
+                "callbackUrl": `${ngrokUrl}/callback`
+            },
+            responseType: 'json'
         });
+        console.log(statusCode);
+        console.log(body.request);
+       const requestPayload = body.request
 
-        return new Promise(resolve => rl.question(query, answer => {
-            rl.close();
-            resolve(answer);
-        }))
-    }
+    // Get DIDUrl from Verifier DID Doc
+    var dids = `https://${tenant}.platform.mattr.global/v1/dids/` + process.env.VERIFIERDID
+    console.log(dids);
+   
+        var {body} = await got.get(dids, {
+            
+            headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+            responseType: 'json'
+        });
+     //   console.log(statusCode);
+        console.log(body.didDocument.publicKey[0].id);
+        const didUrl = body.didDocument.publicKey[0].id;
+ 
 
-    console.log('ngrok callback URL to use in the presentation request: ', ngrokUrl + '/callback');
-    const jws = await askQuestion("Please provide the JWS");
+    // Sign payload
+    var signMes = `https://${tenant}.platform.mattr.global/v1/messaging/sign`
+    console.log(signMes);
+
+   
+        var {body} = await got.post(signMes, {
+            
+            headers: {
+                    "Authorization": `Bearer ${token}`
+                },
+            json: {
+                "didUrl": didUrl,
+                "payload": requestPayload 
+            },
+            responseType: 'json'
+        });
+       // console.log(statusCode);
+        console.log(body);
+
+        const jws = body
 
     // add jws provided by the user and the tenant from .env
-    var tenant = process.env.TENANT;
+    
     jwsUrl = `https://${tenant}.platform.mattr.global/?request=${jws}`;
 
     var didcommUrl = `didcomm://${ngrokUrl}/qr`;
