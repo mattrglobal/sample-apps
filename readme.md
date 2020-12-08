@@ -5,6 +5,7 @@
 ## Projects
 * [react-oidc-client](/react-oidc-client/README.md) - A simple React App that can be configured as an OIDC Client for Verify using OIDC flows
 * [callback-express](/callback-express/README.md) - Set up a Node.js Express app that listens for /Callback and displays the output.
+* [verify-callback-express](/verify-callback-express/README.md) - A Node.js Express app that can orchestrate calls to your MATTR tenant to initiate a Verify a Credential using a Callback flow.
 
 ## API Guides
 * Insomnia Core [import format](insomnia/README.md)
