@@ -2,9 +2,9 @@
   "name": "payload-express",
   "version": "1.0.0",
   "description": "",
-  "main": "payload-express.js",
+  "main": "verify-callback-express.js",
   "scripts": {
-    "start": "node payload-express.js",
+    "start": "node verify-callback-express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "got": "^11.8.0",
+    "jsonwebtoken": "^8.5.1",
     "ngrok": "^3.3.0"
   }
 }

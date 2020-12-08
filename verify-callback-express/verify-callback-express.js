@@ -5,6 +5,15 @@ const express = require('express')
 const app = express()
 
 var jwsUrl;
+
+// Obtain the Access Token
+const token = process.argv[2] ;
+
+if (token === undefined) {
+    throw new Error('Access token is missing - include a valid JWT as an argument')
+}
+
+// Create an Express server that will serve a redirect that the mobile app can use
 app.get('/qr', function (req, res) {
     const body = res.body
     console.log(jwsUrl)
@@ -25,6 +34,9 @@ app.listen(2000, function (err) {
     console.log('\n', 'Server started on port 2000', '\n')
 })
 
+
+
+
 var ngrokUrl;
 const ngrok = require('ngrok');
 (async function () {
@@ -32,14 +44,12 @@ const ngrok = require('ngrok');
     // Start ngrok
     ngrokUrl = await ngrok.connect(2000);
 
-// Construct the didcomm URL and check Ngrok is running
+    // Construct the didcomm URL and check Ngrok is running
     var got = require('got')
     var response = await got.get(`${ngrokUrl}/test`);
     console.log("Ngrok statusCode: ", response.statusCode);
 
-    // Obtain the Access Token
-    const token = process.argv[2]
-
+    
     // Provision Presentation Request
     var tenant = process.env.TENANT;
     var presReq = `https://${tenant}/v1/presentations/requests`
@@ -74,8 +84,8 @@ const ngrok = require('ngrok');
         },
         responseType: 'json'
     });
-    console.log("Public key from DID Doc found, DIDUrl is: " , response.body.didDocument.publicKey[0].id, '\n');
-    const didUrl = response.body.didDocument.publicKey[0].id;
+    console.log("Public key from DID Doc found, DIDUrl is: " , response.body.didDocument.authentication[0], '\n');
+    const didUrl = response.body.didDocument.authentication[0];
 
     // Sign payload
     var signMes = `https://${tenant}/v1/messaging/sign`
@@ -112,7 +122,7 @@ const ngrok = require('ngrok');
     let buf = Buffer.from(didcommUrl);
     let encodedData = buf.toString('base64');
     var deep = `global.mattr.wallet://accept/${encodedData}`
-    console.log('\n','The Deeplink for the MATTR Mobile Wallet is: \n', deep, '\n')
+    console.log('\n','Deeplink for the MATTR Mobile Wallet: \n', deep, '\n')
 
 // Receive the Callback
     const bodyParser = require('body-parser')
@@ -125,6 +135,8 @@ const ngrok = require('ngrok');
         const body = req.body
         console.log('\n Data from the Presentation is shown below \n', body)
         res.sendStatus(200)
+        console.log('Exiting app')
+        process.exit(0)
     })
 
 })();
