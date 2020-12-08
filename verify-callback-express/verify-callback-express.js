@@ -16,13 +16,13 @@ app.get('/test', function (req, res) {
     res.sendStatus(200)
 })
 
-// listen on port 2001
-app.listen(2001, function (err) {
+// listen on port 2000
+app.listen(2000, function (err) {
     if (err) {
         throw err
     }
 
-    console.log('Server started on port 2001')
+    console.log('\n', 'Server started on port 2000', '\n')
 })
 
 var ngrokUrl;
@@ -30,7 +30,7 @@ const ngrok = require('ngrok');
 (async function () {
 
     // Start ngrok
-    ngrokUrl = await ngrok.connect(2001);
+    ngrokUrl = await ngrok.connect(2000);
 
 // Construct the didcomm URL and check Ngrok is running
     var got = require('got')
@@ -42,8 +42,8 @@ const ngrok = require('ngrok');
 
     // Provision Presentation Request
     var tenant = process.env.TENANT;
-    var presReq = `https://${tenant}.platform.mattr.global/v1/presentations/requests`
-    console.log(presReq);
+    var presReq = `https://${tenant}/v1/presentations/requests`
+    console.log("Creating Presentation Request at " , presReq);
 
     response = await got.post(presReq, {
 
@@ -59,13 +59,13 @@ const ngrok = require('ngrok');
         },
         responseType: 'json'
     });
-    console.log(response.statusCode);
+    console.log("Create Presentation Request statusCode: ", response.statusCode);
     const requestPayload = response.body.request;
-    console.log(requestPayload);
+    console.log(requestPayload, '\n');
 
     // Get DIDUrl from Verifier DID Doc
-    var dids = `https://${tenant}.platform.mattr.global/v1/dids/` + process.env.VERIFIERDID
-    console.log(dids);
+    var dids = `https://${tenant}/v1/dids/` + process.env.VERIFIERDID
+    console.log("Looking up DID Doc from Verifier DID :", dids);
 
     response = await got.get(dids, {
 
@@ -74,12 +74,12 @@ const ngrok = require('ngrok');
         },
         responseType: 'json'
     });
-    console.log(response.body.didDocument.publicKey[0].id);
+    console.log("Public key from DID Doc found, DIDUrl is: " , response.body.didDocument.publicKey[0].id, '\n');
     const didUrl = response.body.didDocument.publicKey[0].id;
 
     // Sign payload
-    var signMes = `https://${tenant}.platform.mattr.global/v1/messaging/sign`
-    console.log(signMes);
+    var signMes = `https://${tenant}/v1/messaging/sign`
+    console.log("Signing the Presentation Request payload at: " , signMes);
 
     response = await got.post(signMes, {
 
@@ -93,12 +93,12 @@ const ngrok = require('ngrok');
         responseType: 'json'
     });
     const jws = response.body
-    console.log(jws);
+    console.log("The signed Presentation Request message is: ", jws, '\n');
 
-    jwsUrl = `https://${tenant}.platform.mattr.global/?request=${jws}`;
+    jwsUrl = `https://${tenant}/?request=${jws}`;
 
     var didcommUrl = `didcomm://${ngrokUrl}/qr`;
-    console.log(didcommUrl);
+    console.log("The URL encoded in this QR code" , didcommUrl);
 
 // generate a QR Code using the didcomm url
     var QRCode = require('qrcode');
@@ -106,6 +106,13 @@ const ngrok = require('ngrok');
     QRCode.toString(didcommUrl, {type: 'terminal'}, function (err, url) {
         console.log(url)
     })
+
+// generate the Deeplink for the MATTR Wallet
+    
+    let buf = Buffer.from(didcommUrl);
+    let encodedData = buf.toString('base64');
+    var deep = `global.mattr.wallet://accept/${encodedData}`
+    console.log('\n','The Deeplink for the MATTR Mobile Wallet is: \n', deep, '\n')
 
 // Receive the Callback
     const bodyParser = require('body-parser')
@@ -116,7 +123,7 @@ const ngrok = require('ngrok');
 // Receive a POST request to /callback & print it out to the terminal
     app.post('/callback', function (req, res) {
         const body = req.body
-        console.log(body)
+        console.log('\n Data from the Presentation is shown below \n', body)
         res.sendStatus(200)
     })
 
