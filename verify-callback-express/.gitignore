@@ -8,8 +8,8 @@ jest_results
 op
 .cache/
 public
-
-
+.env
+.env.*
 
 
 ######################
@@ -41,7 +41,7 @@ Desktop.ini
 ######################
 # Mac OSX
 ######################
-.DS_Store
+*.DS_Store
 
 # Thumbnails
 ._*

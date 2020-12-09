@@ -21,9 +21,9 @@ The sample app is ready to be installed locally for trying out the connection to
 git clone https://github.com/johntmattr/oidc-client-sample.git`
 ```
 
-## Install dependecies
+## Install dependencies
 
-- Install dependecies
+- Install dependencies
 ``` sh
 yarn install
 cd src

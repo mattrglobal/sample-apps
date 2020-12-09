@@ -11,7 +11,7 @@ In order for a MATTR Mobile Wallet app to read the Presentation Request the term
 
 Pre-requisites:
 
-* You'll need a valid Access token for the MATTR Platform, if you do not have a tenent setup (get started here)[https://mattr.global/get-started/].
+* You'll need a valid Access token for the MATTR Platform, if you do not have a tenent setup [get started here](https://mattr.global/get-started).
 * Have a valid [Verifier DID](https://learn.mattr.global/api-ref#operation/retrieveListOfDids) and [Presentation Request Template](https://learn.mattr.global/api-ref#operation/createPresTemplate) and know the ID's of each.
 * Download the MATTR Mobile Wallet app and hold a Credential matching the Presentation Request 
 * Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet
@@ -26,7 +26,7 @@ cd verify-call-back-express
 npm install
 ```
 
-Create your environment variables in a `.env` file and save to the folder.
+Create your environment variables in a `.env` file and save to the folder (rename `.env-template`).
 ```
 TENANT=tenant.platform.mattr.global
 TEMPLATEID=<presentation-request-template-uuid>
