@@ -12,7 +12,6 @@
   "dependencies": {
     "express": "^4.17.1",
     "got": "^11.8.0",
-    "jsonwebtoken": "^8.5.1",
     "ngrok": "^3.3.0"
   }
 }

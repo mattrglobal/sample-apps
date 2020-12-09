@@ -1,4 +1,4 @@
-![Logo](https://mattr-dev-content.netlify.app/favicon-32x32.png)
+![Logo](https://learn.mattr.global/MATTR-logo_dark-full.svg)
 
 
 # Verify Credentials using Presentation Request Callbacks
