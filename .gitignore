@@ -8,6 +8,7 @@ jest_results
 op
 .cache/
 public
+.env
 
 
 
