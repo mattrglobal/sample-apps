@@ -1,4 +1,4 @@
-![Logo](https://mattr-dev-content.netlify.app/favicon-32x32.png)
+![Logo](https://learn.mattr.global/MATTR-logo_dark-full.svg)
 
 # React-oidc-client-js
 
@@ -10,31 +10,66 @@
 
 - The application is based on `create-react-app` - [Create React App](https://github.com/facebook/create-react-app)
 
+- You will need access to the MATTR Platform and have configured the OIDC Bridge extension as a Verifier and setup a Client. See our [Learn site](https://learn.mattr.global/tutorials/verify/oidc-bridge/verify-oidc) for details.
+
 # Project status
 The sample app is ready to be installed locally for trying out the connection to MATTR Identity Agent Platform.
 
 # Installation
 
-## Cloning app
+## Tenant Setup
+On your tenant, use the OIDC Bridge to create a Verifier and setup a Client
+The Client will need to be configured with this:
 
-``` sh
-git clone https://github.com/johntmattr/oidc-client-sample.git`
+``` json
+{
+	"name": "Verify React OIDC Sample App",
+	"redirectUris": [
+		"https://localhost:3000/signin-callback.html`"
+	],
+	"responseTypes": [
+		"code"
+	],
+	"grantTypes": [
+		"authorization_code"
+	],
+	"tokenEndpointAuthMethod": "none",
+	"idTokenSignedResponseAlg": "ES256",
+	"applicationType": "native",
+	"logoUri": "https://learn.mattr.global/MATTR-logo_light-full.svg"
+}
 ```
 
-## Install dependecies
+Use the `id` value as the `client-id` value.
 
-- Install dependecies
+
+## Cloning the samples-apps repo
+
 ``` sh
+git clone https://github.com/mattrglobal/sample-apps
+```
+
+## Change to the dir and install dependencies
+
+- Install dependencies
+``` sh
+cd react-oidc-client
 yarn install
-cd src
 ```
+
+## Update the .env file
+Rename the `.env-template` file to `.env` and add your variables
+
+```
+REACT_APP_STSAUTHORITY=https://<your-tenant>.platform.mattr.global/oidc/v1/verifiers/<verifier-id>
+REACT_APP_CLIENTID=<client-id>
+REACT_APP_CLIENTROOT=https://localhost:3000/
+REACT_APP_CLIENTSCOPE=openid_credential_presentation
+```
+
 
 ## Running app
 
-- `yarn start` - start the web server that is running on [http://localhost:4200](http://localhost:4200)
+- `yarn start` - start the web server 
 
 
-## App preview
-A sample version is running here: https://mattr-dev-oidc.netlify.app/
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/583ebe16-5d6b-49d1-8200-2593e8ee5a81/deploy-status)](https://app.netlify.com/sites/mattr-dev-oidc/deploys)

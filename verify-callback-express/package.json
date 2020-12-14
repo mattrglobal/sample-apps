@@ -1,0 +1,17 @@
+{
+  "name": "payload-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "verify-callback-express.js",
+  "scripts": {
+    "start": "node verify-callback-express.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "express": "^4.17.1",
+    "got": "^11.8.0",
+    "ngrok": "^3.3.0"
+  }
+}
