@@ -7,7 +7,7 @@ Download from their [downloads page](https://insomnia.rest/download/core/?)
 
 ## Getting started
 
-- Copy the Insomnia [import file](Insomnia_mattr_vxx.json) and save locally
+- Copy the Insomnia import file 'Insomnia_v0-xx.json' and save locally
 - In Insomnia, open 'Import/Export' from the menu
 ![insomnia menu](assets/insomnia-import-export.png)
 - On 'Import' choose 'From file'  
