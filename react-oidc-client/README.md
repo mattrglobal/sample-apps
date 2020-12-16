@@ -1,4 +1,4 @@
-![Logo](https://learn.mattr.global/MATTR-logo_dark-full.svg)
+[![MATTR](../docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 # React-oidc-client-js
 
@@ -42,7 +42,6 @@ The Client will need to be configured with this:
 
 Use the `id` value as the `client-id` value.
 
-
 ## Cloning the samples-apps repo
 
 ``` sh
@@ -67,9 +66,10 @@ REACT_APP_CLIENTROOT=https://localhost:3000/
 REACT_APP_CLIENTSCOPE=openid_credential_presentation
 ```
 
-
 ## Running app
 
 - `yarn start` - start the web server 
 
+---
 
+<p align="center"><a href="https://mattr.global" target="_blank"><img height="40px" src ="../docs/assets/mattr-logo-tm.svg"></a></p><p align="center">Copyright © MATTR Limited. <a href="./LICENSE">Some rights reserved.</a><br/>“MATTR” is a trademark of MATTR Limited, registered in New Zealand and other countries.</p>

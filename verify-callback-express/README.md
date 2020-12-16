@@ -1,5 +1,4 @@
-![Logo](https://learn.mattr.global/MATTR-logo_dark-full.svg)
-
+[![MATTR](../docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 # Verify Credentials using Presentation Request Callbacks
 
@@ -37,7 +36,6 @@ VERIFIERDID=<verifier-did>
 * Add the `id` of the [Presentation Request Template](https://learn.mattr.global/api-ref#operation/createPresTemplate) from your tenant to `TEMPLATEID`
 * Add a DID to `VERIFIERDID` that that [exists on your tenant](https://learn.mattr.global/api-ref#operation/retrieveListOfDids)
 
-
 ### Start the server
 Append your valid Platform access token to the end of the start command to start the Express server
 ```
@@ -45,7 +43,6 @@ npm start <access_token>
 ```
 
 > The access token is stored in memory and used to make API calls to your tenant over HTTPS
-
 
 ## Steps
 The App starts an Ngrok tunnel to your localhost.
@@ -60,9 +57,11 @@ Or, copy the displayed Deeplink URL and sent via alternate messaging means to th
 
 The 'Verification Request' screen should be displayed.
 
-
-
 ## Uses
 This app is provided as a learning tool to test Verifying Credentials using the Callback method.
 
 It is not intended to run any production workloads.
+
+---
+
+<p align="center"><a href="https://mattr.global" target="_blank"><img height="40px" src ="../docs/assets/mattr-logo-tm.svg"></a></p><p align="center">Copyright © MATTR Limited. <a href="../LICENSE">Some rights reserved.</a><br/>“MATTR” is a trademark of MATTR Limited, registered in New Zealand and other countries.</p>
