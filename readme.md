@@ -1,6 +1,6 @@
-# Welcome to the MATTR Sample Apps Repo
+[![MATTR](./docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
-![MATTR Logo](https://learn.mattr.global/MATTR-logo_light-full.svg)
+# Welcome to the MATTR Sample Apps Repo
 
 ## Projects
 * [react-oidc-client](/react-oidc-client/README.md) - A simple React App that can be configured as an OIDC Client for Verify using OIDC flows
@@ -13,3 +13,7 @@
 
 ## Related Projects
 * [JSON-LD Lint](https://github.com/mattrglobal/jsonld-lint) - A set of packages designed to lint JSON-LD documents, including a CLI and more.
+
+---
+
+<p align="center"><a href="https://mattr.global" target="_blank"><img height="40px" src ="./docs/assets/mattr-logo-tm.svg"></a></p><p align="center">Copyright © MATTR Limited. <a href="./LICENSE">Some rights reserved.</a><br/>“MATTR” is a trademark of MATTR Limited, registered in New Zealand and other countries.</p>

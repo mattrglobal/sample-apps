@@ -7,8 +7,13 @@ Visit the Insomnia Core [downloads page](https://insomnia.rest/download/core/?) 
 
 ## Getting started
 
+<<<<<<< Updated upstream
 - Copy the Insomnia import file 'Insomnia_v0-xx.json' and save locally
 - In Insomnia, open 'Import/Export' from the menu
+=======
+- Copy the Insomnia [import file](Insomnia_mattr_vxx.json) and save locally
+- In Insomnia, open 'Import/Export' from the menu  
+>>>>>>> Stashed changes
 ![insomnia menu](assets/insomnia-import-export.png)
 - On 'Import' choose 'From file'  
 ![Insomnia import file](assets/insomnia-import-file.png)
@@ -88,3 +93,7 @@ Hit `Send` in the top right of the Request pane (middle of the application)
 See the response in the `Preview` section of the Response pane on the right.
 
 ![DID Response](assets/insomnia-did-response.png)
+
+---
+
+<p align="center"><a href="https://mattr.global" target="_blank"><img height="40px" src ="../docs/assets/mattr-logo-tm.svg"></a></p><p align="center">Copyright © MATTR Limited. <a href="./LICENSE">Some rights reserved.</a><br/>“MATTR” is a trademark of MATTR Limited, registered in New Zealand and other countries.</p>
