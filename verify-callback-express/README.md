@@ -21,7 +21,7 @@ npm install dependencies
 
 
 ```
-cd verify-call-back-express
+cd verify-callback-express
 npm install
 ```
 
