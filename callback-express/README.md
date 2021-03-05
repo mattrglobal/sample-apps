@@ -9,10 +9,10 @@ This is provided as a rudimentary method to test Verifying Credentials using the
 
 ## Get started
 
-Clone the sample-apps repo
-Change to the `callback-express` directory
-npm install dependencies
-Start the app
+1. Clone the sample-apps repo
+2. Change to the `callback-express` directory
+3. npm install dependencies
+4. Start the app
 
 
 ```
