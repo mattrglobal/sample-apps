@@ -1,6 +1,30 @@
 {
+  "name": "callback-express",
+  "version": "1.0.0",
+  "description": "A simple way to parse a JSON body from a callback",
+  "main": "callback-express.js",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "express": "^4.17.1"
-  }
+    "body-parser": "1.19.0",
+    "express": "4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test",
+    "start": "node callback-express.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattrglobal/sample-apps.git"
+  },
+  "keywords": [
+    "sample",
+    "express",
+    "callback"
+  ],
+  "author": "jthompson",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mattrglobal/sample-apps/issues"
+  },
+  "homepage": "https://github.com/mattrglobal/sample-apps#readme"
 }

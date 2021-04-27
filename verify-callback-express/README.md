@@ -15,13 +15,13 @@ Pre-requisites:
 * Download the MATTR Mobile Wallet app and hold a Credential matching the Presentation Request 
 * Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet
 
-Clone the sample-apps repo
-Change to the `verify-callback-express` directory
-npm install dependencies
+1. Clone the sample-apps repo
+2. Change to the `verify-callback-express` directory
+3. npm install dependencies
 
 
 ```
-cd verify-call-back-express
+cd verify-callback-express
 npm install
 ```
 
