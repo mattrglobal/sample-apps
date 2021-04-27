@@ -52,7 +52,7 @@ const ngrok = require('ngrok');
     
     // Provision Presentation Request
     var tenant = process.env.TENANT;
-    var presReq = `https://${tenant}/v1/presentations/requests`
+    var presReq = `https://${tenant}/core/v1/presentations/requests`
     console.log("Creating Presentation Request at " , presReq);
 
     response = await got.post(presReq, {
@@ -74,7 +74,7 @@ const ngrok = require('ngrok');
     console.log(requestPayload, '\n');
 
     // Get DIDUrl from Verifier DID Doc
-    var dids = `https://${tenant}/v1/dids/` + process.env.VERIFIERDID
+    var dids = `https://${tenant}/core/v1/dids/` + process.env.VERIFIERDID
     console.log("Looking up DID Doc from Verifier DID :", dids);
 
     response = await got.get(dids, {
@@ -88,7 +88,7 @@ const ngrok = require('ngrok');
     const didUrl = response.body.didDocument.authentication[0];
 
     // Sign payload
-    var signMes = `https://${tenant}/v1/messaging/sign`
+    var signMes = `https://${tenant}/core/v1/messaging/sign`
     console.log("Signing the Presentation Request payload at: " , signMes);
 
     response = await got.post(signMes, {

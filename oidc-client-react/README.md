@@ -25,7 +25,7 @@ The Client will need to be configured with this:
 {
 	"name": "Verify React OIDC Sample App",
 	"redirectUris": [
-		"https://localhost:3000/signin-callback.html`"
+		"http://localhost:3000/signin-callback.html"
 	],
 	"responseTypes": [
 		"code"

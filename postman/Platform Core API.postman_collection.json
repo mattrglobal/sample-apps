@@ -21,10 +21,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"audience\": \"<string>\",\n    \"grant_type\": \"<string>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"client_id\": \"<string>\",\n    \"client_secret\": \"<string>\",\n    \"audience\": \"<string>\",\n    \"grant_type\": \"<string>\"\n}"
 						},
 						"url": {
 							"raw": "{{oauth-token-Url}}/oauth/token",
@@ -123,8 +120,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "DIDs",
@@ -203,7 +199,6 @@
 							],
 							"variable": [
 								{
-									"id": "5c41b3f5-4593-4ae0-94f4-9a4bec4c2cc5",
 									"key": "id",
 									"value": "<string>",
 									"type": "string",
@@ -319,7 +314,6 @@
 							],
 							"variable": [
 								{
-									"id": "9f3d61be-4386-44ca-ad57-3052ffe49089",
 									"key": "id",
 									"value": "<string>",
 									"type": "string",
@@ -508,10 +502,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/dids",
@@ -610,8 +601,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Messaging",
@@ -638,10 +628,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"didUrl\": \"<string>\",\n    \"payload\": \"<object>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"didUrl\": \"<string>\",\n    \"payload\": \"<object>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/messaging/sign",
@@ -755,10 +742,235 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"jws\": \"<string>\"\n}",
-							"options": {
-								"raw": {}
+							"raw": "{\n    \"jws\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/verify",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"verify"
+							]
+						},
+						"description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
+					},
+					"response": [
+						{
+							"name": "Verification has been performed, see response body for result",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": {
+											"content": "Added as a part of security scheme: bearer",
+											"type": "text/plain"
+										},
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"verify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"payload\": \"payload\",\n \"didUrl\": \"did:key:z6Mkqh5teM4EiYkBVNPJiYhwMJ9D9MqdAi2RoNYGJspKdpWE#z6Mkqh5teM4EiYkBVNPJiYhwMJ9D9MqdAi2RoNYGJspKdpWE\",\n \"did\": \"did:key:z6Mkqh5teM4EiYkBVNPJiYhwMJ9D9MqdAi2RoNYGJspKdpWE\",\n \"verified\": true\n}"
+						},
+						{
+							"name": "Invalid JWS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": {
+											"content": "Added as a part of security scheme: bearer",
+											"type": "text/plain"
+										},
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"verify"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": \"BadRequest\",\n \"message\": \"Verification failed\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Encrypt a Message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
 							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jws\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/verify",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"verify"
+							]
+						},
+						"description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
+					},
+					"response": [
+						{
+							"name": "Invalid JWS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": {
+											"content": "Added as a part of security scheme: bearer",
+											"type": "text/plain"
+										},
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"verify"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"code\": \"BadRequest\",\n \"message\": \"Verification failed\"\n}"
+						},
+						{
+							"name": "Verification has been performed, see response body for result",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": {
+											"content": "Added as a part of security scheme: bearer",
+											"type": "text/plain"
+										},
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"verify"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"payload\": \"payload\",\n \"didUrl\": \"did:key:z6Mkqh5teM4EiYkBVNPJiYhwMJ9D9MqdAi2RoNYGJspKdpWE#z6Mkqh5teM4EiYkBVNPJiYhwMJ9D9MqdAi2RoNYGJspKdpWE\",\n \"did\": \"did:key:z6Mkqh5teM4EiYkBVNPJiYhwMJ9D9MqdAi2RoNYGJspKdpWE\",\n \"verified\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Send a message",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/messaging/verify",
@@ -860,8 +1072,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Credentials",
@@ -878,10 +1089,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"@context\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"type\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"claims\": \"<object>\",\n    \"issuer\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n    },\n    \"subjectId\": \"<string>\",\n    \"tag\": \"<string>\",\n    \"persist\": \"<boolean>\",\n    \"revocable\": \"<boolean>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"@context\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"type\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"claims\": \"<object>\",\n    \"issuer\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n    },\n    \"subjectId\": \"<string>\",\n    \"tag\": \"<string>\",\n    \"persist\": \"<boolean>\",\n    \"revocable\": \"<boolean>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/credentials",
@@ -1149,7 +1357,6 @@
 							],
 							"variable": [
 								{
-									"id": "6ef0f3f9-ac2a-44fc-8606-5822bf0a9ae5",
 									"key": "id",
 									"value": "<string>",
 									"type": "string",
@@ -1308,7 +1515,6 @@
 							],
 							"variable": [
 								{
-									"id": "78c109ef-f721-4460-8426-fc5002030853",
 									"key": "id",
 									"value": "<string>",
 									"type": "string",
@@ -1462,10 +1668,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"sunt est ea\",\n            \"cillum ullamco id\"\n        ],\n        \"type\": [\n            \"minim laboris dolor\",\n            \"laboris\"\n        ],\n        \"issuanceDate\": \"1963-07-12T10:54:56.293Z\",\n        \"credentialSubject\": {\n            \"id\": \"dolor et pariatur sint minim\",\n            \"givenName\": \"ea tempor elit\",\n            \"familyName\": \"minim aliqua consequat\",\n            \"alumniOf\": \"Duis aliqua nostrud Ut\"\n        },\n        \"proof\": {\n            \"type\": \"dolor occaecat aliquip\",\n            \"created\": \"1997-08-30T18:26:39.564Z\",\n            \"jws\": \"Lorem Duis veniam proident\",\n            \"proofPurpose\": \"Ut amet fugiat pariatur\",\n            \"verificationMethod\": \"cillum sit\"\n        },\n        \"issuer\": {\n            \"id\": \"pariatur magna enim consequat\",\n            \"name\": \"est cillum irure officia aute\"\n        },\n        \"credentialStatus\": {\n            \"id\": \"labore fugiat\",\n            \"type\": \"laborum et magna non\",\n            \"revocationListIndex\": 62180854,\n            \"revocationListCredential\": \"sit amet consequat Excepteur\"\n        }\n    }\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"sunt est ea\",\n            \"cillum ullamco id\"\n        ],\n        \"type\": [\n            \"minim laboris dolor\",\n            \"laboris\"\n        ],\n        \"issuanceDate\": \"1963-07-12T10:54:56.293Z\",\n        \"credentialSubject\": {\n            \"id\": \"dolor et pariatur sint minim\",\n            \"givenName\": \"ea tempor elit\",\n            \"familyName\": \"minim aliqua consequat\",\n            \"alumniOf\": \"Duis aliqua nostrud Ut\"\n        },\n        \"proof\": {\n            \"type\": \"dolor occaecat aliquip\",\n            \"created\": \"1997-08-30T18:26:39.564Z\",\n            \"jws\": \"Lorem Duis veniam proident\",\n            \"proofPurpose\": \"Ut amet fugiat pariatur\",\n            \"verificationMethod\": \"cillum sit\"\n        },\n        \"issuer\": {\n            \"id\": \"pariatur magna enim consequat\",\n            \"name\": \"est cillum irure officia aute\"\n        },\n        \"credentialStatus\": {\n            \"id\": \"labore fugiat\",\n            \"type\": \"laborum et magna non\",\n            \"revocationListIndex\": 62180854,\n            \"revocationListCredential\": \"sit amet consequat Excepteur\"\n        }\n    }\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/credentials/verify",
@@ -1525,8 +1728,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Revocation",
@@ -1543,10 +1745,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"isRevoked\": \"<boolean>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"isRevoked\": \"<boolean>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
@@ -1561,7 +1760,6 @@
 							],
 							"variable": [
 								{
-									"id": "34832cc3-cf3f-41c2-8513-f7a8452e08f4",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -1688,7 +1886,6 @@
 							],
 							"variable": [
 								{
-									"id": "be63c6e1-13f8-484d-bc7b-cd6493756e1a",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -1806,7 +2003,6 @@
 							],
 							"variable": [
 								{
-									"id": "0ac765b1-9b63-42e1-aaf5-71346091deee",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -1905,8 +2101,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "Presentations",
@@ -1923,10 +2118,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"query\": [\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"query\": [\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/presentations/templates",
@@ -2127,7 +2319,6 @@
 							],
 							"variable": [
 								{
-									"id": "e4cb25c6-eaaa-4fb8-98d4-15321d717307",
 									"key": "id",
 									"value": "<string>",
 									"type": "string",
@@ -2290,7 +2481,6 @@
 							],
 							"variable": [
 								{
-									"id": "037840ee-c4e3-4084-94ae-c4e2e8ed92ec",
 									"key": "id",
 									"value": "<string>",
 									"type": "string",
@@ -2447,10 +2637,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"templateId\": \"<string>\",\n    \"did\": \"<string>\",\n    \"challenge\": \"<string>\",\n    \"expiresTime\": \"<number>\",\n    \"callbackUrl\": \"<uri>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"templateId\": \"<string>\",\n    \"did\": \"<string>\",\n    \"challenge\": \"<string>\",\n    \"expiresTime\": \"<number>\",\n    \"callbackUrl\": \"<uri>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/v1/presentations/requests",
@@ -2552,8 +2739,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC Issuer Auth",
@@ -2578,7 +2764,6 @@
 							],
 							"variable": [
 								{
-									"id": "dcda64e9-9023-4c8e-a578-2cd63ce9154a",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -2675,10 +2860,7 @@
 									"value": "<uri>",
 									"description": "undefined"
 								}
-							],
-							"options": {
-								"urlencoded": {}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/token",
@@ -3076,8 +3258,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC Issuers",
@@ -3094,10 +3275,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"<uri>\",\n        \"clientId\": \"<string>\",\n        \"clientSecret\": \"<string>\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"<uri>\",\n        \"clientId\": \"<string>\",\n        \"clientSecret\": \"<string>\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/issuers",
@@ -3346,7 +3524,6 @@
 							],
 							"variable": [
 								{
-									"id": "aa19b5f9-d6ea-46bd-b7e7-a81bf79960e8",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -3503,10 +3680,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"<uri>\",\n        \"clientId\": \"<string>\",\n        \"clientSecret\": \"<string>\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"<uri>\",\n        \"clientId\": \"<string>\",\n        \"clientSecret\": \"<string>\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
@@ -3521,7 +3695,6 @@
 							],
 							"variable": [
 								{
-									"id": "0550b7ca-4836-433f-b8e4-64cf1047e172",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -3696,7 +3869,6 @@
 							],
 							"variable": [
 								{
-									"id": "596dd532-3a57-4e17-a2e2-b777f088b0cc",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -3841,8 +4013,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC Issuer Client",
@@ -3859,10 +4030,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients",
@@ -3878,7 +4046,6 @@
 							],
 							"variable": [
 								{
-									"id": "1d0b3922-e818-4622-9455-6ae725e442a4",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -4020,7 +4187,6 @@
 							],
 							"variable": [
 								{
-									"id": "89086d67-7c0c-4025-9796-b167b90d68ee",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -4163,14 +4329,12 @@
 							],
 							"variable": [
 								{
-									"id": "0d388fdd-caf8-4c1d-8ad3-ea6d7e83d636",
 									"key": "issuerId",
 									"value": "<uuid>",
 									"type": "string",
 									"description": "(Required) Issuer ID"
 								},
 								{
-									"id": "737479f8-56dc-4dbc-a590-910a997012b3",
 									"key": "clientId",
 									"value": "<uuid>",
 									"type": "string",
@@ -4333,10 +4497,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
@@ -4353,14 +4514,12 @@
 							],
 							"variable": [
 								{
-									"id": "1a0627ae-c6dd-43d3-92e7-5cbabeef7ada",
 									"key": "issuerId",
 									"value": "<uuid>",
 									"type": "string",
 									"description": "(Required) Issuer ID"
 								},
 								{
-									"id": "35ba30d1-1136-46d0-b90f-625a68f8d23b",
 									"key": "clientId",
 									"value": "<uuid>",
 									"type": "string",
@@ -4543,14 +4702,12 @@
 							],
 							"variable": [
 								{
-									"id": "e3d5bb13-64ea-4d27-a590-099e676efc0c",
 									"key": "issuerId",
 									"value": "<uuid>",
 									"type": "string",
 									"description": "(Required) Issuer ID"
 								},
 								{
-									"id": "b120757e-242b-471d-898e-fc70cb5c69ec",
 									"key": "clientId",
 									"value": "<uuid>",
 									"type": "string",
@@ -4701,8 +4858,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC Verifier Auth",
@@ -4727,7 +4883,6 @@
 							],
 							"variable": [
 								{
-									"id": "3c4dcdc5-a898-4a6b-a667-713375b6cbe6",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -4824,10 +4979,7 @@
 									"value": "<uri>",
 									"description": "undefined"
 								}
-							],
-							"options": {
-								"urlencoded": {}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/token",
@@ -5225,8 +5377,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC Verifiers",
@@ -5243,10 +5394,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"verifierDid\": \"<string>\",\n    \"presentationTemplateId\": \"<uuid>\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"verifierDid\": \"<string>\",\n    \"presentationTemplateId\": \"<uuid>\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/verifiers",
@@ -5495,7 +5643,6 @@
 							],
 							"variable": [
 								{
-									"id": "300a0d20-ad27-4574-843c-7fcd1760014a",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -5652,10 +5799,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"verifierDid\": \"<string>\",\n    \"presentationTemplateId\": \"<uuid>\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"verifierDid\": \"<string>\",\n    \"presentationTemplateId\": \"<uuid>\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
@@ -5670,7 +5814,6 @@
 							],
 							"variable": [
 								{
-									"id": "8e831628-1b9f-45e0-8c4d-3e23a58cfd45",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -5845,7 +5988,6 @@
 							],
 							"variable": [
 								{
-									"id": "e8d29dfd-60ec-4846-b4b5-8d7fb466834d",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -5990,8 +6132,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		},
 		{
 			"name": "OIDC Verifier Client",
@@ -6008,10 +6149,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\",\n    \"logoUri\": \"<uri>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\",\n    \"logoUri\": \"<uri>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients",
@@ -6027,7 +6165,6 @@
 							],
 							"variable": [
 								{
-									"id": "32180bc2-94ac-461f-a039-fac7594cb482",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -6169,7 +6306,6 @@
 							],
 							"variable": [
 								{
-									"id": "a97637cc-d38d-4312-9735-12423bdd0969",
 									"key": "id",
 									"value": "<uuid>",
 									"type": "string",
@@ -6312,14 +6448,12 @@
 							],
 							"variable": [
 								{
-									"id": "35c3c6d4-5f4c-4773-ae8b-33be05085d01",
 									"key": "verifierId",
 									"value": "<uuid>",
 									"type": "string",
 									"description": "(Required) Verifier ID"
 								},
 								{
-									"id": "d044768f-9657-47f7-9b28-1b116643e5e1",
 									"key": "clientId",
 									"value": "<uuid>",
 									"type": "string",
@@ -6482,10 +6616,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\",\n    \"logoUri\": \"<uri>\"\n}",
-							"options": {
-								"raw": {}
-							}
+							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\",\n    \"logoUri\": \"<uri>\"\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
@@ -6502,14 +6633,12 @@
 							],
 							"variable": [
 								{
-									"id": "4326b7c8-1128-41de-879c-046cd0de9779",
 									"key": "verifierId",
 									"value": "<uuid>",
 									"type": "string",
 									"description": "(Required) Verifier ID"
 								},
 								{
-									"id": "507c7376-0a9d-4b77-8a7e-dc687003bf58",
 									"key": "clientId",
 									"value": "<uuid>",
 									"type": "string",
@@ -6692,14 +6821,12 @@
 							],
 							"variable": [
 								{
-									"id": "8294f988-323d-4463-aa06-183a2aa8d97a",
 									"key": "verifierId",
 									"value": "<uuid>",
 									"type": "string",
 									"description": "(Required) Verifier ID"
 								},
 								{
-									"id": "a16051c5-7219-4a2b-ab21-4ebac68aea6b",
 									"key": "clientId",
 									"value": "<uuid>",
 									"type": "string",
@@ -6850,8 +6977,7 @@
 						}
 					]
 				}
-			],
-			"protocolProfileBehavior": {}
+			]
 		}
 	],
 	"auth": {
@@ -6868,7 +6994,6 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "f5881ca1-fe14-4ee3-b860-8a74655aeaee",
 				"type": "text/javascript",
 				"exec": [
 					"const tokenUrl = pm.environment.get('auth_url') + '/oauth/token';",
@@ -6876,9 +7001,9 @@
 					"const clientId = pm.environment.get('auth_client_id');",
 					"const clientSecret = pm.environment.get('auth_client_secret');",
 					"",
-					"const getTokenRequest = {",
-					"  method: 'POST',",
+					"const echoPostRequest = {",
 					"  url: tokenUrl,",
+					"  method: 'POST',",
 					"  header: 'Content-Type:application/json',",
 					"  body: {",
 					"    mode: 'application/json',",
@@ -6892,25 +7017,43 @@
 					"  }",
 					"};",
 					"",
-					"pm.sendRequest(getTokenRequest, (err, response) => {",
-					"  const jsonResponse = response.json();",
-					"  const newAccessToken = jsonResponse.access_token;",
+					"var getToken = true;",
 					"",
-					"  pm.variables.set('bearerToken', newAccessToken);",
-					"});"
+					"if (!pm.environment.get('accessTokenExpiry') || ",
+					"    !pm.environment.get('bearerToken')) {",
+					"    console.log('Token or expiry date are missing')",
+					"} else if (pm.environment.get('accessTokenExpiry') <= (new Date()).getTime()) {",
+					"    console.log('Token is expired')",
+					"} else {",
+					"    getToken = false;",
+					"    console.log('Token and expiry date are all good');",
+					"}",
+					"",
+					"if (getToken === true) {",
+					"    pm.sendRequest(echoPostRequest, function (err, res) {",
+					"    console.log(err ? err : res.json());",
+					"        if (err === null) {",
+					"            console.log('Saving the token and expiry date')",
+					"            var responseJson = res.json();",
+					"            pm.environment.set('bearerToken', responseJson.access_token)",
+					"    ",
+					"            var expiryDate = new Date();",
+					"            expiryDate.setSeconds(expiryDate.getSeconds() + responseJson.expires_in);",
+					"            pm.environment.set('accessTokenExpiry', expiryDate.getTime());",
+					"        }",
+					"    });",
+					"}"
 				]
 			}
 		},
 		{
 			"listen": "test",
 			"script": {
-				"id": "1ca0b321-1faf-49f9-89ef-712176193acf",
 				"type": "text/javascript",
 				"exec": [
 					""
 				]
 			}
 		}
-	],
-	"protocolProfileBehavior": {}
+	]
 }
