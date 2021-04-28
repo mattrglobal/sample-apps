@@ -60,7 +60,7 @@ yarn install
 Rename the `.env-template` file to `.env` and add your variables
 
 ```
-REACT_APP_STSAUTHORITY=https://<your-tenant>.platform.mattr.global/oidc/v1/verifiers/<verifier-id>
+REACT_APP_STSAUTHORITY=https://<your-tenant>.vii.mattr.global/oidc/v1/verifiers/<verifier-id>
 REACT_APP_CLIENTID=<client-id>
 REACT_APP_CLIENTROOT=https://localhost:3000/
 REACT_APP_CLIENTSCOPE=openid_credential_presentation
