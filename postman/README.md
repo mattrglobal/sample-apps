@@ -48,6 +48,14 @@ Select the `Platform Core API.postman_collection.json` file.
 Once the file has successfully imported you will see the Platform Core API Collection
 
 ## Try it out
+First, make sure you can obtain a valid access token from the 'Create API Auth Token' endpoint inside the `Security` folder:
+
+![auth](assets/postman-auth.png)
+
+This operation will make use of the environment variables you configured above. If you do not obtain a valid 200 response then make sure you check your variables in Environment.
+
+### Next step
+
 Go to a protected endpoint e.g.
 `DIDs` > `Retrieve a List of DIDs`
 
