@@ -417,25 +417,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/dids?limit=<number>&cursor=<string>",
+							"raw": "{{baseUrl}}/v1/dids",
 							"host": [
 								"{{baseUrl}}"
 							],
 							"path": [
 								"v1",
 								"dids"
-							],
-							"query": [
-								{
-									"key": "limit",
-									"value": "<number>",
-									"description": "Range size of returned DIDs, default 100"
-								},
-								{
-									"key": "cursor",
-									"value": "<string>",
-									"description": "Starting point for the range of DIDs"
-								}
 							]
 						},
 						"description": "Returns a list of all DIDs (Decentralized Identifiers) managed by the tenant and their associated meta-data.\n"
