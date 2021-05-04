@@ -29,7 +29,7 @@ To add your Tenant specific variable click on the text `MATTR Tenant env`
 ![Environment variables](./assets/postman-edit-env.png)
 
 * `baseUrl` replace `tenant` with your subdomain provided during tenant creation
-* `extUrl` if you intend to use extentions like the OIDC Bridge, replace `tenant` with your subdomain
+* `extUrl` if you intend to use extensions like the OIDC Bridge, replace `tenant` with your subdomain
 * `bearerToken` will be updated automatically using a Pre-request scripted at the Collection level (included)
 * `auth_url` & `auth_audience` can remain as-is
 * `auth_client_id` is your Client ID for authorization to the API 
