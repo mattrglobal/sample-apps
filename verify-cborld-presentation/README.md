@@ -17,6 +17,6 @@ The app will allow you to scan a CBOR VC presentation in a QR code, decode and v
 
 ## Run
 
-```javascript
-  yarn start
+```shell
+  API_TOKEN="..." PLATFORM_BASE_URL="..." yarn start
 ```

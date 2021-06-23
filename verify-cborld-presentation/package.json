@@ -19,7 +19,6 @@
     "http-proxy-middleware": "2.0.0",
     "husky": "3.0.4",
     "lottie-react": "2.1.0",
-    "ngrok": "^4.0.1",
     "pako": "2.0.3",
     "prettier": "2.2.1",
     "pretty-quick": "1.11.1",
