@@ -1,10 +1,4 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
-import React, { useEffect, useState } from "react";
+import React from "react";
 import QRCode from "react-qr-code";
 
 const compressedQr =
@@ -15,13 +9,10 @@ const uncompressedQr =
 export const getQrData = (): string => compressedQr;
 
 export const QrPage: React.FC = () => {
-  const [qrCode, setQrCode] = useState<string>();
-  useEffect(() => {
-    (async () => {
-      setQrCode(getQrData());
-    })();
-  }, []);
-
-  // TODO: need to make the qr size dynamic
-  return <div style={{ paddingTop: "8rem" }}>{qrCode && <QRCode value={qrCode} level="L" size={400} />}</div>;
+  // TODO: need to make the QR size dynamic
+  return (
+    <div style={{ paddingTop: "8rem" }}>
+      <QRCode value={getQrData()} level="L" size={400} />
+    </div>
+  );
 };

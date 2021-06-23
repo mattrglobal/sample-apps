@@ -1,9 +1,3 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 import styled from "styled-components";
 
 export const DescriptionTitle = styled.div`

@@ -1,7 +1,7 @@
 {
   "root": true,
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "header", "import", "functional", "eslint-plugin-tsdoc"],
+  "plugins": ["@typescript-eslint", "import", "functional", "eslint-plugin-tsdoc"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -51,18 +51,6 @@
       "rules": {
         "@typescript-eslint/explicit-function-return-type": "off",
         "@typescript-eslint/no-var-requires": "off"
-      }
-    },
-    {
-      // Require Mattr header on src files and ant typescript test file
-      "files": ["**/src/**"],
-      "rules": {
-        "header/header": [
-          "error",
-          "block",
-          ["", " * Copyright 2019 - MATTR Limited", " * All rights reserved", " * Confidential and proprietary", " "],
-          { "lineEndings": "unix" }
-        ]
       }
     },
     {

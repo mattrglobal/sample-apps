@@ -1,10 +1,4 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
-import { Box } from "@material-ui/core";
+import { Box, Button } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
 import QrReader from "react-web-qr-reader";

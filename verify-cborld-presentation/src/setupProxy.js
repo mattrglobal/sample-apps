@@ -1,18 +1,12 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 const { createProxyMiddleware } = require("http-proxy-middleware");
 
-const apiToken = ""; // MATTR platform API token
-const baseServerUrl = ""; // MATTR platform URL
+const apiToken = process.env.API_TOKEN;
+const platformBaseUrl = process.env.PLATFORM_BASE_URL;
 
 module.exports = function (app) {
   app.use(
     createProxyMiddleware("/core/v1", {
-      target: baseServerUrl,
+      target: platformBaseUrl,
       changeOrigin: true,
       onProxyReq: (proxyReq) => {
         proxyReq.setHeader("Authorization", `Bearer ${apiToken}`);

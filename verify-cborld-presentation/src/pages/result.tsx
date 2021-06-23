@@ -1,9 +1,3 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 import { Box, Link, StylesProvider } from "@material-ui/core";
 import { encode as base64Encode, decode as base64Decode } from "@stablelib/base64";
 import base32Decode from "base32-decode";
@@ -18,18 +12,8 @@ import successAnimation from "../assets/lotti/success.json";
 import { Credential, GenericButton } from "../components";
 import type { Credential as CredentialType } from "../service/types";
 import { isCredential } from "../service/types/validation/credential";
+import { trustedIssuers } from "../trustedIssuers";
 
-type TrustedIssuer = {
-  did: string;
-  domain: string;
-};
-const trustedIssuers: TrustedIssuer[] = [
-  // example issuer
-  // {
-  //   did: "did:key:z6Mkne6kfQ2bY396dKTuraGLxiDoBrXXjVvH2Zv7nA1MnDoM",
-  //   domain: "localhost:3000",
-  // },
-];
 export interface ResultPageProps {
   qrCode: string | undefined;
 }
@@ -105,7 +89,7 @@ export const ResultPage: React.FC<ResultPageProps> = (props: ResultPageProps) =>
         setVerificationState("success");
       })();
     }
-  }, [props.qrCode]);
+  }, [props.qrCode, setCredential, setTrustedIssuer, setVerificationState]);
 
   return (
     <StylesProvider injectFirst>

@@ -1,9 +1,3 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 import Box from "@material-ui/core/Box";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";

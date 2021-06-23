@@ -1,9 +1,3 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 import { Box, Link, StylesProvider } from "@material-ui/core";
 import React from "react";
 import styled from "styled-components";

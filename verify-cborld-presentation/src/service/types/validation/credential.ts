@@ -1,9 +1,3 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 import { Credential, CredentialSubject } from "../credential";
 
 export const isType = (val: any): val is Credential["type"] => {

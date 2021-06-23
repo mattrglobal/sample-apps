@@ -1,9 +1,3 @@
-/*
- * Copyright 2019 - MATTR Limited
- * All rights reserved
- * Confidential and proprietary
- */
-
 import { DomainManifest } from "../domainManifest";
 
 export const isDomainManifest = (val: any): val is DomainManifest =>
