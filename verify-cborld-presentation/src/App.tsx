@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { Routes } from "./components/Routes";
+import { Routes } from "./Routes";
 
 export const App = (): React.ReactElement => {
   return (

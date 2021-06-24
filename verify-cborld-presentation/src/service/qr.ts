@@ -1,4 +1,4 @@
 import base32Decode from "base32-decode";
-import { inflate } from "pako";
+import { ungzip } from "pako";
 
-export const decodeQrCode = (qrCode: string): Uint8Array => inflate(new Uint8Array(base32Decode(qrCode, "RFC4648")));
+export const decodeQrCode = (qrCode: string): Uint8Array => ungzip(new Uint8Array(base32Decode(qrCode, "RFC4648")));

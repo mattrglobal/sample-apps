@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-import { HomePage, QrPage, ResultPage, ScanPage } from "../pages";
+import { HomePage, QrPage, ResultPage, ScanPage } from "./pages";
 
 export const Routes: React.FC = () => {
   // Allows us to share state between scan and result page
