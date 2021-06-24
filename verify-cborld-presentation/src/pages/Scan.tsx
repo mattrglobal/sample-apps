@@ -1,4 +1,4 @@
-import { Box, Button } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 import React from "react";
 import { useHistory } from "react-router";
 import QrReader from "react-web-qr-reader";
@@ -6,19 +6,16 @@ import styled from "styled-components";
 
 import { Description, DescriptionTitle } from "../components";
 
-import { getQrData } from "./qr";
-
-export interface ScanPageProps {
-  onScannedQrCodeChange: (scannedQrCode: string) => void;
-}
-
+type ScanPageProps = {
+  onQrCodeScanned: (scannedQrCode: string) => void;
+};
 export const ScanPage: React.FC<ScanPageProps> = (props) => {
   const history = useHistory();
 
   const onScan = async (data: any): Promise<void> => {
     if (typeof data.data === "string") {
       console.log("scanned QR code", data.data);
-      props.onScannedQrCodeChange(data.data);
+      props.onQrCodeScanned(data.data);
       return history.push("/result");
     }
     console.log("scanned QR code but no data");
@@ -26,10 +23,6 @@ export const ScanPage: React.FC<ScanPageProps> = (props) => {
 
   const onScanError = (): void => {
     console.log("scan error");
-  };
-
-  const mockScanEvent = async (): Promise<void> => {
-    onScan({ data: getQrData() });
   };
 
   return (
@@ -44,7 +37,6 @@ export const ScanPage: React.FC<ScanPageProps> = (props) => {
       </NavButtonContainer>
       <DescriptionTitle>Scan</DescriptionTitle>
       <Description>You can easily and securely authenticate by scanning QR codes.</Description>
-      {/* <Button onClick={mockScanEvent}>triggerOnScan</Button> */}
       <QrReader delay={300} onError={onScanError} resolution={1080} onScan={onScan} />
     </div>
   );

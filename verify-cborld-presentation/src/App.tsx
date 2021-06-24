@@ -1,40 +1,16 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import React from "react";
 import styled from "styled-components";
 
-import { HomePage, ScanPage, ResultPage, QrPage } from "./pages";
+import { Routes } from "./components/Routes";
 
 export const App = (): React.ReactElement => {
-  const [qrCode, setQrCode] = useState<string>();
-
-  const onQrCodeChange = (scannedQrCode: string): void => {
-    setQrCode(scannedQrCode);
-  };
-
   return (
     <Container>
       <Nav>
         <Logo src="./static/mattr-logo.svg" />
       </Nav>
       <Content>
-        <Router>
-          <div>
-            <Switch>
-              <Route path="/result">
-                <ResultPage qrCode={qrCode} />
-              </Route>
-              <Route path="/scan">
-                <ScanPage onScannedQrCodeChange={onQrCodeChange} />
-              </Route>
-              <Route path="/qr">
-                <QrPage />
-              </Route>
-              <Route path="/">
-                <HomePage />
-              </Route>
-            </Switch>
-          </div>
-        </Router>
+        <Routes />
       </Content>
     </Container>
   );
