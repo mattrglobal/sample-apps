@@ -1,5 +1,4 @@
 import { Box, Link, StylesProvider } from "@material-ui/core";
-import { encode as base64Encode, decode as base64Decode } from "@stablelib/base64";
 import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -8,10 +7,8 @@ import errorAnimation from "../assets/lotti/error.json";
 import loadingSpinnerAnimation from "../assets/lotti/loadingSpinner.json";
 import successAnimation from "../assets/lotti/success.json";
 import { Credential, GenericButton } from "../components";
-import { decodeQrCode } from "../service/qr";
 import type { Credential as CredentialType } from "../service/types";
-import { isCredential } from "../service/types/validation/credential";
-import { trustedIssuers } from "../trustedIssuers";
+import { verifyQrCodePresentation } from "../service/verify";
 
 type VerificationStatus = "checking" | "failed" | "success";
 
@@ -29,64 +26,10 @@ export const ResultPage: React.FC<ResultPageProps> = (props) => {
       return;
     }
     (async () => {
-      const decodedQrData = decodeQrCode(qrCode);
-
-      // Decode cbor using platform
-      const fetchResult = await fetch(`/core/v1/linkeddata/convert`, {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          options: {
-            inputFormat: "cborld",
-            outputFormat: "jsonld",
-            outputEncoding: "base64",
-          },
-          data: base64Encode(decodedQrData),
-        }),
-      });
-
-      if (!fetchResult.ok) {
-        console.log("could not convert cbor data", fetchResult.body);
-        return setVerificationState("failed");
-      }
-      const { data } = await fetchResult.json();
-      const decodedJsonld = JSON.parse(Buffer.from(base64Decode(data)).toString());
-
-      // Extract credential
-      const credential = decodedJsonld.verifiableCredential[0];
-      if (!isCredential(credential)) {
-        console.log("credential failed validation", credential);
-        return setVerificationState("failed");
-      }
+      const { verified, credential, issuerDomain } = await verifyQrCodePresentation(qrCode);
       setCredential(credential);
-
-      // use platform to verify the presentation
-      const verifyResult = await fetch(`/core/v1/presentations/verify`, {
-        method: "post",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({
-          presentation: decodedJsonld,
-        }),
-      });
-
-      const { verified } = await verifyResult.json();
-      if (!verified) {
-        console.log("failed to verify presentation", decodedJsonld);
-        return setVerificationState("failed");
-      }
-
-      // Check if trusted issuer
-      const foundTrustedIssuer = trustedIssuers.find(({ did }) => credential.issuer.id === did);
-      if (!foundTrustedIssuer) {
-        console.log("credential issuer is not part of the trusted issuer list", credential.issuer.id);
-        return setVerificationState("failed");
-      }
-      setTrustedIssuer(foundTrustedIssuer.domain);
-      setVerificationState("success");
+      setVerificationState(verified ? "success" : "failed");
+      setTrustedIssuer(issuerDomain);
     })();
   }, [qrCode, setCredential, setTrustedIssuer, setVerificationState]);
 
