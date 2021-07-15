@@ -2738,9 +2738,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/.well-known/openid-configuration",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/.well-known/openid-configuration",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -2777,9 +2777,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/.well-known/openid-configuration",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/.well-known/openid-configuration",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -2851,9 +2851,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/token",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/token",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -2931,9 +2931,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/token",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/token",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3021,9 +3021,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/token",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/token",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3059,9 +3059,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -3120,9 +3120,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3192,9 +3192,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3266,9 +3266,9 @@
 							"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"<uri>\",\n        \"clientId\": \"<string>\",\n        \"clientSecret\": \"<string>\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers",
+							"raw": "{{extUrl}}/oidc/v1/issuers",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -3298,9 +3298,9 @@
 									"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"University Attendance Credential\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"https://example-university.au.auth0.com\",\n        \"clientId\": \"vJ0SCKchr4XjC0xHNE8DkH6Pmlg2lkCN\",\n        \"clientSecret\": \"QNwfa4Yi4Im9zy1u_15n7SzWKt-9G5cdH0r1bONRpUPfN-UIRaaXv_90z8V6-OjH\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers",
+									"raw": "{{extUrl}}/oidc/v1/issuers",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3340,9 +3340,9 @@
 									"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"University Attendance Credential\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"https://example-university.au.auth0.com\",\n        \"clientId\": \"vJ0SCKchr4XjC0xHNE8DkH6Pmlg2lkCN\",\n        \"clientSecret\": \"QNwfa4Yi4Im9zy1u_15n7SzWKt-9G5cdH0r1bONRpUPfN-UIRaaXv_90z8V6-OjH\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers",
+									"raw": "{{extUrl}}/oidc/v1/issuers",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3371,9 +3371,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers?limit=<number>&cursor=<string>",
+							"raw": "{{extUrl}}/oidc/v1/issuers?limit=<number>&cursor=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -3411,9 +3411,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/issuers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3459,9 +3459,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/issuers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3500,9 +3500,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -3537,9 +3537,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3581,9 +3581,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3625,9 +3625,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3671,9 +3671,9 @@
 							"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"<string>\",\n        \"name\": \"<string>\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"<uri>\",\n        \"clientId\": \"<string>\",\n        \"clientSecret\": \"<string>\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdTerm\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -3712,9 +3712,9 @@
 									"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"University Attendance Credential\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"https://example-university.au.auth0.com\",\n        \"clientId\": \"vJ0SCKchr4XjC0xHNE8DkH6Pmlg2lkCN\",\n        \"clientSecret\": \"QNwfa4Yi4Im9zy1u_15n7SzWKt-9G5cdH0r1bONRpUPfN-UIRaaXv_90z8V6-OjH\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3760,9 +3760,9 @@
 									"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"University Attendance Credential\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"https://example-university.au.auth0.com\",\n        \"clientId\": \"vJ0SCKchr4XjC0xHNE8DkH6Pmlg2lkCN\",\n        \"clientSecret\": \"QNwfa4Yi4Im9zy1u_15n7SzWKt-9G5cdH0r1bONRpUPfN-UIRaaXv_90z8V6-OjH\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3808,9 +3808,9 @@
 									"raw": "{\n    \"credential\": {\n        \"issuerDid\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"University Attendance Credential\",\n        \"context\": [\n            \"<uri>\",\n            \"<uri>\"\n        ],\n        \"type\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"federatedProvider\": {\n        \"url\": \"https://example-university.au.auth0.com\",\n        \"clientId\": \"vJ0SCKchr4XjC0xHNE8DkH6Pmlg2lkCN\",\n        \"clientSecret\": \"QNwfa4Yi4Im9zy1u_15n7SzWKt-9G5cdH0r1bONRpUPfN-UIRaaXv_90z8V6-OjH\",\n        \"scope\": [\n            \"<string>\",\n            \"<string>\"\n        ]\n    },\n    \"claimMappings\": [\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdTerm\": \"alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3845,9 +3845,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -3882,9 +3882,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3926,9 +3926,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -3970,9 +3970,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4021,9 +4021,9 @@
 							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -4063,9 +4063,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for Wallet\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4112,9 +4112,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for Wallet\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4150,9 +4150,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients?limit=<number>&cursor=<string>",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients?limit=<number>&cursor=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -4200,9 +4200,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4255,9 +4255,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4303,9 +4303,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -4348,9 +4348,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4394,9 +4394,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4440,9 +4440,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4488,9 +4488,9 @@
 							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -4537,9 +4537,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for Wallet\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4587,9 +4587,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for Wallet\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4637,9 +4637,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for Wallet\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4676,9 +4676,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+							"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -4721,9 +4721,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4767,9 +4767,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4813,9 +4813,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/issuers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4857,9 +4857,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/.well-known/openid-configuration",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/.well-known/openid-configuration",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -4896,9 +4896,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/.well-known/openid-configuration",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/.well-known/openid-configuration",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -4970,9 +4970,9 @@
 							]
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/token",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/token",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -5050,9 +5050,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/token",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/token",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5140,9 +5140,9 @@
 									]
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/token",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/token",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5178,9 +5178,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -5239,9 +5239,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5311,9 +5311,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=id_token&scope=openid+email&nonce=<string>&prompt=<string>",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5385,9 +5385,9 @@
 							"raw": "{\n    \"verifierDid\": \"<string>\",\n    \"presentationTemplateId\": \"<uuid>\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers",
+							"raw": "{{extUrl}}/oidc/v1/verifiers",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -5417,9 +5417,9 @@
 									"raw": "{\n    \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n    \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers",
+									"raw": "{{extUrl}}/oidc/v1/verifiers",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5459,9 +5459,9 @@
 									"raw": "{\n    \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n    \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers",
+									"raw": "{{extUrl}}/oidc/v1/verifiers",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5490,9 +5490,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers?limit=<number>&cursor=<string>",
+							"raw": "{{extUrl}}/oidc/v1/verifiers?limit=<number>&cursor=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -5530,9 +5530,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/verifiers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5578,9 +5578,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/verifiers?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5619,9 +5619,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -5656,9 +5656,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5700,9 +5700,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5744,9 +5744,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5790,9 +5790,9 @@
 							"raw": "{\n    \"verifierDid\": \"<string>\",\n    \"presentationTemplateId\": \"<uuid>\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        },\n        {\n            \"jsonLdFqn\": \"<string>\",\n            \"oidcClaim\": \"<string>\"\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -5831,9 +5831,9 @@
 									"raw": "{\n    \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n    \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5879,9 +5879,9 @@
 									"raw": "{\n    \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n    \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5927,9 +5927,9 @@
 									"raw": "{\n    \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n    \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n    \"claimMappings\": [\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        },\n        {\n            \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n            \"oidcClaim\": \"alumni_of\"\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -5964,9 +5964,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -6001,9 +6001,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6045,9 +6045,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6089,9 +6089,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6140,9 +6140,9 @@
 							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\",\n    \"logoUri\": \"<uri>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -6182,9 +6182,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for the verifier\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\",\n    \"logoUri\": \"https://example.com/logo.png\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6231,9 +6231,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for the verifier\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\",\n    \"logoUri\": \"https://example.com/logo.png\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6269,9 +6269,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients?limit=<number>&cursor=<string>",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients?limit=<number>&cursor=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -6319,9 +6319,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6374,9 +6374,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6422,9 +6422,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -6467,9 +6467,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6513,9 +6513,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6559,9 +6559,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6607,9 +6607,9 @@
 							"raw": "{\n    \"name\": \"<string>\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"<string>\",\n    \"idTokenSignedResponseAlg\": \"<string>\",\n    \"applicationType\": \"<string>\",\n    \"logoUri\": \"<uri>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -6656,9 +6656,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for the verifier\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\",\n    \"logoUri\": \"https://example.com/logo.png\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6706,9 +6706,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for the verifier\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\",\n    \"logoUri\": \"https://example.com/logo.png\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6756,9 +6756,9 @@
 									"raw": "{\n    \"name\": \"OIDC Client for the verifier\",\n    \"redirectUris\": [\n        \"<uri>\",\n        \"<uri>\"\n    ],\n    \"responseTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"grantTypes\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"idTokenSignedResponseAlg\": \"ES256\",\n    \"applicationType\": \"web\",\n    \"logoUri\": \"https://example.com/logo.png\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6795,9 +6795,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+							"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{extUrl}}"
 							],
 							"path": [
 								"oidc",
@@ -6840,9 +6840,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6886,9 +6886,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
@@ -6932,9 +6932,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/oidc/v1/verifiers/:id/clients/:id",
+									"raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{extUrl}}"
 									],
 									"path": [
 										"oidc",
