@@ -1,142 +1,241 @@
-'use strict'
+'use strict';
 
 require('dotenv').config();
-const express = require('express')
-const app = express()
-
-var jwsUrl;
-
-// Obtain the Access Token
-const token = process.argv[2] ;
-
-if (token === undefined) {
-    throw new Error('Access token is missing - include a valid JWT as an argument')
-}
-
-// Create an Express server that will serve a redirect that the mobile app can use
-app.get('/qr', function (req, res) {
-    const body = res.body
-    console.log(jwsUrl)
-    res.redirect(jwsUrl)
-})
-
-app.get('/test', function (req, res) {
-    const body = res.body
-    res.sendStatus(200)
-})
-
-// listen on port 2000
-app.listen(2000, function (err) {
-    if (err) {
-        throw err
-    }
-
-    console.log('\n', 'Server started on port 2000', '\n')
-})
-
-
-
-
-var ngrokUrl;
+const express = require('express');
+const got = require('got');
 const ngrok = require('ngrok');
-(async function () {
+const QRCode = require('qrcode');
+const bodyParser = require('body-parser');
+const nanoid = require('nanoid').nanoid;
+const moment = require('moment');
+const NodeCache = require('node-cache');
 
-    // Start ngrok
-    ngrokUrl = await ngrok.connect(2000);
+const app = express();
+app.use(bodyParser.json());
+app.set('view engine', 'ejs');
 
-    // Construct the didcomm URL and check Ngrok is running
-    var got = require('got')
-    var response = await got.get(`${ngrokUrl}/test`);
-    console.log("Ngrok statusCode: ", response.statusCode);
+let authToken;
 
-    
-    // Provision Presentation Request
-    var tenant = process.env.TENANT;
-    var presReq = `https://${tenant}/core/v1/presentations/requests`
-    console.log("Creating Presentation Request at " , presReq);
+const ttl = 16 * 60; // cache for 16 minutes
+const cache = new NodeCache({ stdTTL: ttl, useClones: false });
 
-    response = await got.post(presReq, {
+const getToken = async () => {
+  console.log('Getting API Auth token.');
+  const { env } = process;
+  const tokenUrl = env.AUTH_URL + '/oauth/token';
+  const clientId = env.AUTH_CLIENT_ID;
+  const clientSecret = env.AUTH_CLIENT_SECRET;
+  const audience = env.AUTH_AUDIENCE;
 
-        headers: {
-            "Authorization": `Bearer ${token}`
-        },
+  let response;
+
+  try {
+    response = await got
+      .post(tokenUrl, {
         json: {
-            "challenge": "GW8FGpP6jhFrl37yQZIM6w",
-            "did": process.env.VERIFIERDID,
-            "templateId": process.env.TEMPLATEID,
-            "expiresTime": 1638836401000,
-            "callbackUrl": `${ngrokUrl}/callback`
+          client_id: clientId,
+          client_secret: clientSecret,
+          audience: audience,
+          grant_type: 'client_credentials',
         },
-        responseType: 'json'
-    });
-    console.log("Create Presentation Request statusCode: ", response.statusCode);
-    const requestPayload = response.body.request;
-    console.log(requestPayload, '\n');
+        responseType: 'json',
+      })
+      .json();
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
 
-    // Get DIDUrl from Verifier DID Doc
-    var dids = `https://${tenant}/core/v1/dids/` + process.env.VERIFIERDID
-    console.log("Looking up DID Doc from Verifier DID :", dids);
+  console.log('API Auth token recieved.');
 
-    response = await got.get(dids, {
+  return response.access_token;
+};
 
-        headers: {
-            "Authorization": `Bearer ${token}`
-        },
-        responseType: 'json'
-    });
-    console.log("Public key from DID Doc found, DIDUrl is: " , response.body.didDocument.authentication[0], '\n');
-    const didUrl = response.body.didDocument.authentication[0];
+const provisionPresentationRequest = async (tenant, verifierDid, templateId, url, id, expiresTime) => {
+  const presReq = `https://${tenant}/core/v1/presentations/requests`;
+  console.log('Creating Presentation Request at ', presReq);
 
-    // Sign payload
-    var signMes = `https://${tenant}/core/v1/messaging/sign`
-    console.log("Signing the Presentation Request payload at: " , signMes);
+  const presReqResponse = await got.post(presReq, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+    json: {
+      challenge: id,
+      did: verifierDid,
+      templateId: templateId,
+      expiresTime,
+      callbackUrl: `${url}/callback`,
+    },
+    responseType: 'json',
+  });
+  console.log('Create Presentation Request statusCode: ', presReqResponse.statusCode);
+  const requestPayload = presReqResponse.body.request;
+  console.log(requestPayload, '\n');
+  return requestPayload;
+};
 
-    response = await got.post(signMes, {
+const signPayload = async (tenant, verifierDid, payload) => {
+  // Get DIDUrl from Verifier DID Doc
+  const dids = `https://${tenant}/core/v1/dids/` + verifierDid;
+  console.log('Looking up DID Doc from Verifier DID :', dids);
 
-        headers: {
-            "Authorization": `Bearer ${token}`
-        },
-        json: {
-            "didUrl": didUrl,
-            "payload": requestPayload
-        },
-        responseType: 'json'
-    });
-    const jws = response.body
-    console.log("The signed Presentation Request message is: ", jws, '\n');
+  const didsResponse = await got.get(dids, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+    responseType: 'json',
+  });
+  console.log('Public key from DID Doc found, DIDUrl is: ', didsResponse.body.didDocument.authentication[0], '\n');
+  const didUrl = didsResponse.body.didDocument.authentication[0];
 
-    jwsUrl = `https://${tenant}/?request=${jws}`;
+  // Sign payload
+  const signMes = `https://${tenant}/core/v1/messaging/sign`;
+  console.log('Signing the Presentation Request payload at: ', signMes);
 
-    var didcommUrl = `didcomm://${ngrokUrl}/qr`;
-    console.log("The URL encoded in this QR code" , didcommUrl);
+  const response = await got.post(signMes, {
+    headers: {
+      Authorization: `Bearer ${authToken}`,
+    },
+    json: {
+      didUrl: didUrl,
+      payload,
+    },
+    responseType: 'json',
+  });
+  const jws = response.body;
+  console.log('The signed Presentation Request message is: ', jws, '\n');
+  return jws;
+};
 
-// generate a QR Code using the didcomm url
-    var QRCode = require('qrcode');
+const startNgrok = async () => {
+  console.log('Starting Ngrok');
+  const ngrokUrl = await ngrok.connect(2000);
+  const ngrokResponse = await got.get(`${ngrokUrl}/test`);
+  if (ngrokResponse.statusCode < 300) {
+    console.log('Ngrok started');
+  }
+  return ngrokUrl;
+};
 
-    QRCode.toString(didcommUrl, {type: 'terminal'}, function (err, url) {
-        console.log(url)
-    })
+app.get('/verify', (req, res) => {
+  const { id } = req.query;
 
-// generate the Deeplink for the MATTR Wallet
-    
-    let buf = Buffer.from(didcommUrl);
-    let encodedData = buf.toString('base64');
-    var deep = `global.mattr.wallet://accept/${encodedData}`
-    console.log('\n','Deeplink for the MATTR Mobile Wallet: \n', deep, '\n')
+  if (!id) {
+    res.sendStatus(422);
+    return;
+  }
 
-// Receive the Callback
-    const bodyParser = require('body-parser')
+  const state = cache.get(id);
 
-// Use body-parser middleware
-    app.use(bodyParser.json())
+  res.render('qr', { qrImageData: state.qrImageData, id });
+});
 
-// Receive a POST request to /callback & print it out to the terminal
-    app.post('/callback', function (req, res) {
-        const body = req.body
-        console.log('\n Data from the Presentation is shown below \n', body)
-        res.sendStatus(200)
-        console.log('Exiting app')
-        process.exit(0)
-    })
+app.get('/status', (req, res) => {
+  const { id } = req.query;
 
-})();
+  if (!id) {
+    res.sendStatus(422);
+    return;
+  }
+
+  const state = cache.get(id);
+  const result = state.result;
+
+  res.send({ complete: !!result, verified: (result || {}).verified });
+});
+
+app.get('/qr', (req, res) => {
+  const { id } = req.query;
+
+  if (!id) {
+    res.sendStatus(422);
+    return;
+  }
+
+  const state = cache.get(id);
+
+  console.log(`Sent jws url to wallet: ${state.jwsUrl}`);
+  res.redirect(state.jwsUrl);
+});
+
+app.get('/test', (req, res) => {
+  res.sendStatus(200);
+});
+
+app.post('/callback', async (req, res) => {
+  const body = req.body;
+  const { challengeId: id } = body;
+  const state = cache.get(id);
+  state.result = body;
+  res.sendStatus(200);
+});
+
+app.listen(2000, err => {
+  if (err) {
+    throw err;
+  }
+});
+
+const exit = async () => {
+  await ngrok.disconnect();
+  process.exit();
+};
+
+['SIGTERM', 'SIGINT'].forEach(sig => process.on(sig, async () => await exit()));
+
+const verify = async (id, tenant, verifierDid, templateId, url) => {
+  authToken = await getToken();
+
+  if (!authToken) {
+    throw new Error('Access token is missing - check the env settings');
+  }
+
+  // Expires in 15 minutes
+  const expiresTime = moment().add(15, 'm').valueOf();
+
+  const requestPayload = await provisionPresentationRequest(tenant, verifierDid, templateId, url, id, expiresTime);
+
+  const state = cache.get(id);
+
+  const jws = await signPayload(tenant, verifierDid, requestPayload);
+  state.jwsUrl = `https://${tenant}/?request=${jws}`;
+
+  const didcommUrl = `didcomm://${url}/qr?id=${id}`;
+  state.qrImageData = await QRCode.toDataURL(didcommUrl, { width: 400 });
+};
+
+const timeout = ms => {
+  return new Promise(resolve => setTimeout(resolve, ms));
+};
+
+const getResult = async id => {
+  const state = cache.get(id);
+  if (!state || state.result === null) {
+    await timeout(5000);
+    return await getResult(id);
+  }
+  return state.result;
+};
+
+const { TENANT, VERIFIER_DID, TEMPLATE_ID } = process.env;
+
+(async (tenant, verifierDid, templateId) => {
+
+  const ngrokUrl = await startNgrok();
+
+  // Unique id for this presentation request to track its state
+  const id = nanoid();
+  cache.set(id, {
+    jwsUrl: null,
+    qrImageData: null,
+    result: null,
+  });
+
+  await verify(id, tenant, verifierDid, templateId, ngrokUrl);
+  console.log(`Open ${ngrokUrl}/verify?id=${id} to see QR code`);
+  const result = await getResult(id);
+  console.log('\n Data from the Presentation is shown below \n', result);
+  console.log('Exiting app in 5 seconds...');
+  await timeout(5000);
+  await exit();
+})(TENANT, VERIFIER_DID, TEMPLATE_ID);

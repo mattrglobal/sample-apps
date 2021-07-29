@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title></title>
+    <script type="text/javascript">
+      function poll() {
+        const interval = 1000;
+
+        const checkCondition = function(resolve, reject) {
+          fetch("/status?id=<%= id; %>")
+            .then(function(response) {
+              response.json().then(function(data) {
+                console.log(data);
+                if (data.complete) {
+                  const qrCode = document.getElementById("qr-code");
+                  const statusDiv = document.getElementById("status");
+
+                  qrCode.style.display = "none";
+                  statusDiv.innerHTML = data.verified ? "Verified" : "Verification failed";
+
+                } else {
+                  setTimeout(checkCondition, interval, resolve, reject);
+                }
+              });
+            });
+        };
+        return new Promise(checkCondition);
+      }
+
+      poll();
+    </script>
+</head>
+<body>
+<img id='qr-code' src="<%= qrImageData; %>" alt='QR Code'>
+<div id='status'></div>
+</body>
+</html>
