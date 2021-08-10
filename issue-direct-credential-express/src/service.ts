@@ -4,29 +4,46 @@ import { v4 as uuid } from "uuid";
 
 import { RequestContext } from "./types";
 
-const shortenUrls = new Map<string, string>();
+type ShortenItem = { url: string; payload: string | undefined };
+
+const shortenUrls = new Map<string, ShortenItem>();
+
+/**
+ * The Direct Credential Offer JWM message much be Base64 URL encoded
+ */
+const base64UrlEncode = (str: string) => encodeURIComponent(Buffer.from(str).toString("base64"));
 
 /**
  * Cache the created templates to reduce the resource consumption
  */
 const cachedPresentationTemplates = new Map<string, string>();
 
-export function createShortenUrl(ctx: RequestContext, url: string): string {
-  const { ngrokUrl } = ctx;
+export function createShortenUrl(ctx: RequestContext, data: string | object): string {
+  const { tenant, ngrokUrl } = ctx;
   const code = uuid();
-  shortenUrls.set(code, url);
+
+  // If the data is using JSON Serialization, it needs to be Base64 encoded
+  const request = typeof data === "string" ? data : base64UrlEncode(JSON.stringify(data));
+
+  // The request payload might be too large that Ngrok will block such URL. Mobile Wallet support
+  // parsing the request from query string or response JSON body.
+  if (typeof data === "object") {
+    shortenUrls.set(code, { url: `https://${tenant}`, payload: request });
+  } else {
+    shortenUrls.set(code, { url: `https://${tenant}?request=${request}`, payload: undefined });
+  }
   return `${ngrokUrl}/resolve/${code}`;
 }
 
-export function resolveShortenUrl(code: string): string | undefined {
+export function resolveShortenUrl(code: string): ShortenItem | undefined {
   return shortenUrls.get(code);
 }
 
-export async function encodeDidCommRequest(ctx: RequestContext, request: string) {
-  const { tenant, bundleId } = ctx;
+export async function encodeDidCommRequest(ctx: RequestContext, jwm: string | object) {
+  const { bundleId } = ctx;
 
   // Shorten the didcomm URL to reduce the size of QR Code or DeepLink
-  const url = createShortenUrl(ctx, `https://${tenant}?request=${request}`);
+  const url = createShortenUrl(ctx, jwm);
   const didcomm = `didcomm://${url}`;
   return {
     qrcode: await qrcode.toString(didcomm, { margin: 0, width: 250, type: "svg" }),
@@ -137,8 +154,7 @@ export async function createDirectCredentialOffer(
   const { jwe } = await api.post("v1/messaging/encrypt", { json: messagePayload }).json();
   console.log("Encrypted JWM message", jwe);
 
-  const request = encodeURIComponent(Buffer.from(JSON.stringify(jwe)).toString("base64"));
-  const result = await encodeDidCommRequest(ctx, request);
+  const result = await encodeDidCommRequest(ctx, jwe as object);
   return { ...result, jwe };
 }
 

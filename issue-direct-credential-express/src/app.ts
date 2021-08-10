@@ -113,7 +113,7 @@ router.post("/credentials/issue", express.json(), async (req, res, next) => {
  *
  * https://learn.mattr.global/api-reference/v1.0.1#operation/sendMessage
  */
-router.post("/messaging/send", express.json(), async (req, res, next) => {
+router.post("/messaging/send", express.json({ limit: "2mb" }), async (req, res, next) => {
   try {
     console.log("Send async message", req.body);
     const { subjectDid, message } = req.body;
@@ -131,10 +131,14 @@ router.post("/messaging/send", express.json(), async (req, res, next) => {
  */
 router.get("/resolve/:code", async (req, res, next) => {
   const { code } = req.params;
-  const url = service.resolveShortenUrl(code);
-  if (url) {
-    console.log("Resolved shorten URL:", url);
-    return res.redirect(url);
+  const found = service.resolveShortenUrl(code);
+  if (found && found.payload) {
+    console.log("Resolved shorten URL with JWE payload:", found);
+    return res.json(found.payload);
+  }
+  if (found) {
+    console.log("Resolved shorten URL:", found);
+    return res.redirect(found.url);
   }
   next(`No shorten URL found with code: ${code}`);
 });
