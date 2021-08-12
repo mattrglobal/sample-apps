@@ -24,6 +24,9 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'push' &&
+      github.repository == 'mattrglobal/sample-apps'
 
     strategy:
       fail-fast: false
