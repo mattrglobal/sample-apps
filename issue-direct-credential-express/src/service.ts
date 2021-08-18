@@ -1,6 +1,7 @@
 import assert from "assert";
 import qrcode from "qrcode";
 import { v4 as uuid } from "uuid";
+import * as base64 from "@stablelib/base64";
 
 import { RequestContext } from "./types";
 
@@ -11,7 +12,7 @@ const shortenUrls = new Map<string, ShortenItem>();
 /**
  * The Direct Credential Offer JWM message much be Base64 URL encoded
  */
-const base64UrlEncode = (str: string) => encodeURIComponent(Buffer.from(str).toString("base64"));
+const base64UrlEncode = (str: string) => base64.encodeURLSafe(Buffer.from(str));
 
 /**
  * Cache the created templates to reduce the resource consumption

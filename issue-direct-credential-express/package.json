@@ -21,6 +21,7 @@
     "trailingComma": "all"
   },
   "dependencies": {
+    "@stablelib/base64": "1.0.1",
     "body-parser": "1.19.0",
     "dotenv": "^10.0.0",
     "ejs": "3.1.6",
