@@ -25,8 +25,8 @@ This will contain a Base Environment.
 
 ``` json
 {
-  "tenant": "https://{{ subdomain }}.platform.mattr.global",
-  "baseDomain": "{{subdomain}}.platform.mattr.global",
+  "tenant": "https://{{ subdomain }}.vii.mattr.global",
+  "baseDomain": "{{subdomain}}.vii.mattr.global",
   "access_token": "{% response 'body', 'req_821afbd7f3194c1c938d31ca5d3efbe0', 'b64::JC5hY2Nlc3NfdG9rZW4=::46b', 'when-expired', 360 %}"
 }
 ```
@@ -49,7 +49,7 @@ In the Sub Environment
     "base": "https://mattr-prod.au.auth0.com",
     "client_id": "your-client-id",
     "client_secret": "you-client-secret",
-    "audience": "https://platform.mattr.global"
+    "audience": "https://vii.mattr.global"
   },
   "issuerDid": "did:key:..",
   "verifierDid": "did:key:..",
