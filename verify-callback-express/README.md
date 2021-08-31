@@ -28,7 +28,7 @@ npm install
 Environment variables are used from a `.env` file. 
 Rename the `.env-template` to `.env` and provide the details from your tenant.
 ```
-TENANT=tenant.platform.mattr.global
+TENANT=tenant.vii.mattr.global
 TEMPLATEID=<presentation-request-template-uuid>
 VERIFIERDID=<verifier-did>
 
