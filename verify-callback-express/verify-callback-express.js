@@ -64,7 +64,6 @@ const ngrok = require('ngrok');
             "challenge": "GW8FGpP6jhFrl37yQZIM6w",
             "did": process.env.VERIFIERDID,
             "templateId": process.env.TEMPLATEID,
-            "expiresTime": 1638836401000,
             "callbackUrl": `${ngrokUrl}/callback`
         },
         responseType: 'json'
