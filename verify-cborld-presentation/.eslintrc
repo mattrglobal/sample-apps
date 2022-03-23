@@ -1,0 +1,69 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import", "functional", "eslint-plugin-tsdoc", "react-hooks"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript"
+  ],
+  "ignorePatterns": ["node_modules", "lib", "dist", "build"],
+  "rules": {
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "error", // Checks effect dependencies
+    "tsdoc/syntax": "warn",
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true
+      }
+    ],
+    "@typescript-eslint/no-explicit-any": "warn",
+    "no-param-reassign": "error",
+    "prefer-object-spread": "warn",
+    "no-else-return": "error",
+    "no-throw-literal": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [["builtin", "external"], "internal", "parent", "sibling"],
+        "pathGroups": [
+          {
+            "pattern": "@mattrglobal/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        // see https://github.com/benmosher/eslint-plugin-import/issues/1565
+        "pathGroupsExcludedImportTypes": ["builtin"],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "functional/no-method-signature": "error",
+    "functional/immutable-data": "error"
+  },
+  "overrides": [
+    {
+      // Remove typescript specific rule(s) for javascript files
+      "files": ["**/*.js"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    },
+    {
+      "files": ["**/__tests__/**", "**/*.config.js", "**/*.config.*.js", "**/*.base.js"],
+      // Tests and project configuration often modify a lot of objects
+      "rules": {
+        "functional/immutable-data": "off"
+      }
+    }
+  ],
+  "env": {
+    "browser": true
+  }
+}
