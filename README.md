@@ -9,6 +9,7 @@ A collection of developer apps and API tooling that you can use to interface wit
 * [callback-express](/callback-express/README.md) – Set up a Node.js Express app that listens for Callback and displays the output.
 * [verify-callback-express](/verify-callback-express/README.md) – A Node.js Express app that can orchestrate calls to your MATTR tenant to initiate a Verify a Credential using a Callback flow.
 * [issue-direct-credential-express](/issue-direct-credential-express/README.md) – A Node.js Express app that can orchestrate calls to your MATTR tenant to create a credential and make it obtainable by the mobile wallet.
+* [verify-cborld-presentation](/verify-cborld-presentation/README.md) – A React app that can scan a QR code, which is presenting a CBOR-LD Verifiable Credential, decode and verify it using your MATTR tenant.
 
 ## API Guides
 * Insomnia Core [import format](insomnia/README.md)
