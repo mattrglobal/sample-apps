@@ -1,0 +1,54 @@
+{
+  "name": "SamplePDF_WorkingAtHights",
+  "fileName": "{{ vc.credentialSubject.code }}_{{ vc.credentialSubject.name }}",
+  "metadata": {
+    "title": "{{ vc.credentialSubject.certificationName }} Certification – {{ vc.credentialSubject.name }}"
+  },
+  "fonts": [
+    {
+      "name": "PublicSans-Regular",
+      "fileName": "PublicSans-Regular.ttf"
+    },
+    {
+      "name": "PublicSans-Bold",
+      "fileName": "PublicSans-Bold.ttf"
+    }
+  ],
+  "fields": [
+    {
+      "key": "name",
+      "value": "{{ vc.credentialSubject.name }}",
+      "isRequired": true,
+      "alternativeText": "{{ vc.credentialSubject.name }}",
+      "fontName": "PublicSans-Regular"
+    },
+    {
+      "key": "code",
+      "value": "{{ vc.credentialSubject.code }}",
+      "isRequired": true,
+      "alternativeText": "{{ vc.credentialSubject.code }}",
+      "fontName": "PublicSans-Bold"
+    },
+    {
+      "key": "certificationName",
+      "value": "{{ vc.credentialSubject.certificationName }}",
+      "isRequired": true,
+      "alternativeText": "{{ vc.credentialSubject.certificationName }}",
+      "fontName": "PublicSans-Bold"
+    },
+    {
+      "key": "certificationLevel",
+      "value": "{{ vc.credentialSubject.certificationLevel }}",
+      "isRequired": true,
+      "alternativeText": "{{ vc.credentialSubject.certificationLevel }}",
+      "fontName": "PublicSans-Regular"
+    },
+    {
+      "key": "expiry",
+      "value": "{{ date vc.credentialSubject.expiry 'dd MMM yyyy' }}",
+      "isRequired": true,
+      "alternativeText": "{{ date vc.credentialSubject.expiry 'PPP' }}",
+      "fontName": "PublicSans-Regular"
+    }
+  ]
+}

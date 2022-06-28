@@ -1,0 +1,19 @@
+{
+  "payload": {
+    "iss": "did:web:example.nz",
+    "nbf": 1516239022,
+    "exp": 2516239922,
+    "vc": {
+      "version": "1.0.0",
+      "credentialSubject": {
+        "name": "Emma Jane Tasma",
+        "code": "HS.278",
+        "certificationName": "Working at Heights",
+        "certificationLevel": "Level 4",
+        "issuerName": "Advanced Safety Training",
+        "expiry": "2026-01-01"
+      }
+    }
+  },
+  "revocable": true
+}
