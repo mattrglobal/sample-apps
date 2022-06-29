@@ -1,0 +1,101 @@
+{
+    "genericClass": {      
+      "classTemplateInfo": {
+        "cardTemplateOverride": {
+          "cardRowTemplateInfos": [
+              {
+                  "twoItems": {
+                      "startItem": {
+                          "firstValue": {
+                              "fields": [
+                                  {
+                                      "fieldPath": "object.textModulesData['name']"
+                                  }
+                              ]
+                          }
+                      },
+                      "endItem": {
+                          "firstValue": {
+                              "fields": [
+                                  {
+                                      "fieldPath": "object.textModulesData['certificationLevel']"
+                                  }
+                              ]
+                          }
+                      }
+                  }
+              },
+              {
+                "oneItem": {
+                    "item": {
+                        "firstValue": {
+                            "fields": [
+                                {
+                                    "fieldPath": "object.textModulesData['expiry']"
+                                }
+                            ]
+                        }
+                    }
+                }
+            }
+          ]
+        }
+      }
+    },
+    "genericObject": {
+      "genericType": "GENERIC_TYPE_UNSPECIFIED",
+      "cardTitle": {
+        "defaultValue": {
+          "language": "en-US",
+          "value": "Advanced Safety Training"
+        }
+      },
+      "header": {
+        "defaultValue": {
+          "language": "en-US",
+          "value": "{{ decoded.certificationName }}"
+        }
+      },
+      "subHeader": {
+        "defaultValue": {
+          "language": "en-US",
+          "value": "{{ decoded.code }}"
+        }
+      },
+      "logo": {
+        "sourceUri": {
+          "uri": "https://mattr-sandpit.netlify.app/demo/compact-credentials/logo-ast.png",
+          "description": "Advanced Safety Training"
+        }
+      },
+      "hexBackgroundColor": "#cacaca",
+      "heroImage": {
+        "sourceUri": {
+          "uri": "https://mattr-sandpit.netlify.app/demo/compact-credentials/hero-ast.png",
+          "description": "CSA handshake trustmark"
+        }
+      },
+      "barcode": {
+        "type": "QR_CODE",
+        "value": "{{encoded}}",
+        "alternateText": "QR code"
+      },
+      "textModulesData": [
+        {
+          "header": "Name",
+          "body": "{{ decoded.name }}",
+          "id": "name"
+        },
+        {
+          "header": "Certified for",
+          "body": "{{ decoded.certificationLevel }}",
+          "id": "certificationLevel"
+        },
+        {
+          "header": "Expiries on",
+          "body": "{{ date decoded.expiry 'dd MMM yyyy' }}",
+          "id": "expiry"
+        }
+      ]
+    }
+}

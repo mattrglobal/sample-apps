@@ -1,0 +1,71 @@
+{
+  "formatVersion": 1,
+  "organizationName": "Advanced Safety Training",
+  "description": "HS.278 Working at Heights Certification",
+  "labelColor": "rgb(45, 45, 45)",
+  "foregroundColor": "rgb(45, 45, 45)",
+  "backgroundColor": "rgb(202, 202, 202)",
+  "sharingProhibited": true,
+  "voided": false,
+  "barcode": {
+    "format": "PKBarcodeFormatQR",
+    "messageEncoding": "iso-8859-1",
+    "message": "{{encoded}}",
+    "altText": "Exp: {{ date decoded.vc.credentialSubject.expiry 'dd MMM yyyy' }}"
+  },
+  "storeCard": {
+    "headerFields": [
+      {
+        "key": "codeHeader",
+        "label": "Certification",
+        "value": "{{ decoded.vc.credentialSubject.code }}"
+      }
+    ],
+    "primaryFields": [],
+    "secondaryFields": [
+      {
+        "key": "nameSecondary",
+        "label": "Name",
+        "value": "{{ decoded.vc.credentialSubject.name }}"
+      },
+      {
+        "key": "certificationLevelSecondary",
+        "label": "Certified for",
+        "value": "{{ decoded.vc.credentialSubject.certificationLevel }}"
+      }
+    ],
+    "auxiliaryFields": [],
+    "backFields": [
+      {
+        "key": "nameBack",
+        "label": "Name",
+        "value": "{{ decoded.vc.credentialSubject.name }}"
+      },
+      {
+        "key": "certificationNameBack",
+        "label": "Certification",
+        "value": "{{ decoded.vc.credentialSubject.certificationName }}"
+      },
+      {
+        "key": "codeBack",
+        "label": "Code",
+        "value": "{{ decoded.vc.credentialSubject.code }}"
+      },
+      {
+        "key": "certificationLevelBack",
+        "label": "Certified for",
+        "value": "{{ decoded.vc.credentialSubject.certificationLevel }}"
+      },
+      {
+        "key": "expiryBack",
+        "label": "Expires on",
+        "value": "{{ date decoded.vc.credentialSubject.expiry 'dd MMM yyyy' }}"
+      },
+      {
+        "key": "issuerNameBack",
+        "label": "Issued by",
+        "value": "{{ decoded.vc.credentialSubject.issuerName }}"
+      }
+    ]
+  }
+}

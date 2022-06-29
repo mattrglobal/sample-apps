@@ -1,0 +1,54 @@
+{
+  "name": "SamplePDF_WorkingAtHightsVC",
+  "fileName": "{{ code }}_{{ name }}",
+  "metadata": {
+    "title": "{{ certificationName }} Certification – {{ name }}"
+  },
+  "fonts": [
+    {
+      "name": "PublicSans-Regular",
+      "fileName": "PublicSans-Regular.ttf"
+    },
+    {
+      "name": "PublicSans-Bold",
+      "fileName": "PublicSans-Bold.ttf"
+    }
+  ],
+  "fields": [
+    {
+      "key": "name",
+      "value": "{{ name }}",
+      "isRequired": true,
+      "alternativeText": "{{ name }}",
+      "fontName": "PublicSans-Regular"
+    },
+    {
+      "key": "code",
+      "value": "{{ code }}",
+      "isRequired": true,
+      "alternativeText": "{{ code }}",
+      "fontName": "PublicSans-Bold"
+    },
+    {
+      "key": "certificationName",
+      "value": "{{ certificationName }}",
+      "isRequired": true,
+      "alternativeText": "{{ certificationName }}",
+      "fontName": "PublicSans-Bold"
+    },
+    {
+      "key": "certificationLevel",
+      "value": "{{ certificationLevel }}",
+      "isRequired": true,
+      "alternativeText": "{{ certificationLevel }}",
+      "fontName": "PublicSans-Regular"
+    },
+    {
+      "key": "expiry",
+      "value": "{{ date expiry 'dd MMM yyyy' }}",
+      "isRequired": true,
+      "alternativeText": "{{ date expiry 'PPP' }}",
+      "fontName": "PublicSans-Regular"
+    }
+  ]
+}
