@@ -1,0 +1,62 @@
+name: credential-templates-checklist
+
+on:
+  pull_request:
+    paths:
+      - 'credential-templates/**'
+    types: [opened]
+
+jobs:
+  build:
+    name: Comment PDF checklist for PRs
+    runs-on: ubuntu-18.04
+    timeout-minutes: 10
+
+    steps:
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## Checklist for credenital-templates
+
+            Have you changed any of the following?
+            * Create a new credential template
+            * Edited an existing credential template
+
+            **If you have answered YES to any of the above**, please follow the checklist:
+
+            - [ ] Created a corresponding example `payload.json` to be used alongside the template
+            - [ ] Create `template.zip` from the `template/` folder
+            - [ ] Test to see if you are able to generate valid outputs
+            - [ ] Used the following folder structure: 
+            ```
+            credential-template/
+            ├── {{profile-type}}/
+            │   ├── apple-pass/
+            │   │   └── {{credential-name}}/
+            │   │       ├── template/
+            │   │       │   ├── icon.png
+            │   │       │   ├── logo.png
+            │   │       │   ├── strip.png
+            │   │       │   └── pass.json
+            │   │       ├── payload.json
+            │   │       └── template.zip
+            │   ├── google-pass/
+            │   │   └── {{credential-name}}/
+            │   │       ├── template/
+            │   │       │   └── template.json
+            │   │       ├── payload.json
+            │   │       └── template.zip
+            │   └── pdf/
+            │       └── {{credential-name}}/
+            │           ├── template/
+            │           │   ├── fonts/
+            │           │   │   └── example.ttf
+            │           │   ├── config.json
+            │           │   └── template.pdf
+            │           ├── payload.json
+            │           └── template.zip
+            └── {{profile-type}}
+            ```
