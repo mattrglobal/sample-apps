@@ -64,14 +64,14 @@
       },
       "logo": {
         "sourceUri": {
-          "uri": "https://mattr-sandpit.netlify.app/demo/compact-credentials/logo-ast.png",
+          "uri": "https://static.mattr.global/credential-assets/adv-safety-training/googlepass/logo.png",
           "description": "Advanced Safety Training"
         }
       },
       "hexBackgroundColor": "#cacaca",
       "heroImage": {
         "sourceUri": {
-          "uri": "https://mattr-sandpit.netlify.app/demo/compact-credentials/hero-ast.png",
+          "uri": "https://static.mattr.global/credential-assets/adv-safety-training/googlepass/hero.png",
           "description": "CSA handshake trustmark"
         }
       },

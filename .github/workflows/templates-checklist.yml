@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Comment PDF checklist for PRs
+    name: Comment checklist for PRs into credential-templates
     runs-on: ubuntu-18.04
     timeout-minutes: 10
 
