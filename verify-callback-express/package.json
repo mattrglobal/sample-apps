@@ -6,7 +6,7 @@
   "dependencies": {
     "got": "^11.8.0",
     "jsonwebtoken": "^8.5.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "ngrok": "^3.3.0",
     "dotenv": "^8.2.0",
     "qrcode": "^1.4.4"
