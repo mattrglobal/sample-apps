@@ -131,7 +131,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/.well-known/did-configuration",
+							"raw": "https://{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -158,9 +158,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/.well-known/did-configuration",
+									"raw": "https://{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
 									"host": [
-										"{{baseUrl}}"
+										"https://{{tenant_subdomain}}.vii.mattr.global/"
 									],
 									"path": [
 										".well-known",
