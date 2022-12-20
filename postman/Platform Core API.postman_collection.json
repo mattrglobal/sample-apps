@@ -158,9 +158,9 @@
 									}
 								],
 								"url": {
-									"raw": "https://{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
 									"host": [
-										"https://{{tenant_subdomain}}.vii.mattr.global/"
+										"{{tenant_subdomain}}.vii.mattr.global/"
 									],
 									"path": [
 										".well-known",
