@@ -444,23 +444,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
 										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
 										"dids"
-									],
-									"query": [
-										{
-											"key": "limit",
-											"value": "2"
-										},
-										{
-											"key": "cursor",
-											"value": "Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h"
-										}
 									]
 								}
 							},
