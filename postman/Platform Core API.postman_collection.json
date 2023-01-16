@@ -126,9 +126,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/.well-known/did-configuration",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/"
 							],
 							"path": [
 								".well-known",
@@ -150,9 +150,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/.well-known/did-configuration",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/"
 									],
 									"path": [
 										".well-known",
@@ -180,9 +180,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/dids/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -212,9 +212,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -252,9 +252,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -288,9 +288,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/dids/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -319,9 +319,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -359,9 +359,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -395,9 +395,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/dids",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -419,23 +419,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
 										"dids"
-									],
-									"query": [
-										{
-											"key": "limit",
-											"value": "2"
-										},
-										{
-											"key": "cursor",
-											"value": "Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h"
-										}
 									]
 								}
 							},
@@ -468,9 +458,9 @@
 							"raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/dids",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -496,9 +486,9 @@
 									"raw": "{\n    \"method\": \"key\",\n    \"options\": {\n        \"keyType\": \"ed25519\"\n    }\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -534,9 +524,9 @@
 									"raw": "{\n    \"method\": \"key\",\n    \"options\": {\n        \"keyType\": \"ed25519\"\n    }\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/dids",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1905,9 +1895,9 @@
 							"raw": "{\n    \"didUrl\": \"<string>\",\n    \"payload\": \"<object>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/sign",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1934,9 +1924,9 @@
 									"raw": "{\n    \"didUrl\": \"did:example:abcdefghijkl#key1\",\n    \"payload\": {\n        \"msg\": \"this is a message\"\n    }\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/sign",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1973,9 +1963,9 @@
 									"raw": "{\n    \"didUrl\": \"did:example:abcdefghijkl#key1\",\n    \"payload\": {\n        \"msg\": \"this is a message\"\n    }\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/sign",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2013,9 +2003,9 @@
 							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/verify",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2042,9 +2032,9 @@
 									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2081,9 +2071,9 @@
 									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2121,9 +2111,9 @@
 							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/verify",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2150,9 +2140,9 @@
 									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2189,9 +2179,9 @@
 									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2229,9 +2219,9 @@
 							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/verify",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2258,9 +2248,9 @@
 									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2297,9 +2287,9 @@
 									"raw": "{\n    \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2342,9 +2332,9 @@
 							"raw": "{\n    \"@context\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"type\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"claims\": \"<object>\",\n    \"issuer\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n    },\n    \"subjectId\": \"<string>\",\n    \"tag\": \"<string>\",\n    \"persist\": \"<boolean>\",\n    \"revocable\": \"<boolean>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2370,9 +2360,9 @@
 									"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://schema.org\"\n    ],\n    \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"AlumniCredential\"\n    ],\n    \"claims\": {\n        \"givenName\": \"Jamie\",\n        \"familyName\": \"Doe\",\n        \"alumniOf\": \"Example University\"\n    },\n    \"issuer\": {\n        \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"Example University\"\n    },\n    \"persist\": true,\n    \"tag\": \"identifier123\",\n    \"revocable\": true\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2408,9 +2398,9 @@
 									"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://schema.org\"\n    ],\n    \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"AlumniCredential\"\n    ],\n    \"claims\": {\n        \"givenName\": \"Jamie\",\n        \"familyName\": \"Doe\",\n        \"alumniOf\": \"Example University\"\n    },\n    \"issuer\": {\n        \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"Example University\"\n    },\n    \"persist\": true,\n    \"tag\": \"identifier123\",\n    \"revocable\": true\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2438,9 +2428,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials?tag=<string>&type=<string>&limit=<number>&cursor=<string>",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=<string>&type=<string>&limit=<number>&cursor=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2484,9 +2474,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2536,9 +2526,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2584,9 +2574,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2616,9 +2606,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2656,9 +2646,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2696,9 +2686,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2732,9 +2722,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2764,9 +2754,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2804,9 +2794,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2844,9 +2834,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2889,9 +2879,9 @@
 							"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"sunt est ea\",\n            \"cillum ullamco id\"\n        ],\n        \"type\": [\n            \"minim laboris dolor\",\n            \"laboris\"\n        ],\n        \"issuanceDate\": \"1963-07-12T10:54:56.293Z\",\n        \"credentialSubject\": {\n            \"id\": \"dolor et pariatur sint minim\",\n            \"givenName\": \"ea tempor elit\",\n            \"familyName\": \"minim aliqua consequat\",\n            \"alumniOf\": \"Duis aliqua nostrud Ut\"\n        },\n        \"proof\": {\n            \"type\": \"dolor occaecat aliquip\",\n            \"created\": \"1997-08-30T18:26:39.564Z\",\n            \"jws\": \"Lorem Duis veniam proident\",\n            \"proofPurpose\": \"Ut amet fugiat pariatur\",\n            \"verificationMethod\": \"cillum sit\"\n        },\n        \"issuer\": {\n            \"id\": \"pariatur magna enim consequat\",\n            \"name\": \"est cillum irure officia aute\"\n        },\n        \"credentialStatus\": {\n            \"id\": \"labore fugiat\",\n            \"type\": \"laborum et magna non\",\n            \"revocationListIndex\": 62180854,\n            \"revocationListCredential\": \"sit amet consequat Excepteur\"\n        }\n    }\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials/verify",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/verify",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -2918,9 +2908,9 @@
 									"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"https://www.w3.org/2018/credentials/v1\",\n            \"https://www.w3.org/2018/credentials/examples/v1\"\n        ],\n        \"type\": [\n            \"VerifiableCredential\",\n            \"AlumniCredential\"\n        ],\n        \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n        \"credentialSubject\": {\n            \"givenName\": \"Jamie\",\n            \"familyName\": \"Doe\"\n        },\n        \"proof\": {\n            \"type\": \"Ed25519Signature2018\",\n            \"created\": \"2020-05-02T12:06:29Z\",\n            \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n            \"proofPurpose\": \"assertionMethod\",\n            \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n        },\n        \"issuer\": {\n            \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n            \"name\": \"Example University\"\n        },\n        \"credentialStatus\": {\n            \"id\": \"https://tenant.vii.mattr.global/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n            \"type\": \"RevocationList2020Status\",\n            \"revocationListIndex\": 1,\n            \"revocationListCredential\": \"https://tenant.vii.mattr.global/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n        }\n    }\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/verify",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/verify",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -2963,9 +2953,9 @@
 							"raw": "{\n    \"isRevoked\": \"<boolean>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3000,9 +2990,9 @@
 									"raw": "{\n    \"isRevoked\": true\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3045,9 +3035,9 @@
 									"raw": "{\n    \"isRevoked\": true\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3082,9 +3072,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3115,9 +3105,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3156,9 +3146,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3193,9 +3183,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/revocation-lists/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3225,9 +3215,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/revocation-lists/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3265,9 +3255,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/revocation-lists/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3315,9 +3305,9 @@
 							"raw": "{\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"query\": [\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/presentations/templates",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3344,9 +3334,9 @@
 									"raw": "{\n    \"domain\": \"tenant.vii.mattr.global\",\n    \"name\": \"alumni_credential_request\",\n    \"query\": [\n        {\n            \"type\": \"QueryByExample\",\n            \"credentialQuery\": [\n                {\n                    \"required\": true,\n                    \"reason\": \"We need you to prove your alumni membership.\",\n                    \"example\": {\n                        \"@context\": [\n                            \"https://schema.org\"\n                        ],\n                        \"type\": \"AlumniCredential\",\n                        \"trustedIssuer\": [\n                            {\n                                \"required\": true,\n                                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3383,9 +3373,9 @@
 									"raw": "{\n    \"domain\": \"tenant.vii.mattr.global\",\n    \"name\": \"alumni_credential_request\",\n    \"query\": [\n        {\n            \"type\": \"QueryByExample\",\n            \"credentialQuery\": [\n                {\n                    \"required\": true,\n                    \"reason\": \"We need you to prove your alumni membership.\",\n                    \"example\": {\n                        \"@context\": [\n                            \"https://schema.org\"\n                        ],\n                        \"type\": \"AlumniCredential\",\n                        \"trustedIssuer\": [\n                            {\n                                \"required\": true,\n                                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3414,9 +3404,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/presentations/templates?limit=<number>&cursor=<string>",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates?limit=<number>&cursor=<string>",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3451,9 +3441,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3492,9 +3482,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3525,9 +3515,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3566,9 +3556,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3607,9 +3597,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3644,9 +3634,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3677,9 +3667,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3718,9 +3708,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3759,9 +3749,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3805,9 +3795,9 @@
 							"raw": "{\n    \"templateId\": \"<string>\",\n    \"did\": \"<string>\",\n    \"challenge\": \"<string>\",\n    \"expiresTime\": \"<number>\",\n    \"callbackUrl\": \"<uri>\"\n}"
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/presentations/requests",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -3834,9 +3824,9 @@
 									"raw": "{\n    \"templateId\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"did\": \"did:key:z6Mkt7bFYc4V2HdAxwhMtaY6cgJckYXwhYdPLJCcnVqzrkpr\",\n    \"challenge\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"expiresTime\": 1592955632103,\n    \"callbackUrl\": \"https://tenant.vii.mattr.global/v1/presentations/response\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/requests",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -3873,9 +3863,9 @@
 									"raw": "{\n    \"templateId\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"did\": \"did:key:z6Mkt7bFYc4V2HdAxwhMtaY6cgJckYXwhYdPLJCcnVqzrkpr\",\n    \"challenge\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"expiresTime\": 1592955632103,\n    \"callbackUrl\": \"https://tenant.vii.mattr.global/v1/presentations/response\"\n}"
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/presentations/requests",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
