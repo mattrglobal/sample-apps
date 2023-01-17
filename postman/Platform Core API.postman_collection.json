@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c002301e-1d64-4374-9864-6cb0684e3da2",
+		"_postman_id": "30721277-f716-4ab5-b663-bfb00e719c4f",
 		"name": "Platform Core API",
 		"description": "# Introduction\nThe Platform Core API defines a set of capabilities that can be used to manage a tenant of the MATTR Platform.\n\nThe API can be used to manage Decentralised Identifiers, issue Credentials directly or using OpenID Connect flows, and verify Messages signed with DIDs.\n\n## API Reference Versioning\nA previous version of the API Reference can be [accessed here](/api-ref-previous).\n\n# Authorization\nAccess to the API is granted by our authorization provider, as part of onboarding you will be provided with client credentials to make a call to the auth provider and receive a bearer token.\nThis token is then used in an `authorization` header on all calls idenitfied as requiring `bearerAuth` (this is required for the majorty of management operations).\n\n<SecurityDefinitions />\n\n# Pagination\nMost list operations in the API use pagination that can be controlled by a cursor method using the `cursor` and `limit` query parameters.\n\n**Example on [Retrieve List of Credentials](#operation/retrieveListCreds)**\n```\nGET https://tenant.vii.mattr.global/v1/credentials\n?limit=100\n&cursor=Y3JlYXRlZEF0PTIwMjAtMTAtMDhUMjMlM0ExMyUzQTE3Ljg5NtZGUxZWEyNzQ4MWI4\n```\n\n* The `nextCursor` is found at the start of each returned range of credential entries and identifies the last object in the list.\n* The `limit` determines how many entries are returned in that request, with a maximum value of 1000.\n\nRequesting a page after the last value in the list will return an empty `data` object.\n\n``` json\n{\n\"data\": []\n}\n```\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\n\nContact Support:\n Email: support@mattr.global",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -126,11 +126,15 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global//.well-known/did-configuration",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"",
 								".well-known",
 								"did-configuration"
 							]
@@ -150,11 +154,15 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global//.well-known/did-configuration",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"",
 										".well-known",
 										"did-configuration"
 									]
@@ -182,9 +190,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"dids",
 								":id"
@@ -214,9 +226,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids",
 										":id"
@@ -254,9 +270,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids",
 										":id"
@@ -290,9 +310,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"dids",
 								":id"
@@ -321,9 +345,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids",
 										":id"
@@ -361,9 +389,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids",
 										":id"
@@ -397,9 +429,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"dids"
 							]
@@ -421,9 +457,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids"
 									]
@@ -460,9 +500,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"dids"
 							]
@@ -488,9 +532,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids"
 									]
@@ -526,9 +574,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"dids"
 									]
@@ -805,15 +857,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"name\": \"string-4\",\n  \"createdAt\": \"2019-08-24\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseUrl}}/v1/messaging/inboxes",
 									"host": [
@@ -1237,7 +1280,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -1423,15 +1466,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
 									"host": [
@@ -1639,7 +1673,7 @@
 								}
 							],
 							"cookie": [],
-							"body": null
+							"body": ""
 						}
 					]
 				},
@@ -1686,15 +1720,6 @@
 							"originalRequest": {
 								"method": "GET",
 								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
 								"url": {
 									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
 									"host": [
@@ -1871,7 +1896,7 @@
 					"response": []
 				},
 				{
-					"name": "Create a JWS with a DID",
+					"name": "Sign a message",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1897,9 +1922,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"messaging",
 								"sign"
@@ -1926,9 +1955,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"sign"
@@ -1965,9 +1998,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"sign"
@@ -1989,7 +2026,7 @@
 					]
 				},
 				{
-					"name": "Verify a JWS signed by a DID",
+					"name": "Verify a message",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2005,9 +2042,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"messaging",
 								"verify"
@@ -2034,9 +2075,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"verify"
@@ -2073,9 +2118,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"verify"
@@ -2097,7 +2146,7 @@
 					]
 				},
 				{
-					"name": "Encrypt a Message",
+					"name": "Encrypt a message",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -2113,9 +2162,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"messaging",
 								"verify"
@@ -2142,9 +2195,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"verify"
@@ -2181,9 +2238,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"verify"
@@ -2221,9 +2282,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"messaging",
 								"verify"
@@ -2250,9 +2315,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"verify"
@@ -2289,9 +2358,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"messaging",
 										"verify"
@@ -2334,9 +2407,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials"
 							]
@@ -2362,9 +2439,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials"
 									]
@@ -2400,9 +2481,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials"
 									]
@@ -2430,9 +2515,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=<string>&type=<string>&limit=<number>&cursor=<string>",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials"
 							],
@@ -2476,9 +2565,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials"
 									],
@@ -2528,9 +2621,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials"
 									],
@@ -2576,9 +2673,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials",
 								":id"
@@ -2608,9 +2709,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2648,9 +2753,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2688,9 +2797,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2724,9 +2837,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials",
 								":id"
@@ -2756,9 +2873,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2796,9 +2917,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2836,9 +2961,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2881,9 +3010,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/verify",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials",
 								"verify"
@@ -2910,9 +3043,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/verify",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										"verify"
@@ -2955,9 +3092,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials",
 								":id",
@@ -2992,9 +3133,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3037,9 +3182,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3074,9 +3223,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"credentials",
 								":id",
@@ -3107,9 +3260,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3148,9 +3305,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3185,9 +3346,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"revocation-lists",
 								":id"
@@ -3217,9 +3382,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"revocation-lists",
 										":id"
@@ -3257,9 +3426,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"revocation-lists",
 										":id"
@@ -3307,9 +3480,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"presentations",
 								"templates"
@@ -3336,9 +3513,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates"
@@ -3375,9 +3556,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates"
@@ -3406,9 +3591,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates?limit=<number>&cursor=<string>",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"presentations",
 								"templates"
@@ -3443,9 +3632,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates"
@@ -3484,9 +3677,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"presentations",
 								"templates",
@@ -3517,9 +3714,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3558,9 +3759,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3599,9 +3804,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3636,9 +3845,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"presentations",
 								"templates",
@@ -3669,9 +3882,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3710,9 +3927,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3751,9 +3972,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3797,9 +4022,13 @@
 						"url": {
 							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
 							"host": [
-								"{{tenant_subdomain}}.vii.mattr.global/core"
+								"{{tenant_subdomain}}",
+								"vii",
+								"mattr",
+								"global"
 							],
 							"path": [
+								"core",
 								"v1",
 								"presentations",
 								"requests"
@@ -3826,9 +4055,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"requests"
@@ -3865,9 +4098,13 @@
 								"url": {
 									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
 									"host": [
-										"{{tenant_subdomain}}.vii.mattr.global/core"
+										"{{tenant_subdomain}}",
+										"vii",
+										"mattr",
+										"global"
 									],
 									"path": [
+										"core",
 										"v1",
 										"presentations",
 										"requests"
