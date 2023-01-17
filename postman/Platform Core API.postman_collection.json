@@ -620,9 +620,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -647,9 +647,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -741,9 +741,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -840,9 +840,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -858,9 +858,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -945,9 +945,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -970,9 +970,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1073,9 +1073,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1101,9 +1101,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1189,9 +1189,9 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1214,9 +1214,9 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1299,9 +1299,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1334,9 +1334,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1441,9 +1441,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1467,9 +1467,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1571,9 +1571,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1606,9 +1606,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/6b75eac5-dfa2-492f-b873-5482d29ff971/dids",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/6b75eac5-dfa2-492f-b873-5482d29ff971/dids",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1695,9 +1695,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1721,9 +1721,9 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
+									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages",
 									"host": [
-										"{{baseUrl}}"
+										"{{tenant_subdomain}}.vii.mattr.global/core"
 									],
 									"path": [
 										"v1",
@@ -1828,9 +1828,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages/:messageId",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
@@ -1869,9 +1869,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
+							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages/:messageId",
 							"host": [
-								"{{baseUrl}}"
+								"{{tenant_subdomain}}.vii.mattr.global/core"
 							],
 							"path": [
 								"v1",
