@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "cb41d8ef-8b65-41aa-a2f7-3ab3ec50c3d5",
+		"_postman_id": "c002301e-1d64-4374-9864-6cb0684e3da2",
 		"name": "Platform Core API",
 		"description": "# Introduction\nThe Platform Core API defines a set of capabilities that can be used to manage a tenant of the MATTR Platform.\n\nThe API can be used to manage Decentralised Identifiers, issue Credentials directly or using OpenID Connect flows, and verify Messages signed with DIDs.\n\n## API Reference Versioning\nA previous version of the API Reference can be [accessed here](/api-ref-previous).\n\n# Authorization\nAccess to the API is granted by our authorization provider, as part of onboarding you will be provided with client credentials to make a call to the auth provider and receive a bearer token.\nThis token is then used in an `authorization` header on all calls idenitfied as requiring `bearerAuth` (this is required for the majorty of management operations).\n\n<SecurityDefinitions />\n\n# Pagination\nMost list operations in the API use pagination that can be controlled by a cursor method using the `cursor` and `limit` query parameters.\n\n**Example on [Retrieve List of Credentials](#operation/retrieveListCreds)**\n```\nGET https://tenant.vii.mattr.global/v1/credentials\n?limit=100\n&cursor=Y3JlYXRlZEF0PTIwMjAtMTAtMDhUMjMlM0ExMyUzQTE3Ljg5NtZGUxZWEyNzQ4MWI4\n```\n\n* The `nextCursor` is found at the start of each returned range of credential entries and identifies the last object in the list.\n* The `limit` determines how many entries are returned in that request, with a maximum value of 1000.\n\nRequesting a page after the last value in the list will return an empty `data` object.\n\n``` json\n{\n\"data\": []\n}\n```\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\n\nContact Support:\n Email: support@mattr.global",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23024430"
 	},
 	"item": [
 		{
@@ -42,10 +43,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -83,10 +81,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -149,10 +144,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -201,7 +193,6 @@
 								{
 									"key": "id",
 									"value": "<string>",
-									"type": "string",
 									"description": "(Required) Single DID urn"
 								}
 							]
@@ -215,10 +206,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -258,10 +246,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -316,7 +301,6 @@
 								{
 									"key": "id",
 									"value": "<string>",
-									"type": "string",
 									"description": "(Required) Single DID urn"
 								}
 							]
@@ -329,10 +313,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -372,10 +353,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -435,10 +413,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -501,10 +476,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -542,10 +514,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -584,6 +553,1323 @@
 		{
 			"name": "Messaging",
 			"item": [
+				{
+					"name": "Create an inbox",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"string-4\",\n  \"createdAt\": \"2019-08-24\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "201 - Inbox created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string-5\",\n  \"createdAt\": \"2019-08-24\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 23:55:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671666917"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "103cMlnUIHAR5cBRNjpPNc"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3f-0MLmvCFRNKuU9VU2wKB5MdFNA9s\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"8aeb11e3-8389-4a45-b948-50088646c95b\",\n    \"name\": \"string-5\"\n}"
+						},
+						{
+							"name": "400 - Validation error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": \"string\",\n  \"inboxId\": \"string\",\n  \"payload\": \"string\",\n  \"createdAt\": \"2022-12-21T03:55:31.173Z\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 03:56:44 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "122"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671595006"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "0L9rphveXijEkhfJu1fXEI"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"7a-Gu9qBtpJ5+bWachvKWKvqQD67yc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"code\": \"BadRequest\",\n    \"message\": \"Validation Error\",\n    \"details\": [\n        {\n            \"msg\": \"must be a string\",\n            \"param\": \"name\",\n            \"location\": \"body\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List inboxes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"string-4\",\n  \"createdAt\": \"2019-08-24\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - A list of inboxes",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"string-4\",\n  \"createdAt\": \"2019-08-24\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 04:26:32 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "448"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671596794"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "21a9xeC8c4ZogadfmHyb5W"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"1c0-1TIMnY+7W5bS6biliv1e9VqX31M\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"b582e1f9-ec56-4774-91f9-192dc233d68f\",\n            \"name\": \"string-4\"\n        },\n        {\n            \"id\": \"e97c7f0e-896a-413c-8e42-94168a54cdf4\",\n            \"name\": \"string-3\"\n        },\n        {\n            \"id\": \"0c46c2ed-48e3-4bdb-9115-d2979c66caa0\",\n            \"name\": \"string-2\"\n        },\n        {\n            \"id\": \"6b75eac5-dfa2-492f-b873-5482d29ff971\",\n            \"name\": \"string-1\"\n        },\n        {\n            \"id\": \"751fdf4d-d0f3-4a9f-9dda-d89ed71c1172\",\n            \"name\": \"string\"\n        }\n    ],\n    \"nextCursor\": \"Y3JlYXRlZEF0PTIwMjItMTItMjFUMDQlM0EwMyUzQTA5LjU4NFomaWQ9NzUxZmRmNGQtZDBmMy00YTlmLTlkZGEtZDg5ZWQ3MWMxMTcy\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve an inbox name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Inbox configuration returned",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 04:39:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "63"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671597570"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "05H2qFxqcyHcqHNy1MHQLj"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"3f-4OA/lzlpbEtSwqvMLseOlPOrMTs\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"b582e1f9-ec56-4774-91f9-192dc233d68f\",\n    \"name\": \"string-4\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update an inbox",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"string-whatever\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								"b582e1f9-ec56-4774-91f9-192dc233d68f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - Inbox updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"string-whatever\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										"b582e1f9-ec56-4774-91f9-192dc233d68f"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 04:42:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "70"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671597775"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "4KSbthL2KRmK6qbjftDcW9"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"46-FoN7+F/prHtnWxnltrtk5te/hjc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"b582e1f9-ec56-4774-91f9-192dc233d68f\",\n    \"name\": \"string-whatever\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete an inbox",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 - Inbox deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										"b582e1f9-ec56-4774-91f9-192dc233d68f"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 04:44:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671597868"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "7I55agqAKJVwyZiKlA58JP"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Register DID with an inbox",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id",
+								"dids"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - DID registered with inbox",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										":id",
+										"dids"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 21:25:47 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "66"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671657949"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "5Wa5QSyzJmcbVYz065twDu"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"42-dXKGMaUlDWaEK4WF0YTV1HSTXM0\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}"
+						}
+					]
+				},
+				{
+					"name": "List DIDs in an inbox",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id",
+								"dids"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - A list of inbox DIDs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										":id",
+										"dids"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 21:28:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "330"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671658103"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "5cewzc3jaPbSVf4drnti6d"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"14a-hANav8NAKuAA3kl+Hfl0uev3fjw\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\",\n        \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\",\n        \"did:web:mattr.global\",\n        \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\"\n    ],\n    \"nextCursor\": \"Y3JlYXRlZEF0PTIwMjItMTItMjFUMjElM0EyMyUzQTM3Ljc5OFomaWQ9YTg3YmYxODYtMjY2Zi00ZmU0LTkwM2UtMDY1NDc3NjQzZGU1\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Unregister DID with an inbox",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id",
+								"dids"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 - Successfully deleted a did",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/6b75eac5-dfa2-492f-b873-5482d29ff971/dids",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										"6b75eac5-dfa2-492f-b873-5482d29ff971",
+										"dids"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 22:27:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671661640"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "3wMDUzMjPLbEcAkirfqqXS"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "List inbox messages",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id",
+								"messages"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - A list of inbox messages",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"messaging",
+										"inboxes",
+										":id",
+										"messages"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": null
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 21 Dec 2022 22:29:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "11"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1671661794"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "4IQiuYPn6rJarls1up7MW5"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"b-EFAlOux7Kcr/ZEgGkn2r+oFAbu4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "Retrieve a message",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id",
+								"messages",
+								":messageId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								},
+								{
+									"key": "messageId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a message",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"messaging",
+								"inboxes",
+								":id",
+								"messages",
+								":messageId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								},
+								{
+									"key": "messageId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
 					"name": "Create a JWS with a DID",
 					"request": {
@@ -628,10 +1914,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -670,10 +1953,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -742,10 +2022,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -784,10 +2061,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -856,10 +2130,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -898,10 +2169,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -970,10 +2238,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1012,10 +2277,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1088,10 +2350,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1129,10 +2388,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1212,10 +2468,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1267,10 +2520,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1337,7 +2587,6 @@
 								{
 									"key": "id",
 									"value": "<string>",
-									"type": "string",
 									"description": "(Required) Credential ID"
 								}
 							]
@@ -1351,10 +2600,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1394,10 +2640,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1437,10 +2680,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1495,7 +2735,6 @@
 								{
 									"key": "id",
 									"value": "<string>",
-									"type": "string",
 									"description": "(Required) Credential ID"
 								}
 							]
@@ -1509,10 +2748,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1552,10 +2788,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1595,10 +2828,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1668,10 +2898,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1740,7 +2967,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Credential ID"
 								}
 							]
@@ -1754,10 +2980,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1802,10 +3025,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1866,7 +3086,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Credential ID"
 								}
 							]
@@ -1880,10 +3099,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1924,10 +3140,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -1983,7 +3196,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Revocation list ID"
 								}
 							]
@@ -1997,10 +3209,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2040,10 +3249,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2118,10 +3324,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2160,10 +3363,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2235,10 +3435,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2299,7 +3496,6 @@
 								{
 									"key": "id",
 									"value": "<string>",
-									"type": "string",
 									"description": "(Required) Presentation template ID"
 								}
 							]
@@ -2313,10 +3509,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2357,10 +3550,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2401,10 +3591,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2461,7 +3648,6 @@
 								{
 									"key": "id",
 									"value": "<string>",
-									"type": "string",
 									"description": "(Required) Presentation template ID"
 								}
 							]
@@ -2475,10 +3661,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2519,10 +3702,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2563,10 +3743,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2637,10 +3814,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2679,10 +3853,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2744,7 +3915,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								}
 							]
@@ -2758,10 +3928,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2867,10 +4034,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2881,42 +4045,27 @@
 										{
 											"key": "client_id",
 											"value": "{}",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "client_secret",
 											"value": "aYzQUXD0VtlNHhTnxt6cyJeMgLczIBm-AA87STG0narCG8P0iL78fAO7TcWjPBYKwpoZY7Sw8MWNwvqf5VVqFw",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "grant_type",
 											"value": "authorization_code",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "code",
 											"value": "shdT2ks5tg9b",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "redirect_uri",
 											"value": "https://my-client-rp.example.com",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										}
 									]
 								},
@@ -2957,10 +4106,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -2971,42 +4117,27 @@
 										{
 											"key": "client_id",
 											"value": "{}",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "client_secret",
 											"value": "aYzQUXD0VtlNHhTnxt6cyJeMgLczIBm-AA87STG0narCG8P0iL78fAO7TcWjPBYKwpoZY7Sw8MWNwvqf5VVqFw",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "grant_type",
 											"value": "authorization_code",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "code",
 											"value": "shdT2ks5tg9b",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "redirect_uri",
 											"value": "https://my-client-rp.example.com",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										}
 									]
 								},
@@ -3101,10 +4232,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3173,10 +4301,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3275,10 +4400,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3317,10 +4439,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3392,10 +4511,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3440,10 +4556,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3504,7 +4617,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								}
 							]
@@ -3518,10 +4630,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3562,10 +4671,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3606,10 +4712,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3675,7 +4778,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								}
 							]
@@ -3689,10 +4791,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3737,10 +4836,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3785,10 +4881,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3849,7 +4942,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								}
 							]
@@ -3863,10 +4955,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3907,10 +4996,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -3951,10 +5037,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4026,7 +5109,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								}
 							]
@@ -4040,10 +5122,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4089,10 +5168,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4167,7 +5243,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								}
 							]
@@ -4181,10 +5256,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4236,10 +5308,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4309,13 +5378,11 @@
 								{
 									"key": "issuerId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								},
 								{
 									"key": "clientId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Client ID"
 								}
 							]
@@ -4329,10 +5396,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4375,10 +5439,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4421,10 +5482,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4494,13 +5552,11 @@
 								{
 									"key": "issuerId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								},
 								{
 									"key": "clientId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Client ID"
 								}
 							]
@@ -4514,10 +5570,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4564,10 +5617,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4614,10 +5664,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4682,13 +5729,11 @@
 								{
 									"key": "issuerId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Issuer ID"
 								},
 								{
 									"key": "clientId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Client ID"
 								}
 							]
@@ -4702,10 +5747,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4748,10 +5790,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4794,10 +5833,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4863,7 +5899,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								}
 							]
@@ -4877,10 +5912,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -4986,10 +6018,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5000,42 +6029,27 @@
 										{
 											"key": "client_id",
 											"value": "{}",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "client_secret",
 											"value": "aYzQUXD0VtlNHhTnxt6cyJeMgLczIBm-AA87STG0narCG8P0iL78fAO7TcWjPBYKwpoZY7Sw8MWNwvqf5VVqFw",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "grant_type",
 											"value": "authorization_code",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "code",
 											"value": "shdT2ks5tg9b",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "redirect_uri",
 											"value": "https://my-client-rp.example.com",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										}
 									]
 								},
@@ -5076,10 +6090,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5090,42 +6101,27 @@
 										{
 											"key": "client_id",
 											"value": "{}",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "client_secret",
 											"value": "aYzQUXD0VtlNHhTnxt6cyJeMgLczIBm-AA87STG0narCG8P0iL78fAO7TcWjPBYKwpoZY7Sw8MWNwvqf5VVqFw",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "grant_type",
 											"value": "authorization_code",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "code",
 											"value": "shdT2ks5tg9b",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										},
 										{
 											"key": "redirect_uri",
 											"value": "https://my-client-rp.example.com",
-											"description": {
-												"content": "undefined",
-												"type": "text/plain"
-											}
+											"description": "undefined"
 										}
 									]
 								},
@@ -5220,10 +6216,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5292,10 +6285,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5394,10 +6384,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5436,10 +6423,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5511,10 +6495,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5559,10 +6540,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5623,7 +6601,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								}
 							]
@@ -5637,10 +6614,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5681,10 +6655,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5725,10 +6696,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5794,7 +6762,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								}
 							]
@@ -5808,10 +6775,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5856,10 +6820,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5904,10 +6865,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -5968,7 +6926,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								}
 							]
@@ -5982,10 +6939,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6026,10 +6980,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6070,10 +7021,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6145,7 +7093,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								}
 							]
@@ -6159,10 +7106,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6208,10 +7152,7 @@
 								"method": "POST",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6286,7 +7227,6 @@
 								{
 									"key": "id",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								}
 							]
@@ -6300,10 +7240,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6355,10 +7292,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6428,13 +7362,11 @@
 								{
 									"key": "verifierId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								},
 								{
 									"key": "clientId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Client ID"
 								}
 							]
@@ -6448,10 +7380,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6494,10 +7423,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6540,10 +7466,7 @@
 								"method": "GET",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6613,13 +7536,11 @@
 								{
 									"key": "verifierId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								},
 								{
 									"key": "clientId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Client ID"
 								}
 							]
@@ -6633,10 +7554,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6683,10 +7601,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6733,10 +7648,7 @@
 								"method": "PUT",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6801,13 +7713,11 @@
 								{
 									"key": "verifierId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Verifier ID"
 								},
 								{
 									"key": "clientId",
 									"value": "<uuid>",
-									"type": "string",
 									"description": "(Required) Client ID"
 								}
 							]
@@ -6821,10 +7731,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6867,10 +7774,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
@@ -6913,10 +7817,7 @@
 								"method": "DELETE",
 								"header": [
 									{
-										"description": {
-											"content": "Added as a part of security scheme: bearer",
-											"type": "text/plain"
-										},
+										"description": "Added as a part of security scheme: bearer",
 										"key": "Authorization",
 										"value": "Bearer <token>"
 									}
