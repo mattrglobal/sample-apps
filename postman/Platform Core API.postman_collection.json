@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "e3bcfc7e-5758-4551-8aad-8680e405e78c",
+		"_postman_id": "3d8fcc95-64c2-46f0-9b49-457dc11a65df",
 		"name": "Platform Core API",
 		"description": "# Introduction\nThe Platform Core API defines a set of capabilities that can be used to manage a tenant of the MATTR Platform.\n\nThe API can be used to manage Decentralised Identifiers, issue Credentials directly or using OpenID Connect flows, and verify Messages signed with DIDs.\n\n## API Reference Versioning\nA previous version of the API Reference can be [accessed here](/api-ref-previous).\n\n# Authorization\nAccess to the API is granted by our authorization provider, as part of onboarding you will be provided with client credentials to make a call to the auth provider and receive a bearer token.\nThis token is then used in an `authorization` header on all calls idenitfied as requiring `bearerAuth` (this is required for the majorty of management operations).\n\n<SecurityDefinitions />\n\n# Pagination\nMost list operations in the API use pagination that can be controlled by a cursor method using the `cursor` and `limit` query parameters.\n\n**Example on [Retrieve List of Credentials](#operation/retrieveListCreds)**\n```\nGET https://tenant.vii.mattr.global/v1/credentials\n?limit=100\n&cursor=Y3JlYXRlZEF0PTIwMjAtMTAtMDhUMjMlM0ExMyUzQTE3Ljg5NtZGUxZWEyNzQ4MWI4\n```\n\n* The `nextCursor` is found at the start of each returned range of credential entries and identifies the last object in the list.\n* The `limit` determines how many entries are returned in that request, with a maximum value of 1000.\n\nRequesting a page after the last value in the list will return an empty `data` object.\n\n``` json\n{\n\"data\": []\n}\n```\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\n\nContact Support:\n Email: support@mattr.global",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -126,12 +126,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
+							"raw": "{{baseUrl}}/.well-known/did-configuration",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
 								".well-known",
@@ -153,12 +150,9 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/.well-known/did-configuration",
+									"raw": "{{baseUrl}}/.well-known/did-configuration",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
 										".well-known",
@@ -186,15 +180,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
+							"raw": "{{baseUrl}}/v1/dids/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"dids",
 								":id"
@@ -222,15 +212,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
+									"raw": "{{baseUrl}}/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids",
 										":id"
@@ -266,15 +252,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
+									"raw": "{{baseUrl}}/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids",
 										":id"
@@ -306,15 +288,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
+							"raw": "{{baseUrl}}/v1/dids/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"dids",
 								":id"
@@ -341,15 +319,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
+									"raw": "{{baseUrl}}/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids",
 										":id"
@@ -385,15 +359,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids/:id",
+									"raw": "{{baseUrl}}/v1/dids/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids",
 										":id"
@@ -425,15 +395,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
+							"raw": "{{baseUrl}}/v1/dids",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"dids"
 							]
@@ -442,26 +408,16 @@
 					},
 					"response": [
 						{
-							"name": "A list of DIDs",
+							"name": "200 - A list of DIDs",
 							"originalRequest": {
 								"method": "GET",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
+								"header": [],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
+									"raw": "{{baseUrl}}/v1/dids",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids"
 									]
@@ -472,12 +428,68 @@
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
+									"key": "Date",
+									"value": "Sun, 22 Jan 2023 22:57:35 GMT"
+								},
+								{
 									"key": "Content-Type",
-									"value": "application/json"
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "9900"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1674428257"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "0woJgOTwFc2bQEzYGwQOt6"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"26ac-YZ4LeLlv3wK+6Nlk6jbi9/AH7oU\""
 								}
 							],
 							"cookie": [],
-							"body": "{\n \"nextCursor\": \"Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1hNjZmZmVhNS04NDhlLTQzOWQtODBhNC1kZGE1NWY1M2UzNmM\",\n \"data\": [\n  {\n   \"did\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n   \"localMetadata\": {\n    \"keys\": [\n     {\n      \"kmsKeyId\": \"5jFLoKmMPgqWaV1Ler5yaECr6XjDX6DPymZhYpVnLDVh\",\n      \"didDocumentKeyId\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5#z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n     }\n    ],\n    \"registered\": 1586312761694\n   }\n  },\n  {\n   \"did\": \"did:key:z6Mkg7FkYxUpSKBEUJMeG91A9vz66GfWxB4m9Lq81AMZ7wNT\",\n   \"localMetadata\": {\n    \"keys\": [\n     {\n      \"kmsKeyId\": \"2ezhxiEP6mgmMoWwaa3KJqS6GhPfYHpQTKvCAtPYCib5\",\n      \"didDocumentKeyId\": \"did:key:z6Mkg7FkYxUpSKBEUJMeG91A9vz66GfWxB4m9Lq81AMZ7wNT#z6Mkg7FkYxUpSKBEUJMeG91A9vz66GfWxB4m9Lq81AMZ7wNT\"\n     }\n    ],\n    \"registered\": 1586841097944\n   }\n  }\n ]\n}"
+							"body": "{\n    \"data\": [\n        {\n            \"did\": \"did:web:organization.com\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"a0cba537-ffe1-486d-aedd-6ead80e75519\",\n                        \"didDocumentKeyId\": \"did:web:organization.com#2vcj3MjR4d\"\n                    },\n                    {\n                        \"kmsKeyId\": \"250c4e1f-bae3-44ca-9f4e-4f7ff15851e2\",\n                        \"didDocumentKeyId\": \"did:web:organization.com#CU6dJt9p8t\"\n                    }\n                ],\n                \"registered\": 1674421454614,\n                \"initialDidDocument\": {\n                    \"id\": \"did:web:organization.com\",\n                    \"@context\": \"https://w3.org/ns/did/v1\",\n                    \"publicKey\": [\n                        {\n                            \"id\": \"did:web:organization.com#2vcj3MjR4d\",\n                            \"type\": \"Ed25519VerificationKey2018\",\n                            \"controller\": \"did:web:organization.com\",\n                            \"publicKeyBase58\": \"2vcj3MjR4dSKq5asFQ9oor7iZsqTKTfBpjLHgaP15Y24\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        {\n                            \"id\": \"did:web:organization.com#CU6dJt9p8t\",\n                            \"type\": \"X25519KeyAgreementKey2019\",\n                            \"controller\": \"did:web:organization.com\",\n                            \"publicKeyBase58\": \"CU6dJt9p8twE4hmyGVFbVpUMmu6G732bVgD1tNupwYY7\"\n                        }\n                    ],\n                    \"authentication\": [\n                        \"did:web:organization.com#2vcj3MjR4d\"\n                    ],\n                    \"assertionMethod\": [\n                        \"did:web:organization.com#2vcj3MjR4d\"\n                    ],\n                    \"capabilityDelegation\": [\n                        \"did:web:organization.com#2vcj3MjR4d\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"did:web:organization.com#2vcj3MjR4d\"\n                    ]\n                }\n            }\n        },\n        {\n            \"did\": \"did:web:google.com\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"4484e8fc-12c2-4d1a-acb2-ed67925a598d\",\n                        \"didDocumentKeyId\": \"did:web:google.com#6r8VL5R7S8\"\n                    },\n                    {\n                        \"kmsKeyId\": \"760b3644-3a5f-4f2c-a48e-14c5f5a84abf\",\n                        \"didDocumentKeyId\": \"did:web:google.com#8Dgn8H42yJ\"\n                    }\n                ],\n                \"registered\": 1674176667214,\n                \"initialDidDocument\": {\n                    \"id\": \"did:web:google.com\",\n                    \"@context\": \"https://w3.org/ns/did/v1\",\n                    \"publicKey\": [\n                        {\n                            \"id\": \"did:web:google.com#6r8VL5R7S8\",\n                            \"type\": \"Ed25519VerificationKey2018\",\n                            \"controller\": \"did:web:google.com\",\n                            \"publicKeyBase58\": \"6r8VL5R7S8QicGbsH4SNYCLfbVkBewU7WvHXtj3L4f93\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        {\n                            \"id\": \"did:web:google.com#8Dgn8H42yJ\",\n                            \"type\": \"X25519KeyAgreementKey2019\",\n                            \"controller\": \"did:web:google.com\",\n                            \"publicKeyBase58\": \"8Dgn8H42yJ11NbZXrBaJN3zmNGeo38ofV5bT7CDBBFbq\"\n                        }\n                    ],\n                    \"authentication\": [\n                        \"did:web:google.com#6r8VL5R7S8\"\n                    ],\n                    \"assertionMethod\": [\n                        \"did:web:google.com#6r8VL5R7S8\"\n                    ],\n                    \"capabilityDelegation\": [\n                        \"did:web:google.com#6r8VL5R7S8\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"did:web:google.com#6r8VL5R7S8\"\n                    ]\n                }\n            }\n        },\n        {\n            \"did\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"2462a440-ef70-413b-8e73-0b2905a73562\",\n                        \"didDocumentKeyId\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\"\n                    },\n                    {\n                        \"kmsKeyId\": \"e65e6545-1ba0-4959-8272-db22a46f2e34\",\n                        \"didDocumentKeyId\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6LSsfqtdz5mtaGRTZrGwhzK73xDYAtack5AHKcakR1eco7K\"\n                    }\n                ],\n                \"registered\": 1671586060525,\n                \"initialDidDocument\": {\n                    \"id\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\",\n                    \"@context\": \"https://w3.org/ns/did/v1\",\n                    \"publicKey\": [\n                        {\n                            \"id\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\",\n                            \"type\": \"Ed25519VerificationKey2018\",\n                            \"controller\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\",\n                            \"publicKeyBase58\": \"Bqf3SpwXEypMQq9txNrURNy1kZXzAPXKVwinChGztncB\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        {\n                            \"id\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6LSsfqtdz5mtaGRTZrGwhzK73xDYAtack5AHKcakR1eco7K\",\n                            \"type\": \"X25519KeyAgreementKey2019\",\n                            \"controller\": \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\",\n                            \"publicKeyBase58\": \"Gzfj7gGuo7YgNBUWR4UMnTjjh2MTv8u1QLtuFxN7uRLZ\"\n                        }\n                    ],\n                    \"authentication\": [\n                        \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\"\n                    ],\n                    \"assertionMethod\": [\n                        \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\"\n                    ],\n                    \"capabilityDelegation\": [\n                        \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"did:key:z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ#z6MkqHv635BxaXJpXKzbdwpKGUX1a8oqaGmgBxdi2yF1p1PZ\"\n                    ]\n                }\n            }\n        },\n        {\n            \"did\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"0d3c95ee-ff93-4778-96b0-3e57dd153fba\",\n                        \"didDocumentKeyId\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ#zUC75TxeBMRgUjgUKJg4\"\n                    },\n                    {\n                        \"kmsKeyId\": \"a90ea7e7-3d97-419b-93ec-ed159d1d18b6\",\n                        \"didDocumentKeyId\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ#z6LSsfkgE4dWgrPZghe2\"\n                    },\n                    {\n                        \"kmsKeyId\": \"85542839-2a9e-41bf-b479-9bca2ed2985c\",\n                        \"authorizedDidOperations\": [\n                            \"Recover\"\n                        ]\n                    },\n                    {\n                        \"kmsKeyId\": \"fe83a58c-f27f-472f-b3f5-23676f8b5abd\",\n                        \"authorizedDidOperations\": [\n                            \"Update\"\n                        ]\n                    }\n                ],\n                \"registered\": 1671579338301,\n                \"initialDidDocument\": {\n                    \"id\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ\",\n                    \"@context\": [\n                        \"https://www.w3.org/ns/did/v1\",\n                        {\n                            \"@base\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        \"#z6LSsfkgE4dWgrPZghe2\"\n                    ],\n                    \"authentication\": [\n                        \"#zUC75TxeBMRgUjgUKJg4\"\n                    ],\n                    \"assertionMethod\": [\n                        \"#zUC75TxeBMRgUjgUKJg4\"\n                    ],\n                    \"verificationMethod\": [\n                        {\n                            \"id\": \"#zUC75TxeBMRgUjgUKJg4\",\n                            \"type\": \"JsonWebKey2020\",\n                            \"controller\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ\",\n                            \"publicKeyJwk\": {\n                                \"x\": \"jSo1fcYfZ9HLPP9nK2ZS7NR9yad9AEfIzbhQ2NvbkxzqSCbjMZunOPS5J4kkGZ6eFSR1qLkT9Pb34uqblyJo4JpbhTVt7K1NdV3ySdkAp6qXKoSqBAVNxC9exI9SQ8Jj\",\n                                \"crv\": \"Bls12381G2\",\n                                \"kty\": \"OKP\"\n                            }\n                        },\n                        {\n                            \"id\": \"#z6LSsfkgE4dWgrPZghe2\",\n                            \"type\": \"JsonWebKey2020\",\n                            \"controller\": \"did:ion:EiCxlIzULX6md4wBggQVdzuDPgy58cMW_H9CQ6hkW91YtQ\",\n                            \"publicKeyJwk\": {\n                                \"x\": \"7Z9NYlrWp9fXSNplf8zUZcsIoj_CB7_tRG3oyQmu9UU\",\n                                \"crv\": \"X25519\",\n                                \"kty\": \"OKP\"\n                            }\n                        }\n                    ],\n                    \"capabilityDelegation\": [\n                        \"#zUC75TxeBMRgUjgUKJg4\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"#zUC75TxeBMRgUjgUKJg4\"\n                    ]\n                }\n            }\n        },\n        {\n            \"did\": \"did:web:mattr.global\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"07be45e0-529c-4e1c-8929-54bd7850ccad\",\n                        \"didDocumentKeyId\": \"did:web:mattr.global#Ey2CvWcy34\"\n                    },\n                    {\n                        \"kmsKeyId\": \"31499cb1-1eee-4c0f-8027-83433d748b57\",\n                        \"didDocumentKeyId\": \"did:web:mattr.global#6DaaaQTpt6\"\n                    }\n                ],\n                \"registered\": 1671576635472,\n                \"initialDidDocument\": {\n                    \"id\": \"did:web:mattr.global\",\n                    \"@context\": \"https://w3.org/ns/did/v1\",\n                    \"publicKey\": [\n                        {\n                            \"id\": \"did:web:mattr.global#Ey2CvWcy34\",\n                            \"type\": \"Ed25519VerificationKey2018\",\n                            \"controller\": \"did:web:mattr.global\",\n                            \"publicKeyBase58\": \"Ey2CvWcy34L7iVHwfk81R2x2QgERRQ7Sixc2c8wvQqGu\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        {\n                            \"id\": \"did:web:mattr.global#6DaaaQTpt6\",\n                            \"type\": \"X25519KeyAgreementKey2019\",\n                            \"controller\": \"did:web:mattr.global\",\n                            \"publicKeyBase58\": \"6DaaaQTpt6HkRkV1KTdVyvfrqwbM1QhhpALPo5tphZy7\"\n                        }\n                    ],\n                    \"authentication\": [\n                        \"did:web:mattr.global#Ey2CvWcy34\"\n                    ],\n                    \"assertionMethod\": [\n                        \"did:web:mattr.global#Ey2CvWcy34\"\n                    ],\n                    \"capabilityDelegation\": [\n                        \"did:web:mattr.global#Ey2CvWcy34\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"did:web:mattr.global#Ey2CvWcy34\"\n                    ]\n                }\n            }\n        },\n        {\n            \"did\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"383013a3-9322-4fe7-8ae0-8facd96c189b\",\n                        \"didDocumentKeyId\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\"\n                    },\n                    {\n                        \"kmsKeyId\": \"065d82e1-a757-4acc-83bc-4067c5fa17ac\",\n                        \"didDocumentKeyId\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6LSqB7PT2FhqU4HDjRBDUCqMNvXgfkhkjRx56eXNdAiED89\"\n                    }\n                ],\n                \"registered\": 1671573504995,\n                \"initialDidDocument\": {\n                    \"id\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\",\n                    \"@context\": \"https://w3.org/ns/did/v1\",\n                    \"publicKey\": [\n                        {\n                            \"id\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\",\n                            \"type\": \"Ed25519VerificationKey2018\",\n                            \"controller\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\",\n                            \"publicKeyBase58\": \"FTWwkZ21HTBfGxc1hKWJo3Dsk3pHW3dYTutziyDo8bCj\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        {\n                            \"id\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6LSqB7PT2FhqU4HDjRBDUCqMNvXgfkhkjRx56eXNdAiED89\",\n                            \"type\": \"X25519KeyAgreementKey2019\",\n                            \"controller\": \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\",\n                            \"publicKeyBase58\": \"EVwDviSqk1LY8M3Qgpgt2ni3qXDb48FoC7vqtAXBWqMP\"\n                        }\n                    ],\n                    \"authentication\": [\n                        \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\"\n                    ],\n                    \"assertionMethod\": [\n                        \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\"\n                    ],\n                    \"capabilityDelegation\": [\n                        \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"did:key:z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7#z6MktumzLoGSczg8PTSiNtU9e8msZd68uvsu9vovZFBp3oz7\"\n                    ]\n                }\n            }\n        },\n        {\n            \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\",\n            \"localMetadata\": {\n                \"keys\": [\n                    {\n                        \"kmsKeyId\": \"56befc8f-5767-4d56-90a9-3fb2b07e7750\",\n                        \"didDocumentKeyId\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n                    },\n                    {\n                        \"kmsKeyId\": \"d88e6f13-61d7-40c1-b771-e2a7a5c69b4c\",\n                        \"didDocumentKeyId\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6LSdMaQowmHGZe9Mdj1i7t9Y8DTLbNjD6kMtxVJ2FB7jW4P\"\n                    }\n                ],\n                \"registered\": 1671569709255,\n                \"initialDidDocument\": {\n                    \"id\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\",\n                    \"@context\": \"https://w3.org/ns/did/v1\",\n                    \"publicKey\": [\n                        {\n                            \"id\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\",\n                            \"type\": \"Ed25519VerificationKey2018\",\n                            \"controller\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\",\n                            \"publicKeyBase58\": \"7tXSQ3X3z7xmavwmEG8mrikjUU8X343u9BV2oSmGWNJb\"\n                        }\n                    ],\n                    \"keyAgreement\": [\n                        {\n                            \"id\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6LSdMaQowmHGZe9Mdj1i7t9Y8DTLbNjD6kMtxVJ2FB7jW4P\",\n                            \"type\": \"X25519KeyAgreementKey2019\",\n                            \"controller\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\",\n                            \"publicKeyBase58\": \"2gQFHdxRB6vQGFMFBUNCDXzyVSqcWVaD1ymcXnXb28Hd\"\n                        }\n                    ],\n                    \"authentication\": [\n                        \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n                    ],\n                    \"assertionMethod\": [\n                        \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n                    ],\n                    \"capabilityDelegation\": [\n                        \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n                    ],\n                    \"capabilityInvocation\": [\n                        \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y#z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n                    ]\n                }\n            }\n        }\n    ],\n    \"nextCursor\": \"Y3JlYXRlZEF0PTIwMjItMTItMjBUMjAlM0E1NSUzQTA5LjI1OVomaWQ9ZWY3ODQ5MDMtMzhiMC00MjczLTg2ZDQtM2U5NmZiOWQ2MTU1\"\n}"
 						}
 					]
 				},
@@ -496,15 +508,11 @@
 							"raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
+							"raw": "{{baseUrl}}/v1/dids",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"dids"
 							]
@@ -528,15 +536,11 @@
 									"raw": "{\n    \"method\": \"key\",\n    \"options\": {\n        \"keyType\": \"ed25519\"\n    }\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
+									"raw": "{{baseUrl}}/v1/dids",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids"
 									]
@@ -570,15 +574,11 @@
 									"raw": "{\n    \"method\": \"key\",\n    \"options\": {\n        \"keyType\": \"ed25519\"\n    }\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/dids",
+									"raw": "{{baseUrl}}/v1/dids",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"dids"
 									]
@@ -595,6 +595,99 @@
 							],
 							"cookie": [],
 							"body": "{\n \"did\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n \"registrationStatus\": \"COMPLETED\",\n \"localMetadata\": {\n  \"keys\": [\n   {\n    \"kmsKeyId\": \"D6EjPbBioWJb4WSEYrPHuUrDXbCTkNEfmB91p8MdkvVT\",\n    \"didDocumentKeyId\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq#z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\"\n   }\n  ],\n  \"registered\": 1588741969938,\n  \"initialDidDocument\": {\n   \"@context\": \"https://w3.org/ns/did/v1\",\n   \"id\": \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\",\n   \"publicKey\": [\n    {\n     \"id\": \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9#z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\",\n     \"type\": \"Ed25519VerificationKey2018\",\n     \"controller\": \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\",\n     \"publicKeyBase58\": \"6Prt5jwEFEDtz1sPwQSdqNH6Nf5fy87dpPg23CGWPanm\"\n    }\n   ],\n   \"authentication\": [\n    \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9#z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\"\n   ],\n   \"assertionMethod\": [\n    \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9#z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\"\n   ],\n   \"capabilityDelegation\": [\n    \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9#z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\"\n   ],\n   \"capabilityInvocation\": [\n    \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9#z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\"\n   ],\n   \"keyAgreement\": [\n    {\n     \"id\": \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9#z6LSo9fse5qkJjkZTSHRP69mvEw381Tww3umcjXaXQ7Zz71G\",\n     \"type\": \"X25519KeyAgreementKey2019\",\n     \"controller\": \"did:key:z6Mkjr7vfzBfamiN6Wi6cyQUgTq6CEMXP1MzWQawsUEXJoa9\",\n     \"publicKeyBase58\": \"CUVi7n2tDH2pN3uerSdpbeiZGrvqESjcjkou2wU3GjEW\"\n    }\n   ]\n  }\n }\n}"
+						},
+						{
+							"name": "200 - did:web",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"method\": \"web\",\n  \"options\": {\n    \"url\": \"organization.com\"\n  }\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/dids",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"dids"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 22 Jan 2023 21:04:14 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1076"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-ratelimit-limit",
+									"value": "10"
+								},
+								{
+									"key": "x-ratelimit-remaining",
+									"value": "9"
+								},
+								{
+									"key": "x-ratelimit-reset",
+									"value": "1674421456"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "6kyCM4we4Y7zCuivinpnFP"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"434-q6MThdHMpwmivlqP4LqDfYVqjh4\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"did\": \"did:web:organization.com\",\n    \"registrationStatus\": \"PROCESSING\",\n    \"localMetadata\": {\n        \"keys\": [\n            {\n                \"didDocumentKeyId\": \"did:web:organization.com#2vcj3MjR4d\",\n                \"kmsKeyId\": \"a0cba537-ffe1-486d-aedd-6ead80e75519\"\n            },\n            {\n                \"didDocumentKeyId\": \"did:web:organization.com#CU6dJt9p8t\",\n                \"kmsKeyId\": \"250c4e1f-bae3-44ca-9f4e-4f7ff15851e2\"\n            }\n        ],\n        \"registered\": 1674421454614,\n        \"initialDidDocument\": {\n            \"@context\": \"https://w3.org/ns/did/v1\",\n            \"id\": \"did:web:organization.com\",\n            \"publicKey\": [\n                {\n                    \"id\": \"did:web:organization.com#2vcj3MjR4d\",\n                    \"controller\": \"did:web:organization.com\",\n                    \"type\": \"Ed25519VerificationKey2018\",\n                    \"publicKeyBase58\": \"2vcj3MjR4dSKq5asFQ9oor7iZsqTKTfBpjLHgaP15Y24\"\n                }\n            ],\n            \"authentication\": [\n                \"did:web:organization.com#2vcj3MjR4d\"\n            ],\n            \"assertionMethod\": [\n                \"did:web:organization.com#2vcj3MjR4d\"\n            ],\n            \"capabilityDelegation\": [\n                \"did:web:organization.com#2vcj3MjR4d\"\n            ],\n            \"capabilityInvocation\": [\n                \"did:web:organization.com#2vcj3MjR4d\"\n            ],\n            \"keyAgreement\": [\n                {\n                    \"id\": \"did:web:organization.com#CU6dJt9p8t\",\n                    \"controller\": \"did:web:organization.com\",\n                    \"type\": \"X25519KeyAgreementKey2019\",\n                    \"publicKeyBase58\": \"CU6dJt9p8twE4hmyGVFbVpUMmu6G732bVgD1tNupwYY7\"\n                }\n            ]\n        }\n    }\n}"
 						}
 					]
 				}
@@ -618,15 +711,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes"
@@ -850,15 +939,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes"
@@ -963,15 +1048,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1099,15 +1180,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/b582e1f9-ec56-4774-91f9-192dc233d68f",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1223,15 +1300,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1341,15 +1414,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1491,15 +1560,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1629,15 +1694,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/dids",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1761,15 +1822,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1902,15 +1959,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages/:messageId",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -1947,15 +2000,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/inboxes/:id/messages/:messageId",
+							"raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"inboxes",
@@ -2093,15 +2142,11 @@
 							"raw": "{\n    \"didUrl\": \"<string>\",\n    \"payload\": \"<object>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/sign",
+							"raw": "{{baseUrl}}/v1/messaging/sign",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"sign"
@@ -2213,15 +2258,11 @@
 							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
+							"raw": "{{baseUrl}}/v1/messaging/verify",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"verify"
@@ -2333,15 +2374,11 @@
 							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
+							"raw": "{{baseUrl}}/v1/messaging/verify",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"verify"
@@ -2453,15 +2490,11 @@
 							"raw": "{\n    \"jws\": \"<string>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/messaging/verify",
+							"raw": "{{baseUrl}}/v1/messaging/verify",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"messaging",
 								"verify"
@@ -2561,6 +2594,625 @@
 			]
 		},
 		{
+			"name": "Webhooks",
+			"item": [
+				{
+					"name": "Create a webhook",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"events\": [\n    \"OidcIssuerCredentialIssued\"\n  ],\n  \"url\": \"https://google.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/webhooks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"webhooks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - webhook created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"events\": [\n    \"OidcIssuerCredentialIssued\"\n  ],\n  \"url\": \"https://google.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/webhooks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"webhooks"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:53:16 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "0ZgEsXSDAVM9jpjdxlJd0K"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"82-xPYwdlEE4nzIFNpmZViYP24j6Hc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"6c5f6192-ffc7-4bd4-8797-e5aa15276a30\",\n    \"events\": [\n        \"OidcIssuerCredentialIssued\"\n    ],\n    \"url\": \"https://google.com/\",\n    \"disabled\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a list of webhooks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/webhooks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"webhooks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - list of webhooks",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/webhooks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"webhooks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:53:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "392"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "6u2RWHWntn2tCapTuef1SZ"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"188-bwHGLsmHnKC0mRdzm2hAzaIF27I\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": \"6c5f6192-ffc7-4bd4-8797-e5aa15276a30\",\n            \"events\": [\n                \"OidcIssuerCredentialIssued\"\n            ],\n            \"url\": \"https://google.com/\",\n            \"disabled\": false\n        },\n        {\n            \"id\": \"ad836a02-98a0-4b0d-83f8-44054195f63a\",\n            \"events\": [\n                \"OidcIssuerCredentialIssued\"\n            ],\n            \"url\": \"https://google.com/\",\n            \"disabled\": false\n        }\n    ],\n    \"nextCursor\": \"Y3JlYXRlZEF0PTIwMjMtMDEtMTlUMDElM0E0MSUzQTAwLjQ0NVomaWQ9YWQ4MzZhMDItOThhMC00YjBkLTgzZjgtNDQwNTQxOTVmNjNh\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get a webhook",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/webhooks/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"webhooks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - webhook retrieved",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/webhooks/6c5f6192-ffc7-4bd4-8797-e5aa15276a30",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"webhooks",
+										"6c5f6192-ffc7-4bd4-8797-e5aa15276a30"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:54:23 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "130"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "7rtJn4GEAwQy0afnIdvArc"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"82-xPYwdlEE4nzIFNpmZViYP24j6Hc\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"6c5f6192-ffc7-4bd4-8797-e5aa15276a30\",\n    \"events\": [\n        \"OidcIssuerCredentialIssued\"\n    ],\n    \"url\": \"https://google.com/\",\n    \"disabled\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "Update a webhook",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"events\": [\n        \"OidcIssuerCredentialIssued\"\n    ],\n    \"url\": \"https://paypal.com/\",\n    \"disabled\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v1/webhooks/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"webhooks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - webhook updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"events\": [\n        \"OidcIssuerCredentialIssued\"\n    ],\n    \"url\": \"https://paypal.com/\",\n    \"disabled\": true\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v1/webhooks/6c5f6192-ffc7-4bd4-8797-e5aa15276a30",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"webhooks",
+										"6c5f6192-ffc7-4bd4-8797-e5aa15276a30"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:57:30 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "129"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "4MsCPDuUhkm7EVR7lNtWUb"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"81-tQox9BumD+D6EflItNq0fuEubHw\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"6c5f6192-ffc7-4bd4-8797-e5aa15276a30\",\n    \"events\": [\n        \"OidcIssuerCredentialIssued\"\n    ],\n    \"url\": \"https://paypal.com/\",\n    \"disabled\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Remove a webhook",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/webhooks/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"webhooks",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 - webhook deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/webhooks/ad836a02-98a0-4b0d-83f8-44054195f63a",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"webhooks",
+										"ad836a02-98a0-4b0d-83f8-44054195f63a"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:58:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "0EjQSgtf5KhBgjZAA2ebSN"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Get a list of webhook JWKs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/v1/webhooks/jwks",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v1",
+								"webhooks",
+								"jwks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 - list of webhook JWKs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/webhooks/jwks",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"webhooks",
+										"jwks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Thu, 19 Jan 2023 01:59:15 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "109"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "x-dns-prefetch-control",
+									"value": "off"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "strict-transport-security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "x-download-options",
+									"value": "noopen"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-xss-protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "x-request-id",
+									"value": "0yLFtERtTTVMetNRils5pJ"
+								},
+								{
+									"key": "cache-control",
+									"value": "max-age=600"
+								},
+								{
+									"key": "etag",
+									"value": "W/\"6d-zwvXsefu4hGpeD+baZl0t3yukfs\""
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"keys\": [\n        {\n            \"kty\": \"OKP\",\n            \"crv\": \"Ed25519\",\n            \"kid\": \"1614657134\",\n            \"x\": \"lKcAslodioxFjEoZcLMlyvy1zikVJHBLUeyoBQE48OM\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
 			"name": "Credentials",
 			"item": [
 				{
@@ -2578,15 +3230,11 @@
 							"raw": "{\n    \"@context\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"type\": [\n        \"<string>\",\n        \"<string>\"\n    ],\n    \"claims\": \"<object>\",\n    \"issuer\": {\n        \"id\": \"<string>\",\n        \"name\": \"<string>\"\n    },\n    \"subjectId\": \"<string>\",\n    \"tag\": \"<string>\",\n    \"persist\": \"<boolean>\",\n    \"revocable\": \"<boolean>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
+							"raw": "{{baseUrl}}/v1/credentials",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials"
 							]
@@ -2610,15 +3258,11 @@
 									"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://schema.org\"\n    ],\n    \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"AlumniCredential\"\n    ],\n    \"claims\": {\n        \"givenName\": \"Jamie\",\n        \"familyName\": \"Doe\",\n        \"alumniOf\": \"Example University\"\n    },\n    \"issuer\": {\n        \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"Example University\"\n    },\n    \"persist\": true,\n    \"tag\": \"identifier123\",\n    \"revocable\": true\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
+									"raw": "{{baseUrl}}/v1/credentials",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials"
 									]
@@ -2652,15 +3296,11 @@
 									"raw": "{\n    \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://schema.org\"\n    ],\n    \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n    \"type\": [\n        \"VerifiableCredential\",\n        \"AlumniCredential\"\n    ],\n    \"claims\": {\n        \"givenName\": \"Jamie\",\n        \"familyName\": \"Doe\",\n        \"alumniOf\": \"Example University\"\n    },\n    \"issuer\": {\n        \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n        \"name\": \"Example University\"\n    },\n    \"persist\": true,\n    \"tag\": \"identifier123\",\n    \"revocable\": true\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials",
+									"raw": "{{baseUrl}}/v1/credentials",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials"
 									]
@@ -2686,15 +3326,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=<string>&type=<string>&limit=<number>&cursor=<string>",
+							"raw": "{{baseUrl}}/v1/credentials?tag=<string>&type=<string>&limit=<number>&cursor=<string>",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials"
 							],
@@ -2736,15 +3372,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{baseUrl}}/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials"
 									],
@@ -2792,15 +3424,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{baseUrl}}/v1/credentials?tag=identifier123&type=AlumniCredential&limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials"
 									],
@@ -2844,15 +3472,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+							"raw": "{{baseUrl}}/v1/credentials/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials",
 								":id"
@@ -2880,15 +3504,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+									"raw": "{{baseUrl}}/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2924,15 +3544,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+									"raw": "{{baseUrl}}/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -2968,15 +3584,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+									"raw": "{{baseUrl}}/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -3008,15 +3620,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+							"raw": "{{baseUrl}}/v1/credentials/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials",
 								":id"
@@ -3044,15 +3652,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+									"raw": "{{baseUrl}}/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -3088,15 +3692,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+									"raw": "{{baseUrl}}/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -3132,15 +3732,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id",
+									"raw": "{{baseUrl}}/v1/credentials/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id"
@@ -3181,15 +3777,11 @@
 							"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"sunt est ea\",\n            \"cillum ullamco id\"\n        ],\n        \"type\": [\n            \"minim laboris dolor\",\n            \"laboris\"\n        ],\n        \"issuanceDate\": \"1963-07-12T10:54:56.293Z\",\n        \"credentialSubject\": {\n            \"id\": \"dolor et pariatur sint minim\",\n            \"givenName\": \"ea tempor elit\",\n            \"familyName\": \"minim aliqua consequat\",\n            \"alumniOf\": \"Duis aliqua nostrud Ut\"\n        },\n        \"proof\": {\n            \"type\": \"dolor occaecat aliquip\",\n            \"created\": \"1997-08-30T18:26:39.564Z\",\n            \"jws\": \"Lorem Duis veniam proident\",\n            \"proofPurpose\": \"Ut amet fugiat pariatur\",\n            \"verificationMethod\": \"cillum sit\"\n        },\n        \"issuer\": {\n            \"id\": \"pariatur magna enim consequat\",\n            \"name\": \"est cillum irure officia aute\"\n        },\n        \"credentialStatus\": {\n            \"id\": \"labore fugiat\",\n            \"type\": \"laborum et magna non\",\n            \"revocationListIndex\": 62180854,\n            \"revocationListCredential\": \"sit amet consequat Excepteur\"\n        }\n    }\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/verify",
+							"raw": "{{baseUrl}}/v1/credentials/verify",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials",
 								"verify"
@@ -3214,15 +3806,11 @@
 									"raw": "{\n    \"credential\": {\n        \"@context\": [\n            \"https://www.w3.org/2018/credentials/v1\",\n            \"https://www.w3.org/2018/credentials/examples/v1\"\n        ],\n        \"type\": [\n            \"VerifiableCredential\",\n            \"AlumniCredential\"\n        ],\n        \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n        \"credentialSubject\": {\n            \"givenName\": \"Jamie\",\n            \"familyName\": \"Doe\"\n        },\n        \"proof\": {\n            \"type\": \"Ed25519Signature2018\",\n            \"created\": \"2020-05-02T12:06:29Z\",\n            \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n            \"proofPurpose\": \"assertionMethod\",\n            \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n        },\n        \"issuer\": {\n            \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n            \"name\": \"Example University\"\n        },\n        \"credentialStatus\": {\n            \"id\": \"https://tenant.vii.mattr.global/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n            \"type\": \"RevocationList2020Status\",\n            \"revocationListIndex\": 1,\n            \"revocationListCredential\": \"https://tenant.vii.mattr.global/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n        }\n    }\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/verify",
+									"raw": "{{baseUrl}}/v1/credentials/verify",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										"verify"
@@ -3263,15 +3851,11 @@
 							"raw": "{\n    \"isRevoked\": \"<boolean>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
+							"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials",
 								":id",
@@ -3304,15 +3888,11 @@
 									"raw": "{\n    \"isRevoked\": true\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
+									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3353,15 +3933,11 @@
 									"raw": "{\n    \"isRevoked\": true\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
+									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3394,15 +3970,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
+							"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"credentials",
 								":id",
@@ -3431,15 +4003,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
+									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3476,15 +4044,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/credentials/:id/revocation-status",
+									"raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"credentials",
 										":id",
@@ -3517,15 +4081,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
+							"raw": "{{baseUrl}}/v1/revocation-lists/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"revocation-lists",
 								":id"
@@ -3553,15 +4113,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
+									"raw": "{{baseUrl}}/v1/revocation-lists/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"revocation-lists",
 										":id"
@@ -3597,15 +4153,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/revocation-lists/:id",
+									"raw": "{{baseUrl}}/v1/revocation-lists/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"revocation-lists",
 										":id"
@@ -3651,15 +4203,11 @@
 							"raw": "{\n    \"domain\": \"<string>\",\n    \"name\": \"<string>\",\n    \"query\": [\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        },\n        {\n            \"type\": \"<string>\",\n            \"credentialQuery\": [\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                },\n                {\n                    \"required\": \"<boolean>\",\n                    \"example\": [\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        },\n                        {\n                            \"@context\": \"<array>\",\n                            \"type\": \"<string>\",\n                            \"trustedIssuer\": [\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                },\n                                {\n                                    \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                                }\n                            ]\n                        }\n                    ],\n                    \"reason\": \"<string>\"\n                }\n            ]\n        }\n    ]\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
+							"raw": "{{baseUrl}}/v1/presentations/templates",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"presentations",
 								"templates"
@@ -3684,15 +4232,11 @@
 									"raw": "{\n    \"domain\": \"tenant.vii.mattr.global\",\n    \"name\": \"alumni_credential_request\",\n    \"query\": [\n        {\n            \"type\": \"QueryByExample\",\n            \"credentialQuery\": [\n                {\n                    \"required\": true,\n                    \"reason\": \"We need you to prove your alumni membership.\",\n                    \"example\": {\n                        \"@context\": [\n                            \"https://schema.org\"\n                        ],\n                        \"type\": \"AlumniCredential\",\n                        \"trustedIssuer\": [\n                            {\n                                \"required\": true,\n                                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
+									"raw": "{{baseUrl}}/v1/presentations/templates",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates"
@@ -3727,15 +4271,11 @@
 									"raw": "{\n    \"domain\": \"tenant.vii.mattr.global\",\n    \"name\": \"alumni_credential_request\",\n    \"query\": [\n        {\n            \"type\": \"QueryByExample\",\n            \"credentialQuery\": [\n                {\n                    \"required\": true,\n                    \"reason\": \"We need you to prove your alumni membership.\",\n                    \"example\": {\n                        \"@context\": [\n                            \"https://schema.org\"\n                        ],\n                        \"type\": \"AlumniCredential\",\n                        \"trustedIssuer\": [\n                            {\n                                \"required\": true,\n                                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n                            }\n                        ]\n                    }\n                }\n            ]\n        }\n    ]\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates",
+									"raw": "{{baseUrl}}/v1/presentations/templates",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates"
@@ -3762,15 +4302,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates?limit=<number>&cursor=<string>",
+							"raw": "{{baseUrl}}/v1/presentations/templates?limit=<number>&cursor=<string>",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"presentations",
 								"templates"
@@ -3803,15 +4339,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
+									"raw": "{{baseUrl}}/v1/presentations/templates?limit=2&cursor=Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates"
@@ -3848,15 +4380,11 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+							"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"presentations",
 								"templates",
@@ -3885,15 +4413,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3930,15 +4454,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -3975,15 +4495,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -4016,15 +4532,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+							"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"presentations",
 								"templates",
@@ -4053,15 +4565,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -4098,15 +4606,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -4143,15 +4647,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/templates/:id",
+									"raw": "{{baseUrl}}/v1/presentations/templates/:id",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"templates",
@@ -4193,15 +4693,11 @@
 							"raw": "{\n    \"templateId\": \"<string>\",\n    \"did\": \"<string>\",\n    \"challenge\": \"<string>\",\n    \"expiresTime\": \"<number>\",\n    \"callbackUrl\": \"<uri>\"\n}"
 						},
 						"url": {
-							"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
+							"raw": "{{baseUrl}}/v1/presentations/requests",
 							"host": [
-								"{{tenant_subdomain}}",
-								"vii",
-								"mattr",
-								"global"
+								"{{baseUrl}}"
 							],
 							"path": [
-								"core",
 								"v1",
 								"presentations",
 								"requests"
@@ -4226,15 +4722,11 @@
 									"raw": "{\n    \"templateId\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"did\": \"did:key:z6Mkt7bFYc4V2HdAxwhMtaY6cgJckYXwhYdPLJCcnVqzrkpr\",\n    \"challenge\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"expiresTime\": 1592955632103,\n    \"callbackUrl\": \"https://tenant.vii.mattr.global/v1/presentations/response\"\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
+									"raw": "{{baseUrl}}/v1/presentations/requests",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"requests"
@@ -4269,15 +4761,11 @@
 									"raw": "{\n    \"templateId\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"did\": \"did:key:z6Mkt7bFYc4V2HdAxwhMtaY6cgJckYXwhYdPLJCcnVqzrkpr\",\n    \"challenge\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n    \"expiresTime\": 1592955632103,\n    \"callbackUrl\": \"https://tenant.vii.mattr.global/v1/presentations/response\"\n}"
 								},
 								"url": {
-									"raw": "{{tenant_subdomain}}.vii.mattr.global/core/v1/presentations/requests",
+									"raw": "{{baseUrl}}/v1/presentations/requests",
 									"host": [
-										"{{tenant_subdomain}}",
-										"vii",
-										"mattr",
-										"global"
+										"{{baseUrl}}"
 									],
 									"path": [
-										"core",
 										"v1",
 										"presentations",
 										"requests"
