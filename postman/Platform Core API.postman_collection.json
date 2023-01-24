@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "219f2134-6463-4212-926a-1d6fb63b27ba",
+    "_postman_id": "261b0ba4-c6cb-48b6-a98e-b37d0c192e42",
     "name": "MATTR VII API",
     "description": "# Introduction\nThe Platform Core API defines a set of capabilities that can be used to manage a tenant of the MATTR Platform.\n\nThe API can be used to manage Decentralised Identifiers, issue Credentials directly or using OpenID Connect flows, and verify Messages signed with DIDs.\n\n## API Reference Versioning\nA previous version of the API Reference can be [accessed here](/api-ref-previous).\n\n# Authorization\nAccess to the API is granted by our authorization provider, as part of onboarding you will be provided with client credentials to make a call to the auth provider and receive a bearer token.\nThis token is then used in an `authorization` header on all calls idenitfied as requiring `bearerAuth` (this is required for the majorty of management operations).\n\n<SecurityDefinitions />\n\n# Pagination\nMost list operations in the API use pagination that can be controlled by a cursor method using the `cursor` and `limit` query parameters.\n\n**Example on [Retrieve List of Credentials](#operation/retrieveListCreds)**\n```\nGET https://tenant.vii.mattr.global/v1/credentials\n?limit=100\n&cursor=Y3JlYXRlZEF0PTIwMjAtMTAtMDhUMjMlM0ExMyUzQTE3Ljg5NtZGUxZWEyNzQ4MWI4\n```\n\n* The `nextCursor` is found at the start of each returned range of credential entries and identifies the last object in the list.\n* The `limit` determines how many entries are returned in that request, with a maximum value of 1000.\n\nRequesting a page after the last value in the list will return an empty `data` object.\n\n``` json\n{\n\"data\": []\n}\n```\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\n\nContact Support:\n Email: support@mattr.global",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -119,7 +119,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/dids",
@@ -142,7 +142,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "",
+              "raw": "{\n  \"id\": \"string\",\n  \"inboxId\": \"string\",\n  \"payload\": \"string\",\n  \"createdAt\": \"2019-08-24\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -255,7 +255,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
+              "raw": "{\n  \"did\": \"string\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -263,14 +263,14 @@
               }
             },
             "url": {
-              "raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+              "raw": "{{baseUrl}}/v1/messaging/inboxes/8aeb11e3-8389-4a45-b948-50088646c95b/dids",
               "host": ["{{baseUrl}}"],
-              "path": ["v1", "messaging", "inboxes", ":id", "dids"],
-              "variable": [
-                {
-                  "key": "id",
-                  "value": null
-                }
+              "path": [
+                "v1",
+                "messaging",
+                "inboxes",
+                "8aeb11e3-8389-4a45-b948-50088646c95b",
+                "dids"
               ]
             }
           },
@@ -441,7 +441,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"didUrl\": \"string\",\n  \"payload\": {\n    \"msg\": \"string\"\n  }\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/messaging/sign",
@@ -464,7 +464,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"jws\": \"string\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/messaging/verify",
@@ -487,7 +487,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"senderDidUrl\": \"did:key:z6Mko4PvuwKzmjtaKTEV6ZhMSYqX5myTSe3L3Md4feiwCoua#z6LSkKk8HK73jYfUQRBHX3Qeb1Agv39qVNFn7n2PjRvjpPcy\",\n  \"recipientDidUrls\": [\n    \"did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d\",\n    \"did:key:z6MkgxxdrThaRd7HbeAA4pYEwAgKT6ZXy2aNTcPkmeF1yWHN\"\n  ],\n  \"payload\": {\n    \"id\": \"731961f2-bdc3-4f1e-8d59-cc308fd60ec8\",\n    \"type\": \"https://mattr.global/schemas/verifiable-credential/offer/OidcCredentialProvider\",\n    \"from\": \"did:key:z6MkndAHigYrXNpape7jgaC7jHiWwxzB3chuKUGXJg2b5RSj\",\n    \"created_time\": \"1616466734\",\n    \"body\": {\n      \"uri\": \"openid://discovery?issuer=https://tenant.vii.mattr.global/ext/oidc/v1/issuers/0dceeddd-f717-4bf2-b520-b3ddcd104a60\"\n    }\n  }\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/messaging/encrypt",
@@ -510,7 +510,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"jwe\": \"string\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/messaging/encrypt",
@@ -533,7 +533,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"to\": \"did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d\",\n  \"message\": {\n    \"protected\": \"eyJhbGciOiJYQzIwUCJ9\",\n    \"recipients\": [\n      {\n        \"header\": {\n          \"alg\": \"ECDH-1PU+A256KW\",\n          \"kid\": \"did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d#z6LSsvqSJkBvVEsDC8cxMHuQ3sKoLRMXB1MdtoLrMUq6A8Rg\",\n          \"epk\": {\n            \"kty\": \"OKP\",\n            \"crv\": \"x25519\",\n            \"x\": \"kYsO02jWHATTJel6OpePqlkdDmKlE5VOr18UblgL8W0\"\n          },\n          \"skid\": \"did:key:z6Mko4PvuwKzmjtaKTEV6ZhMSYqX5myTSe3L3Md4feiwCoua#z6LSkKk8HK73jYfUQRBHX3Qeb1Agv39qVNFn7n2PjRvjpPcy\"\n        },\n        \"encryption_key\": \"n1VUf5SQdSFNtb8DHzYfJJ_lFhJcGDAPJWG8Y1W3d2qYyPzyxMhyaA\"\n      },\n      {\n        \"header\": {\n          \"alg\": \"ECDH-1PU+A256KW\",\n          \"kid\": \"did:key:z6MkgxxdrThaRd7HbeAA4pYEwAgKT6ZXy2aNTcPkmeF1yWHN#z6LSgDiT1CkducmcSPaq9E1Uj1qdSXBjsUNqqLQLrUu8EHWd\",\n          \"epk\": {\n            \"kty\": \"OKP\",\n            \"crv\": \"x25519\",\n            \"x\": \"P3jcIMPGK8thxyHxUsWB5fEsLnltJqRDWMNywtexk24\"\n          },\n          \"skid\": \"did:key:z6Mko4PvuwKzmjtaKTEV6ZhMSYqX5myTSe3L3Md4feiwCoua#z6LSkKk8HK73jYfUQRBHX3Qeb1Agv39qVNFn7n2PjRvjpPcy\"\n        },\n        \"encryption_key\": \"5ZOTqwj8NredkXEOp4ZDLL1ohRQqNTS508BTkLlUVCkDoYvizCIdrg\"\n      }\n    ],\n    \"ciphertext\": \"Dl4zBqMeEDwcnyyc17nYvSQ048fcsha_Lm0dfer1nqfo5y8oHvD2VGNTp_lawNJMWCzQF3NDZxxKFz__wTUeHCqisCE_DWbjo_W-R3avzW9S-JFajv9NRtjlfd5yp-1TtD2N5d-8oTtMGdAxq3dftN2Od1xRe4stubJBebl3nf8-lG99DIVGdL8Y-D98kFDxnMxgCKn4RXyHnMowFWlhQCooLeYqo8aWjqVFkzuJzn-p47W7rV9BCuoVThhVuNkjQm_dhBrqu0QMpjJucz7OvOHp0mojdYNKwvWT6dfOVNXetMlKjWCGtCTNFaDTGLc4agdcTjAlaF1iedcVXDOLqVvEugXWGlusE3a68y6gmPnqHjXR6CsEfPwkb5hKKtsyrh1eHu_9UUang5o6N76mummVw4UZkDF6tP1PVGPvyctz82tthnOcjO5mZQG41xfMEMNxWtF8P8wCh4LotpdexXtYigzBgkI1Qoa_FK1czYWAUovysAJCTOZtmg==\",\n    \"iv\": \"jSd3E-ElCHE-QhSDxrQ-Jv4eQhkxOj0s\",\n    \"tag\": \"dbDolGVDdvYsYdn-vVrICw==\"\n  }\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/messaging/send",
@@ -563,7 +563,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "",
+              "raw": "{\n  \"events\": [\n    \"OidcIssuerCredentialIssued\"\n  ],\n  \"url\": \"https://example.com\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -617,7 +617,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "",
+              "raw": "{\n  \"events\": [\n    \"OidcIssuerCredentialIssued\"\n  ],\n  \"url\": \"https://example.com\",\n  \"disabled\": true\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -687,7 +687,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"@context\": [\n    \"https://www.w3.org/2018/credentials/v1\",\n    \"https://schema.org\"\n  ],\n  \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n  \"type\": [\n    \"VerifiableCredential\",\n    \"AlumniCredential\"\n  ],\n  \"claims\": {\n    \"givenName\": \"Jamie\",\n    \"familyName\": \"Doe\",\n    \"alumniOf\": \"Example University\"\n  },\n  \"issuer\": {\n    \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n    \"name\": \"Example University\"\n  },\n  \"persist\": true,\n  \"tag\": \"identifier123\",\n  \"revocable\": true\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/credentials",
@@ -766,7 +766,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"credential\": {\n    \"@context\": [\n      \"https://www.w3.org/2018/credentials/v1\",\n      \"https://www.w3.org/2018/credentials/examples/v1\"\n    ],\n    \"type\": [\n      \"VerifiableCredential\",\n      \"AlumniCredential\"\n    ],\n    \"issuer\": {\n      \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n      \"name\": \"Example University\"\n    },\n    \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n    \"credentialStatus\": {\n      \"id\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n      \"type\": \"RevocationList2020Status\",\n      \"revocationListIndex\": 1,\n      \"revocationListCredential\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n    },\n    \"credentialSubject\": {\n      \"id\": \"did:example:abcdb1f712ebc6f1c276e12ec21\",\n      \"givenName\": \"Jamie\",\n      \"familyName\": \"Doe\"\n    },\n    \"proof\": {\n      \"type\": \"Ed25519Signature2018\",\n      \"created\": \"2020-05-02T12:06:29Z\",\n      \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n      \"proofPurpose\": \"assertionMethod\",\n      \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n    },\n    \"name\": \"Course credential\",\n    \"description\": \"This credential shows that the person has attended the mention course and attained the relevant awards.\"\n  }\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/credentials/verify",
@@ -794,7 +794,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"isRevoked\": true\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
@@ -853,6 +853,34 @@
             "description": "Retrieve the revocation list that contains the revocation status of a number of credentials.\n\n\n#### Returns\nThe revocation list"
           },
           "response": []
+        },
+        {
+          "name": "Create a Revocation Messge Payload",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"from\": \"string\",\n  \"to\": [\n    \"string\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/credentials/{id}/revocation-status/notification",
+              "host": ["{{baseUrl}}"],
+              "path": [
+                "v1",
+                "credentials",
+                "{id}",
+                "revocation-status",
+                "notification"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -871,7 +899,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"name\": \"alumni_credential_request\",\n  \"query\": [\n    {\n      \"type\": \"QueryByExample\",\n      \"credentialQuery\": [\n        {\n          \"required\": true,\n          \"reason\": \"We need you to prove your alumni membership.\",\n          \"example\": {\n            \"@context\": [\n              \"https://schema.org\"\n            ],\n            \"type\": \"AlumniCredential\",\n            \"trustedIssuer\": [\n              {\n                \"required\": true,\n                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/presentations/templates",
@@ -950,7 +978,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"challenge\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n  \"did\": \"did:key:z6Mkt7bFYc4V2HdAxwhMtaY6cgJckYXwhYdPLJCcnVqzrkpr\",\n  \"templateId\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n  \"expiresTime\": 1592955632103,\n  \"callbackUrl\": \"https://tenant.vii.mattr.global/core/v1/presentations/response\"\n}"
             },
             "url": {
               "raw": "{{baseUrl}}/v1/presentations/requests",
@@ -958,6 +986,50 @@
               "path": ["v1", "presentations", "requests"]
             },
             "description": "Creates a short lived Presentation Request.\n\nIf no `expiresTime` is provided, a default of 5 minutes will be used."
+          },
+          "response": []
+        },
+        {
+          "name": "Create a Presentation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"holderDidUrl\": \"did:key:z6MkfxQU7dy8eKxyHpG267FV23agZQu9zmokd8BprepfHALi\",\n  \"credentials\": [\n    {\n      \"@context\": [\n        \"https://www.w3.org/2018/credentials/v1\",\n        \"https://www.w3.org/2018/credentials/examples/v1\"\n      ],\n      \"type\": [\n        \"VerifiableCredential\",\n        \"AlumniCredential\"\n      ],\n      \"issuer\": {\n        \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n        \"name\": \"Example University\"\n      },\n      \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n      \"credentialStatus\": {\n        \"id\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n        \"type\": \"RevocationList2020Status\",\n        \"revocationListIndex\": 1,\n        \"revocationListCredential\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n      },\n      \"credentialSubject\": {\n        \"id\": \"did:example:abcdb1f712ebc6f1c276e12ec21\",\n        \"givenName\": \"Jamie\",\n        \"familyName\": \"Doe\"\n      },\n      \"proof\": {\n        \"type\": \"Ed25519Signature2018\",\n        \"created\": \"2020-05-02T12:06:29Z\",\n        \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n        \"proofPurpose\": \"assertionMethod\",\n        \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n      },\n      \"name\": \"Course credential\",\n      \"description\": \"This credential shows that the person has attended the mention course and attained the relevant awards.\"\n    }\n  ],\n  \"challenge\": \"e1b35ae0-9e0e-11ea-9bbf-a387b27c9e60\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/presentations",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "presentations"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify a Presentation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"presentation\": {\n    \"@context\": [\n      {}\n    ],\n    \"type\": [\n      {}\n    ],\n    \"verifiableCredential\": [\n      {\n        \"@context\": [\n          \"https://www.w3.org/2018/credentials/v1\",\n          \"https://www.w3.org/2018/credentials/examples/v1\"\n        ],\n        \"type\": [\n          \"VerifiableCredential\",\n          \"AlumniCredential\"\n        ],\n        \"issuer\": {\n          \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n          \"name\": \"Example University\"\n        },\n        \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n        \"credentialStatus\": {\n          \"id\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n          \"type\": \"RevocationList2020Status\",\n          \"revocationListIndex\": 1,\n          \"revocationListCredential\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n        },\n        \"credentialSubject\": {\n          \"id\": \"did:example:abcdb1f712ebc6f1c276e12ec21\",\n          \"givenName\": \"Jamie\",\n          \"familyName\": \"Doe\"\n        },\n        \"proof\": {\n          \"type\": \"Ed25519Signature2018\",\n          \"created\": \"2020-05-02T12:06:29Z\",\n          \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n          \"proofPurpose\": \"assertionMethod\",\n          \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n        },\n        \"name\": \"Course credential\",\n        \"description\": \"This credential shows that the person has attended the mention course and attained the relevant awards.\"\n      }\n    ],\n    \"id\": \"string\",\n    \"holder\": \"string\",\n    \"proof\": [\n      {\n        \"type\": \"string\",\n        \"created\": \"string\",\n        \"challenge\": \"string\",\n        \"domain\": \"string\",\n        \"jws\": \"string\",\n        \"proofPurpose\": \"string\",\n        \"verificationMethod\": \"string\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/presentations/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "presentations", "verify"]
+            }
           },
           "response": []
         }
@@ -1110,7 +1182,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"credential\": {\n    \"issuerDid\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n    \"issuerLogoUrl\": \"https://example.edu/img/logo.png\",\n    \"issuerIconUrl\": \"https://example.edu/img/icon.png\",\n    \"name\": \"University Attendance Credential\",\n    \"description\": \"This credential shows that the person has attended the mentioned course and attained the relevant awards.\",\n    \"context\": [\n      \"https://schema.org\"\n    ],\n    \"type\": \"AlumniCredential\",\n    \"credentialBranding\": {\n      \"backgroundColor\": \"#B00AA0\",\n      \"watermarkImageUrl\": \"https://example.edu/img/watermark.png\"\n    }\n  },\n  \"federatedProvider\": {\n    \"url\": \"https://example-university.au.auth0.com\",\n    \"scope\": [\n      \"openid\",\n      \"profile\",\n      \"email\"\n    ],\n    \"clientId\": \"vJ0SCKchr4XjC0xHNE8DkH6Pmlg2lkCN\",\n    \"clientSecret\": \"QNwfa4Yi4Im9zy1u_15n7SzWKt-9G5cdH0r1bONRpUPfN-UIRaaXv_90z8V6-OjH\",\n    \"tokenEndpointAuthMethod\": \"client_secret_post\",\n    \"claimsSource\": \"userInfo\"\n  },\n  \"staticRequestParameters\": {\n    \"prompt\": \"none\",\n    \"maxAge\": 10000\n  },\n  \"forwardedRequestParameters\": [\n    \"login_hint\"\n  ],\n  \"claimMappings\": [\n    {\n      \"jsonLdTerm\": \"alumniOf\",\n      \"oidcClaim\": \"alumni_of\"\n    }\n  ]\n}"
             },
             "url": {
               "raw": "{{extUrl}}/oidc/v1/issuers",
@@ -1224,7 +1296,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"name\": \"OIDC Client for Wallet\",\n  \"redirectUris\": [\n    \"https://example.com/callback\"\n  ],\n  \"responseTypes\": [\n    \"code\"\n  ],\n  \"grantTypes\": [\n    \"authorization_code\"\n  ],\n  \"tokenEndpointAuthMethod\": \"client_secret_post\",\n  \"idTokenSignedResponseAlg\": \"ES256\",\n  \"applicationType\": \"web\"\n}"
             },
             "url": {
               "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
@@ -1301,7 +1373,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"name\": \"OIDC Client for Wallet\",\n  \"redirectUris\": [\n    \"https://example.com/callback\"\n  ],\n  \"responseTypes\": [\n    \"code\"\n  ],\n  \"grantTypes\": [\n    \"authorization_code\"\n  ],\n  \"tokenEndpointAuthMethod\": \"client_secret_post\",\n  \"idTokenSignedResponseAlg\": \"ES256\",\n  \"applicationType\": \"web\"\n}"
             },
             "url": {
               "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
@@ -1498,7 +1570,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n  \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n  \"claimMappings\": [\n    {\n      \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n      \"oidcClaim\": \"alumni_of\"\n    }\n  ]\n}"
             },
             "url": {
               "raw": "{{extUrl}}/oidc/v1/verifiers",
@@ -1556,7 +1628,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"verifierDid\": \"did:key:z6MkrYVmyqSA93o4B1GwERM8kaQDMAUKAFV2TC3weQKeg9Gq\",\n  \"presentationTemplateId\": \"364b6a1b-3600-4927-a6ac-4d66aa6bbac3\",\n  \"claimMappings\": [\n    {\n      \"jsonLdFqn\": \"http://schema.org/alumniOf\",\n      \"oidcClaim\": \"alumni_of\"\n    }\n  ]\n}"
             },
             "url": {
               "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
@@ -1612,7 +1684,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": ""
+              "raw": "{\n  \"name\": \"OIDC Client for the verifier\",\n  \"redirectUris\": [\n    \"https://example.com/callback\"\n  ],\n  \"responseTypes\": [\n    \"code\"\n  ],\n  \"grantTypes\": [\n    \"authorization_code\"\n  ],\n  \"tokenEndpointAuthMethod\": \"client_secret_post\",\n  \"idTokenSignedResponseAlg\": \"ES256\",\n  \"applicationType\": \"web\",\n  \"logoUri\": \"https://example.com/logo.png\"\n}"
             },
             "url": {
               "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
