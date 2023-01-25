@@ -1517,7 +1517,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/token",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id", "token"],
+                  "path": ["oidc", "v1", "issuers", ":id", "token"],
                   "variable": [
                     {
                       "key": "id"
@@ -1536,7 +1536,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id", "authorize"],
+                  "path": ["oidc", "v1", "issuers", ":id", "authorize"],
                   "query": [
                     {
                       "key": "client_id",
@@ -1595,7 +1595,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers"]
+                  "path": ["oidc", "v1", "issuers"]
                 },
                 "description": "Create a new OIDC Credential Issuer for this tenant.\n\nThe Credential information defines a descriptive name for the Credential to be issued as well as the `issuerDid` and `type` that the issued Credential will contain. The `context` is used to define the JSON-LD schema for the JSON-LD terms.\n\nThe Federated Provider details are used to obtain the values for the new credential. The OIDC provider will federate the authentication request to the OpenID Provider of the Issuer. The details of the Issuer OpenID Provider are provided in the `url`, `scope`, `clientId` and `clientSecret` attributes. If no `scope` is provided, the default value `openid profile email` will be used.\n\n> The `/.well-known/openid-configuration` endpoint of the federated provider needs to contain values for the `authorization_endpoint`, `token_endpoint` and `scopes_supported`.\n\nClaim mappings are used to map OpenID Connect terms used by federated providers and clients to JSON-LD terms used in a Credential. The defined claims are also used for display purposes in a client, like a Mobile Wallet.\n\n**ZKP-enabled BBS+ credential:**\nIf you wish to offer a ZKP-enabled Verifiable Credential, the provided issuer DID must be a did:key with a key type of bls12381g2. The platform will automatically detect this capability and issue a ZKP-enabled BBS+ credential.\n\n> ZKP-enabled BBS+ credentials are an experimental feature, credentials issued to the mobile wallet will not be validated at this time.\n"
               },
@@ -1609,7 +1609,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers"]
+                  "path": ["oidc", "v1", "issuers"]
                 },
                 "description": "Returns a list of all OIDC Issuers in the Tenant.\n"
               },
@@ -1623,7 +1623,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id"],
+                  "path": ["oidc", "v1", "issuers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1653,7 +1653,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id"],
+                  "path": ["oidc", "v1", "issuers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1674,7 +1674,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id"],
+                  "path": ["oidc", "v1", "issuers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1709,7 +1709,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id", "clients"],
+                  "path": ["oidc", "v1", "issuers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -1730,7 +1730,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "issuers", ":id", "clients"],
+                  "path": ["oidc", "v1", "issuers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -1905,7 +1905,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/token",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers", ":id", "token"],
+                  "path": ["oidc", "v1", "verifiers", ":id", "token"],
                   "variable": [
                     {
                       "key": "id"
@@ -1983,7 +1983,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers"]
+                  "path": ["oidc", "v1", "verifiers"]
                 },
                 "description": "Create a new OIDC Credential Verifier for this tenant.\n\nThe `verifierDid` is the Verifier DID that will be used to securely send the Credential to.\n\nThe `presentationTemplateId` references the Presentation Template that defines what Credential is being requested for presentation.\n\nClaim mappings are used to map JSON-LD terms used in a Credential to OpenID Connect terms used by clients.\n"
               },
@@ -1997,7 +1997,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers"]
+                  "path": ["oidc", "v1", "verifiers"]
                 },
                 "description": "Returns a list of all OIDC Verifiers in the Tenant.\n"
               },
@@ -2011,7 +2011,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers", ":id"],
+                  "path": ["oidc", "v1", "verifiers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -2041,7 +2041,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers", ":id"],
+                  "path": ["oidc", "v1", "verifiers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -2062,7 +2062,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers", ":id"],
+                  "path": ["oidc", "v1", "verifiers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -2097,7 +2097,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients"],
+                  "path": ["oidc", "v1", "verifiers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -2118,7 +2118,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients"],
+                  "path": ["oidc", "v1", "verifiers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
