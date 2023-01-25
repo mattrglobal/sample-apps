@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "6f9dc0d3-701c-4c8f-805f-fd9975b06a81",
-    "name": "🚀 MATTR VII API",
+    "_postman_id": "8ef36a71-90b6-4997-a674-a0bbdbff49a7",
+    "name": "MATTR VII API",
     "description": "# Introduction\n\nThe APIs on MATTR VII Platform defines a set of capabilities that can be used to manage a tenant of the MATTR Platform.\n\nThe API can be used to manage Decentralised Identifiers, issue Credentials directly or using OpenID Connect flows, and verify Messages signed with DIDs.\n\n## API Reference Versioning\n\nA previous version of the API Reference can be [accessed here](/api-ref-previous).\n\n# Authorization\n\nAccess to the API is granted by our authorization provider, as part of onboarding you will be provided with client credentials to make a call to the auth provider and receive a bearer token.  \nThis token is then used in an `authorization` header on all calls idenitfied as requiring `bearerAuth` (this is required for the majorty of management operations).\n\n# Pagination\n\nMost list operations in the API use pagination that can be controlled by a cursor method using the `cursor` and `limit` query parameters.\n\n**Example on** [**Retrieve List of Credentials**](#operation/retrieveListCreds)\n\n```\nGET https://tenant.vii.mattr.global/v1/credentials\n?limit=100\n&cursor=Y3JlYXRlZEF0PTIwMjAtMTAtMDhUMjMlM0ExMyUzQTE3Ljg5NtZGUxZWEyNzQ4MWI4\n\n```\n\n- The `nextCursor` is found at the start of each returned range of credential entries and identifies the last object in the list.\n- The `limit` determines how many entries are returned in that request, with a maximum value of 1000.\n    \n\nRequesting a page after the last value in the list will return an empty `data` object.\n\n``` json\n{\n\"data\": []\n}\n\n```\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\nContact Support:  \nEmail: [support@mattr.global](mailto:support@mattr.global)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "23024430"
@@ -1399,7 +1399,114 @@
         },
         {
           "name": "PDF Template Management",
-          "item": []
+          "item": [
+            {
+              "name": "List PDF Templates",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact/pdf/templates",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "compact", "pdf", "templates"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update PDF Template",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact/pdf/templates/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact",
+                    "pdf",
+                    "templates",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retrieve PDF Template",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact/pdf/templates/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact",
+                    "pdf",
+                    "templates",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Remove PDF Template",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact/pdf/templates/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact",
+                    "pdf",
+                    "templates",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
           "name": "PDF Generation",
