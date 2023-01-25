@@ -133,16 +133,90 @@
           "name": "DIDs",
           "item": [
             {
-              "name": "Well Known DID Configuration",
+              "name": "Creating DIDs",
+              "item": [
+                {
+                  "name": "Create a DID - did:key",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"method\": \"key\",\n  \"options\": {\n    \"keyType\": \"ed25519\"\n  }\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/v1/dids",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["core", "v1", "dids"]
+                    },
+                    "description": "Takes a supported DID Method and generates keys and associated information for a new DID and registers the DID Document if applicable.\n\nMethods supported:\n- key\n- web\n- sov\n\n> During Preview any did:sov DIDs will not reside on the Sovrin MainNet, and when migrating to the MainNet any sov DIDs will be removed. Any did:sov DIDs created using this endpoint should be considered as experimental as well as any credentials created using them.\n\n#### Creating did:key\nA DID with a DID method of key can be created as follows.\n\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"ed25519\"}}`\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"bls12381g2\"}}`\n\nIf no options are provided, a DID will be created with an ed25519 key type.\n\nIf the key type in options is set to `bls12381g2` a DID will be created with a BLS key type which supports BBS+ signatures for issuing ZKP-enabled credentials.\n> A DID created with an experimental `bls12381g2` key type can only be used for issuing credentials.\n\n#### Creating did:web\nA DID with a DID method of web can be created as follows.\n\n* `{\"method\": \"web\", \"options\": {\"domain\": \"mattr.global\"}}`\n\nThe returned initial DID Document then needs to be hosted so that it is accessible from the domain provided in the options, e.g. https://mattr.global/.well-known/did.json.\n\nWhen the DID Document is not available for download from the domain, the Registration Status of the DID is PROCESSING.\n\nOnce the DID Document can be downloaded from the domain, the Registration Status will be COMPLETED.\n\nNote that the tenant will be able to prove ownership of the keys associated with the did:web DID Document through the well-known endpoint, i.e. https://tenant.vii.mattr.global/.well-known/did-configuration, while the DID Document hosted on the domain links the DID to a domain.\n\n#### Creating did:sov\nA DID with a DID method of sov can be created as follows.\n\n* `{\"method\": \"sov\"}`\n\nThe Registration Status of the DID is updated over a short timeframe due to the lag incurred in registering the DID Document, which may take up to 10 minutes.\n\n#### Returns\nThe DID, associated metadata and registration status.\n\nUnsupported Methods result in a 400 response with an \"Invalid value\" message."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create a DID - did:ion",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"method\": \"ion\",\n  \"options\": {\n    \"keyType\": \"bls12381g2\"\n  }\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/v1/dids",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["core", "v1", "dids"]
+                    },
+                    "description": "Takes a supported DID Method and generates keys and associated information for a new DID and registers the DID Document if applicable.\n\nMethods supported:\n- key\n- web\n- sov\n\n> During Preview any did:sov DIDs will not reside on the Sovrin MainNet, and when migrating to the MainNet any sov DIDs will be removed. Any did:sov DIDs created using this endpoint should be considered as experimental as well as any credentials created using them.\n\n#### Creating did:key\nA DID with a DID method of key can be created as follows.\n\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"ed25519\"}}`\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"bls12381g2\"}}`\n\nIf no options are provided, a DID will be created with an ed25519 key type.\n\nIf the key type in options is set to `bls12381g2` a DID will be created with a BLS key type which supports BBS+ signatures for issuing ZKP-enabled credentials.\n> A DID created with an experimental `bls12381g2` key type can only be used for issuing credentials.\n\n#### Creating did:web\nA DID with a DID method of web can be created as follows.\n\n* `{\"method\": \"web\", \"options\": {\"domain\": \"mattr.global\"}}`\n\nThe returned initial DID Document then needs to be hosted so that it is accessible from the domain provided in the options, e.g. https://mattr.global/.well-known/did.json.\n\nWhen the DID Document is not available for download from the domain, the Registration Status of the DID is PROCESSING.\n\nOnce the DID Document can be downloaded from the domain, the Registration Status will be COMPLETED.\n\nNote that the tenant will be able to prove ownership of the keys associated with the did:web DID Document through the well-known endpoint, i.e. https://tenant.vii.mattr.global/.well-known/did-configuration, while the DID Document hosted on the domain links the DID to a domain.\n\n#### Creating did:sov\nA DID with a DID method of sov can be created as follows.\n\n* `{\"method\": \"sov\"}`\n\nThe Registration Status of the DID is updated over a short timeframe due to the lag incurred in registering the DID Document, which may take up to 10 minutes.\n\n#### Returns\nThe DID, associated metadata and registration status.\n\nUnsupported Methods result in a 400 response with an \"Invalid value\" message."
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Create a DID - did:web",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"method\": \"web\",\n  \"options\": {\n    \"url\": \"mattr.global\"\n  }\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/v1/dids",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["core", "v1", "dids"]
+                    },
+                    "description": "Takes a supported DID Method and generates keys and associated information for a new DID and registers the DID Document if applicable.\n\nMethods supported:\n- key\n- web\n- sov\n\n> During Preview any did:sov DIDs will not reside on the Sovrin MainNet, and when migrating to the MainNet any sov DIDs will be removed. Any did:sov DIDs created using this endpoint should be considered as experimental as well as any credentials created using them.\n\n#### Creating did:key\nA DID with a DID method of key can be created as follows.\n\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"ed25519\"}}`\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"bls12381g2\"}}`\n\nIf no options are provided, a DID will be created with an ed25519 key type.\n\nIf the key type in options is set to `bls12381g2` a DID will be created with a BLS key type which supports BBS+ signatures for issuing ZKP-enabled credentials.\n> A DID created with an experimental `bls12381g2` key type can only be used for issuing credentials.\n\n#### Creating did:web\nA DID with a DID method of web can be created as follows.\n\n* `{\"method\": \"web\", \"options\": {\"domain\": \"mattr.global\"}}`\n\nThe returned initial DID Document then needs to be hosted so that it is accessible from the domain provided in the options, e.g. https://mattr.global/.well-known/did.json.\n\nWhen the DID Document is not available for download from the domain, the Registration Status of the DID is PROCESSING.\n\nOnce the DID Document can be downloaded from the domain, the Registration Status will be COMPLETED.\n\nNote that the tenant will be able to prove ownership of the keys associated with the did:web DID Document through the well-known endpoint, i.e. https://tenant.vii.mattr.global/.well-known/did-configuration, while the DID Document hosted on the domain links the DID to a domain.\n\n#### Creating did:sov\nA DID with a DID method of sov can be created as follows.\n\n* `{\"method\": \"sov\"}`\n\nThe Registration Status of the DID is updated over a short timeframe due to the lag incurred in registering the DID Document, which may take up to 10 minutes.\n\n#### Returns\nThe DID, associated metadata and registration status.\n\nUnsupported Methods result in a 400 response with an \"Invalid value\" message."
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Retrieve a list of DIDs",
               "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/.well-known/did-configuration",
+                  "raw": "{{baseUrl}}/core/v1/dids",
                   "host": ["{{baseUrl}}"],
-                  "path": [".well-known", "did-configuration"]
+                  "path": ["core", "v1", "dids"]
                 },
-                "description": "Returns a list of Decentralized Identifier (DID) Configuration entries from the tenant.\n\nSee https://identity.foundation/.well-known/resources/did-configuration/\n\nThese entries are automatically configured for **all** DIDs created by the tenant and is used for any party wanting to establish the relationship between domain ownership and the DIDs by exposing cryptographic proofs.\n\nThis endpoint is unprotected, public facing and can be determinisically found at the root of the tenant subdomian or alias by any party wishing to discover the domain to DID relationship.\n"
+                "description": "Returns a list of all DIDs (Decentralized Identifiers) managed by the tenant and their associated meta-data.\n"
               },
               "response": []
             },
@@ -188,39 +262,16 @@
               "response": []
             },
             {
-              "name": "Retrieve a list of DIDs",
+              "name": "Well Known DID Configuration",
               "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/dids",
+                  "raw": "{{baseUrl}}/.well-known/did-configuration",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "dids"]
+                  "path": [".well-known", "did-configuration"]
                 },
-                "description": "Returns a list of all DIDs (Decentralized Identifiers) managed by the tenant and their associated meta-data.\n"
-              },
-              "response": []
-            },
-            {
-              "name": "Create a DID",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}"
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/core/v1/dids",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "dids"]
-                },
-                "description": "Takes a supported DID Method and generates keys and associated information for a new DID and registers the DID Document if applicable.\n\nMethods supported:\n- key\n- web\n- sov\n\n> During Preview any did:sov DIDs will not reside on the Sovrin MainNet, and when migrating to the MainNet any sov DIDs will be removed. Any did:sov DIDs created using this endpoint should be considered as experimental as well as any credentials created using them.\n\n#### Creating did:key\nA DID with a DID method of key can be created as follows.\n\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"ed25519\"}}`\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"bls12381g2\"}}`\n\nIf no options are provided, a DID will be created with an ed25519 key type.\n\nIf the key type in options is set to `bls12381g2` a DID will be created with a BLS key type which supports BBS+ signatures for issuing ZKP-enabled credentials.\n> A DID created with an experimental `bls12381g2` key type can only be used for issuing credentials.\n\n#### Creating did:web\nA DID with a DID method of web can be created as follows.\n\n* `{\"method\": \"web\", \"options\": {\"domain\": \"mattr.global\"}}`\n\nThe returned initial DID Document then needs to be hosted so that it is accessible from the domain provided in the options, e.g. https://mattr.global/.well-known/did.json.\n\nWhen the DID Document is not available for download from the domain, the Registration Status of the DID is PROCESSING.\n\nOnce the DID Document can be downloaded from the domain, the Registration Status will be COMPLETED.\n\nNote that the tenant will be able to prove ownership of the keys associated with the did:web DID Document through the well-known endpoint, i.e. https://tenant.vii.mattr.global/.well-known/did-configuration, while the DID Document hosted on the domain links the DID to a domain.\n\n#### Creating did:sov\nA DID with a DID method of sov can be created as follows.\n\n* `{\"method\": \"sov\"}`\n\nThe Registration Status of the DID is updated over a short timeframe due to the lag incurred in registering the DID Document, which may take up to 10 minutes.\n\n#### Returns\nThe DID, associated metadata and registration status.\n\nUnsupported Methods result in a 400 response with an \"Invalid value\" message."
+                "description": "Returns a list of Decentralized Identifier (DID) Configuration entries from the tenant.\n\nSee https://identity.foundation/.well-known/resources/did-configuration/\n\nThese entries are automatically configured for **all** DIDs created by the tenant and is used for any party wanting to establish the relationship between domain ownership and the DIDs by exposing cryptographic proofs.\n\nThis endpoint is unprotected, public facing and can be determinisically found at the root of the tenant subdomian or alias by any party wishing to discover the domain to DID relationship.\n"
               },
               "response": []
             }
@@ -1010,27 +1061,78 @@
           "name": "Presentations",
           "item": [
             {
-              "name": "Create a Presentation Template",
-              "request": {
-                "method": "POST",
-                "header": [
-                  {
-                    "key": "Content-Type",
-                    "value": "application/json"
-                  }
-                ],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"name\": \"alumni_credential_request\",\n  \"query\": [\n    {\n      \"type\": \"QueryByExample\",\n      \"credentialQuery\": [\n        {\n          \"required\": true,\n          \"reason\": \"We need you to prove your alumni membership.\",\n          \"example\": {\n            \"@context\": [\n              \"https://schema.org\"\n            ],\n            \"type\": \"AlumniCredential\",\n            \"trustedIssuer\": [\n              {\n                \"required\": true,\n                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}"
+              "name": "Creating presentation Templates",
+              "item": [
+                {
+                  "name": "Create a Presentation Template - QueryByExample",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"name\": \"alumni_credential_request\",\n  \"query\": [\n    {\n      \"type\": \"QueryByExample\",\n      \"credentialQuery\": [\n        {\n          \"required\": true,\n          \"reason\": \"We need you to prove your alumni membership.\",\n          \"example\": {\n            \"@context\": [\n              \"https://schema.org\"\n            ],\n            \"type\": \"AlumniCredential\",\n            \"trustedIssuer\": [\n              {\n                \"required\": true,\n                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/v1/presentations/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["core", "v1", "presentations", "templates"]
+                    },
+                    "description": "Create a presentation template"
+                  },
+                  "response": []
                 },
-                "url": {
-                  "raw": "{{baseUrl}}/core/v1/presentations/templates",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "presentations", "templates"]
+                {
+                  "name": "Create a Presentation Template - QueryByFrame",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"name\": \"zkp-certificate-presentation\",\n  \"query\": [\n    {\n      \"type\": \"QueryByFrame\",\n      \"credentialQuery\": [\n        {\n          \"reason\": \"Please provide your educational award and surname from your Certificate\",\n          \"frame\": {\n            \"@context\": [\n              \"https://www.w3.org/2018/credentials/v1\",\n              \"https://w3id.org/vc-revocation-list-2020/v1\",\n              \"https://schema.org\"\n            ],\n            \"type\": [\n              \"VerifiableCredential\",\n              \"AlumniCredential\"\n            ],\n            \"credentialSubject\": {\n              \"@explicit\": true,\n              \"educationalCredentialAwarded\": {},\n              \"familyName\": {}\n            }\n          },\n          \"trustedIssuer\": [\n            {\n              \"issuer\": \"did:key:zUC7KmMGXt7fs9URk9EDqWLfpCjVTtfFMexViLLkPPUfm9j4heqvk9JkLarva3sP54FGjFNLpwc63ZTef2aR2cPssFbyDj75kopYqWL16j7JigA2BAvJcwnaKvKPUybxbroRg1v\",\n              \"required\": true\n            }\n          ],\n          \"required\": true\n        }\n      ]\n    }\n  ]\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/v1/presentations/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["core", "v1", "presentations", "templates"]
+                    },
+                    "description": "Create a presentation template"
+                  },
+                  "response": []
                 },
-                "description": "Create a presentation template"
-              },
-              "response": []
+                {
+                  "name": "Create a Presentation Template - DID Auth",
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"did-auth\",\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"query\": [\n    {\n      \"type\": \"DIDAuth\"\n    }\n  ]\n}"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/core/v1/presentations/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": ["core", "v1", "presentations", "templates"]
+                    },
+                    "description": "Create a presentation template"
+                  },
+                  "response": []
+                }
+              ]
             },
             {
               "name": "Retrieve a list of Presentation Templates",
