@@ -56,9 +56,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/config/domain",
+                  "raw": "{{baseUrl}}/core/v1/config/domain",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "config", "domain"]
+                  "path": ["core", "v1", "config", "domain"]
                 }
               },
               "response": []
@@ -77,9 +77,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/config/domain",
+                  "raw": "{{baseUrl}}/core/v1/config/domain",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "config", "domain"]
+                  "path": ["core", "v1", "config", "domain"]
                 }
               },
               "response": []
@@ -99,9 +99,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/config/domain",
+                  "raw": "{{baseUrl}}/core/v1/config/domain",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "config", "domain"]
+                  "path": ["core", "v1", "config", "domain"]
                 }
               },
               "response": []
@@ -112,9 +112,9 @@
                 "method": "PUT",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/config/domain/verify",
+                  "raw": "{{baseUrl}}/core/v1/config/domain/verify",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "config", "domain", "verify"]
+                  "path": ["core", "v1", "config", "domain", "verify"]
                 }
               },
               "response": []
@@ -149,9 +149,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/dids/:id",
+                  "raw": "{{baseUrl}}/core/v1/dids/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "dids", ":id"],
+                  "path": ["core", "v1", "dids", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -170,9 +170,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/dids/:id",
+                  "raw": "{{baseUrl}}/core/v1/dids/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "dids", ":id"],
+                  "path": ["core", "v1", "dids", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -190,9 +190,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/dids",
+                  "raw": "{{baseUrl}}/core/v1/dids",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "dids"]
+                  "path": ["core", "v1", "dids"]
                 },
                 "description": "Returns a list of all DIDs (Decentralized Identifiers) managed by the tenant and their associated meta-data.\n"
               },
@@ -213,9 +213,9 @@
                   "raw": "{\n    \"method\": \"<string>\",\n    \"options\": \"<object>\"\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/dids",
+                  "raw": "{{baseUrl}}/core/v1/dids",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "dids"]
+                  "path": ["core", "v1", "dids"]
                 },
                 "description": "Takes a supported DID Method and generates keys and associated information for a new DID and registers the DID Document if applicable.\n\nMethods supported:\n- key\n- web\n- sov\n\n> During Preview any did:sov DIDs will not reside on the Sovrin MainNet, and when migrating to the MainNet any sov DIDs will be removed. Any did:sov DIDs created using this endpoint should be considered as experimental as well as any credentials created using them.\n\n#### Creating did:key\nA DID with a DID method of key can be created as follows.\n\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"ed25519\"}}`\n* `{\"method\": \"key\", \"options\": {\"keyType\": \"bls12381g2\"}}`\n\nIf no options are provided, a DID will be created with an ed25519 key type.\n\nIf the key type in options is set to `bls12381g2` a DID will be created with a BLS key type which supports BBS+ signatures for issuing ZKP-enabled credentials.\n> A DID created with an experimental `bls12381g2` key type can only be used for issuing credentials.\n\n#### Creating did:web\nA DID with a DID method of web can be created as follows.\n\n* `{\"method\": \"web\", \"options\": {\"domain\": \"mattr.global\"}}`\n\nThe returned initial DID Document then needs to be hosted so that it is accessible from the domain provided in the options, e.g. https://mattr.global/.well-known/did.json.\n\nWhen the DID Document is not available for download from the domain, the Registration Status of the DID is PROCESSING.\n\nOnce the DID Document can be downloaded from the domain, the Registration Status will be COMPLETED.\n\nNote that the tenant will be able to prove ownership of the keys associated with the did:web DID Document through the well-known endpoint, i.e. https://tenant.vii.mattr.global/.well-known/did-configuration, while the DID Document hosted on the domain links the DID to a domain.\n\n#### Creating did:sov\nA DID with a DID method of sov can be created as follows.\n\n* `{\"method\": \"sov\"}`\n\nThe Registration Status of the DID is updated over a short timeframe due to the lag incurred in registering the DID Document, which may take up to 10 minutes.\n\n#### Returns\nThe DID, associated metadata and registration status.\n\nUnsupported Methods result in a 400 response with an \"Invalid value\" message."
               },
@@ -241,9 +241,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes"]
+                  "path": ["core", "v1", "messaging", "inboxes"]
                 }
               },
               "response": []
@@ -266,9 +266,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes"]
+                  "path": ["core", "v1", "messaging", "inboxes"]
                 }
               },
               "response": []
@@ -279,9 +279,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes", ":id"],
+                  "path": ["core", "v1", "messaging", "inboxes", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -307,9 +307,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes", ":id"],
+                  "path": ["core", "v1", "messaging", "inboxes", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -326,9 +326,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:id",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes", ":id"],
+                  "path": ["core", "v1", "messaging", "inboxes", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -354,10 +354,10 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/8aeb11e3-8389-4a45-b948-50088646c95b/dids",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/8aeb11e3-8389-4a45-b948-50088646c95b/dids",
                   "host": ["{{baseUrl}}"],
                   "path": [
-                    "v1",
+                    "core", "v1",
                     "messaging",
                     "inboxes",
                     "8aeb11e3-8389-4a45-b948-50088646c95b",
@@ -385,9 +385,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:id/dids",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/dids",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes", ":id", "dids"],
+                  "path": ["core", "v1", "messaging", "inboxes", ":id", "dids"],
                   "variable": [
                     {
                       "key": "id",
@@ -416,9 +416,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/messages",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "inboxes", ":id", "messages"],
+                  "path": ["core", "v1", "messaging", "inboxes", ":id", "messages"],
                   "variable": [
                     {
                       "key": "id",
@@ -447,10 +447,10 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:id/messages/:messageId",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/messages/:messageId",
                   "host": ["{{baseUrl}}"],
                   "path": [
-                    "v1",
+                    "core", "v1",
                     "messaging",
                     "inboxes",
                     ":id",
@@ -486,10 +486,10 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/inboxes/:inboxId/messages/:messageId",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:inboxId/messages/:messageId",
                   "host": ["{{baseUrl}}"],
                   "path": [
-                    "v1",
+                    "core", "v1",
                     "messaging",
                     "inboxes",
                     ":inboxId",
@@ -535,9 +535,9 @@
                   "raw": "{\n  \"didUrl\": \"string\",\n  \"payload\": {\n    \"msg\": \"string\"\n  }\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/sign",
+                  "raw": "{{baseUrl}}/core/v1/messaging/sign",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "sign"]
+                  "path": ["core", "v1", "messaging", "sign"]
                 },
                 "description": "Creates a signed message in the form of a JWS (JSON Web Signature) using the DID (Decentralized Identifier) supplied in the request.\n\n#### Returns\n\nA JWS in compact serialization form signed by the did supplied in the request"
               },
@@ -558,9 +558,9 @@
                   "raw": "{\n  \"jws\": \"string\"\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/verify",
+                  "raw": "{{baseUrl}}/core/v1/messaging/verify",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "verify"]
+                  "path": ["core", "v1", "messaging", "verify"]
                 },
                 "description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
               },
@@ -581,9 +581,9 @@
                   "raw": "{\n  \"senderDidUrl\": \"did:key:z6Mko4PvuwKzmjtaKTEV6ZhMSYqX5myTSe3L3Md4feiwCoua#z6LSkKk8HK73jYfUQRBHX3Qeb1Agv39qVNFn7n2PjRvjpPcy\",\n  \"recipientDidUrls\": [\n    \"did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d\",\n    \"did:key:z6MkgxxdrThaRd7HbeAA4pYEwAgKT6ZXy2aNTcPkmeF1yWHN\"\n  ],\n  \"payload\": {\n    \"id\": \"731961f2-bdc3-4f1e-8d59-cc308fd60ec8\",\n    \"type\": \"https://mattr.global/schemas/verifiable-credential/offer/OidcCredentialProvider\",\n    \"from\": \"did:key:z6MkndAHigYrXNpape7jgaC7jHiWwxzB3chuKUGXJg2b5RSj\",\n    \"created_time\": \"1616466734\",\n    \"body\": {\n      \"uri\": \"openid://discovery?issuer=https://tenant.vii.mattr.global/ext/oidc/v1/issuers/0dceeddd-f717-4bf2-b520-b3ddcd104a60\"\n    }\n  }\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/encrypt",
+                  "raw": "{{baseUrl}}/core/v1/messaging/encrypt",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "encrypt"]
+                  "path": ["core", "v1", "messaging", "encrypt"]
                 },
                 "description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
               },
@@ -604,9 +604,9 @@
                   "raw": "{\n  \"jwe\": \"string\"\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/encrypt",
+                  "raw": "{{baseUrl}}/core/v1/messaging/encrypt",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "encrypt"]
+                  "path": ["core", "v1", "messaging", "encrypt"]
                 },
                 "description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
               },
@@ -627,9 +627,9 @@
                   "raw": "{\n  \"to\": \"did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d\",\n  \"message\": {\n    \"protected\": \"eyJhbGciOiJYQzIwUCJ9\",\n    \"recipients\": [\n      {\n        \"header\": {\n          \"alg\": \"ECDH-1PU+A256KW\",\n          \"kid\": \"did:key:z6MkgmEkNM32vyFeMXcQA7AfQDznu47qHCZpy2AYH2Dtdu1d#z6LSsvqSJkBvVEsDC8cxMHuQ3sKoLRMXB1MdtoLrMUq6A8Rg\",\n          \"epk\": {\n            \"kty\": \"OKP\",\n            \"crv\": \"x25519\",\n            \"x\": \"kYsO02jWHATTJel6OpePqlkdDmKlE5VOr18UblgL8W0\"\n          },\n          \"skid\": \"did:key:z6Mko4PvuwKzmjtaKTEV6ZhMSYqX5myTSe3L3Md4feiwCoua#z6LSkKk8HK73jYfUQRBHX3Qeb1Agv39qVNFn7n2PjRvjpPcy\"\n        },\n        \"encryption_key\": \"n1VUf5SQdSFNtb8DHzYfJJ_lFhJcGDAPJWG8Y1W3d2qYyPzyxMhyaA\"\n      },\n      {\n        \"header\": {\n          \"alg\": \"ECDH-1PU+A256KW\",\n          \"kid\": \"did:key:z6MkgxxdrThaRd7HbeAA4pYEwAgKT6ZXy2aNTcPkmeF1yWHN#z6LSgDiT1CkducmcSPaq9E1Uj1qdSXBjsUNqqLQLrUu8EHWd\",\n          \"epk\": {\n            \"kty\": \"OKP\",\n            \"crv\": \"x25519\",\n            \"x\": \"P3jcIMPGK8thxyHxUsWB5fEsLnltJqRDWMNywtexk24\"\n          },\n          \"skid\": \"did:key:z6Mko4PvuwKzmjtaKTEV6ZhMSYqX5myTSe3L3Md4feiwCoua#z6LSkKk8HK73jYfUQRBHX3Qeb1Agv39qVNFn7n2PjRvjpPcy\"\n        },\n        \"encryption_key\": \"5ZOTqwj8NredkXEOp4ZDLL1ohRQqNTS508BTkLlUVCkDoYvizCIdrg\"\n      }\n    ],\n    \"ciphertext\": \"Dl4zBqMeEDwcnyyc17nYvSQ048fcsha_Lm0dfer1nqfo5y8oHvD2VGNTp_lawNJMWCzQF3NDZxxKFz__wTUeHCqisCE_DWbjo_W-R3avzW9S-JFajv9NRtjlfd5yp-1TtD2N5d-8oTtMGdAxq3dftN2Od1xRe4stubJBebl3nf8-lG99DIVGdL8Y-D98kFDxnMxgCKn4RXyHnMowFWlhQCooLeYqo8aWjqVFkzuJzn-p47W7rV9BCuoVThhVuNkjQm_dhBrqu0QMpjJucz7OvOHp0mojdYNKwvWT6dfOVNXetMlKjWCGtCTNFaDTGLc4agdcTjAlaF1iedcVXDOLqVvEugXWGlusE3a68y6gmPnqHjXR6CsEfPwkb5hKKtsyrh1eHu_9UUang5o6N76mummVw4UZkDF6tP1PVGPvyctz82tthnOcjO5mZQG41xfMEMNxWtF8P8wCh4LotpdexXtYigzBgkI1Qoa_FK1czYWAUovysAJCTOZtmg==\",\n    \"iv\": \"jSd3E-ElCHE-QhSDxrQ-Jv4eQhkxOj0s\",\n    \"tag\": \"dbDolGVDdvYsYdn-vVrICw==\"\n  }\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/messaging/send",
+                  "raw": "{{baseUrl}}/core/v1/messaging/send",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "messaging", "send"]
+                  "path": ["core", "v1", "messaging", "send"]
                 },
                 "description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
               },
@@ -662,9 +662,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/webhooks",
+                  "raw": "{{baseUrl}}/core/v1/webhooks",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "webhooks"]
+                  "path": ["core", "v1", "webhooks"]
                 }
               },
               "response": []
@@ -675,9 +675,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/webhooks",
+                  "raw": "{{baseUrl}}/core/v1/webhooks",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "webhooks"]
+                  "path": ["core", "v1", "webhooks"]
                 }
               },
               "response": []
@@ -688,9 +688,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/webhooks/:id",
+                  "raw": "{{baseUrl}}/core/v1/webhooks/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "webhooks", ":id"],
+                  "path": ["core", "v1", "webhooks", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -716,9 +716,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/webhooks/:id",
+                  "raw": "{{baseUrl}}/core/v1/webhooks/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "webhooks", ":id"],
+                  "path": ["core", "v1", "webhooks", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -735,9 +735,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/webhooks/:id",
+                  "raw": "{{baseUrl}}/core/v1/webhooks/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "webhooks", ":id"],
+                  "path": ["core", "v1", "webhooks", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -754,9 +754,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/webhooks/jwks",
+                  "raw": "{{baseUrl}}/core/v1/webhooks/jwks",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "webhooks", "jwks"]
+                  "path": ["core", "v1", "webhooks", "jwks"]
                 }
               },
               "response": []
@@ -786,9 +786,9 @@
                   "raw": "{\n  \"@context\": [\n    \"https://www.w3.org/2018/credentials/v1\",\n    \"https://schema.org\"\n  ],\n  \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n  \"type\": [\n    \"VerifiableCredential\",\n    \"AlumniCredential\"\n  ],\n  \"claims\": {\n    \"givenName\": \"Jamie\",\n    \"familyName\": \"Doe\",\n    \"alumniOf\": \"Example University\"\n  },\n  \"issuer\": {\n    \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n    \"name\": \"Example University\"\n  },\n  \"persist\": true,\n  \"tag\": \"identifier123\",\n  \"revocable\": true\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials",
+                  "raw": "{{baseUrl}}/core/v1/credentials",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials"]
+                  "path": ["core", "v1", "credentials"]
                 },
                 "description": "Creates a Verifiable Credential (VC or just Credential) in a JSON-LD format adhering to the [W3C VC Data Model spec]( https://www.w3.org/TR/vc-data-model/).\n\n\n**Creating the Payload:**\n\nThe values required by the operation are validated where available and used to construct the Verifiable Credential.\n\nThe Credential is issued using JSON-LD with linked data proofs, the `type` values of the Credential and the Subject Claims must be represented by a schema in `@context`.\n> The schema `https://www3.org/2018/credentials/v1` is always required in addition any `@context` values, so that the Credential can be referenced.\n\n> The `type` value of `VerifiableCredential` must be used as the *first* value in the array to conform to the [W3C VC Data Model spec]( https://www.w3.org/TR/vc-data-model/).\n\n**Subject Identifiers**\n\nIn general, the Subject identifier in the `subjectId` field should have been authentically bound to the subject and authenticated against the information used in the claims, for example by using an OpenID Connect authentication flow or another mechanism including out-of-band processes.\n\nCredentials may be issued without subject identifiers, this covers uses-cases, where the credential cannot or does not need to be adequately bound to a Subject DID and may be treated as a bearer credential or reissued at a later time once the credential can be bound.\n\n**ZKP-enabled BBS+ credential:**\n\nIf you wish to issue a ZKP-enabled Verifiable Credential, the provided `issuer` `id` must be a did:key with a key type of bls12381g2. The platform will automatically detect this capability and issue a ZKP-enabled BBS+ credential. Note that the schema `https://w3c-ccg.github.io/ldp-bbs2020/context/v1` will automatically be added to the `@context` in the credential.\n\n> During Preview this feature is experimental. It may change over time and may require credentials to be reissued.\n\n**Credential meta-data:**\n\nSetting the `persist` value to `true` will store the entire credential contents as well as the meta-data on the platform. If set to `false` only the credential meta-data is held on the platform:\n- `id`\n- `tag` (optional)\n- `credentialStatus` (optional)\n- `issuanceDate`\n\nThe optional `tag` value can be used to externally reference the issued credential.\n\n#### Returns\nOn success, the Verifiable Credential is always provided in the response along with meta-data.\nSubject bound credential should be delivered to the intended subject.\n"
               },
@@ -800,9 +800,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials",
+                  "raw": "{{baseUrl}}/core/v1/credentials",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials"]
+                  "path": ["core", "v1", "credentials"]
                 },
                 "description": "Returns a list of all credential data stored in the tenant.\n\n**In the list**\n\nInside the `data` array, there is an body for each credential issued on the platform, in addition to the `id` the body will contain optionally added meta-data and may contain the entire credential contents if `persist` was invoked during credential creation.\n\n> Credentials issued via the OIDC Bridge are set not to be persisted.\n\n**Pagination**\n\nPagination can be controlled by a cursor method using the `cursor`and `limit` query parameters. The `nextCursor` is found at the start of each returned range of credential entries and the `limit` determines how many entries are returned in that request, with a maximum value of `1000`.\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\n> The optional `tag` filter or the Credential `type` can be used to retrieve credential data.\n"
               },
@@ -814,9 +814,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials/:id",
+                  "raw": "{{baseUrl}}/core/v1/credentials/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials", ":id"],
+                  "path": ["core", "v1", "credentials", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -835,9 +835,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials/:id",
+                  "raw": "{{baseUrl}}/core/v1/credentials/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials", ":id"],
+                  "path": ["core", "v1", "credentials", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -865,9 +865,9 @@
                   "raw": "{\n  \"credential\": {\n    \"@context\": [\n      \"https://www.w3.org/2018/credentials/v1\",\n      \"https://www.w3.org/2018/credentials/examples/v1\"\n    ],\n    \"type\": [\n      \"VerifiableCredential\",\n      \"AlumniCredential\"\n    ],\n    \"issuer\": {\n      \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n      \"name\": \"Example University\"\n    },\n    \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n    \"credentialStatus\": {\n      \"id\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n      \"type\": \"RevocationList2020Status\",\n      \"revocationListIndex\": 1,\n      \"revocationListCredential\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n    },\n    \"credentialSubject\": {\n      \"id\": \"did:example:abcdb1f712ebc6f1c276e12ec21\",\n      \"givenName\": \"Jamie\",\n      \"familyName\": \"Doe\"\n    },\n    \"proof\": {\n      \"type\": \"Ed25519Signature2018\",\n      \"created\": \"2020-05-02T12:06:29Z\",\n      \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n      \"proofPurpose\": \"assertionMethod\",\n      \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n    },\n    \"name\": \"Course credential\",\n    \"description\": \"This credential shows that the person has attended the mention course and attained the relevant awards.\"\n  }\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials/verify",
+                  "raw": "{{baseUrl}}/core/v1/credentials/verify",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials", "verify"]
+                  "path": ["core", "v1", "credentials", "verify"]
                 },
                 "description": "Send any JSON-LD Verifiable Credential that conforms to the [W3C Verifiable Credentials data model](https://www.w3.org/TR/vc-data-model/) to perform verification checks and return a response:\n- Issuer DID can be resolved\n- JSON-LD context is valid for subject claims\n- Proof is valid & the credential has not been tampered with\n- Is not in a revoked status on a RevocationList2020\nThis endpoint can be used to check any Credential issued by any service provider."
               },
@@ -893,9 +893,9 @@
                   "raw": "{\n  \"isRevoked\": true\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+                  "raw": "{{baseUrl}}/core/v1/credentials/:id/revocation-status",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials", ":id", "revocation-status"],
+                  "path": ["core", "v1", "credentials", ":id", "revocation-status"],
                   "variable": [
                     {
                       "key": "id",
@@ -914,9 +914,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials/:id/revocation-status",
+                  "raw": "{{baseUrl}}/core/v1/credentials/:id/revocation-status",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "credentials", ":id", "revocation-status"],
+                  "path": ["core", "v1", "credentials", ":id", "revocation-status"],
                   "variable": [
                     {
                       "key": "id",
@@ -935,9 +935,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/revocation-lists/:id",
+                  "raw": "{{baseUrl}}/core/v1/revocation-lists/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "revocation-lists", ":id"],
+                  "path": ["core", "v1", "revocation-lists", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -965,10 +965,10 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/credentials/{id}/revocation-status/notification",
+                  "raw": "{{baseUrl}}/core/v1/credentials/{id}/revocation-status/notification",
                   "host": ["{{baseUrl}}"],
                   "path": [
-                    "v1",
+                    "core", "v1",
                     "credentials",
                     "{id}",
                     "revocation-status",
@@ -998,9 +998,9 @@
                   "raw": "{\n  \"domain\": \"tenant.vii.mattr.global\",\n  \"name\": \"alumni_credential_request\",\n  \"query\": [\n    {\n      \"type\": \"QueryByExample\",\n      \"credentialQuery\": [\n        {\n          \"required\": true,\n          \"reason\": \"We need you to prove your alumni membership.\",\n          \"example\": {\n            \"@context\": [\n              \"https://schema.org\"\n            ],\n            \"type\": \"AlumniCredential\",\n            \"trustedIssuer\": [\n              {\n                \"required\": true,\n                \"issuer\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\"\n              }\n            ]\n          }\n        }\n      ]\n    }\n  ]\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/templates",
+                  "raw": "{{baseUrl}}/core/v1/presentations/templates",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "templates"]
+                  "path": ["core", "v1", "presentations", "templates"]
                 },
                 "description": "Create a presentation template"
               },
@@ -1012,9 +1012,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/templates",
+                  "raw": "{{baseUrl}}/core/v1/presentations/templates",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "templates"]
+                  "path": ["core", "v1", "presentations", "templates"]
                 },
                 "description": "Get presentation templates"
               },
@@ -1026,9 +1026,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/templates/:id",
+                  "raw": "{{baseUrl}}/core/v1/presentations/templates/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "templates", ":id"],
+                  "path": ["core", "v1", "presentations", "templates", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1047,9 +1047,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/templates/:id",
+                  "raw": "{{baseUrl}}/core/v1/presentations/templates/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "templates", ":id"],
+                  "path": ["core", "v1", "presentations", "templates", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1077,9 +1077,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/templates/:id",
+                  "raw": "{{baseUrl}}/core/v1/presentations/templates/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "templates", ":id"],
+                  "path": ["core", "v1", "presentations", "templates", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1105,9 +1105,9 @@
                   "raw": "{\n  \"challenge\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n  \"did\": \"did:key:z6Mkt7bFYc4V2HdAxwhMtaY6cgJckYXwhYdPLJCcnVqzrkpr\",\n  \"templateId\": \"64e45290-9980-11ea-b872-f1bee5fb328f\",\n  \"expiresTime\": 1592955632103,\n  \"callbackUrl\": \"https://tenant.vii.mattr.global/core/v1/presentations/response\"\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/requests",
+                  "raw": "{{baseUrl}}/core/v1/presentations/requests",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "requests"]
+                  "path": ["core", "v1", "presentations", "requests"]
                 },
                 "description": "Creates a short lived Presentation Request.\n\nIf no `expiresTime` is provided, a default of 5 minutes will be used."
               },
@@ -1128,9 +1128,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations",
+                  "raw": "{{baseUrl}}/core/v1/presentations",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations"]
+                  "path": ["core", "v1", "presentations"]
                 }
               },
               "response": []
@@ -1150,9 +1150,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/presentations/verify",
+                  "raw": "{{baseUrl}}/core/v1/presentations/verify",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "presentations", "verify"]
+                  "path": ["core", "v1", "presentations", "verify"]
                 }
               },
               "response": []
@@ -1179,7 +1179,7 @@
                 "url": {
                   "raw": "{{baseUrl}}/linkeddata/v1/convert",
                   "host": ["{{baseUrl}}"],
-                  "path": ["linkeddata", "v1", "convert"]
+                  "path": ["linkeddata", "core", "v1", "convert"]
                 }
               },
               "response": []
@@ -1277,7 +1277,7 @@
                   "host": ["{{extUrl}}"],
                   "path": [
                     "oidc",
-                    "v1",
+                    "core", "v1",
                     "issuers",
                     ":id",
                     ".well-known",
@@ -1338,7 +1338,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/token",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id", "token"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id", "token"],
                   "variable": [
                     {
                       "key": "id"
@@ -1357,7 +1357,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id", "authorize"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id", "authorize"],
                   "query": [
                     {
                       "key": "client_id",
@@ -1416,7 +1416,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers"]
+                  "path": ["oidc", "core", "v1", "issuers"]
                 },
                 "description": "Create a new OIDC Credential Issuer for this tenant.\n\nThe Credential information defines a descriptive name for the Credential to be issued as well as the `issuerDid` and `type` that the issued Credential will contain. The `context` is used to define the JSON-LD schema for the JSON-LD terms.\n\nThe Federated Provider details are used to obtain the values for the new credential. The OIDC provider will federate the authentication request to the OpenID Provider of the Issuer. The details of the Issuer OpenID Provider are provided in the `url`, `scope`, `clientId` and `clientSecret` attributes. If no `scope` is provided, the default value `openid profile email` will be used.\n\n> The `/.well-known/openid-configuration` endpoint of the federated provider needs to contain values for the `authorization_endpoint`, `token_endpoint` and `scopes_supported`.\n\nClaim mappings are used to map OpenID Connect terms used by federated providers and clients to JSON-LD terms used in a Credential. The defined claims are also used for display purposes in a client, like a Mobile Wallet.\n\n**ZKP-enabled BBS+ credential:**\nIf you wish to offer a ZKP-enabled Verifiable Credential, the provided issuer DID must be a did:key with a key type of bls12381g2. The platform will automatically detect this capability and issue a ZKP-enabled BBS+ credential.\n\n> ZKP-enabled BBS+ credentials are an experimental feature, credentials issued to the mobile wallet will not be validated at this time.\n"
               },
@@ -1430,7 +1430,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers"]
+                  "path": ["oidc", "core", "v1", "issuers"]
                 },
                 "description": "Returns a list of all OIDC Issuers in the Tenant.\n"
               },
@@ -1444,7 +1444,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1474,7 +1474,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1495,7 +1495,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1530,7 +1530,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id", "clients"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -1551,7 +1551,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id", "clients"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -1572,7 +1572,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id", "clients", ":id"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id", "clients", ":id"],
                   "variable": [
                     {
                       "key": "issuerId",
@@ -1607,7 +1607,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/issuers/:id/clients/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "issuers", ":id", "clients", ":id"],
+                  "path": ["oidc", "core", "v1", "issuers", ":id", "clients", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1629,7 +1629,7 @@
                   "host": ["{{extUrl}}"],
                   "path": [
                     "oidc",
-                    "v1",
+                    "core", "v1",
                     "issuers",
                     ":issuerId",
                     "clients",
@@ -1665,7 +1665,7 @@
                   "host": ["{{extUrl}}"],
                   "path": [
                     "oidc",
-                    "v1",
+                    "core", "v1",
                     "verifiers",
                     ":id",
                     ".well-known",
@@ -1726,7 +1726,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/token",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "token"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "token"],
                   "variable": [
                     {
                       "key": "id"
@@ -1745,7 +1745,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/authorize?client_id=<string>&response_type=<string>&scope=<string>&nonce=<string>&prompt=<string>",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "authorize"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "authorize"],
                   "query": [
                     {
                       "key": "client_id",
@@ -1804,7 +1804,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers"]
+                  "path": ["oidc", "core", "v1", "verifiers"]
                 },
                 "description": "Create a new OIDC Credential Verifier for this tenant.\n\nThe `verifierDid` is the Verifier DID that will be used to securely send the Credential to.\n\nThe `presentationTemplateId` references the Presentation Template that defines what Credential is being requested for presentation.\n\nClaim mappings are used to map JSON-LD terms used in a Credential to OpenID Connect terms used by clients.\n"
               },
@@ -1818,7 +1818,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers"]
+                  "path": ["oidc", "core", "v1", "verifiers"]
                 },
                 "description": "Returns a list of all OIDC Verifiers in the Tenant.\n"
               },
@@ -1832,7 +1832,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1862,7 +1862,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1883,7 +1883,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -1918,7 +1918,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "clients"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -1939,7 +1939,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "clients"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients"],
                   "variable": [
                     {
                       "key": "id",
@@ -1960,7 +1960,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "clients", ":id"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients", ":id"],
                   "variable": [
                     {
                       "key": "verifierId",
@@ -1995,7 +1995,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "clients", ":id"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients", ":id"],
                   "variable": [
                     {
                       "key": "verifierId",
@@ -2021,7 +2021,7 @@
                 "url": {
                   "raw": "{{extUrl}}/oidc/v1/verifiers/:id/clients/:id",
                   "host": ["{{extUrl}}"],
-                  "path": ["oidc", "v1", "verifiers", ":id", "clients", ":id"],
+                  "path": ["oidc", "core", "v1", "verifiers", ":id", "clients", ":id"],
                   "variable": [
                     {
                       "key": "verifierId",
