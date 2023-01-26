@@ -2147,7 +2147,176 @@
       "item": [
         {
           "name": "Core",
-          "item": []
+          "item": [
+            {
+              "name": "Sign a Semantic Compact Credential",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": {\n    \"iss\": \"did:web:example.com\",\n    \"nbf\": 1645743759,\n    \"exp\": 1645743759,\n    \"iat\": 1645743759,\n    \"aud\": \"...\",\n    \"sub\": \"...\",\n    \"vc\": {\n      \"@context\": \"https://www.w3.org/2018/credentials/examples/v1\",\n      \"type\": \"AlumniCredential\",\n      \"credentialSubject\": {\n        \"property1\": \"...\",\n        \"property2\": \"...\"\n      }\n    }\n  },\n  \"revocable\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/sign",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "compact-semantic", "sign"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Verify a Semantic Compact Credential",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": \"CSS:/1/2KCE3IQEJB5DCMSLN5KWKZABE2QFRMFEAF4CIZDJMQ5HOZLCHIYDGOJUFUYTENJNGIZTOLJVGIWTCMJQFZXGO4TPNMXGS33COZR2G2CAMNXW45DFPB2IC6BGNB2HI4DTHIXS653XO4XHOMZON5ZGOLZSGAYTQL3DOJSWIZLOORUWC3DTF53DCZDUPFYGLALUKZSXE2LGNFQWE3DFINZGKZDFNZ2GSYLMOFRXEZLEMVXHI2LBNRJXKYTKMVRXJILENZQW2ZLEJJXWQ3QH3BAFAW2MIRFQDICFCSNL5EIX4IISCEIFDJRFHCRRLBALWFYDLUVEKXHERNWHUDGJI3DDNNXSFWIRHUASBHGB2I7UHGPZMJEB3SMOFMBL3PABL5HUFSQLLGNE7YRKSAM3OAQN7F4LG365HL67BU\",\n  \"trustedIssuers\": [\n    \"did:web:example.com\"\n  ],\n  \"assertNotBefore\": true,\n  \"assertExpiry\": true,\n  \"checkRevocation\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/verify",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "compact-semantic", "verify"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Public revocation list discovery",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/revocation-lists",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "revocation-lists"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Public revocation list",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/revocation-lists/:listId",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "revocation-lists",
+                    ":listId"
+                  ],
+                  "variable": [
+                    {
+                      "key": "listId",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update revocation status",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"isRevoked\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/:id/revocation-status",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    ":id",
+                    "revocation-status"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retrieve revocation status",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/:id/revocation-status",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    ":id",
+                    "revocation-status"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Generate a QR code",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payload\": \"CSS:/1/2KCE3IQEJB5DCMSMGRKXI3IBE2QFSANKVACBUYQYB2HQKGTCDAHI6BQ2MIMA5DYBPAUWI2L...\",\n  \"width\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/qrcode",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "compact-semantic", "qrcode"]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
           "name": "PDF Template Management",
