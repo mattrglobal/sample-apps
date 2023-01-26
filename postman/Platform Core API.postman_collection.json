@@ -1626,7 +1626,7 @@
           "name": "Digital Pass Template Management",
           "item": [
             {
-              "name": "Apple Pay",
+              "name": "Apple Pass",
               "item": [
                 {
                   "name": "Create Apple Pass Template",
@@ -1852,10 +1852,10 @@
               ]
             },
             {
-              "name": "Google Pay",
+              "name": "Google Pay Pass",
               "item": [
                 {
-                  "name": "Create Google Pass Template",
+                  "name": "Create Google Pay Pass Template",
                   "request": {
                     "method": "POST",
                     "header": [],
@@ -1925,7 +1925,7 @@
                   "response": []
                 },
                 {
-                  "name": "List Google Pass Templates",
+                  "name": "List Google Pay Pass Templates",
                   "request": {
                     "method": "GET",
                     "header": [],
@@ -1945,7 +1945,7 @@
                   "response": []
                 },
                 {
-                  "name": "Update Google Pass Template",
+                  "name": "Update Google Pay Pass Template",
                   "request": {
                     "method": "PUT",
                     "header": [],
@@ -2022,7 +2022,7 @@
                   "response": []
                 },
                 {
-                  "name": "Retrieve Google Pass Template",
+                  "name": "Retrieve Google Pay Pass Template",
                   "request": {
                     "method": "GET",
                     "header": [],
@@ -2049,7 +2049,7 @@
                   "response": []
                 },
                 {
-                  "name": "Remove Google Pass Template",
+                  "name": "Remove Google Pay Pass Template",
                   "request": {
                     "method": "DELETE",
                     "header": [],
@@ -2469,11 +2469,521 @@
         },
         {
           "name": "Digital Pass Template Management",
-          "item": []
+          "item": [
+            {
+              "name": "Apple Pass",
+              "item": [
+                {
+                  "name": "Create Apple Pass Template",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "template",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "name",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "filename",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "teamIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "passTypeIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "wwdr",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerCert",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKey",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKeyPassphrase",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "apple",
+                        "templates"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "List Apple Pass Templates",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "apple",
+                        "templates"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Update Apple Pass Template",
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "template",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "name",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "filename",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "teamIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "passTypeIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "wwdr",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerCert",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKey",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKeyPassphrase",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "apple",
+                        "templates",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": null
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Retrieve Apple Pass Template",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "apple",
+                        "templates",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": null
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Remove Apple Pass Template",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "apple",
+                        "templates",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": null
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            },
+            {
+              "name": "Google Pay Pass",
+              "item": [
+                {
+                  "name": "Create Google Pay Pass Template",
+                  "request": {
+                    "method": "POST",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "template",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "name",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "filename",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "teamIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "passTypeIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "wwdr",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerCert",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKey",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKeyPassphrase",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "google",
+                        "templates"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "List Google Pay Pass Templates",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "google",
+                        "templates"
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Update Google Pay Pass Template",
+                  "request": {
+                    "method": "PUT",
+                    "header": [],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "template",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "name",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "filename",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "teamIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "passTypeIdentifier",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "wwdr",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerCert",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKey",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        },
+                        {
+                          "key": "signerKeyPassphrase",
+                          "value": "PLACEHOLDER",
+                          "type": "text"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "google",
+                        "templates",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": null
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Retrieve Google Pay Pass Template",
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "google",
+                        "templates",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": null
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                },
+                {
+                  "name": "Remove Google Pay Pass Template",
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                      "host": ["{{baseUrl}}"],
+                      "path": [
+                        "v2",
+                        "credentials",
+                        "compact-semantic",
+                        "digitalpass",
+                        "google",
+                        "templates",
+                        ":id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "id",
+                          "value": null
+                        }
+                      ]
+                    }
+                  },
+                  "response": []
+                }
+              ]
+            }
+          ]
         },
         {
           "name": "Digital Pass Generation",
-          "item": []
+          "item": [
+            {
+              "name": "Generate Apple Pass",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templateId\": \"3812166c-ac9f-4e4e-96dd-c1336b5be378\",\n  \"payload\": \"{payload}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "digitalpass",
+                    "apple"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Generate Google Pay Pass",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templateId\": \"3812166c-ac9f-4e4e-96dd-c1336b5be378\",\n  \"payload\": \"{payload}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "digitalpass",
+                    "google"
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         }
       ]
     },
