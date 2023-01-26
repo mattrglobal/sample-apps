@@ -287,7 +287,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"id\": \"string\",\n  \"inboxId\": \"string\",\n  \"payload\": \"string\",\n  \"createdAt\": \"2019-08-24\"\n}",
+                  "raw": "{\n  \"name\": \"YOUR_INBOX\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -353,7 +353,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "",
+                  "raw": "{\n  \"name\": \"YOUR_INBOX\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -408,15 +408,14 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/8aeb11e3-8389-4a45-b948-50088646c95b/dids",
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/dids",
                   "host": ["{{baseUrl}}"],
-                  "path": [
-                    "core",
-                    "v1",
-                    "messaging",
-                    "inboxes",
-                    "8aeb11e3-8389-4a45-b948-50088646c95b",
-                    "dids"
+                  "path": ["core", "v1", "messaging", "inboxes", ":id", "dids"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
                   ]
                 }
               },
@@ -424,21 +423,9 @@
             },
             {
               "name": "List DIDs in an inbox",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
               "request": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/dids",
                   "host": ["{{baseUrl}}"],
@@ -454,22 +441,41 @@
               "response": []
             },
             {
-              "name": "List inbox messages",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
+              "name": "Unregister DID from an inbox",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/dids/:did",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "core",
+                    "v1",
+                    "messaging",
+                    "inboxes",
+                    ":id",
+                    "dids",
+                    ":did"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    },
+                    {
+                      "key": "did",
+                      "value": null
+                    }
+                  ]
+                }
               },
+              "response": []
+            },
+            {
+              "name": "List inbox messages",
               "request": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/messages",
                   "host": ["{{baseUrl}}"],
@@ -493,21 +499,9 @@
             },
             {
               "name": "Retrieve a message",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
               "request": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:id/messages/:messageId",
                   "host": ["{{baseUrl}}"],
@@ -539,15 +533,6 @@
               "request": {
                 "method": "DELETE",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"did\": \"did:key:z6MkmLnUzHmVKfTEhRnTuq6chpJjJ3QNSwJFqCPxdijHRb5y\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
                   "raw": "{{baseUrl}}/core/v1/messaging/inboxes/:inboxId/messages/:messageId",
                   "host": ["{{baseUrl}}"],
