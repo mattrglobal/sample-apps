@@ -2320,7 +2320,125 @@
         },
         {
           "name": "PDF Template Management",
-          "item": []
+          "item": [
+            {
+              "name": "Create PDF Template",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/pdf/templates",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "pdf",
+                    "templates"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "List PDF Templates",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/pdf/templates",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "pdf",
+                    "templates"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update PDF Templates",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "file",
+                  "file": {}
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/pdf/templates",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "pdf",
+                    "templates"
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retrieve PDF Template",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/pdf/templates/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "pdf",
+                    "templates",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retrieve PDF Template Copy",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/pdf/templates/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": [
+                    "v2",
+                    "credentials",
+                    "compact-semantic",
+                    "pdf",
+                    "templates",
+                    ":id"
+                  ],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
           "name": "PDF Generation",
