@@ -2442,7 +2442,30 @@
         },
         {
           "name": "PDF Generation",
-          "item": []
+          "item": [
+            {
+              "name": "Generate compact semantic credential PDF",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templateId\": \"4eea7654-d4c5-4eba-bd7a-5ca334d54725\",\n  \"payload\": \"{payload}\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/pdf",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "compact-semantic", "pdf"]
+                }
+              },
+              "response": []
+            }
+          ]
         },
         {
           "name": "Digital Pass Template Management",
