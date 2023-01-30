@@ -2413,7 +2413,7 @@
               "response": []
             },
             {
-              "name": "Retrieve PDF Template Copy",
+              "name": "Delete PDF Template",
               "request": {
                 "method": "DELETE",
                 "header": [],
