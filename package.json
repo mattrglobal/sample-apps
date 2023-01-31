@@ -1,0 +1,16 @@
+{
+  "name": "sample-apps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/mattrglobal/sample-apps.git",
+  "author": "Mingyang-Li-MATTR <mingyang.li@mattr.global>",
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "^8.0.0",
+    "prettier": "^2.8.3",
+    "pretty-quick": "^3.1.3"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
