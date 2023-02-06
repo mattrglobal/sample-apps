@@ -72,7 +72,7 @@ app.post(
           error
         );
         // Return a 200 response to indicate request has been received and does not need to be retried
-        response.status(200).send("OK");;
+        response.status(200).send("OK");
         return
       }
 
@@ -81,7 +81,7 @@ app.post(
         const reason = verifyResult.value;
         console.error("Http signature failed to verify", reason);
         // Return a 200 response to indicate request has been received and does not need to be retried
-        response.status(200).send("OK");;
+        response.status(200).send("OK");
         return
       }
 
