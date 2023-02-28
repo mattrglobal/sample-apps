@@ -4,6 +4,7 @@ import {
   CreateWebhookArgs,
   GetWebhooksArgs,
   GetWebhooksReqResponse,
+  GetWebhookArgs,
 } from '@/dto/platform-core/webhooks';
 import { IAuth } from '@/dto/setup';
 
@@ -45,8 +46,15 @@ const getWebhooks =
     return await resp.json();
   };
 
-const getWebhook = () => {
-  return;
+const getWebhook = (auth: IAuth) => async (args: GetWebhookArgs) => {
+  const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks/${args.id}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
 const updateWebhook = () => {
@@ -65,7 +73,7 @@ export const WebhookService = (auth: IAuth) => {
   return {
     createWebhook: createWebhook(auth),
     getWebhooks: getWebhooks(auth),
-    getWebhook: getWebhook(),
+    getWebhook: getWebhook(auth),
     updateWebhook: updateWebhook(),
     removeWebhook: removeWebhook(),
     getWebhookJwks: getWebhookJwks(),
