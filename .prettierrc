@@ -1,0 +1,8 @@
+{
+    "printWidth": 120,
+    "trailingComma": "es5",
+    "proseWrap": "always",
+    "jsxBracketSameLine": false,
+    "arrowParens": "avoid"
+  }
+  
