@@ -12,8 +12,7 @@ import { IAuth } from '@/dto/setup';
 import fetch from 'node-fetch';
 
 const createDid =
-  (auth: IAuth) =>
-  async (args: CreateDidArgs): Promise<CreateDidReqResponse> => {
+  (auth: IAuth) => async (args: CreateDidArgs): Promise<CreateDidReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/dids`, {
       method: 'POST',
       headers: {
@@ -26,8 +25,7 @@ const createDid =
   };
 
 const retrieveDids =
-  (auth: IAuth) =>
-  async (args?: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
+  (auth: IAuth) => async (args?: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
     let url: string;
     switch (args) {
       case undefined:
@@ -50,8 +48,7 @@ const retrieveDids =
   };
 
 const resolveDid =
-  (auth: IAuth) =>
-  async (args: ResolveDidArgs): Promise<ResolveDidReqResponse> => {
+  (auth: IAuth) => async (args: ResolveDidArgs): Promise<ResolveDidReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/dids/${args.id}`, {
       method: 'GET',
       headers: {
@@ -62,8 +59,7 @@ const resolveDid =
   };
 
 const deleteDid =
-  (auth: IAuth) =>
-  async (args: DeleteDidArgs): Promise<void> => {
+  (auth: IAuth) => async (args: DeleteDidArgs): Promise<void> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/dids/${args.id}`, {
       method: 'DELETE',
       headers: {

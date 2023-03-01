@@ -9,8 +9,7 @@ import {
 import { IAuth } from '@/dto/setup';
 
 const createWebhook =
-  (auth: IAuth) =>
-  async (args: CreateWebhookArgs): Promise<Webhook> => {
+  (auth: IAuth) => async (args: CreateWebhookArgs): Promise<Webhook> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks`, {
       method: 'POST',
       headers: {
@@ -23,8 +22,7 @@ const createWebhook =
   };
 
 const getWebhooks =
-  (auth: IAuth) =>
-  async (args?: GetWebhooksArgs): Promise<GetWebhooksReqResponse> => {
+  (auth: IAuth) => async (args?: GetWebhooksArgs): Promise<GetWebhooksReqResponse> => {
     let url = '';
     switch (args) {
       case undefined:
