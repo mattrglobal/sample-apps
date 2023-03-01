@@ -4,6 +4,7 @@ import {
   DeletePresentationTemplateArgs,
   PresentationTemplate,
   RetrievePresentationTemplateArgs,
+  UpdatePresentationTemplateArgs,
 } from "@/dto/web-semantic-credentials";
 
 const createPresentationTemplate = (auth: IAuth) => async (args: CreatePresentationTemplateArgs) => {
@@ -55,9 +56,19 @@ const deletePresentationTemplate =
     return await resp.json();
   };
 
-const updatePresentationTemplate = (auth: IAuth) => async (args: string) => {
-  return { auth, args };
-};
+const updatePresentationTemplate =
+  (auth: IAuth) =>
+  async (args: UpdatePresentationTemplateArgs): Promise<PresentationTemplate> => {
+    const resp = await fetch(`${auth.baseUrl}/core/v1/presentations/templates`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+      body: JSON.stringify(args.body),
+    });
+    return await resp.json();
+  };
 
 const createPresentationRequest = (auth: IAuth) => async (args: string) => {
   return { auth, args };
