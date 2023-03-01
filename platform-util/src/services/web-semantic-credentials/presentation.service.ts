@@ -1,5 +1,9 @@
-import { IAuth } from '@/dto/setup';
-import { CreatePresentationTemplateArgs } from '@/dto/web-semantic-credentials';
+import { IAuth } from "@/dto/setup";
+import {
+  CreatePresentationTemplateArgs,
+  PresentationTemplate,
+  RetrievePresentationTemplateArgs,
+} from "@/dto/web-semantic-credentials";
 
 const createPresentationTemplate = (auth: IAuth) => async (args: CreatePresentationTemplateArgs) => {
   const resp = await fetch(`${auth.baseUrl}/core/v1/presentations/templates`, {
@@ -13,13 +17,29 @@ const createPresentationTemplate = (auth: IAuth) => async (args: CreatePresentat
   return await resp.json();
 };
 
-const retrievePresentationTemplates = (auth: IAuth) => async (args: string) => {
-  return { auth, args };
+const retrievePresentationTemplates = (auth: IAuth) => async (): Promise<PresentationTemplate[]> => {
+  const resp = await fetch(`${auth.baseUrl}/core/v1/presentations/templates`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
-const retrievePresentationTemplate = (auth: IAuth) => async (args: string) => {
-  return { auth, args };
-};
+const retrievePresentationTemplate =
+  (auth: IAuth) =>
+  async (args: RetrievePresentationTemplateArgs): Promise<PresentationTemplate> => {
+    const resp = await fetch(`${auth.baseUrl}/core/v1/presentations/templates/${args.query.id}`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+    });
+    return await resp.json();
+  };
 
 const deletePresentationTemplate = (auth: IAuth) => async (args: string) => {
   return { auth, args };

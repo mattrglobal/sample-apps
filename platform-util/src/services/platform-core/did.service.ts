@@ -72,9 +72,7 @@ const deleteDid =
     return await resp.json();
   };
 
-const wellKnownDidConfiguration = async (
-  auth: IAuth
-): Promise<WellKnownDidConfigResponse> => {
+const wellKnownDidConfiguration = (auth: IAuth) => async (): Promise<WellKnownDidConfigResponse> => {
   const resp = await fetch(`${auth.baseUrl}/.well-known/did-configuration`, {
     method: "GET",
   });
