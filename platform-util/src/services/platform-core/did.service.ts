@@ -7,16 +7,17 @@ import {
   ResolveDidReqResponse,
   DeleteDidArgs,
   WellKnownDidConfigResponse,
-} from '@/dto/platform-core/dids';
-import { IAuth } from '@/dto/setup';
-import fetch from 'node-fetch';
+} from "@/dto/platform-core/dids";
+import { IAuth } from "@/dto/setup";
+import fetch from "node-fetch";
 
 const createDid =
-  (auth: IAuth) => async (args: CreateDidArgs): Promise<CreateDidReqResponse> => {
+  (auth: IAuth) =>
+  async (args: CreateDidArgs): Promise<CreateDidReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/dids`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -25,32 +26,33 @@ const createDid =
   };
 
 const retrieveDids =
-  (auth: IAuth) => async (args?: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
+  (auth: IAuth) =>
+  async (args?: RetrieveDidsArgs): Promise<RetrieveDidsReqResponse> => {
     let url: string;
     switch (args) {
       case undefined:
         url = `${auth.baseUrl}/core/v1/dids`;
       default:
         const query = new URLSearchParams({
-          limit: args ? args?.query.pagination.limit.toString() : '1000',
-          cursor: args ? args?.query.pagination.cursor : '',
+          limit: args ? args?.query.pagination.limit.toString() : "1000",
+          cursor: args ? args?.query.pagination.cursor : "",
         }).toString();
         url = `${auth.baseUrl}/core/v1/dids?${query}`;
     }
     const resp = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
     });
-
     return await resp.json();
   };
 
 const resolveDid =
-  (auth: IAuth) => async (args: ResolveDidArgs): Promise<ResolveDidReqResponse> => {
+  (auth: IAuth) =>
+  async (args: ResolveDidArgs): Promise<ResolveDidReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/dids/${args.id}`, {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
@@ -59,9 +61,10 @@ const resolveDid =
   };
 
 const deleteDid =
-  (auth: IAuth) => async (args: DeleteDidArgs): Promise<void> => {
+  (auth: IAuth) =>
+  async (args: DeleteDidArgs): Promise<void> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/dids/${args.id}`, {
-      method: 'DELETE',
+      method: "DELETE",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
@@ -70,10 +73,10 @@ const deleteDid =
   };
 
 const wellKnownDidConfiguration = async (
-  auth: IAuth,
+  auth: IAuth
 ): Promise<WellKnownDidConfigResponse> => {
   const resp = await fetch(`${auth.baseUrl}/.well-known/did-configuration`, {
-    method: 'GET',
+    method: "GET",
   });
 
   return await resp.json();

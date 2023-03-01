@@ -1,19 +1,20 @@
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 import {
   Webhook,
   CreateWebhookArgs,
   GetWebhooksArgs,
   GetWebhooksReqResponse,
   GetWebhookArgs,
-} from '@/dto/platform-core/webhooks';
-import { IAuth } from '@/dto/setup';
+} from "@/dto/platform-core/webhooks";
+import { IAuth } from "@/dto/setup";
 
 const createWebhook =
-  (auth: IAuth) => async (args: CreateWebhookArgs): Promise<Webhook> => {
+  (auth: IAuth) =>
+  async (args: CreateWebhookArgs): Promise<Webhook> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -22,8 +23,9 @@ const createWebhook =
   };
 
 const getWebhooks =
-  (auth: IAuth) => async (args?: GetWebhooksArgs): Promise<GetWebhooksReqResponse> => {
-    let url = '';
+  (auth: IAuth) =>
+  async (args?: GetWebhooksArgs): Promise<GetWebhooksReqResponse> => {
+    let url = "";
     switch (args) {
       case undefined:
         url = `${auth.baseUrl}/core/v1/webhooks`;
@@ -36,7 +38,7 @@ const getWebhooks =
         url = `${auth.baseUrl}/core/v1/webhooks?${query}`;
     }
     const resp = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
@@ -46,9 +48,9 @@ const getWebhooks =
 
 const getWebhook = (auth: IAuth) => async (args: GetWebhookArgs) => {
   const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks/${args.id}`, {
-    method: 'GET',
+    method: "GET",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
       Authorization: `Bearer ${auth.authToken}`,
     },
   });

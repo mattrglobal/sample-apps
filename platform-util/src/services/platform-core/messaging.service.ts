@@ -25,16 +25,17 @@ import {
   DecryptMessageArgs,
   DecryptMessageReqResponse,
   SendMessageArgs,
-} from '@/dto/platform-core/messaging';
-import { IAuth } from '@/dto/setup';
-import fetch from 'node-fetch';
+} from "@/dto/platform-core/messaging";
+import { IAuth } from "@/dto/setup";
+import fetch from "node-fetch";
 
 const createInbox =
-  (auth: IAuth) => async (args: CreateInboxArgs): Promise<CreateInboxReqResponse> => {
+  (auth: IAuth) =>
+  async (args: CreateInboxArgs): Promise<CreateInboxReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/messaging/inboxes`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -43,7 +44,8 @@ const createInbox =
   };
 
 const listInboxs =
-  (auth: IAuth) => async (args: ListInboxesArgs): Promise<ListInboxesReqResponse> => {
+  (auth: IAuth) =>
+  async (args: ListInboxesArgs): Promise<ListInboxesReqResponse> => {
     let url: string;
     const pagination = args.query.pagination;
     switch (pagination) {
@@ -60,7 +62,7 @@ const listInboxs =
         break;
     }
     const resp = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
@@ -69,65 +71,70 @@ const listInboxs =
   };
 
 const retrieveInboxName =
-  (auth: IAuth) => async (args: RetrieveInboxNameArgs): Promise<RetrieveInboxNameReqResponse> => {
+  (auth: IAuth) =>
+  async (args: RetrieveInboxNameArgs): Promise<RetrieveInboxNameReqResponse> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}`,
       {
-        method: 'GET',
+        method: "GET",
         headers: {
           Authorization: `Bearer ${auth.authToken}`,
         },
-      },
+      }
     );
     return await resp.json();
   };
 const updateInbox =
-  (auth: IAuth) => async (args: UpdateInboxArgs): Promise<UpdateInboxReqResponse> => {
+  (auth: IAuth) =>
+  async (args: UpdateInboxArgs): Promise<UpdateInboxReqResponse> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}`,
       {
-        method: 'PUT',
+        method: "PUT",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${auth.authToken}`,
         },
         body: JSON.stringify(args.body),
-      },
+      }
     );
     return await resp.json();
   };
 const deleteInbox =
-  (auth: IAuth) => async (args: DeleteInboxArgs): Promise<void> => {
+  (auth: IAuth) =>
+  async (args: DeleteInboxArgs): Promise<void> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}`,
       {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
           Authorization: `Bearer ${auth.authToken}`,
         },
-      },
+      }
     );
     return await resp.json();
   };
 
 const registerDidwithInbox =
-  (auth: IAuth) => async (
-    args: RegisterInboxWithDidArgs,
+  (auth: IAuth) =>
+  async (
+    args: RegisterInboxWithDidArgs
   ): Promise<RegisterDidWithInboxReqResponse> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.body.did}`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
           Authorization: `Bearer ${auth.authToken}`,
         },
         body: JSON.stringify(args.body),
-      },
+      }
     );
     return await resp.json();
   };
 const listInboxDids =
-  (auth: IAuth) => async (args?: ListInboxDidsArgs): Promise<ListInboxDidsReqResponse> => {
+  (auth: IAuth) =>
+  async (args?: ListInboxDidsArgs): Promise<ListInboxDidsReqResponse> => {
     const pagination = args.query.pagination;
     let url: string;
     switch (pagination) {
@@ -141,7 +148,7 @@ const listInboxDids =
         url = `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}/dids?${query}`;
     }
     const resp = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
@@ -151,23 +158,27 @@ const listInboxDids =
 
 // maybe typo on doc - should be 'within an inbox'
 const unregisterDidWithinInbox =
-  (auth: IAuth) => async (args: UnregisterDidWithinInboxArgs): Promise<void> => {
+  (auth: IAuth) =>
+  async (args: UnregisterDidWithinInboxArgs): Promise<void> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}/dids`,
       {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
           Authorization: `Bearer ${auth.authToken}`,
         },
         body: JSON.stringify(args.body),
-      },
+      }
     );
     return await resp.json();
   };
 
 const listInboxMessages =
-  (auth: IAuth) => async (args: ListInboxMessagesArgs): Promise<ListInboxMessagesReqResponse> => {
+  (auth: IAuth) =>
+  async (
+    args: ListInboxMessagesArgs
+  ): Promise<ListInboxMessagesReqResponse> => {
     let url: string;
     const pagination = args.query.pagination;
     switch (pagination) {
@@ -181,7 +192,7 @@ const listInboxMessages =
         url = `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}/messages?${query}`;
     }
     const resp = await fetch(url, {
-      method: 'GET',
+      method: "GET",
       headers: {
         Authorization: `Bearer ${auth.authToken}`,
       },
@@ -190,39 +201,42 @@ const listInboxMessages =
   };
 
 const retrieveMessage =
-  (auth: IAuth) => async (args: RetrieveMessageArgs): Promise<Message> => {
+  (auth: IAuth) =>
+  async (args: RetrieveMessageArgs): Promise<Message> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}/messages/${args.query.messageId}`,
       {
-        method: 'GET',
+        method: "GET",
         headers: {
           Authorization: `Bearer ${auth.authToken}`,
         },
-      },
+      }
     );
     return await resp.json();
   };
 
 const deleteMessage =
-  (auth: IAuth) => async (args: DeleteMessageArgs): Promise<void> => {
+  (auth: IAuth) =>
+  async (args: DeleteMessageArgs): Promise<void> => {
     const resp = await fetch(
       `${auth.baseUrl}/core/v1/messaging/inboxes/${args.query.inboxId}/messages/${args.query.messageId}`,
       {
-        method: 'DELETE',
+        method: "DELETE",
         headers: {
           Authorization: `Bearer ${auth.authToken}`,
         },
-      },
+      }
     );
     return await resp.json();
   };
 
 const signMessage =
-  (auth: IAuth) => async (args: SignMessageArgs): Promise<string> => {
+  (auth: IAuth) =>
+  async (args: SignMessageArgs): Promise<string> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/messaging/sign`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -231,11 +245,12 @@ const signMessage =
   };
 
 const verifyMessage =
-  (auth: IAuth) => async (args: VerifyMessageArgs): Promise<VerifyMessageReqResponse> => {
+  (auth: IAuth) =>
+  async (args: VerifyMessageArgs): Promise<VerifyMessageReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/messaging/verify`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -244,11 +259,12 @@ const verifyMessage =
   };
 
 const encryptMessage =
-  (auth: IAuth) => async (args: EncryptMessageArgs): Promise<any> => {
+  (auth: IAuth) =>
+  async (args: EncryptMessageArgs): Promise<any> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/messaging/encrypt`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -257,11 +273,12 @@ const encryptMessage =
   };
 
 const decryptMessage =
-  (auth: IAuth) => async (args: DecryptMessageArgs): Promise<DecryptMessageReqResponse> => {
+  (auth: IAuth) =>
+  async (args: DecryptMessageArgs): Promise<DecryptMessageReqResponse> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/messaging/decrypt`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
@@ -270,11 +287,12 @@ const decryptMessage =
   };
 
 const sendMessage =
-  (auth: IAuth) => async (args: SendMessageArgs): Promise<void> => {
+  (auth: IAuth) =>
+  async (args: SendMessageArgs): Promise<void> => {
     const resp = await fetch(`${auth.baseUrl}/core/v1/messaging/send`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
         Authorization: `Bearer ${auth.authToken}`,
       },
       body: JSON.stringify(args.body),
