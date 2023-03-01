@@ -1,6 +1,7 @@
 import { IAuth } from "@/dto/setup";
 import {
   CreatePresentationTemplateArgs,
+  DeletePresentationTemplateArgs,
   PresentationTemplate,
   RetrievePresentationTemplateArgs,
 } from "@/dto/web-semantic-credentials";
@@ -41,9 +42,18 @@ const retrievePresentationTemplate =
     return await resp.json();
   };
 
-const deletePresentationTemplate = (auth: IAuth) => async (args: string) => {
-  return { auth, args };
-};
+const deletePresentationTemplate =
+  (auth: IAuth) =>
+  async (args: DeletePresentationTemplateArgs): Promise<void> => {
+    const resp = await fetch(`${auth.baseUrl}/core/v1/presentations/templates/${args.query.id}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${auth.authToken}`,
+      },
+    });
+    return await resp.json();
+  };
 
 const updatePresentationTemplate = (auth: IAuth) => async (args: string) => {
   return { auth, args };
