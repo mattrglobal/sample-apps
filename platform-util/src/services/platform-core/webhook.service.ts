@@ -5,6 +5,9 @@ import {
   GetWebhooksArgs,
   GetWebhooksReqResponse,
   GetWebhookArgs,
+  GetWebhookJwksReqResponse,
+  RemovewebhookArgs,
+  UpdateWebhookArgs,
 } from "@/dto/platform-core/webhooks";
 import { IAuth } from "@/dto/setup";
 
@@ -46,7 +49,7 @@ const getWebhooks =
     return await resp.json();
   };
 
-const getWebhook = (auth: IAuth) => async (args: GetWebhookArgs) => {
+const getWebhook = (auth: IAuth) => async (args: GetWebhookArgs): Promise<Webhook> => {
   const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks/${args.id}`, {
     method: "GET",
     headers: {
@@ -57,16 +60,38 @@ const getWebhook = (auth: IAuth) => async (args: GetWebhookArgs) => {
   return await resp.json();
 };
 
-const updateWebhook = () => {
-  return;
+const updateWebhook = (auth: IAuth) => async (args: UpdateWebhookArgs): Promise<Webhook> => {
+  const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks/${args.query.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.authToken}`,
+      body: JSON.stringify(args.body)
+    },
+  });
+  return await resp.json();
 };
 
-const removeWebhook = () => {
-  return;
+const removeWebhook = (auth: IAuth) => async (args: RemovewebhookArgs): Promise<void> => {
+  const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks/${args.query.id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
-const getWebhookJwks = () => {
-  return;
+const getWebhookJwks = (auth: IAuth) => async (): Promise<GetWebhookJwksReqResponse> => {
+  const resp = await fetch(`${auth.baseUrl}/core/v1/webhooks/jwks`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${auth.authToken}`,
+    },
+  });
+  return await resp.json();
 };
 
 export const WebhookService = (auth: IAuth) => {
@@ -74,8 +99,8 @@ export const WebhookService = (auth: IAuth) => {
     createWebhook: createWebhook(auth),
     getWebhooks: getWebhooks(auth),
     getWebhook: getWebhook(auth),
-    updateWebhook: updateWebhook(),
-    removeWebhook: removeWebhook(),
-    getWebhookJwks: getWebhookJwks(),
+    updateWebhook: updateWebhook(auth),
+    removeWebhook: removeWebhook(auth),
+    getWebhookJwks: getWebhookJwks(auth),
   };
 };
