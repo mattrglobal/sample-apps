@@ -1,1 +1,1 @@
-export * from './Credential';
+export * from './CredentialCore';

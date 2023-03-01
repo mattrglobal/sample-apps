@@ -18,7 +18,7 @@ export interface Proof {
   verificationMethod: string;
 }
 
-export interface Credential {
+export interface CredentialData {
   "@context": string[];
   type: string[];
   issuer: Issuer;
@@ -28,4 +28,12 @@ export interface Credential {
   proof: Proof;
   name: string;
   description: string;
+}
+
+export interface CredentialCore {
+  id: string;
+  credential: CredentialData;
+  tag: string;
+  credentialStatus: CredentialStatus;
+  issuanceDate: Date;
 }
