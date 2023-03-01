@@ -1,2 +1,3 @@
-export { CreateCredentialArgs } from './create-credential-args';
-export { CreateCredentialReqBody } from './create-credential-req-body';
+export * from './core';
+export * from './create-credential';
+export * from './retrieve-credentials';
