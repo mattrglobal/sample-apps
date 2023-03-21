@@ -622,9 +622,9 @@
                   "raw": "{\n  \"jwe\": \"string\"\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/messaging/encrypt",
+                  "raw": "{{baseUrl}}/core/v1/messaging/decrypt",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "messaging", "encrypt"]
+                  "path": ["core", "v1", "messaging", "decrypt"]
                 },
                 "description": "Provide a signed payload in the form of a JWS (JSON Web Signature) that has been signed by a DID (Decentralized Identifier) and get a response indicating if the signature verification was successful and the DID that was used to originally sign the payload.\n\nOne use case for verifying a JWS with a DID is when the Mobile Wallet App sends a Request Object to an OpenID Provider as part of the Authorization Code Flow (as per https://openid.net/specs/openid-connect-core-1_0-final.html#RequestObject). The Request Object is wrapped in a JWS with a signature that is generated from the Subject DID on the mobile app. Therefore verifying the JWS proves that the mobile app has access to the private key of the Subject DID.\n\n#### Returns\n\nIndicates if the JWS payload was untampered and that the signature is valid by verifying that the kid in the JWS header is the same as the `iss` value in the Request Object, which could for instance be the Subject DID.\nThe DID used is returned as both the full `didUrl` including fragment pointer to the DID Document and the `did` which can be used for Credential creation."
               },
