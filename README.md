@@ -13,7 +13,6 @@ A collection of developer apps and API tooling that you can use to interface wit
 * [credential-templates](/credential-templates/README.md) – Credential template files for use with MATTR VII. Example files available for profiles: Compact, Compact Semantic.
 
 ## API Guides
-* Insomnia Core [import format](insomnia/README.md)
 * Postman Collection & Env [import files](/postman/README.md)
 
 ## Related Projects
