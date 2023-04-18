@@ -2668,6 +2668,145 @@
       ]
     },
     {
+      "name": "Claim source",
+      "item": [
+        {
+          "name": "Create a claim source",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My claims from example.com\",\n  \"url\": \"https://example.com\",\n  \"authorization\": {\n    \"type\": \"api-key\",\n    \"value\": \"6hrFDATxrG9w14QY9wwnmVhLE0Wg6LIvwOwUaxz761m1J\"\n  },\n  \"requestParameters\": {\n    \"property1\": {\n      \"mapFrom\": \"claims.accountType\",\n      \"defaultValue\": \"student\"\n    },\n    \"property2\": {\n      \"mapFrom\": \"claims.accountType\",\n      \"defaultValue\": \"student\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/claimsources",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "claimsources"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a list of claim sources",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/claimsources",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "claimsources"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Retrieve a claim sources",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/claimsources/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "claimsources", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update a claim source",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"My claims from example.com\",\n  \"url\": \"https://example.com\",\n  \"authorization\": {\n    \"type\": \"api-key\",\n    \"value\": \"6hrFDATxrG9w14QY9wwnmVhLE0Wg6LIvwOwUaxz761m1J\"\n  },\n  \"requestParameters\": {\n    \"property1\": {\n      \"mapFrom\": \"claims.accountType\",\n      \"defaultValue\": \"student\"\n    },\n    \"property2\": {\n      \"mapFrom\": \"claims.accountType\",\n      \"defaultValue\": \"student\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/claimsources/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "claimsources", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a claim source",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/v1/claimsources/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["v1", "claimsources", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
       "name": "Credential Provider",
       "item": [
         {
@@ -2709,13 +2848,32 @@
               "response": []
             },
             {
+              "name": "Retrieve a Authentication Providers",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/users/authenticationproviders/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v1", "users", "authenticationproviders", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
               "name": "Update Authentication Providers",
               "request": {
                 "method": "PUT",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "",
+                  "raw": "{\n  \"scope\": [\n    \"email\"\n  ],\n  \"clientId\": \"CLIENT_ID\",\n  \"clientSecret\": \"CLIENT_SECRET\",\n  \"tokenEndpointAuthMethod\": \"client_secret_post\",\n  \"claimsSource\": \"idToken\",\n  \"staticRequestParameters\": {\n    \"prompt\": \"login\",\n    \"max_age\": 10000\n  },\n  \"forwardedRequestParameters\": [\n    \"login_hint\"\n  ],\n  \"claimsToSync\": [\n    \"first_name\",\n    \"last_name\",\n    \"email\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2770,26 +2928,13 @@
           "name": "OpenID Configuration",
           "item": [
             {
-              "name": "Retrieve OpenID configuration",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/core/v1/openid/configuration",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "openid", "configuration"]
-                }
-              },
-              "response": []
-            },
-            {
               "name": "Update OpenID Configuration",
               "request": {
                 "method": "PUT",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"interactionHook\": {\n    \"url\": \"https://mingyang-labs.vii.mattr.global/core/v1/oauth/authentication/callback\",\n    \"disabled\": true\n  }\n} ",
+                  "raw": "{\n  \"interactionHook\": {\n    \"url\": \"CALLBACK_URL\",\n    \"claims\": [],\n    \"disabled\": false\n  }\n} ",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -2803,99 +2948,16 @@
                 }
               },
               "response": []
-            }
-          ]
-        },
-        {
-          "name": "Credential configuration",
-          "item": [
-            {
-              "name": "Create credential configurations",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n   \"name\": \"Course credential\",\n   \"description\": \"This credential shows that the person has attended a course.\",\n   \"type\": \"CourseCredential\",\n   \"additionalTypes\": [\n      \"AlumniCredential\",\n      \"EducationCredential\"\n   ],\n   \"issuer\": {\n      \"name\": \"ABC University\",\n      \"logoUrl\": \"https://example.edu/img/logo.png\",\n      \"iconUrl\": \"https://example.edu/img/icon.png\"\n   },\n   \"credentialBranding\": {\n      \"backgroundColor\": \"#B00AA0\",\n      \"watermarkImageUrl\": \"https://example.edu/img/watermark.png\"\n   },\n   \"claimMappings\": {\n      \"firstName\": {\n          \"defaultValue\": \"No\"\n      },\n      \"lastName\": {\n          \"defaultValue\": \"Idea\"\n      },\n      \"email\": {\n          \"defaultValue\": \"testing@gmail.com\"\n      }\n   },\n   \"persist\": false,\n   \"revocable\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations"]
-                }
-              },
-              "response": []
             },
             {
-              "name": "Retrieve credential configurations",
+              "name": "Retrieve OpenID configuration",
               "request": {
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
+                  "raw": "{{baseUrl}}/core/v1/openid/configuration",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update credential configurations",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": null
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete a credential configuration",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/63e2dfa1-4a8a-440b-9397-e60de738ca00",
-                  "host": ["{{baseUrl}}"],
-                  "path": [
-                    "v2",
-                    "credentials",
-                    "web-semantic",
-                    "configurations",
-                    "63e2dfa1-4a8a-440b-9397-e60de738ca00"
-                  ]
+                  "path": ["core", "v1", "openid", "configuration"]
                 }
               },
               "response": []
@@ -2910,6 +2972,15 @@
               "request": {
                 "method": "POST",
                 "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"claims\": {\n    \"given_name\": \"Jamie\",\n    \"address\": {\n      \"street_name\": \"Queen Street\"\n    }\n  },\n  \"authenticationProvider\": {\n    \"providerId\": \"41458e5a-9092-40b7-9a26-d4eb43c5792f\",\n    \"subjectId\": \"example-university-oauth2|123456789\"\n  },\n  \"limit\": 100,\n  \"cursor\": \"Y3JlYXRlZEF0PTIwMjAtMDgtMjVUMDY6NDY6MDkuNTEwWiZpZD1h\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
                   "raw": "{{baseUrl}}/v1/users/search",
                   "host": ["{{baseUrl}}"],
@@ -2937,9 +3008,15 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v1/users",
+                  "raw": "{{baseUrl}}/v1/users/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "users"]
+                  "path": ["v1", "users", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
                 }
               },
               "response": []
@@ -2949,6 +3026,15 @@
               "request": {
                 "method": "PUT",
                 "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"claims\": {\n    \"givenName\": \"Patrick John\",\n    \"familyName\": \"Smith\",\n    \"dob\": \"1990-06-01\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
                 "url": {
                   "raw": "{{baseUrl}}/v1/users/:id",
                   "host": ["{{baseUrl}}"],
@@ -2992,9 +3078,35 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/oauth/authorize",
+                  "raw": "{{baseUrl}}/core/v1/oauth/authorize?response_type=code&client_id=CLIENT_ID&redirect_uri=CALLBACK_URL&scope=PLACEHOLDER&code_challenge_method=S256&code_challenge=PLACEHOLDER",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "oauth", "authorize"]
+                  "path": ["core", "v1", "oauth", "authorize"],
+                  "query": [
+                    {
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "CLIENT_ID"
+                    },
+                    {
+                      "key": "redirect_uri",
+                      "value": "CALLBACK_URL"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "PLACEHOLDER"
+                    },
+                    {
+                      "key": "code_challenge_method",
+                      "value": "S256"
+                    },
+                    {
+                      "key": "code_challenge",
+                      "value": "PLACEHOLDER"
+                    }
+                  ]
                 }
               },
               "response": []
@@ -3009,7 +3121,7 @@
                   "urlencoded": [
                     {
                       "key": "client_id",
-                      "value": "",
+                      "value": "CLIENT_ID",
                       "type": "text"
                     },
                     {
@@ -3019,17 +3131,17 @@
                     },
                     {
                       "key": "redirect_uri",
-                      "value": "",
+                      "value": "CALBACK_URL",
                       "type": "text"
                     },
                     {
                       "key": "code",
-                      "value": "",
+                      "value": "PLACEHOLDER",
                       "type": "text"
                     },
                     {
                       "key": "code_verifier",
-                      "value": "",
+                      "value": "PLACEHOLDER",
                       "type": "text"
                     }
                   ]
@@ -3049,7 +3161,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"format\": \"ldp_vc\",\n  \"type\": \"UniversityDegreeCredential\",\n  \"proof\": {\n    \"proof_type\": \"jwt\",\n    \"jwt\": \"YOUR_TOKEN\"\n  }\n}",
+                  "raw": "{\n  \"type\": \"UniversityDegreeCredential\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3071,7 +3183,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"credentials\": [\n    \"6fe6f154-cee5-4cca-8f8d-193fdb1e2f6e\"\n  ]\n}",
+                  "raw": "{\n  \"credentials\": [\n    \"CREDENTIAL_UUID_1\",\n    \"CREDENTIAL_UUID_2\"\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3102,16 +3214,16 @@
           ]
         },
         {
-          "name": "Claim source",
+          "name": "Credential configuration",
           "item": [
             {
-              "name": "Create a claim source",
+              "name": "Create credential configuration",
               "request": {
                 "method": "POST",
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "",
+                  "raw": "{\n   \"name\": \"Course credential\",\n   \"description\": \"This credential shows that the person has attended a course.\",\n   \"type\": \"CourseCredential\",\n   \"additionalTypes\": [\n      \"AlumniCredential\",\n      \"EducationCredential\"\n   ],\n   \"issuer\": {\n      \"name\": \"ABC University\",\n      \"logoUrl\": \"https://example.edu/img/logo.png\",\n      \"iconUrl\": \"https://example.edu/img/icon.png\"\n   },\n   \"credentialBranding\": {\n      \"backgroundColor\": \"#B00AA0\",\n      \"watermarkImageUrl\": \"https://example.edu/img/watermark.png\"\n   },\n   \"claimMappings\": {\n      \"firstName\": {\n          \"defaultValue\": \"No\"\n      },\n      \"lastName\": {\n          \"defaultValue\": \"Idea\"\n      },\n      \"email\": {\n          \"defaultValue\": \"testing@gmail.com\"\n      }\n   },\n   \"persist\": false,\n   \"revocable\": true\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -3119,40 +3231,28 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/claimsources",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "claimsources"]
+                  "path": ["v2", "credentials", "web-semantic", "configurations"]
                 }
               },
               "response": []
             },
             {
-              "name": "Retrieve a list of claim sources",
-              "protocolProfileBehavior": {
-                "disableBodyPruning": true
-              },
+              "name": "Retrieve a list of credential configurations",
               "request": {
                 "method": "GET",
                 "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/claimsources",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "claimsources"]
+                  "path": ["v2", "credentials", "web-semantic", "configurations"]
                 }
               },
               "response": []
             },
             {
-              "name": "Update a claim source",
+              "name": "Update credential configuration",
               "request": {
                 "method": "PUT",
                 "header": [],
@@ -3166,9 +3266,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/claimsources/:id",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "claimsources", ":id"],
+                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -3180,7 +3280,7 @@
               "response": []
             },
             {
-              "name": "Delete a claim source",
+              "name": "Delete a credential configuration",
               "request": {
                 "method": "DELETE",
                 "header": [],
@@ -3194,9 +3294,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v1/claimsources/:id",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v1", "claimsources", ":id"],
+                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
                   "variable": [
                     {
                       "key": "id",
