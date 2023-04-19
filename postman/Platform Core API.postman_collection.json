@@ -1248,6 +1248,102 @@
               "response": []
             }
           ]
+        },
+        {
+          "name": "Credential configuration",
+          "item": [
+            {
+              "name": "Create credential configuration",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n   \"name\": \"Course credential\",\n   \"description\": \"This credential shows that the person has attended a course.\",\n   \"type\": \"CourseCredential\",\n   \"additionalTypes\": [\n      \"AlumniCredential\",\n      \"EducationCredential\"\n   ],\n   \"issuer\": {\n      \"name\": \"ABC University\",\n      \"logoUrl\": \"https://example.edu/img/logo.png\",\n      \"iconUrl\": \"https://example.edu/img/icon.png\"\n   },\n   \"credentialBranding\": {\n      \"backgroundColor\": \"#B00AA0\",\n      \"watermarkImageUrl\": \"https://example.edu/img/watermark.png\"\n   },\n   \"claimMappings\": {\n      \"firstName\": {\n          \"defaultValue\": \"No\"\n      },\n      \"lastName\": {\n          \"defaultValue\": \"Idea\"\n      },\n      \"email\": {\n          \"defaultValue\": \"testing@gmail.com\"\n      }\n   },\n   \"persist\": false,\n   \"revocable\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "web-semantic", "configurations"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Retrieve a list of credential configurations",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "web-semantic", "configurations"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Update credential configuration",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "Delete a credential configuration",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
         }
       ]
     },
@@ -3207,102 +3303,6 @@
                   "raw": "{{baseUrl}}/.well-known/openid-credential-issuer",
                   "host": ["{{baseUrl}}"],
                   "path": [".well-known", "openid-credential-issuer"]
-                }
-              },
-              "response": []
-            }
-          ]
-        },
-        {
-          "name": "Credential configuration",
-          "item": [
-            {
-              "name": "Create credential configuration",
-              "request": {
-                "method": "POST",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n   \"name\": \"Course credential\",\n   \"description\": \"This credential shows that the person has attended a course.\",\n   \"type\": \"CourseCredential\",\n   \"additionalTypes\": [\n      \"AlumniCredential\",\n      \"EducationCredential\"\n   ],\n   \"issuer\": {\n      \"name\": \"ABC University\",\n      \"logoUrl\": \"https://example.edu/img/logo.png\",\n      \"iconUrl\": \"https://example.edu/img/icon.png\"\n   },\n   \"credentialBranding\": {\n      \"backgroundColor\": \"#B00AA0\",\n      \"watermarkImageUrl\": \"https://example.edu/img/watermark.png\"\n   },\n   \"claimMappings\": {\n      \"firstName\": {\n          \"defaultValue\": \"No\"\n      },\n      \"lastName\": {\n          \"defaultValue\": \"Idea\"\n      },\n      \"email\": {\n          \"defaultValue\": \"testing@gmail.com\"\n      }\n   },\n   \"persist\": false,\n   \"revocable\": true\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Retrieve a list of credential configurations",
-              "request": {
-                "method": "GET",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations"]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Update credential configuration",
-              "request": {
-                "method": "PUT",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": null
-                    }
-                  ]
-                }
-              },
-              "response": []
-            },
-            {
-              "name": "Delete a credential configuration",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "body": {
-                  "mode": "raw",
-                  "raw": "",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                },
-                "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/configurations/:id",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "configurations", ":id"],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": null
-                    }
-                  ]
                 }
               },
               "response": []
