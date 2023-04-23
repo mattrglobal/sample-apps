@@ -1,6 +1,6 @@
 {
   "info": {
-    "_postman_id": "d1e85b83-e0a1-4f29-89c6-fb0b1ff28267",
+    "_postman_id": "bb326187-3de0-4e19-b94a-d15f348738eb",
     "name": "MATTR VII API",
     "description": "# Introduction\n\nThe APIs on MATTR VII Platform defines a set of capabilities that can be used to manage a tenant of the MATTR Platform.\n\nThe API can be used to manage Decentralised Identifiers, issue Credentials directly or using OpenID Connect flows, and verify Messages signed with DIDs.\n\n## API Reference Versioning\n\nA previous version of the API Reference can be [accessed here](/api-ref-previous).\n\n# Authorization\n\nAccess to the API is granted by our authorization provider, as part of onboarding you will be provided with client credentials to make a call to the auth provider and receive a bearer token.  \nThis token is then used in an `authorization` header on all calls idenitfied as requiring `bearerAuth` (this is required for the majorty of management operations).\n\n# Pagination\n\nMost list operations in the API use pagination that can be controlled by a cursor method using the `cursor` and `limit` query parameters.\n\n**Example on** [**Retrieve List of Credentials**](#operation/retrieveListCreds)\n\n```\nGET https://tenant.vii.mattr.global/v1/credentials\n?limit=100\n&cursor=Y3JlYXRlZEF0PTIwMjAtMTAtMDhUMjMlM0ExMyUzQTE3Ljg5NtZGUxZWEyNzQ4MWI4\n\n```\n\n- The `nextCursor` is found at the start of each returned range of credential entries and identifies the last object in the list.\n- The `limit` determines how many entries are returned in that request, with a maximum value of 1000.\n    \n\nRequesting a page after the last value in the list will return an empty `data` object.\n\n``` json\n{\n\"data\": []\n}\n\n```\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\nContact Support:  \nEmail: [support@mattr.global](mailto:support@mattr.global)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -790,7 +790,7 @@
           "name": "Credentials",
           "item": [
             {
-              "name": "Create a Verifiable Credential",
+              "name": "Sign a Web Semantic Credential",
               "request": {
                 "method": "POST",
                 "header": [
@@ -801,12 +801,12 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"@context\": [\n    \"https://www.w3.org/2018/credentials/v1\",\n    \"https://schema.org\"\n  ],\n  \"subjectId\": \"did:key:z6Mkvji7zrwyFATXUzGNBSCnrPaZy7H3BWUnihrHvZdkEd9y\",\n  \"type\": [\n    \"VerifiableCredential\",\n    \"AlumniCredential\"\n  ],\n  \"claims\": {\n    \"givenName\": \"Jamie\",\n    \"familyName\": \"Doe\",\n    \"alumniOf\": \"Example University\"\n  },\n  \"issuer\": {\n    \"id\": \"did:key:z6MkjBWPPa1njEKygyr3LR3pRKkqv714vyTkfnUdP6ToFSH5\",\n    \"name\": \"Example University\"\n  },\n  \"persist\": true,\n  \"tag\": \"identifier123\",\n  \"revocable\": true\n}"
+                  "raw": "{\n  \"payload\": {\n    \"name\": \"Course credential\",\n    \"description\": \"This credential shows that the person has attended the mention course and attained the relevant awards.\",\n    \"@context\": [\n      \"https://schema.org\"\n    ],\n    \"type\": [\n      \"EducationalOccupationalCredential\",\n      \"AlumniCredential\"\n    ],\n    \"credentialSubject\": {\n      \"id\": \"did:key:PUBLIC_WALLET_DID\",\n      \"givenName\": \"Jamie\",\n      \"familyName\": \"Doe\",\n      \"alumniOf\": \"Example University\"\n    },\n    \"credentialBranding\": {\n      \"backgroundColor\": \"#B00AA0\",\n      \"watermarkImageUrl\": \"https://example.edu/img/watermark.png\"\n    },\n    \"issuer\": {\n      \"id\": \"did:key:z6MkqicvxviTbN8M9RViT5A1nruaJqc1YVtU8LnyaHgCDCqw\",\n      \"name\": \"https://example.edu/issuers/565049\",\n      \"iconUrl\": \"https://example.edu/icon.svg\",\n      \"logoUrl\": \"https://example.edu/logo.png\"\n    },\n    \"expirationDate\": \"2023-02-01T08:12:38.156Z\"\n  },\n  \"tag\": \"identifier123\",\n  \"persist\": false,\n  \"revocable\": false\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/credentials",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/sign",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "credentials"]
+                  "path": ["v2", "credentials", "web-semantic", "sign"]
                 },
                 "description": "Creates a Verifiable Credential (VC or just Credential) in a JSON-LD format adhering to the [W3C VC Data Model spec]( https://www.w3.org/TR/vc-data-model/).\n\n\n**Creating the Payload:**\n\nThe values required by the operation are validated where available and used to construct the Verifiable Credential.\n\nThe Credential is issued using JSON-LD with linked data proofs, the `type` values of the Credential and the Subject Claims must be represented by a schema in `@context`.\n> The schema `https://www3.org/2018/credentials/v1` is always required in addition any `@context` values, so that the Credential can be referenced.\n\n> The `type` value of `VerifiableCredential` must be used as the *first* value in the array to conform to the [W3C VC Data Model spec]( https://www.w3.org/TR/vc-data-model/).\n\n**Subject Identifiers**\n\nIn general, the Subject identifier in the `subjectId` field should have been authentically bound to the subject and authenticated against the information used in the claims, for example by using an OpenID Connect authentication flow or another mechanism including out-of-band processes.\n\nCredentials may be issued without subject identifiers, this covers uses-cases, where the credential cannot or does not need to be adequately bound to a Subject DID and may be treated as a bearer credential or reissued at a later time once the credential can be bound.\n\n**ZKP-enabled BBS+ credential:**\n\nIf you wish to issue a ZKP-enabled Verifiable Credential, the provided `issuer` `id` must be a did:key with a key type of bls12381g2. The platform will automatically detect this capability and issue a ZKP-enabled BBS+ credential. Note that the schema `https://w3c-ccg.github.io/ldp-bbs2020/context/v1` will automatically be added to the `@context` in the credential.\n\n> During Preview this feature is experimental. It may change over time and may require credentials to be reissued.\n\n**Credential meta-data:**\n\nSetting the `persist` value to `true` will store the entire credential contents as well as the meta-data on the platform. If set to `false` only the credential meta-data is held on the platform:\n- `id`\n- `tag` (optional)\n- `credentialStatus` (optional)\n- `issuanceDate`\n\nThe optional `tag` value can be used to externally reference the issued credential.\n\n#### Returns\nOn success, the Verifiable Credential is always provided in the response along with meta-data.\nSubject bound credential should be delivered to the intended subject.\n"
               },
@@ -818,9 +818,9 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/credentials",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "credentials"]
+                  "path": ["v2", "credentials", "web-semantic"]
                 },
                 "description": "Returns a list of all credential data stored in the tenant.\n\n**In the list**\n\nInside the `data` array, there is an body for each credential issued on the platform, in addition to the `id` the body will contain optionally added meta-data and may contain the entire credential contents if `persist` was invoked during credential creation.\n\n> Credentials issued via the OIDC Bridge are set not to be persisted.\n\n**Pagination**\n\nPagination can be controlled by a cursor method using the `cursor`and `limit` query parameters. The `nextCursor` is found at the start of each returned range of credential entries and the `limit` determines how many entries are returned in that request, with a maximum value of `1000`.\n\nNot using a query parameter defaults the response to return the first range of credential entries with a limit of 100.\n\n> The optional `tag` filter or the Credential `type` can be used to retrieve credential data.\n"
               },
@@ -832,14 +832,13 @@
                 "method": "GET",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/credentials/:id",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "credentials", ":id"],
+                  "path": ["v2", "credentials", "web-semantic", ":id"],
                   "variable": [
                     {
                       "key": "id",
-                      "value": "<string>",
-                      "description": "(Required) Credential ID"
+                      "value": null
                     }
                   ]
                 },
@@ -848,28 +847,7 @@
               "response": []
             },
             {
-              "name": "Remove Credential Data",
-              "request": {
-                "method": "DELETE",
-                "header": [],
-                "url": {
-                  "raw": "{{baseUrl}}/core/v1/credentials/:id",
-                  "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "credentials", ":id"],
-                  "variable": [
-                    {
-                      "key": "id",
-                      "value": "<string>",
-                      "description": "(Required) Credential ID"
-                    }
-                  ]
-                },
-                "description": "Remove all stored credential data from the tenant using its ID.\n\n> The entire entry including meta-data and the credential contents is removed from the system and cannot be recovered."
-              },
-              "response": []
-            },
-            {
-              "name": "Verify a Credential",
+              "name": "Verify a Web Semantic Credential",
               "request": {
                 "method": "POST",
                 "header": [
@@ -880,14 +858,34 @@
                 ],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"credential\": {\n    \"@context\": [\n      \"https://www.w3.org/2018/credentials/v1\",\n      \"https://www.w3.org/2018/credentials/examples/v1\"\n    ],\n    \"type\": [\n      \"VerifiableCredential\",\n      \"AlumniCredential\"\n    ],\n    \"issuer\": {\n      \"id\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\",\n      \"name\": \"Example University\"\n    },\n    \"issuanceDate\": \"2020-05-02T12:06:29.156Z\",\n    \"credentialStatus\": {\n      \"id\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3#1\",\n      \"type\": \"RevocationList2020Status\",\n      \"revocationListIndex\": 1,\n      \"revocationListCredential\": \"https://tenant.vii.mattr.global/core/v1/revocation-lists/cc641396-3750-43c8-b8b8-f30d74eb3fb3\"\n    },\n    \"credentialSubject\": {\n      \"id\": \"did:example:abcdb1f712ebc6f1c276e12ec21\",\n      \"givenName\": \"Jamie\",\n      \"familyName\": \"Doe\"\n    },\n    \"proof\": {\n      \"type\": \"Ed25519Signature2018\",\n      \"created\": \"2020-05-02T12:06:29Z\",\n      \"jws\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c\",\n      \"proofPurpose\": \"assertionMethod\",\n      \"verificationMethod\": \"did:issuer:abcdb1f712ebc6f1c276e12ec21\"\n    },\n    \"name\": \"Course credential\",\n    \"description\": \"This credential shows that the person has attended the mention course and attained the relevant awards.\"\n  }\n}"
+                  "raw": "{\n    \"payload\": {}\n}"
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/credentials/verify",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/verify",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "credentials", "verify"]
+                  "path": ["v2", "credentials", "web-semantic", "verify"]
                 },
                 "description": "Send any JSON-LD Verifiable Credential that conforms to the [W3C Verifiable Credentials data model](https://www.w3.org/TR/vc-data-model/) to perform verification checks and return a response:\n- Issuer DID can be resolved\n- JSON-LD context is valid for subject claims\n- Proof is valid & the credential has not been tampered with\n- Is not in a revoked status on a RevocationList2020\nThis endpoint can be used to check any Credential issued by any service provider."
+              },
+              "response": []
+            },
+            {
+              "name": "Remove Credential Data",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/:id",
+                  "host": ["{{baseUrl}}"],
+                  "path": ["v2", "credentials", "web-semantic", ":id"],
+                  "variable": [
+                    {
+                      "key": "id",
+                      "value": null
+                    }
+                  ]
+                },
+                "description": "Remove all stored credential data from the tenant using its ID.\n\n> The entire entry including meta-data and the credential contents is removed from the system and cannot be recovered."
               },
               "response": []
             }
