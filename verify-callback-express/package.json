@@ -4,11 +4,10 @@
   "description": "A sample app tool that works with the MATTR platform to verify credential presentations",
   "main": "verify-callback-express.js",
   "dependencies": {
-    "got": "^11.8.0",
-    "jsonwebtoken": "^8.5.1",
-    "express": "^4.17.1",
-    "ngrok": "^3.3.0",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "ngrok": "^5.0.0-beta.2",
     "qrcode": "^1.4.4"
   },
   "devDependencies": {},
@@ -29,5 +28,6 @@
   "bugs": {
     "url": "https://github.com/mattrglobal/sample-apps/issues"
   },
-  "homepage": "https://github.com/mattrglobal/sample-apps#readme"
+  "homepage": "https://github.com/mattrglobal/sample-apps#readme",
+  "type": "module"
 }
