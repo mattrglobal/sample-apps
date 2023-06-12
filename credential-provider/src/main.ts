@@ -12,6 +12,8 @@ import { CoreController } from './controllers/core.controller';
 import { CoreService } from './services/core.service';
 import { MattrService } from './services/mattr.service';
 import { AppConfig } from './validators/env.validator';
+import { createResponseToken } from './common/helpers';
+// import * as hbs from 'handlebars';
 
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -19,6 +21,7 @@ const bootstrap = async () => {
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
+  // app.engine('hbs', hbs({ extname: 'hbs', helpers: createResponseToken }));
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('MATTR Sample App - Credential Provider')
@@ -26,7 +29,8 @@ const bootstrap = async () => {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
-  const port = parseInt(process.env.PORT) || 3000;
+  // const port = parseInt(process.env.PORT) || 3000;
+  const port = 1234;
   await app.listen(port);
 
   const appConfig = new ConfigService<AppConfig>();
@@ -44,8 +48,14 @@ const bootstrap = async () => {
   const jwtService = new JwtService();
   const mattrService = new MattrService(configService, httpService);
   const coreService = new CoreService(mattrService, configService, jwtService);
-  const coreController = new CoreController(coreService);
-  coreController.createQrCodeUrl({ ngrokUrl });
+  // const coreController = new CoreController(coreService);
+  // coreController.createQrCodeUrl({ ngrokUrl });
+
+  console.log(`Decoding JWT`);
+  const token = ``;
+  // console.log(`token - ${token}`);
+  const decoded = createResponseToken(token);
+  console.log(`decoded -> ${JSON.stringify(decoded)}`);
 };
 
 bootstrap();

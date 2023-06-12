@@ -78,6 +78,8 @@
         </div>
       <br>
       <button type="button" onclick="redirectToWallet()" class="btn btn-primary btn-lg">Verify</button>
+      {{!-- createResponseToken --}}
+      {{!-- <button type="button" onclick={} class="btn btn-primary btn-lg">Verify</button> --}}
     </div>
   </body>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
@@ -111,9 +113,11 @@
     const redirectToWallet = () => {
       console.log(`Getting redirectUrl`);
 
+      const responseToken = '';
+
       // redirectUrl needs a jwt as session_token as a query parameter
-      // For simplicity, we can keep use the same jwt as we got from the session_token from the URL that took us onto this page
-      location.replace(`${redirectUrl}?session_token=${jwt}`);
+      const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
+      location.replace(`${redirectUrl}?session_token=${callbackUrl}`);
     };
   </script>
 </html>

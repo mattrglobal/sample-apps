@@ -36,6 +36,22 @@ export class CoreService {
     return res;
   }
 
+  public decodeJwt(token: string) {
+    try {
+      return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+      return null;
+    }
+  }
+
+  public createResponseToken(token: string) {
+    return this.decodeJwt(token);
+  }
+
+  public logMsg(msg: string) {
+    return msg.toUpperCase();
+  }
+
   public get TOKEN(): string {
     return this.config.get('MATTR_AUTH_TOKEN');
   }
