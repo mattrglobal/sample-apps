@@ -2,6 +2,7 @@ import { logger } from '@/common/helpers';
 import { users } from '@/constants/claim-source';
 import { CreateClaimSourceReqBody } from '@/types/create-claim-source.args';
 import { CreateCredentialConfigReqBody } from '@/types/create-credential-config.req.body';
+import { CreateResponseTokenArgs } from '@/types/create-response-token.args';
 import { AuthProvider } from '@/types/get-auth-providers.res.body';
 import { GetUserArgs } from '@/types/get-user.args';
 import { SetupInteractionHookArgs } from '@/types/setuup-interacton-hook.args';
@@ -44,8 +45,25 @@ export class CoreService {
     }
   }
 
-  public createResponseToken(token: string) {
-    return this.decodeJwt(token);
+  /**
+   * Performs the following to create response token for interaction-hook
+   *
+   * 1. Get secret from interaction-hook config - MattrService.getOpenIdConfig() -> res.data.secret
+   * 2. Get tenant_domain from ENV/config -> issuer
+   * 3. Get URL for interaction-hook UI -> NGROK_URL/core/2fa -> audience
+   * 4. Validate session_token using info above -> verifyResult
+   * 5. Extract state & redirectUrl from verifyResult.payload
+   * 6. Create responseTokenPayload using state & any claims
+   * 7. Create responseToken using SignJWT(...etc)
+   * 8. Construct callbackUrl for redirect on interaction-hook
+   * 9 Return callbackUrl
+   * @param CreateResponseTokenArgs
+   * @returns string
+   */
+  public createResponseToken(args: CreateResponseTokenArgs) {
+    const { session_token } = args;
+    // TO_BE_DONE
+    return session_token;
   }
 
   public logMsg(msg: string) {
