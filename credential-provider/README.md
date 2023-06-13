@@ -198,21 +198,30 @@ sequenceDiagram
 
     HOLDER ->> IH: Redirects user to interaction-hook page for 2FA/MFA/biometric checks
     note over IH: Extracts 'session_token' and 'secret' from URL
-    IH ->> ISSUER: Retrieve details for token validation
-    ISSUER ->> MATTR: Get interacton hook details
-    note over ISSUER, MATTR: GET MATTR_URL/core/v1/openid/configuration
-    MATTR -->> ISSUER: Response - interaction hook setup
-    note over ISSUER: Extract 'secret' from interaction hook setup
-    note over ISSUER: Extract 'tenant_domain' as'issuer' 
-    ISSUER -->> IH: Response - { tenant_domain, secret }
+    IH ->> ISSUER: Create callback URL
+    note over IH, ISSUER: APP_URL/core/2fa?session_token=ONE_TIME_JWT
 
-    note over IH: Construct URL for interaction-hook UI as 'audience'
-    note over IH: Validate session_token using verifyResult = jwtVerify(session_token, secret, { issuer: `https:${tenant_domain}`, audience: `${app_url}/core/2fa` })
-    note over IH: Extract `state` and `redirectUrl` from verifyResult.payload
-    note over IH: Create `responseTokenPayload` using `state` and any additional`claims`
-    note over IH: Create `responseToken` using new SignJWT(responseTokenPayload).setProtectedHeader({ alg: "HS256", typ: "JWT" }).setIssuedAt().setExpirationTime("1m").sign(secret);
-    note over IH: Construct callbackUrl using `${redirectUrl}?session_token=${responseToken}`
-    IH -->> HOLDER: Verifies session_token & redirects user to callbackUrl (MW)
+    par Get 'secret' from interacton hook
+      ISSUER ->> MATTR: Get interacton hook details
+      note over ISSUER, MATTR: GET MATTR_URL/core/v1/openid/configuration
+      MATTR -->> ISSUER: Response - interaction hook setup
+      note over ISSUER: Extract 'secret' from interaction hook setup
+
+    and Validate session_token
+      note over ISSUER: Decode session_token -> DECODED
+      note over ISSUER: Extract DECODED.iss as 'issuer', DECODED.aud as 'audience'
+    end
+
+    note over ISSUER: Validate session_token using jwtVerify -> verifyResult
+    note over ISSUER: Extract `state` and `redirectUrl` from verifyResult.payload
+    note over ISSUER: Create `responseTokenPayload` using `state` and any additional`claims`
+    
+    note over ISSUER: Create `responseToken` using new SignJWT(responseTokenPayload)
+    note over ISSUER: Construct callbackUrl using `${redirectUrl}?session_token=${responseToken}`
+    ISSUER -->> IH: Return callbackUrl to controller for template file to render on button (if session_token is verified)
+    
+    HOLDER ->> IH: Clicks button to verify  & proceed
+    IH -->> HOLDER: Redirects user to callbackUrl (MW)
 ```
 
 ## 🤖 Where to get your [Swagger UI](https://swagger.io/tools/swagger-ui/) for this sample app?
