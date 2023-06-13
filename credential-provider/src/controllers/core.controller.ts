@@ -47,7 +47,7 @@ export class CoreController {
      * 4. Render template when callbackUrl is created
      */
     const session_token = req.query.session_token as string;
-    this.logger.warn(`Extracted session_token --> ${session_token}`);
+    this.logger.debug(`Extracted session_token --> ${session_token}`);
     const callbackUrl = await this.coreService.createResponseToken({
       session_token,
     });
