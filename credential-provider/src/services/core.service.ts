@@ -38,14 +38,6 @@ export class CoreService {
     return res;
   }
 
-  public decodeJwt(token: string) {
-    try {
-      return JSON.parse(atob(token.split('.')[1]));
-    } catch (e) {
-      return null;
-    }
-  }
-
   /**
    * Performs the following to create response token for interaction-hook
    *
