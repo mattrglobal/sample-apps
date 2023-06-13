@@ -2,7 +2,11 @@ import { logger } from '@/common/helpers';
 import { users } from '@/constants/claim-source';
 import { CreateClaimSourceReqBody } from '@/types/create-claim-source.args';
 import { CreateCredentialConfigReqBody } from '@/types/create-credential-config.req.body';
-import { CreateCallbackUrlArgs } from '@/types/create-response-token.args';
+import {
+  CreateCallbackUrlArgs,
+  CreateInteractionHookResponseTokenArgs,
+  VerifyInteractionHookTokenArgs,
+} from '@/types/create-callback-url';
 import { AuthProvider } from '@/types/get-auth-providers.res.body';
 import { GetUserArgs } from '@/types/get-user.args';
 import { SetupInteractionHookArgs } from '@/types/setuup-interacton-hook.args';
@@ -39,28 +43,22 @@ export class CoreService {
   }
 
   /**
-   * Performs the following to create response token for interaction-hook
+   * Performs the following to create callback URL for interaction-hook containing a new response token
    *
-   * 1. Get secret from interaction-hook config - MattrService.getOpenIdConfig() -> res.data.secret
-   * 2. Get tenant_domain from ENV/config -> issuer
-   * 3. Get URL for interaction-hook UI -> NGROK_URL/core/2fa -> audience
-   * 4. Validate session_token using info above -> verifyResult
-   * 5. Extract state & redirectUrl from verifyResult.payload
-   * 6. Create responseTokenPayload using state & any claims
-   * 7. Create responseToken using SignJWT(...etc)
-   * 8. Construct callbackUrl for redirect on interaction-hook
-   * 9 Return callbackUrl
+   * 1. Verify session_token
+   * 2. Create responseToken
+   * 3. Construct & return callbackUrl for redirect on interaction-hook
    * @param CreateCallbackUrlArgs
    * @returns string
    * @example
-   * await createResponseToken({
+   * await createCallbackUrl({
    *   session_token: "ONE_TIME_JWT_TOKEN",
    * })
    */
   public async createCallbackUrl(args: CreateCallbackUrlArgs): Promise<string> {
     const { session_token } = args;
 
-    const secret = await this.getInteractionhookSecret();
+    const secret = await this.getInteractionHookSecret();
 
     const verifiedJwt = await this.verifyInteractionHookToken({
       session_token,
@@ -73,6 +71,8 @@ export class CoreService {
       secret,
     });
 
+    /** The verifiedJwt will have redirectUrl inside its payload
+     * which is additional to the types returned by default JWTVerifyResult */
     const { redirectUrl } = verifiedJwt.payload;
 
     const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
@@ -82,7 +82,7 @@ export class CoreService {
     return callbackUrl;
   }
 
-  public async getInteractionhookSecret() {
+  public async getInteractionHookSecret() {
     const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({
       token: this.config.get('MATTR_AUTH_TOKEN'),
     });
@@ -90,10 +90,9 @@ export class CoreService {
     return Buffer.from(encodedSecret, 'base64');
   }
 
-  public async verifyInteractionHookToken(args: {
-    session_token: string;
-    secret: Buffer;
-  }): Promise<JWTVerifyResult> {
+  public async verifyInteractionHookToken(
+    args: VerifyInteractionHookTokenArgs,
+  ): Promise<JWTVerifyResult> {
     const { session_token, secret } = args;
 
     const decoded = decodeJwt(session_token);
@@ -111,26 +110,24 @@ export class CoreService {
     return verifyResult;
   }
 
-  public async createInteractionHookResponseToken(args: {
-    session_token: string;
-    verifiedJwt: JWTVerifyResult;
-    secret: Buffer;
-  }): Promise<string> {
+  public async createInteractionHookResponseToken(
+    args: CreateInteractionHookResponseTokenArgs,
+  ): Promise<string> {
     const { verifiedJwt, session_token, secret } = args;
-    const { state } = verifiedJwt.payload;
-    const decoded = decodeJwt(session_token);
-    const audience = decoded.aud as string;
-    const issuer = decoded.iss;
     const responseTokenPayload = {
       /**
        * IMPORTANT: The state must be signed to prevent CSRF attacks.
        */
-      state,
+      state: verifiedJwt.payload,
       /**
        * The claims to be merged is optional.
        */
       claims: {},
     };
+
+    const decoded = decodeJwt(session_token);
+    const audience = decoded.aud as string;
+    const issuer = decoded.iss;
     const responseToken = await new SignJWT(responseTokenPayload)
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .setIssuedAt()
