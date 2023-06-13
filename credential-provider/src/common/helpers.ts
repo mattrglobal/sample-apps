@@ -14,11 +14,3 @@ export const addYears = (date: Date, years: number): Date => {
   date.setFullYear(date.getFullYear() + years);
   return date;
 };
-
-export const createResponseToken = (token: string): string => {
-  try {
-    return JSON.parse(atob(token.split('.')[1]));
-  } catch (e) {
-    return null;
-  }
-};

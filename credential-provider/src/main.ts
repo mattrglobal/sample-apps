@@ -12,7 +12,6 @@ import { CoreController } from './controllers/core.controller';
 import { CoreService } from './services/core.service';
 import { MattrService } from './services/mattr.service';
 import { AppConfig } from './validators/env.validator';
-import { createResponseToken } from './common/helpers';
 // import * as hbs from 'handlebars';
 
 const bootstrap = async () => {
@@ -29,8 +28,8 @@ const bootstrap = async () => {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
-  // const port = parseInt(process.env.PORT) || 3000;
-  const port = 1234;
+  const port = parseInt(process.env.PORT) || 3000;
+  // const port = 1234;
   await app.listen(port);
 
   const appConfig = new ConfigService<AppConfig>();
@@ -52,10 +51,12 @@ const bootstrap = async () => {
   // coreController.createQrCodeUrl({ ngrokUrl });
 
   console.log(`Decoding JWT`);
-  const token = ``;
-  // console.log(`token - ${token}`);
-  const decoded = createResponseToken(token);
-  console.log(`decoded -> ${JSON.stringify(decoded)}`);
+  const session_token = ``;
+  const callbackUrl = await coreService.createResponseToken({
+    session_token,
+    app_url: `${ngrokUrl}/core/2fa`,
+  });
+  logger.log(`callbackUrl -> ${callbackUrl}`);
 };
 
 bootstrap();
