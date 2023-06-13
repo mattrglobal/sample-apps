@@ -47,16 +47,15 @@ const bootstrap = async () => {
   const jwtService = new JwtService();
   const mattrService = new MattrService(configService, httpService);
   const coreService = new CoreService(mattrService, configService, jwtService);
-  // const coreController = new CoreController(coreService);
-  // coreController.createQrCodeUrl({ ngrokUrl });
+  const coreController = new CoreController(coreService);
+  coreController.createQrCodeUrl({ ngrokUrl });
 
-  console.log(`Decoding JWT`);
-  const session_token = ``;
-  const callbackUrl = await coreService.createResponseToken({
-    session_token,
-    app_url: `${ngrokUrl}/core/2fa`,
-  });
-  logger.log(`callbackUrl -> ${callbackUrl}`);
+  // console.log(`Decoding JWT`);
+  // const session_token = ``;
+  // const callbackUrl = await coreService.createResponseToken({
+  //   session_token,
+  // });
+  // logger.log(`callbackUrl -> ${callbackUrl}`);
 };
 
 bootstrap();

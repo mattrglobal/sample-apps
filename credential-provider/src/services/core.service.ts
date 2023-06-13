@@ -68,8 +68,6 @@ export class CoreService {
    */
   public async createResponseToken(args: CreateResponseTokenArgs) {
     const { session_token } = args;
-    const issuer = `https://${this.config.get('MATTR_TENANT')}`;
-    this.logger.log(`issuer > ${issuer}`);
 
     const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({
       token: this.config.get('MATTR_AUTH_TOKEN'),
@@ -79,7 +77,10 @@ export class CoreService {
     const secret = Buffer.from(encodedSecret, 'base64');
     this.logger.log(`secret -> ${JSON.stringify(secret)}`);
 
-    const audience = args.app_url;
+    const decoded = decodeJwt(session_token);
+    const audience = decoded.aud as string;
+    const issuer = decoded.iss;
+    this.logger.log(`issuer > ${issuer}`);
     const verifyResult = await jwtVerify(session_token, secret, {
       issuer,
       audience,
@@ -105,6 +106,8 @@ export class CoreService {
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .setIssuedAt()
       .setExpirationTime('1m')
+      .setIssuer(audience as string)
+      .setAudience(decoded.iss)
       .sign(secret);
 
     this.logger.log('Generated response session token', {
