@@ -126,14 +126,14 @@ export class CoreService {
     };
 
     const decoded = decodeJwt(session_token);
-    const audience = decoded.aud as string;
-    const issuer = decoded.iss;
+    const issuer = decoded.aud as string;
+    const audience = decoded.iss;
     const responseToken = await new SignJWT(responseTokenPayload)
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .setIssuedAt()
       .setExpirationTime('1m')
-      .setIssuer(audience)
-      .setAudience(issuer)
+      .setIssuer(issuer)
+      .setAudience(audience)
       .sign(secret);
 
     this.logger.log(
