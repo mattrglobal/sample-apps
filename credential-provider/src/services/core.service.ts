@@ -84,7 +84,7 @@ export class CoreService {
 
   public async getInteractionHookSecret(): Promise<Buffer> {
     const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({
-      token: this.config.get('MATTR_AUTH_TOKEN'),
+      token: this.TOKEN,
     });
     const encodedSecret = getOpenIdConfigRes.data.interactionHook.secret;
     return Buffer.from(encodedSecret, 'base64');
