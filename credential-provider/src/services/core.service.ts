@@ -114,6 +114,10 @@ export class CoreService {
     args: CreateInteractionHookResponseTokenArgs,
   ): Promise<string> {
     const { verifiedJwt, session_token, secret } = args;
+    const decoded = decodeJwt(session_token);
+    const issuer = decoded.aud as string;
+    const audience = decoded.iss;
+
     const responseTokenPayload = {
       /**
        * IMPORTANT: The state must be signed to prevent CSRF attacks.
@@ -122,12 +126,12 @@ export class CoreService {
       /**
        * The claims to be merged is optional.
        */
-      claims: {},
+      claims: {
+        issuer,
+        audience,
+      },
     };
 
-    const decoded = decodeJwt(session_token);
-    const issuer = decoded.aud as string;
-    const audience = decoded.iss;
     const responseToken = await new SignJWT(responseTokenPayload)
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .setIssuedAt()
