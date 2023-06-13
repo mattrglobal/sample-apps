@@ -12,7 +12,6 @@ import { CoreController } from './controllers/core.controller';
 import { CoreService } from './services/core.service';
 import { MattrService } from './services/mattr.service';
 import { AppConfig } from './validators/env.validator';
-// import * as hbs from 'handlebars';
 
 const bootstrap = async () => {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -20,7 +19,6 @@ const bootstrap = async () => {
   app.useStaticAssets(join(__dirname, '..', 'public'));
   app.setBaseViewsDir(join(__dirname, '..', 'views'));
   app.setViewEngine('hbs');
-  // app.engine('hbs', hbs({ extname: 'hbs', helpers: createResponseToken }));
 
   const swaggerConfig = new DocumentBuilder()
     .setTitle('MATTR Sample App - Credential Provider')

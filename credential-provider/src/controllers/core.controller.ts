@@ -6,9 +6,9 @@ import {
   Body,
   Controller,
   Get,
+  Logger,
   Post,
   Query,
-  Render,
   Req,
   Res,
   UseGuards,
@@ -18,6 +18,8 @@ import { Request, Response } from 'express';
 
 @Controller('core')
 export class CoreController {
+  private readonly logger = new Logger(CoreController.name);
+
   constructor(private readonly coreService: CoreService) {}
 
   @Post('qrcode')
@@ -45,7 +47,7 @@ export class CoreController {
      * 4. Render template when callbackUrl is created
      */
     const session_token = req.query.session_token as string;
-    console.log(`session_token --> ${session_token}`);
+    this.logger.warn(`Extracted session_token --> ${session_token}`);
     const callbackUrl = await this.coreService.createResponseToken({
       session_token,
     });
