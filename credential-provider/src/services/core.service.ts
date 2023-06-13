@@ -114,14 +114,13 @@ export class CoreService {
       payload: decodeJwt(responseToken),
     });
 
-    /**
-     * Redirect user to the callback URL
-     */
     const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
     this.logger.log(
-      'Finished processing Interaction Hook request, redirecting user',
-      { callbackUrl },
+      `Finished processing Interaction Hook request, redirecting user to ${callbackUrl}`,
     );
+    /**
+     * Return callbackUrl so that view template can initiate redirecting user
+     */
     return callbackUrl;
   }
 
