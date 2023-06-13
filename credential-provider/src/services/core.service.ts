@@ -54,11 +54,12 @@ export class CoreService {
    * @returns string
    * @example
    * await createResponseToken({
-   *   session_token: "",
-   *   app_url: "APP_URL/core/2fa"
+   *   session_token: "ONE_TIME_JWT_TOKEN",
    * })
    */
-  public async createResponseToken(args: CreateResponseTokenArgs) {
+  public async createResponseToken(
+    args: CreateResponseTokenArgs,
+  ): Promise<string> {
     const { session_token } = args;
 
     const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({

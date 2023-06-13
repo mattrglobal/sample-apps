@@ -29,7 +29,6 @@ const bootstrap = async () => {
   SwaggerModule.setup('api', app, document);
 
   const port = parseInt(process.env.PORT) || 3000;
-  // const port = 1234;
   await app.listen(port);
 
   const appConfig = new ConfigService<AppConfig>();
@@ -49,13 +48,6 @@ const bootstrap = async () => {
   const coreService = new CoreService(mattrService, configService, jwtService);
   const coreController = new CoreController(coreService);
   coreController.createQrCodeUrl({ ngrokUrl });
-
-  // console.log(`Decoding JWT`);
-  // const session_token = ``;
-  // const callbackUrl = await coreService.createResponseToken({
-  //   session_token,
-  // });
-  // logger.log(`callbackUrl -> ${callbackUrl}`);
 };
 
 bootstrap();
