@@ -68,7 +68,6 @@ export class CoreService {
     const encodedSecret = getOpenIdConfigRes.data.interactionHook.secret;
     this.logger.log(`res.data.interactionHook.secret  -> ${encodedSecret}`);
     const secret = Buffer.from(encodedSecret, 'base64');
-    this.logger.log(`secret -> ${JSON.stringify(secret)}`);
 
     const decoded = decodeJwt(session_token);
     const audience = decoded.aud as string;
