@@ -42,7 +42,7 @@ export class CoreController {
      * Renderer for interaction-hook page
      *
      * 1. Extracts session_token from query param
-     * 2. Calls CoreService.createResponseToken({ session_token }) -> callbackUrl
+     * 2. Calls CoreService.createCallbackUrl({ session_token }) -> callbackUrl
      * 3. Embed callbackUrl into object for template to map
      * 4. Render template when callbackUrl is created
      */
