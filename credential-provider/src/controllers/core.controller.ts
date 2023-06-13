@@ -48,7 +48,7 @@ export class CoreController {
      */
     const session_token = req.query.session_token as string;
     this.logger.debug(`Extracted session_token --> ${session_token}`);
-    const callbackUrl = await this.coreService.createResponseToken({
+    const callbackUrl = await this.coreService.createCallbackUrl({
       session_token,
     });
     return res.render('2fa', { callbackUrl });

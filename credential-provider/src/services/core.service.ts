@@ -2,7 +2,7 @@ import { logger } from '@/common/helpers';
 import { users } from '@/constants/claim-source';
 import { CreateClaimSourceReqBody } from '@/types/create-claim-source.args';
 import { CreateCredentialConfigReqBody } from '@/types/create-credential-config.req.body';
-import { CreateResponseTokenArgs } from '@/types/create-response-token.args';
+import { CreateCallbackUrlArgs } from '@/types/create-response-token.args';
 import { AuthProvider } from '@/types/get-auth-providers.res.body';
 import { GetUserArgs } from '@/types/get-user.args';
 import { SetupInteractionHookArgs } from '@/types/setuup-interacton-hook.args';
@@ -13,7 +13,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { MattrService } from './mattr.service';
-import { jwtVerify, decodeJwt, SignJWT } from 'jose';
+import { jwtVerify, decodeJwt, SignJWT, JWTVerifyResult } from 'jose';
 
 @Injectable()
 export class CoreService {
@@ -50,24 +50,51 @@ export class CoreService {
    * 7. Create responseToken using SignJWT(...etc)
    * 8. Construct callbackUrl for redirect on interaction-hook
    * 9 Return callbackUrl
-   * @param CreateResponseTokenArgs
+   * @param CreateCallbackUrlArgs
    * @returns string
    * @example
    * await createResponseToken({
    *   session_token: "ONE_TIME_JWT_TOKEN",
    * })
    */
-  public async createResponseToken(
-    args: CreateResponseTokenArgs,
-  ): Promise<string> {
+  public async createCallbackUrl(args: CreateCallbackUrlArgs): Promise<string> {
     const { session_token } = args;
 
+    const secret = await this.getInteractionhookSecret();
+
+    const verifiedJwt = await this.verifyInteractionHookToken({
+      session_token,
+      secret,
+    });
+
+    const responseToken = await this.createInteractionHookResponseToken({
+      session_token,
+      verifiedJwt,
+      secret,
+    });
+
+    const { redirectUrl } = verifiedJwt.payload;
+
+    const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
+    this.logger.log(
+      `Finished processing Interaction Hook request, user will be redirected to ${callbackUrl}`,
+    );
+    return callbackUrl;
+  }
+
+  public async getInteractionhookSecret() {
     const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({
       token: this.config.get('MATTR_AUTH_TOKEN'),
     });
     const encodedSecret = getOpenIdConfigRes.data.interactionHook.secret;
-    this.logger.log(`res.data.interactionHook.secret  -> ${encodedSecret}`);
-    const secret = Buffer.from(encodedSecret, 'base64');
+    return Buffer.from(encodedSecret, 'base64');
+  }
+
+  public async verifyInteractionHookToken(args: {
+    session_token: string;
+    secret: Buffer;
+  }): Promise<JWTVerifyResult> {
+    const { session_token, secret } = args;
 
     const decoded = decodeJwt(session_token);
     const audience = decoded.aud as string;
@@ -81,9 +108,19 @@ export class CoreService {
       throw new Error('Invalid session token');
     });
     this.logger.log('Verified session token', verifyResult);
+    return verifyResult;
+  }
 
-    const { state, redirectUrl } = verifyResult.payload;
-
+  public async createInteractionHookResponseToken(args: {
+    session_token: string;
+    verifiedJwt: JWTVerifyResult;
+    secret: Buffer;
+  }): Promise<string> {
+    const { verifiedJwt, session_token, secret } = args;
+    const { state } = verifiedJwt.payload;
+    const decoded = decodeJwt(session_token);
+    const audience = decoded.aud as string;
+    const issuer = decoded.iss;
     const responseTokenPayload = {
       /**
        * IMPORTANT: The state must be signed to prevent CSRF attacks.
@@ -98,7 +135,7 @@ export class CoreService {
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .setIssuedAt()
       .setExpirationTime('1m')
-      .setIssuer(audience as string)
+      .setIssuer(audience)
       .setAudience(issuer)
       .sign(secret);
 
@@ -107,15 +144,7 @@ export class CoreService {
         decodeJwt(responseToken),
       )}`,
     );
-
-    const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
-    this.logger.log(
-      `Finished processing Interaction Hook request, user will be redirected to ${callbackUrl}`,
-    );
-    /**
-     * Return callbackUrl so that view template can initiate redirecting user
-     */
-    return callbackUrl;
+    return responseToken;
   }
 
   public get TOKEN(): string {

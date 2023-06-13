@@ -1,3 +1,3 @@
-export type CreateResponseTokenArgs = {
+export type CreateCallbackUrlArgs = {
   session_token: string;
 };
