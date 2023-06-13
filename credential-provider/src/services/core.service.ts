@@ -100,16 +100,18 @@ export class CoreService {
       .setIssuedAt()
       .setExpirationTime('1m')
       .setIssuer(audience as string)
-      .setAudience(decoded.iss)
+      .setAudience(issuer)
       .sign(secret);
 
-    this.logger.log('Generated response session token', {
-      payload: decodeJwt(responseToken),
-    });
+    this.logger.log(
+      `Generated response session token --> ${JSON.stringify(
+        decodeJwt(responseToken),
+      )}`,
+    );
 
     const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
     this.logger.log(
-      `Finished processing Interaction Hook request, redirecting user to ${callbackUrl}`,
+      `Finished processing Interaction Hook request, user will be redirected to ${callbackUrl}`,
     );
     /**
      * Return callbackUrl so that view template can initiate redirecting user
