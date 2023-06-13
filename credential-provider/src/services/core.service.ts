@@ -82,7 +82,7 @@ export class CoreService {
     return callbackUrl;
   }
 
-  public async getInteractionHookSecret() {
+  public async getInteractionHookSecret(): Promise<Buffer> {
     const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({
       token: this.config.get('MATTR_AUTH_TOKEN'),
     });
