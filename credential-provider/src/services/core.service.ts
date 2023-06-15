@@ -115,17 +115,14 @@ export class CoreService {
   ): Promise<string> {
     const { verifiedJwt, session_token, secret } = args;
     const decoded = decodeJwt(session_token);
-    const issuer = decoded.aud as string;
-    const audience = decoded.iss;
+    const issuer = decoded.aud as string; // Sample app is the issuer of responseToken
+    const audience = decoded.iss; // Platform is the audience of the responseToken
 
     const responseTokenPayload = {
-      /**
-       * IMPORTANT: The state must be signed to prevent CSRF attacks.
-       */
-      state: verifiedJwt.payload,
-      /**
-       * The claims to be merged is optional.
-       */
+      // IMPORTANT: The state must be signed to prevent CSRF attacks.
+      state: verifiedJwt.payload.state,
+
+      // The claims to be merged is optional.
       claims: {
         issuer,
         audience,
