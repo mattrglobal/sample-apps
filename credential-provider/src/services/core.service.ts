@@ -103,10 +103,11 @@ export class CoreService {
       issuer,
       audience,
     }).catch((error) => {
-      this.logger.error('Invalid session token', error);
-      throw new Error('Invalid session token');
+      throw new Error(`Invalid session token - ERROR: ${error}`);
     });
-    this.logger.log('Verified session token', verifyResult);
+    this.logger.log(`Verified session token - `, {
+      verifyResult,
+    });
     return verifyResult;
   }
 
@@ -137,11 +138,7 @@ export class CoreService {
       .setAudience(audience)
       .sign(secret);
 
-    this.logger.log(
-      `Generated response session token --> ${JSON.stringify(
-        decodeJwt(responseToken),
-      )}`,
-    );
+    this.logger.log(`Generated response session token`);
     return responseToken;
   }
 
