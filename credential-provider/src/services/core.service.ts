@@ -105,7 +105,7 @@ export class CoreService {
     }).catch((error) => {
       throw new Error(`Invalid session token - ERROR: ${error}`);
     });
-    this.logger.log(`Verified session token - `, {
+    this.logger.log(`Verified session token`, {
       verifyResult,
     });
     return verifyResult;
