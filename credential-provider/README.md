@@ -188,6 +188,42 @@ In our case, the **Kākāpō Transport Agency API** created a [static HTML](./vi
 
 We then [updated your OpenID Configuration](./src/services/core.service.ts#L93) to use the tunnelled ngrok URL so that your wallet would be able to load our interaction hook UI from the internet during credential issuance rather than from your localhost.
 
+### Interaction Hook visualised:
+```mermaid
+sequenceDiagram
+    actor HOLDER as 📱 Drivers' Wallet
+    participant IH as 🎨 Interaction Hook UI
+    participant ISSUER as 🚗 Kākāpō Transport Agency API
+    participant MATTR as ⚛️ MATTR VII
+
+    HOLDER ->> IH: Redirects user to interaction-hook page for 2FA/MFA/biometric checks
+    note over IH: Extracts 'session_token' and 'secret' from URL
+    IH ->> ISSUER: Create callback URL
+    note over IH, ISSUER: APP_URL/core/2fa?session_token=ONE_TIME_JWT
+
+    par Get 'secret' from interacton hook
+      ISSUER ->> MATTR: Get interacton hook details
+      note over ISSUER, MATTR: GET MATTR_URL/core/v1/openid/configuration
+      MATTR -->> ISSUER: Response - interaction hook setup
+      note over ISSUER: Extract 'secret' from interaction hook setup
+
+    and Validate session_token
+      note over ISSUER: Decode session_token -> DECODED
+      note over ISSUER: Extract DECODED.iss as 'issuer', DECODED.aud as 'audience'
+    end
+
+    note over ISSUER: Validate session_token using jwtVerify -> verifyResult
+    note over ISSUER: Extract `state` and `redirectUrl` from verifyResult.payload
+    note over ISSUER: Create `responseTokenPayload` using `state` and any additional`claims`
+    
+    note over ISSUER: Create `responseToken` using new SignJWT(responseTokenPayload)
+    note over ISSUER: Construct callbackUrl using `${redirectUrl}?session_token=${responseToken}`
+    ISSUER -->> IH: Return callbackUrl to controller for template file to render on button (if session_token is verified)
+    
+    HOLDER ->> IH: Clicks button to verify  & proceed
+    IH -->> HOLDER: Redirects user to callbackUrl (MW)
+```
+
 ## 🤖 Where to get your [Swagger UI](https://swagger.io/tools/swagger-ui/) for this sample app?
 
 While running the app, go to `localhost:3000/api`. You'll see the endpoint being used to create the QR code for the credential offer, as well as the endpoints for the claims source and the interaction hook.

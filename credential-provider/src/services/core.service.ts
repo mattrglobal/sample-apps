@@ -2,6 +2,11 @@ import { logger } from '@/common/helpers';
 import { users } from '@/constants/claim-source';
 import { CreateClaimSourceReqBody } from '@/types/create-claim-source.args';
 import { CreateCredentialConfigReqBody } from '@/types/create-credential-config.req.body';
+import {
+  CreateCallbackUrlArgs,
+  CreateInteractionHookResponseTokenArgs,
+  VerifyInteractionHookTokenArgs,
+} from '@/types/create-callback-url';
 import { AuthProvider } from '@/types/get-auth-providers.res.body';
 import { GetUserArgs } from '@/types/get-user.args';
 import { SetupInteractionHookArgs } from '@/types/setuup-interacton-hook.args';
@@ -12,6 +17,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { MattrService } from './mattr.service';
+import { jwtVerify, decodeJwt, SignJWT, JWTVerifyResult } from 'jose';
 
 @Injectable()
 export class CoreService {
@@ -34,6 +40,106 @@ export class CoreService {
       return {};
     }
     return res;
+  }
+
+  /**
+   * Performs the following to create callback URL for interaction-hook containing a new response token
+   *
+   * 1. Verify session_token
+   * 2. Create responseToken
+   * 3. Construct & return callbackUrl for redirect on interaction-hook
+   * @param CreateCallbackUrlArgs
+   * @returns string
+   * @example
+   * await createCallbackUrl({
+   *   session_token: "ONE_TIME_JWT_TOKEN",
+   * })
+   */
+  public async createCallbackUrl(args: CreateCallbackUrlArgs): Promise<string> {
+    const { session_token } = args;
+
+    const secret = await this.getInteractionHookSecret();
+
+    const verifiedJwt = await this.verifyInteractionHookToken({
+      session_token,
+      secret,
+    });
+
+    const responseToken = await this.createInteractionHookResponseToken({
+      session_token,
+      verifiedJwt,
+      secret,
+    });
+
+    /** The verifiedJwt will have redirectUrl inside its payload
+     * which is additional to the types returned by default JWTVerifyResult */
+    const { redirectUrl } = verifiedJwt.payload;
+
+    const callbackUrl = `${redirectUrl}?session_token=${responseToken}`;
+    this.logger.log(
+      `Finished processing Interaction Hook request, user will be redirected to ${callbackUrl}`,
+    );
+    return callbackUrl;
+  }
+
+  public async getInteractionHookSecret(): Promise<Buffer> {
+    const getOpenIdConfigRes = await this.mattrService.getOpenIdConfig({
+      token: this.TOKEN,
+    });
+    const encodedSecret = getOpenIdConfigRes.data.interactionHook.secret;
+    return Buffer.from(encodedSecret, 'base64');
+  }
+
+  public async verifyInteractionHookToken(
+    args: VerifyInteractionHookTokenArgs,
+  ): Promise<JWTVerifyResult> {
+    const { session_token, secret } = args;
+
+    const decoded = decodeJwt(session_token);
+    const audience = decoded.aud as string;
+    const issuer = decoded.iss;
+    this.logger.log(`issuer > ${issuer}`);
+    const verifyResult = await jwtVerify(session_token, secret, {
+      issuer,
+      audience,
+    }).catch((error) => {
+      throw new Error(`Invalid session token - ERROR: ${error}`);
+    });
+    this.logger.log(`Verified session token`, {
+      verifyResult,
+    });
+    return verifyResult;
+  }
+
+  public async createInteractionHookResponseToken(
+    args: CreateInteractionHookResponseTokenArgs,
+  ): Promise<string> {
+    const { verifiedJwt, session_token, secret } = args;
+    const decoded = decodeJwt(session_token);
+    const issuer = decoded.aud as string; // Sample app is the issuer of responseToken
+    const audience = decoded.iss; // Platform is the audience of the responseToken
+
+    const responseTokenPayload = {
+      // IMPORTANT: The state must be signed to prevent CSRF attacks.
+      state: verifiedJwt.payload.state,
+
+      // The claims to be merged is optional.
+      claims: {
+        issuer,
+        audience,
+      },
+    };
+
+    const responseToken = await new SignJWT(responseTokenPayload)
+      .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
+      .setIssuedAt()
+      .setExpirationTime('1m')
+      .setIssuer(issuer)
+      .setAudience(audience)
+      .sign(secret);
+
+    this.logger.log(`Generated response session token`);
+    return responseToken;
   }
 
   public get TOKEN(): string {

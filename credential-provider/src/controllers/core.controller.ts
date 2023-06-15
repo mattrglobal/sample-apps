@@ -6,15 +6,20 @@ import {
   Body,
   Controller,
   Get,
+  Logger,
   Post,
   Query,
-  Render,
+  Req,
+  Res,
   UseGuards,
 } from '@nestjs/common';
 import { ApiCreatedResponse } from '@nestjs/swagger';
+import { Request, Response } from 'express';
 
 @Controller('core')
 export class CoreController {
+  private readonly logger = new Logger(CoreController.name);
+
   constructor(private readonly coreService: CoreService) {}
 
   @Post('qrcode')
@@ -32,8 +37,20 @@ export class CoreController {
   }
 
   @Get('2fa')
-  @Render('2fa')
-  public async render2faPage() {
-    return;
+  public async render2faPage(@Req() req: Request, @Res() res: Response) {
+    /**
+     * Renderer for interaction-hook page
+     *
+     * 1. Extracts session_token from query param
+     * 2. Calls CoreService.createCallbackUrl({ session_token }) -> callbackUrl
+     * 3. Embed callbackUrl into object for template to map
+     * 4. Render template when callbackUrl is created
+     */
+    const session_token = req.query.session_token as string;
+    this.logger.debug(`Extracted session_token --> ${session_token}`);
+    const callbackUrl = await this.coreService.createCallbackUrl({
+      session_token,
+    });
+    return res.render('2fa', { callbackUrl });
   }
 }
