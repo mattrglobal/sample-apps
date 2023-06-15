@@ -688,10 +688,10 @@
     lodash "4.17.21"
     uuid "9.0.0"
 
-"@nestjs/core@9.0.0":
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-9.0.0.tgz#dbeaf9b532585445ead40d2c3d7c4dfc3e04c0fa"
-  integrity sha512-Ib25JrYQf5ICro19FBytoMpMQicanC4HG3goPBSqsolu+AhVzSU0OhDwmmiDy3aHgmheFnNEEdUH+Gh5Rm2cNw==
+"@nestjs/core@9.0.5":
+  version "9.0.5"
+  resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-9.0.5.tgz#b4cb8f8b0c1d234a840f06e265717d4a24f8d224"
+  integrity sha512-41BBJlsquasVrGeRWNYb74Fwsc+oB5EmKC/hioQJAhGqIw5Kr5AcdEoEFaMKFzNLAPbU6c/nVW8T8CrvtQbQww==
   dependencies:
     "@nuxtjs/opencollective" "0.3.2"
     fast-safe-stringify "2.1.1"
