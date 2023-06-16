@@ -180,13 +180,19 @@ You need to tell MATTR VII which API endpoint it needs to hit during credential 
 We also recommend protecting the endpoint using `x-api-key`, so that you don't risk exposing sensitive data. In this example, we have implemented a [NestJS Guard](https://docs.nestjs.com/guards) to protect the [controller](./src/controllers/core.controller.ts#L29), you can check out the authorisation logic in [here](./src/guards/claim-source.guard.ts).
 
 ## 🪝 How does Interaction Hook (OpenID Configuration) work?
-If you require your users to verify themselves after they've logged into your IdP before issuing them the credential, then you need to **enable** interaction hook on MATTR VII like [how we do it](./src/services/core.service.ts#L158).
+In our case, an interaction hook is a web page that handles the additional verifications, such as 2FA, MFA or biometric checks before redirecting users back to the mobile wallet if verification is successful.
 
-Generally-speaking, an interaction hook is a web page that does the verification, such as 2FA, MFA or biometric checks before redirecting users back to the mobile wallet if verification is successful.
+If you require your users to verify themselves after they've logged into your IdP before issuing them the credential, then you need to **enable** interaction hook on MATTR VII like [how we do it in the `setupInteractionHook()` function](./src/services/core.service.ts). This way, your wallet would be able to load the interaction hook UI from the public internet during credential issuance rather than from your localhost.
 
-In our case, the **Kākāpō Transport Agency API** created a [static HTML](./views/2fa.hbs) page as the interaction hook UI, which simply acts as a demo verification page that helps redirecting you back to your wallet without actually implementing 2FA/MFA checks. 
+After you authenticated against the IdP, MATTR VII will make a request to `GET APP_URL/core/2fa?session_token=ONE_TIME_JWT`, which in our case triggers the [** render2faPage()  ** controller method]("../../src/controllers/core.controller.ts)
 
-We then [updated your OpenID Configuration](./src/services/core.service.ts#L93) to use the tunnelled ngrok URL so that your wallet would be able to load our interaction hook UI from the internet during credential issuance rather than from your localhost.
+Our sample app will then extract the `session_token` and use it to create a "response token"
+
+The "response token" will be used to construct the **callbackUrl** for redirecting users back to their wallet WebView  - where they can proceed with verification steps on the interaction-hook component. We created a function specifically designed for this purpose, you can check it out inside the `createCallbackUrl()` function in [`core.service.ts` file]("../../src/services/core.service.ts) to see how we do it.
+
+Once **callbackUrl** is created, the **Kākāpō Transport Agency API** will load a static HTML page as the UI for interaction hook (inside MATTR Wallet webView). This page is only rendered once the `session_token` is verified by the server. 
+
+At this stage, both your app server and your IDP server are 100% sure that whichever user opening the interaction-hook UI is absolutely authenticated, which means you have higher levels of assurance of whatever other information they provide to you via the interaction-hook UI is coming from the right person.  
 
 ### Interaction Hook visualised:
 ```mermaid
