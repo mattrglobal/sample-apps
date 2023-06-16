@@ -119,18 +119,15 @@ export class CoreService {
     const issuer = decoded.aud as string; // Sample app is the issuer of responseToken
     const audience = decoded.iss; // Platform is the audience of the responseToken
 
-    const responseTokenPayload = {
+    const payload = {
       // IMPORTANT: The state must be signed to prevent CSRF attacks.
       state: verifiedJwt.payload.state,
 
-      // The claims to be merged is optional.
-      claims: {
-        issuer,
-        audience,
-      },
+      // You can map any additional info into claims if you wish
+      claims: {},
     };
 
-    const responseToken = await new SignJWT(responseTokenPayload)
+    const responseToken = await new SignJWT(payload)
       .setProtectedHeader({ alg: 'HS256', typ: 'JWT' })
       .setIssuedAt()
       .setExpirationTime('1m')
