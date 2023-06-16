@@ -14,3 +14,8 @@ export type CreateInteractionHookResponseTokenArgs = {
   verifiedJwt: JWTVerifyResult;
   secret: Buffer;
 };
+
+export type ResponseTokenPayload<State = any, Claims = any> = {
+  state: State;
+  claims: Claims;
+};

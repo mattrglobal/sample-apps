@@ -5,6 +5,7 @@ import { CreateCredentialConfigReqBody } from '@/types/create-credential-config.
 import {
   CreateCallbackUrlArgs,
   CreateInteractionHookResponseTokenArgs,
+  ResponseTokenPayload,
   VerifyInteractionHookTokenArgs,
 } from '@/types/create-callback-url';
 import { AuthProvider } from '@/types/get-auth-providers.res.body';
@@ -119,7 +120,7 @@ export class CoreService {
     const issuer = decoded.aud as string; // Sample app is the issuer of responseToken
     const audience = decoded.iss; // Platform is the audience of the responseToken
 
-    const payload = {
+    const payload: ResponseTokenPayload<unknown, unknown> = {
       // IMPORTANT: The state must be signed to prevent CSRF attacks.
       state: verifiedJwt.payload.state,
 
