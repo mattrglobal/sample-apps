@@ -3,7 +3,19 @@ const customDomainVerified = () => true;
 const hasValidDids = () => true; //
 const getPresentationTemplateDidAuth = () => {};
 const getPresentationTemplateQueryByExample = () => {};
+
+// Triggered for getting any did:key
 const getVerifierDid = () => {
+  const validDIDs = hasValidDids();
+  if (validDIDs) {
+    return validDIDs[0];
+  } else {
+    return createDid(); // keyType = Ed25519
+  }
+};
+
+// Triggered for getting any non-bbs DID
+const getIssuerDid = () => {
   const hasCustomDomainVerified = customDomainVerified();
   if (hasCustomDomainVerified) {
     const didWeb = retrieveDid(); // get did:web
@@ -33,8 +45,9 @@ const createPresentationReqDidAuth = () => {
 
 // Triggered when issuing static credentials
 const issueBasicCredential = async () => {
-  const credential = createCredential();
-  const encryped = encryptMessage(); // uses credential
+  const issuer = getIssuerDid();
+  const credential = createCredential(); // uses issuer
+  const encryped = encryptMessage(); // uses issuer & credential
   sendMessage(); // uses encryped
 };
 
