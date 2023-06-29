@@ -1,3 +1,5 @@
+# General Algorithms
+```ts
 // core.service.ts
 const customDomainVerified = () => true;
 const hasValidDids = () => true; //
@@ -104,3 +106,4 @@ type PresentationRequest = {
 };
 
 type PRESENTATION_REQUEST = "QueryByExample" | "DIDAuth";
+```
