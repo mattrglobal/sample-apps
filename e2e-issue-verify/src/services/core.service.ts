@@ -11,38 +11,40 @@ import { randomUUID } from "crypto";
 import { type SendMessageReqBody } from "@/types/send-message";
 import { getLogger } from "./logger.service";
 import { type AxiosError } from "axios";
+import {
+  type IssueStaticCredentialArgs,
+  IssueStaticCredentialRes,
+} from "@/types/issue-static-credential";
 
-export const issueStaticCredentialArgsSchema = z.object({
-  config: mattrConfigSchema,
-  walletDid: z.string(),
-});
-export type IssueStaticCredentialArgs = z.infer<
-  typeof issueStaticCredentialArgsSchema
->;
 export const issueStaticCredential = async (
   args: IssueStaticCredentialArgs
 ) => {
+  let res: IssueStaticCredentialRes = {
+    success: true,
+    status: "Credential issued",
+  };
   const logger = getLogger("CoreService.issueStaticCredential()");
   // Keeping core data for issuer in here after gettng DidDocument
   const issuerDidDocument = {
-    did: "___placeholder___",
-    keyAgreement: "___placeholder___",
+    did: "did:key:z6MkpnKPPwokibFQrRAvvGKFuDLFmZxw1ZcWA2UY8HHXvTuM",
+    keyAgreement:
+      "did:key:z6MkpnKPPwokibFQrRAvvGKFuDLFmZxw1ZcWA2UY8HHXvTuM#z6LSnSySouLZWRPAx4x4ArWzaRgyCNBSwpnikV7ZnoxUNVto",
   };
 
   const credentialBranding: CredentialBranding = {
-    backgroundColor: "#000000",
-    watermarkImageUrl: "___placeholder___",
+    backgroundColor: "#FEFBFF",
+    watermarkImageUrl:
+      "https://silvereye.mattrlabs.com/assets/hbkW-o7A3CzfZZqLFx58J.svg",
   };
 
   const issuer: Issuer = {
     id: issuerDidDocument.did,
-    name: "Kakapo Aviation Association",
-    logoUrl: "___placeholder___",
-    iconUrl: "___placeholder___",
+    name: "Kakapo Airlines",
+    logoUrl: "https://silvereye.mattrlabs.com/assets/wm80sZB5ZFscf8FJ0oF_k.svg",
+    iconUrl: "https://silvereye.mattrlabs.com/assets/dggFEuZ6ez6sJ-Wkuo0r-.svg",
   };
 
   const now = new Date();
-
   const createCredentialReqBody: CreateCredentialReqBody = {
     payload: {
       name: "Kakapo Airline Pilot",
@@ -52,7 +54,7 @@ export const issueStaticCredential = async (
       credentialSubject: {
         id: args.walletDid,
         pilotName: "Joe Doe",
-        type: "Commercial & Private",
+        pilotType: "Commercial & Private",
         citizenship: "Kingdom of Kakapo",
         dateOfIssue: now.toISOString().slice(0, 10),
         licenseNumber: Math.random()
@@ -60,82 +62,82 @@ export const issueStaticCredential = async (
           .substring(4, 11)
           .toUpperCase(),
       },
-      expirationDate: `${now.setFullYear(now.getFullYear() + 5)}`,
+      expirationDate: new Date(
+        now.setFullYear(now.getFullYear() + 5)
+      ).toISOString(),
     },
     revocable: true,
   };
 
   logger.warn("Creating credential");
 
-  await MattrService.createCredential({
+  const createCredentialRes = await MattrService.createCredential({
     config: args.config,
     body: createCredentialReqBody,
-  })
-    .then(async (res) => {
-      logger.info("Credential created");
-      const credential = res.data.credential as unknown;
-
-      // deciding domain whether custom domain is verified
-      const getDomain = () => {
-        const { did } = issuerDidDocument;
-        if (did.startsWith("did:web")) {
-          return did.slice(8, did.length);
-        } else {
-          return args.config.tenantDomain;
-        }
-      };
-
-      const encryptMessageReqBody: EncryptMessageReqBody = {
-        senderDidUrl: issuerDidDocument.keyAgreement,
-        recipientDidUrls: [args.walletDid],
-        payload: {
-          id: randomUUID(),
-          type: "https://mattr.global/schemas/verifiable-credential/offer/Direct",
-          from: issuerDidDocument.did,
-          to: [args.walletDid],
-          body: {
-            credentials: [credential],
-            domain: getDomain(),
-          },
-        },
-      };
-
-      logger.warn("Encrypting message");
-      await MattrService.encryptMessage({
-        config: args.config,
-        body: encryptMessageReqBody,
-      })
-        .then(async (res) => {
-          logger.info("Message encrypted");
-
-          const sendMessageReqBody: SendMessageReqBody = {
-            to: args.walletDid,
-            message: res.data.jwe as unknown,
-          };
-
-          logger.warn("Sending message");
-          await MattrService.sendMessage({
-            config: args.config,
-            body: sendMessageReqBody,
-          })
-            .then(() => {
-              logger.info("Message sent");
-            })
-            .catch((e: AxiosError) => {
-              logger.error("Failed to send message");
-              throw e.response?.data;
-            });
-        })
-        .catch((e: AxiosError) => {
-          logger.error("Failed to encrypt message");
-          throw e.response?.data;
-        });
-      return;
-    })
-    .catch((e: AxiosError) => {
-      logger.error("Failed to create credential");
-      throw e.response?.data;
+  });
+  if (createCredentialRes.status !== 200) {
+    return (res = {
+      success: false,
+      status: "Failed to create credential",
     });
+  }
+
+  const credential = createCredentialRes.data.credential as unknown;
+
+  // choosing domain for encryption depends on whether custom domain is verified
+  const getDomain = () => {
+    const { did } = issuerDidDocument;
+    if (did.startsWith("did:web")) {
+      return did.slice(8, did.length);
+    } else {
+      return args.config.tenantDomain;
+    }
+  };
+
+  const encryptMessageReqBody: EncryptMessageReqBody = {
+    senderDidUrl: issuerDidDocument.keyAgreement,
+    recipientDidUrls: [args.walletDid],
+    payload: {
+      id: randomUUID(),
+      type: "https://mattr.global/schemas/verifiable-credential/offer/Direct",
+      from: issuerDidDocument.did,
+      to: [args.walletDid],
+      body: {
+        credentials: [credential],
+        domain: getDomain(),
+      },
+    },
+  };
+
+  logger.warn("Encrypting message");
+  const encryptMessageRes = await MattrService.encryptMessage({
+    config: args.config,
+    body: encryptMessageReqBody,
+  });
+  if (encryptMessageRes.status !== 200) {
+    return (res = {
+      success: false,
+      status: "Failed to encrypt credential",
+    });
+  }
+
+  const sendMessageReqBody: SendMessageReqBody = {
+    to: args.walletDid,
+    message: encryptMessageRes.data.jwe as unknown,
+  };
+
+  logger.warn("Sending message");
+  const sendMessageRes = await MattrService.sendMessage({
+    config: args.config,
+    body: sendMessageReqBody,
+  });
+  if (sendMessageRes.status !== 200) {
+    return (res = {
+      success: false,
+      status: "Credential encrypted, but failed to send credential",
+    });
+  }
+  return res;
 };
 
 export const createPresentationRequestQueryByExample = () => {
