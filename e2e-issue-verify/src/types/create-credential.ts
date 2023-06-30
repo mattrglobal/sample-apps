@@ -12,6 +12,7 @@ export const credentialBrandingSchema = z.object({
   backgroundColor: z.string().url().optional(),
   watermarkImageUrl: z.string().url().optional(),
 });
+export type CredentialBranding = z.infer<typeof credentialBrandingSchema>;
 
 export const createCredentialReqBodySchema = z.object({
   payload: z.object({
@@ -22,29 +23,25 @@ export const createCredentialReqBodySchema = z.object({
     issuer: issuerSchema,
     credentialSubject: credentialSubjectSchema,
     credentialBranding: credentialBrandingSchema.optional(),
-  }),
+    expirationDate: z.string().optional(),  
+}),
   persist: z.boolean().optional(),
   revocable: z.boolean().optional(),
 });
+export type CreateCredentialReqBody = z.infer<
+  typeof createCredentialReqBodySchema
+>;
 
 export const createCredentialArgsSchema = z.object({
   config: mattrConfigSchema,
   body: createCredentialReqBodySchema,
 });
+export type CreateCredentialArgs = z.infer<typeof createCredentialArgsSchema>;
 
 export const createCredentialResBodySchema = z.object({
   id: z.string(),
   credential: z.any(),
 });
-
-export type CreateCredentialArgs = z.infer<
-  typeof createCredentialArgsSchema
->;
-
-export type CreateCredentialReqBody = z.infer<
-  typeof createCredentialReqBodySchema
->;
-
 export type CreateCredentialResBody = z.infer<
   typeof createCredentialResBodySchema
 >;
