@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const mattrConfigSchema = z.object({
-  baseUrl: z.string().url(),
+  tenantDomain: z.string(),
   token: z.string(),
 });
 

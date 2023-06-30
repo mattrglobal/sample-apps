@@ -22,11 +22,63 @@ import {
   createPresentationTemplateResBodySchema,
   type CreatePresentationTemplateResBody,
 } from "@/types/presentation";
+import { type MattrConfig } from "@/types/common";
+import { type RetrieveDidsResBody } from "@/types/retrieve-dids";
+import {
+  type CustomDomain,
+  customDomainSchema,
+} from "@/types/retrieve-custom-domain";
+import { type CreateDidArgs } from "@/types/create-did";
+import { type DidDocument, didDocumentSchema } from "@/types/did-document";
+
+export const retrieveDids = async (
+  args: MattrConfig
+): Promise<AxiosResponse<RetrieveDidsResBody>> => {
+  const url = `https://${args.tenantDomain}/core/v1/dids`;
+  const config = CommonService.buildAxiosConfig(args.token);
+  const res = await axios
+    .get(url, config)
+    .then((res) => res)
+    .catch((e: AxiosError) => {
+      throw e.response?.data;
+    });
+  return res;
+};
+
+export const retrieveCustomDomain = async (
+  args: MattrConfig
+): Promise<AxiosResponse<CustomDomain>> => {
+  const url = `https://${args.tenantDomain}/core/v1/config/domain`;
+  const config = CommonService.buildAxiosConfig(args.token);
+  const res = await axios
+    .get(url, config)
+    .then((res) => ({
+      ...res,
+      data: customDomainSchema.parse(res.data),
+    }))
+    .catch((e: AxiosError) => {
+      throw e.response?.data;
+    });
+  return res;
+};
+
+export const createDid = async (
+  args: CreateDidArgs
+): Promise<AxiosResponse<DidDocument>> => {
+  const url = `https://${args.config.tenantDomain}/core/v1/dids`;
+  const config = CommonService.buildAxiosConfig(args.config.token);
+  const data = args.body;
+  const res = await axios.post(url, data, config).then((res) => ({
+    ...res,
+    data: didDocumentSchema.parse(res.data),
+  }));
+  return res;
+};
 
 export const createCredential = async (
   args: CreateCredentialArgs
 ): Promise<AxiosResponse<CreateCredentialResBody>> => {
-  const url = `${args.config.baseUrl}/v2/credentials/web-semantic/sign`;
+  const url = `https://${args.config.tenantDomain}/v2/credentials/web-semantic/sign`;
   const data = args.body;
   const config = CommonService.buildAxiosConfig(args.config.token);
   const res = await axios
@@ -44,7 +96,7 @@ export const createCredential = async (
 export const encryptMessage = async (
   args: EncryptMessageArgs
 ): Promise<AxiosResponse<EncryptMessageResBody>> => {
-  const url = `${args.config.baseUrl}/core/v1/messaging/encrypt`;
+  const url = `https://${args.config.tenantDomain}/core/v1/messaging/encrypt`;
   const data = args.body;
   const config = CommonService.buildAxiosConfig(args.config.token);
   const res = await axios
@@ -62,7 +114,7 @@ export const encryptMessage = async (
 export const sendMessage = async (
   args: SendMessageArgs
 ): Promise<AxiosResponse<SendMessageReqBody>> => {
-  const url = `${args.config.baseUrl}/core/v1/messaging/send`;
+  const url = `https://${args.config.tenantDomain}/core/v1/messaging/send`;
   const data = args.body;
   const config = CommonService.buildAxiosConfig(args.config.token);
   const res = await axios
@@ -77,7 +129,7 @@ export const sendMessage = async (
 export const createPresentationTemplate = async (
   args: CreatePresentationTemplateArgs
 ): Promise<AxiosResponse<CreatePresentationTemplateResBody>> => {
-  const url = `${args.config.baseUrl}/v2/credentials/web-semantic/presentations/templates`;
+  const url = `https://${args.config.tenantDomain}/v2/credentials/web-semantic/presentations/templates`;
   const data = args.body;
   const config = CommonService.buildAxiosConfig(args.config.token);
   const res = await axios
@@ -95,7 +147,7 @@ export const createPresentationTemplate = async (
 export const createPresentationRequest = async (
   args: CreatePresentationRequestArgs
 ): Promise<AxiosResponse<CreatePresentationRequestResBody>> => {
-  const url = `${args.config.baseUrl}/v2/credentials/web-semantic/presentations/requests`;
+  const url = `https://${args.config.tenantDomain}/v2/credentials/web-semantic/presentations/requests`;
   const data = args.body;
   const config = CommonService.buildAxiosConfig(args.config.token);
   const res = await axios
