@@ -14,6 +14,11 @@ import {
   type SendMessageArgs,
   type SendMessageReqBody,
 } from "@/types/send-message";
+import {
+  type CreatePresentationRequestArgs,
+  type CreatePresentationRequestResBody,
+  createPresentationRequestResBodySchema,
+} from "@/types/presentation";
 
 export const createCredential = async (
   args: CreateCredentialArgs
@@ -60,6 +65,24 @@ export const sendMessage = async (
   const res = await axios
     .post(url, data, config)
     .then((res) => res)
+    .catch((e: AxiosError) => {
+      throw e.response?.data;
+    });
+  return res;
+};
+
+export const createPresentationRequest = async (
+  args: CreatePresentationRequestArgs
+): Promise<AxiosResponse<CreatePresentationRequestResBody>> => {
+  const url = `${args.config.baseUrl}/v2/credentials/web-semantic/presentations/requests`;
+  const data = args.body;
+  const config = CommonService.buildAxiosConfig(args.config.token);
+  const res = await axios
+    .post(url, data, config)
+    .then((res) => ({
+      ...res,
+      data: createPresentationRequestResBodySchema.parse(res.data),
+    }))
     .catch((e: AxiosError) => {
       throw e.response?.data;
     });

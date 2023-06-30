@@ -7,6 +7,9 @@ export const presentationTemplateTypeSchema = z.union([
   z.literal("QueryByFrame"),
   z.literal("DIDAuth"),
 ]);
+export type PresentationTemplateType = z.infer<
+  typeof presentationTemplateTypeSchema
+>;
 
 export const trustedIssuerSchema = z.object({
   required: z.boolean(),
@@ -25,16 +28,21 @@ export const queryByExampleSchema = z.object({
     .array(),
 });
 
+export const credentialQuerySchema = z.union([queryByExampleSchema, z.any()]);
+
 export const presentationTemplateQuerySchema = z.object({
   type: presentationTemplateTypeSchema,
-  credentialQuery: z.union([queryByExampleSchema, z.any()]), // update later
+  credentialQuery: credentialQuerySchema.array(),
 });
 
 export const createPresentationTemplateReqBodySchema = z.object({
   domain: z.string(),
   name: z.string(),
-  query: z.any().array(),
+  query: presentationTemplateQuerySchema.array(),
 });
+export type CreatePresentationTemplateReqBodySchema = z.infer<
+  typeof createPresentationTemplateReqBodySchema
+>;
 
 export const createPresentationTemplateArgsSchema = z.object({
   config: mattrConfigSchema,
@@ -42,26 +50,30 @@ export const createPresentationTemplateArgsSchema = z.object({
 });
 
 // Create PresentationRequest
+export const createPresentationRequestReqBodySchema = z.object({
+  challenge: z.string(),
+  did: z.string().startsWith("did:"),
+  templateId: z.string(),
+  expiresTime: z.number().optional(),
+  callbackUrl: z.string().optional(),
+});
+export type CreatePresentationRequestReqBody = z.infer<
+  typeof createPresentationRequestReqBodySchema
+>;
+
 export const createPresentationRequestArgsSchema = z.object({
   config: mattrConfigSchema,
-  body: z.object({
-    challenge: z.string(),
-    did: z.string().startsWith("did:"),
-    templateId: z.string(),
-    expiresTime: z.number().optional(),
-    callbackUrl: z.string().optional(),
-  }),
+  body: createPresentationRequestReqBodySchema,
 });
+export type CreatePresentationRequestArgs = z.infer<
+  typeof createPresentationRequestArgsSchema
+>;
 
 export const createPresentationRequestResBodySchema = z.object({
   id: z.string(),
   callbackUrl: z.string().optional(),
   request: z.any(),
 });
-
-export type CreatePresentationRequestArgs = z.infer<
-  typeof createPresentationRequestArgsSchema
->;
 
 export type CreatePresentationRequestResBody = z.infer<
   typeof createPresentationRequestResBodySchema
