@@ -48,6 +48,16 @@ export const createPresentationTemplateArgsSchema = z.object({
   config: mattrConfigSchema,
   body: createPresentationTemplateReqBodySchema,
 });
+export type CreatePresentationTemplateArgs = z.infer<
+  typeof createPresentationTemplateArgsSchema
+>;
+
+export const createPresentationTemplateResBodySchema = z.object({
+  id: z.string(),
+});
+export type CreatePresentationTemplateResBody = z.infer<
+  typeof createPresentationTemplateResBodySchema
+>;
 
 // Create PresentationRequest
 export const createPresentationRequestReqBodySchema = z.object({

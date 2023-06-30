@@ -18,6 +18,9 @@ import {
   type CreatePresentationRequestArgs,
   type CreatePresentationRequestResBody,
   createPresentationRequestResBodySchema,
+  type CreatePresentationTemplateArgs,
+  createPresentationTemplateResBodySchema,
+  type CreatePresentationTemplateResBody,
 } from "@/types/presentation";
 
 export const createCredential = async (
@@ -65,6 +68,24 @@ export const sendMessage = async (
   const res = await axios
     .post(url, data, config)
     .then((res) => res)
+    .catch((e: AxiosError) => {
+      throw e.response?.data;
+    });
+  return res;
+};
+
+export const createPresentationTemplate = async (
+  args: CreatePresentationTemplateArgs
+): Promise<AxiosResponse<CreatePresentationTemplateResBody>> => {
+  const url = `${args.config.baseUrl}/v2/credentials/web-semantic/presentations/templates`;
+  const data = args.body;
+  const config = CommonService.buildAxiosConfig(args.config.token);
+  const res = await axios
+    .post(url, data, config)
+    .then((res) => ({
+      ...res,
+      data: createPresentationTemplateResBodySchema.parse(res.data),
+    }))
     .catch((e: AxiosError) => {
       throw e.response?.data;
     });
