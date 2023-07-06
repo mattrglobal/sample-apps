@@ -12,6 +12,7 @@ import {
   type IssueStaticCredentialArgs,
   type IssueStaticCredentialRes,
 } from "@/types/issue-static-credential";
+import { z } from "zod";
 
 export const issueStaticCredential = async (
   args: IssueStaticCredentialArgs
@@ -137,6 +138,11 @@ export const issueStaticCredential = async (
   return res;
 };
 
+const createPresReqQueryByExampleResSchema = z.object({
+  requestId: z.string(),
+  didcommUrl: z.string(),
+})
+type CreatePresReqQueryByExampleRes = z.infer<typeof createPresReqQueryByExampleResSchema>;
 export const createPresentationRequestQueryByExample = () => {
   return;
 };

@@ -35,6 +35,15 @@ export const presentationTemplateQuerySchema = z.object({
   credentialQuery: credentialQuerySchema.array(),
 });
 
+// PresentationTemplate - Entity
+export const presentationTemplateSchema = z.object({
+  id: z.string(),
+  domain: z.string(),
+  name: z.string(),
+  query: presentationTemplateQuerySchema.array(),
+});
+export type PresentationTemplate = z.infer<typeof presentationTemplateSchema>;
+
 export const createPresentationTemplateReqBodySchema = z.object({
   domain: z.string(),
   name: z.string(),
@@ -87,4 +96,12 @@ export const createPresentationRequestResBodySchema = z.object({
 
 export type CreatePresentationRequestResBody = z.infer<
   typeof createPresentationRequestResBodySchema
+>;
+
+// Retrieve PresentationTemplates
+export const retrievePresentationTemplatesResSchema = z.object({
+  data: presentationTemplateSchema.array(),
+});
+export type RetrievePresentationTemplatesRes = z.infer<
+  typeof retrievePresentationTemplatesResSchema
 >;

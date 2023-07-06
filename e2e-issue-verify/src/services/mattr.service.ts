@@ -21,6 +21,9 @@ import {
   type CreatePresentationTemplateArgs,
   createPresentationTemplateResBodySchema,
   type CreatePresentationTemplateResBody,
+  PresentationTemplate,
+  RetrievePresentationTemplatesRes,
+  retrievePresentationTemplatesResSchema,
 } from "@/types/presentation";
 import { type MattrConfig } from "@/types/common";
 import { type RetrieveDidsResBody } from "@/types/retrieve-dids";
@@ -120,6 +123,23 @@ export const sendMessage = async (
   const res = await axios
     .post(url, data, config)
     .then((res) => res)
+    .catch((e: AxiosError) => {
+      throw e.response?.data;
+    });
+  return res;
+};
+
+export const retrievePresentationTemplates = async (
+  args: MattrConfig
+): Promise<AxiosResponse<RetrievePresentationTemplatesRes>> => {
+  const url = `https://${args.tenantDomain}/v2/credentials/web-semantic/presentations/templates`;
+  const config = CommonService.buildAxiosConfig(args.token);
+  const res = await axios
+    .post(url, config)
+    .then((res) => ({
+      ...res,
+      data: retrievePresentationTemplatesResSchema.parse(res.data),
+    }))
     .catch((e: AxiosError) => {
       throw e.response?.data;
     });
