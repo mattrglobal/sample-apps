@@ -21,8 +21,7 @@ import {
   type CreatePresentationTemplateArgs,
   createPresentationTemplateResBodySchema,
   type CreatePresentationTemplateResBody,
-  PresentationTemplate,
-  RetrievePresentationTemplatesRes,
+  type RetrievePresentationTemplatesRes,
   retrievePresentationTemplatesResSchema,
 } from "@/types/presentation";
 import { type MattrConfig } from "@/types/common";
