@@ -1,3 +1,4 @@
+import { type MattrConfig } from "@/types/common";
 import { type AxiosRequestConfig } from "axios";
 
 export const buildAxiosConfig = (token: string): AxiosRequestConfig => {
@@ -18,7 +19,10 @@ export const buildAxiosConfig = (token: string): AxiosRequestConfig => {
  * @arg PresentationTemplateType
  * @returns PresentationTemplate
  */
-export const getPresentationTemplate = () => {
+export const getPresentationTemplateQueryByExample = (args: MattrConfig) => {
+  // if no template found, create one with QueryByExample
+  // if there are templates but none are QueryByExample, create one with QueryByExample
+  // else, return template where type is QueryByExample & 
   return;
 };
 

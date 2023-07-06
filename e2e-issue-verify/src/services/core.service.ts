@@ -1,4 +1,4 @@
-import { type Issuer } from "@/types/common";
+import { type MattrConfig, type Issuer } from "@/types/common";
 import {
   type CreateCredentialReqBody,
   type CredentialBranding,
@@ -143,6 +143,8 @@ const createPresReqQueryByExampleResSchema = z.object({
   didcommUrl: z.string(),
 })
 type CreatePresReqQueryByExampleRes = z.infer<typeof createPresReqQueryByExampleResSchema>;
-export const createPresentationRequestQueryByExample = () => {
+export const createPresentationRequestQueryByExample = async (args: MattrConfig) => {
+  const retrievePresentationTemplatesRes = await MattrService.retrievePresentationTemplates(args);
+  const templates = retrievePresentationTemplatesRes.data.data;
   return;
 };
