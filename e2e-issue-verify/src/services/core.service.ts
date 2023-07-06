@@ -1,19 +1,16 @@
-import { mattrConfigSchema, type Issuer } from "@/types/common";
+import { type Issuer } from "@/types/common";
 import {
   type CreateCredentialReqBody,
   type CredentialBranding,
 } from "@/types/create-credential";
-import { z } from "zod";
 import * as MattrService from "@/services/mattr.service";
-import * as CommonService from "@/services/common.service";
 import { type EncryptMessageReqBody } from "@/types/encrypt-message";
 import { randomUUID } from "crypto";
 import { type SendMessageReqBody } from "@/types/send-message";
 import { getLogger } from "./logger.service";
-import { type AxiosError } from "axios";
 import {
   type IssueStaticCredentialArgs,
-  IssueStaticCredentialRes,
+  type IssueStaticCredentialRes,
 } from "@/types/issue-static-credential";
 
 export const issueStaticCredential = async (
