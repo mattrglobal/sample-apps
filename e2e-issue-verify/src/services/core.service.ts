@@ -75,7 +75,7 @@ export const issueStaticCredential = async (
     config: args.config,
     body: createCredentialReqBody,
   });
-  if (createCredentialRes.status !== 200) {
+  if (createCredentialRes.status !== 201) {
     return (res = {
       success: false,
       status: "Failed to create credential",
