@@ -1248,10 +1248,10 @@
           ]
         },
         {
-          "name": "Credential configuration",
+          "name": "Web Semantic Credential Configuration",
           "item": [
             {
-              "name": "Create credential configuration",
+              "name": "Create a Web Semantic Credential Configuration",
               "request": {
                 "method": "POST",
                 "header": [],
@@ -1273,7 +1273,7 @@
               "response": []
             },
             {
-              "name": "Retrieve a list of credential configurations",
+              "name": "Retrieve a list of Web Semantic Credential Configuration",
               "request": {
                 "method": "GET",
                 "header": [],
@@ -1286,7 +1286,7 @@
               "response": []
             },
             {
-              "name": "Update credential configuration",
+              "name": "Update Web Semantic Credential Configuration",
               "request": {
                 "method": "PUT",
                 "header": [],
@@ -1314,7 +1314,7 @@
               "response": []
             },
             {
-              "name": "Delete a credential configuration",
+              "name": "Delete a Web Semantic Credential Configuration",
               "request": {
                 "method": "DELETE",
                 "header": [],
