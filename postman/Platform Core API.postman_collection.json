@@ -2369,7 +2369,7 @@
               "response": []
             },
             {
-              "name": "Retrieve a Credential Configuration",
+              "name": "Retrieve a Credential Configuration for compact semantic credentials",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
               },
@@ -2400,7 +2400,7 @@
               "response": []
             },
             {
-              "name": "Retrieve a Credential Configuration Copy",
+              "name": "Update a Credential Configuration for compact semantic credentials",
               "request": {
                 "method": "PUT",
                 "header": [],
@@ -2428,7 +2428,7 @@
               "response": []
             },
             {
-              "name": "Retrieve a Credential Configuration Copy 2",
+              "name": "Retrieve a Credential Configuration for compact semantic credentials",
               "request": {
                 "method": "DELETE",
                 "header": [],
