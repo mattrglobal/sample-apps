@@ -11,7 +11,7 @@ model PresentationRequest {
     id        String   @id @default(uuid())
     signedJws String
     challenge String
-    expiresAt Int
+    expiresAt BigInt
     verified  Boolean  @default(false)
     response  String?
     createdAt DateTime @default(now())

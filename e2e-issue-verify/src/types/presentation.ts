@@ -3,7 +3,7 @@ import { mattrConfigSchema } from "./common";
 
 // Create PresentationTemplate
 export const presentationTemplateTypeSchema = z.union([
-  z.literal("QueryByExmple"),
+  z.literal("QueryByExample"),
   z.literal("QueryByFrame"),
   z.literal("DIDAuth"),
 ]);
@@ -24,8 +24,7 @@ export const queryByExampleSchema = z.object({
       "@context": z.string().array(),
       type: z.string().array(),
       trustedIssuer: trustedIssuerSchema.array(),
-    })
-    .array(),
+    }),
 });
 export type QueryByExample = z.infer<typeof queryByExampleSchema>;
 

@@ -164,12 +164,13 @@ export const createPresentationTemplate = async (
 ): Promise<AxiosResponse<CreatePresentationTemplateResBody>> => {
   const url = `https://${args.config.tenantDomain}/v2/credentials/web-semantic/presentations/templates`;
   const data = args.body;
+  console.log(`body -> ${JSON.stringify(data)}`)
   const config = CommonService.buildAxiosConfig(args.config.token);
   const res = await axios
     .post(url, data, config)
     .then((res) => ({
       ...res,
-      data: createPresentationTemplateResBodySchema.parse(res.data),
+      // data: createPresentationTemplateResBodySchema.parse(res.data),
     }))
     .catch((e: AxiosError) => {
       throw e.response?.data;

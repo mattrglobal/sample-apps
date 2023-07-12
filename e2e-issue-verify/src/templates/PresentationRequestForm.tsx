@@ -1,4 +1,5 @@
 import { type MattrConfig, mattrConfigSchema } from "@/types/common";
+import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { type FC } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
@@ -8,8 +9,11 @@ const PresentationRequestForm: FC = () => {
     resolver: zodResolver(mattrConfigSchema),
   });
 
-  const onSubmit: SubmitHandler<MattrConfig> = (data) => {
-    alert(JSON.stringify(data));
+  const mutation = api.coreRoutes.createPresentationRequestQueryByExample.useMutation()
+
+  const onSubmit: SubmitHandler<MattrConfig> = async (data) => {
+    console.log(JSON.stringify(data));
+    await mutation.mutateAsync(data)
   };
   return (
     <div>

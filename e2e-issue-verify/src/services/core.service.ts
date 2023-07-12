@@ -15,6 +15,7 @@ import {
 import { type QueryByExample } from "@/types/presentation";
 import { env } from "@/env.mjs";
 import { prisma } from "@/server/db";
+import { CREDENTIAL_INFO } from "@/constants/payloads";
 
 export const issueStaticCredential = async (
   args: IssueStaticCredentialArgs
@@ -146,7 +147,7 @@ export const issueStaticCredential = async (
  * Sign PresentationRequest
  * Add JWS to DB
  * Return DB.PresentationRequest
- * @param args 
+ * @param args
  * @returns Prisma.PresentationRequest
  */
 export const createPresentationRequestQueryByExample = async (
@@ -158,28 +159,27 @@ export const createPresentationRequestQueryByExample = async (
       method: "key",
     },
   });
+  console.log(`Created new DID`);
 
   const trustedIssuer = {
     did: didDocument.data.did,
-    authenticationKey:
-      didDocument.data.localMetadata.initialDidDocument.authentication[0] as string,
+    authenticationKey: didDocument.data.localMetadata.initialDidDocument
+      .authentication[0] as string,
   };
 
   const query: QueryByExample = {
     required: true,
-    reason: "Please present your credential for Kakapo Airline Pilot License",
-    example: [
-      {
-        "@context": [""],
-        type: ["KakapoAirlinePilotCredential"],
-        trustedIssuer: [
-          {
-            required: true,
-            issuer: trustedIssuer.did,
-          },
-        ],
-      },
-    ],
+    reason: CREDENTIAL_INFO.requestReason,
+    example: {
+      "@context": CREDENTIAL_INFO.contexts,
+      type: CREDENTIAL_INFO.type,
+      trustedIssuer: [
+        {
+          required: true,
+          issuer: trustedIssuer.did,
+        },
+      ],
+    },
   };
 
   const createPresentationTemplateRes =
@@ -187,10 +187,10 @@ export const createPresentationRequestQueryByExample = async (
       config: args,
       body: {
         domain: args.tenantDomain,
-        name: "PRESENTATION_TEMPLATE",
+        name: `PRESENTATION_TEMPLATE - ${randomUUID()}`,
         query: [
           {
-            type: "QueryByExmple",
+            type: "QueryByExample",
             credentialQuery: [query],
           },
         ],
@@ -198,30 +198,38 @@ export const createPresentationRequestQueryByExample = async (
     });
 
   const templateId = createPresentationTemplateRes.data.id;
+  console.log(`Created PresentationTemplate, ID: ${templateId}`);
 
   const challenge = randomUUID();
 
-  const createPresentationRequestRes = await MattrService.createPresentationRequest({
-    config: args,
-    body: {
-      challenge,
-      did: trustedIssuer.did,
-      templateId,
-      callbackUrl: `${env.NEXT_PUBLIC_APP_URL}/api/receive-presentation-response`,
-    }
-  })
-  
+  const createPresentationRequestRes =
+    await MattrService.createPresentationRequest({
+      config: args,
+      body: {
+        challenge,
+        did: trustedIssuer.did,
+        templateId,
+        callbackUrl: `${env.NEXT_PUBLIC_APP_URL}/api/receive-presentation-response`,
+      },
+    });
+  const requestId = createPresentationRequestRes.data.id;
+  console.log(`Created PresentationRequest, ID: ${requestId}`);
+
   const signMessageRes = await MattrService.signMessage({
     config: args,
     body: {
       didUrl: trustedIssuer.authenticationKey,
       payload: createPresentationRequestRes.data.request as unknown,
-    }
-  })
+    },
+  });
+  console.log(`Signed PresentationRequest`);
 
   const jws = signMessageRes.data as string;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  const expiresAt = createPresentationRequestRes.data.request.expires_time as number;
+  const expiresAt = createPresentationRequestRes.data.request
+    .expires_time as number;
+
+  console.log(`Storing PresentationRequest to DB for verification...`);
   const record = await prisma.presentationRequest.create({
     data: {
       signedJws: jws,
@@ -233,7 +241,8 @@ export const createPresentationRequestQueryByExample = async (
       signedJws: true,
       challenge: true,
       expiresAt: true,
-    }
-  })
+    },
+  });
+  console.log(`Done`);
   return record;
 };
