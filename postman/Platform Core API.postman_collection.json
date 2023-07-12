@@ -1511,7 +1511,7 @@
           ]
         },
         {
-          "name": "Credential Configuration",
+          "name": "Compact Credential Configuration",
           "item": [
             {
               "name": "Create a Credential Configuration for a compact credential",
@@ -1520,7 +1520,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"type\": \"CourseCredential\"\n}",
+                  "raw": "{\n    \"type\": \"CourseCredentia\",\n    \"claimMappings\": {\n        \"firstName\": {\n            \"mapFrom\": \"claims.ANY_FIELD\"\n        }\n    }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -1574,7 +1574,7 @@
                 "header": [],
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n    \"type\": \"UpdatedType\"\n}",
+                  "raw": "{\n    \"type\": \"UpdatedType\",\n    \"claimMappings\": {\n        \"firstName\": {\n            \"mapFrom\": \"claims.ANY_FIELD\"\n        }\n    }\n}",
                   "options": {
                     "raw": {
                       "language": "json"
