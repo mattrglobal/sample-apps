@@ -10,10 +10,12 @@ const keyTypeSchema = z.union([
 
 export const createDidReqBodySchema = z.object({
   method: didTypeSchema,
-  options: z.object({
-    keyType: keyTypeSchema.optional(),
-    url: z.string().url().optional(),
-  }),
+  options: z
+    .object({
+      keyType: keyTypeSchema.optional(),
+      url: z.string().url().optional(),
+    })
+    .optional(),
 });
 
 export const createDidArgsSchema = z.object({

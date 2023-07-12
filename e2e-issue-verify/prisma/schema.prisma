@@ -1,6 +1,5 @@
 generator client {
-    provider        = "prisma-client-js"
-    previewFeatures = ["jsonProtocol"]
+    provider = "prisma-client-js"
 }
 
 datasource db {
@@ -12,6 +11,7 @@ model PresentationRequest {
     id        String   @id @default(uuid())
     signedJws String
     challenge String
+    expiresAt Int
     verified  Boolean  @default(false)
     response  String?
     createdAt DateTime @default(now())

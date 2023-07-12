@@ -23,5 +23,6 @@ export const didDocumentSchema = z.union([
   DID_KEY_Ed25519_SCHEMA,
   DID_KEY_Bls12381G2_SCHEMA,
 ]);
+export type DID_KEY_Ed25519 = z.infer<typeof DID_KEY_Ed25519_SCHEMA>
 
 export type DidDocument = z.infer<typeof didDocumentSchema>;

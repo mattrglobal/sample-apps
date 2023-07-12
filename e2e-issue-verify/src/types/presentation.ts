@@ -27,8 +27,24 @@ export const queryByExampleSchema = z.object({
     })
     .array(),
 });
+export type QueryByExample = z.infer<typeof queryByExampleSchema>;
 
-export const credentialQuerySchema = z.union([queryByExampleSchema, z.any()]);
+export const queryByFrameSchema = z.object({
+  required: z.boolean(),
+  reason: z.string().optional(),
+  example: z
+    .object({
+      "@context": z.string().array(),
+      type: z.string().array(),
+      trustedIssuer: trustedIssuerSchema.array(),
+    })
+    .array(),
+});
+
+export const credentialQuerySchema = z.union([
+  queryByExampleSchema,
+  queryByFrameSchema,
+]);
 
 export const presentationTemplateQuerySchema = z.object({
   type: presentationTemplateTypeSchema,
@@ -105,3 +121,10 @@ export const retrievePresentationTemplatesResSchema = z.object({
 export type RetrievePresentationTemplatesRes = z.infer<
   typeof retrievePresentationTemplatesResSchema
 >;
+
+export const RECEIVE_PRESENTATION_QUERY_BY_EXAMPLE = z.object({
+  presentationType: z.string(),
+  challengeId: z.string(),
+  verified: z.boolean(),
+  holder: z.string(),
+});

@@ -31,7 +31,8 @@ import {
   customDomainSchema,
 } from "@/types/retrieve-custom-domain";
 import { type CreateDidArgs } from "@/types/create-did";
-import { type DidDocument, didDocumentSchema } from "@/types/did-document";
+import { type DidDocument, didDocumentSchema, DID_KEY_Ed25519_SCHEMA, DID_KEY_Ed25519 } from "@/types/did-document";
+import { SignMessageArgs } from "@/types/sign-message";
 
 export const retrieveDids = async (
   args: MattrConfig
@@ -66,13 +67,13 @@ export const retrieveCustomDomain = async (
 
 export const createDid = async (
   args: CreateDidArgs
-): Promise<AxiosResponse<DidDocument>> => {
+): Promise<AxiosResponse<DID_KEY_Ed25519>> => {
   const url = `https://${args.config.tenantDomain}/core/v1/dids`;
   const config = CommonService.buildAxiosConfig(args.config.token);
   const data = args.body;
   const res = await axios.post(url, data, config).then((res) => ({
     ...res,
-    data: didDocumentSchema.parse(res.data),
+    data: DID_KEY_Ed25519_SCHEMA.parse(res.data),
   }));
   return res;
 };
@@ -94,6 +95,19 @@ export const createCredential = async (
     });
   return res;
 };
+
+export const signMessage = async (args: SignMessageArgs) => {
+  const url = `https://${args.config.tenantDomain}/core/v1/messaging/sign`;
+  const data = args.body;
+  const config = CommonService.buildAxiosConfig(args.config.token);
+  const res = await axios
+    .post(url, data, config)
+    .then((res) => res)
+    .catch((e: AxiosError) => {
+      throw e.response?.data;
+    });
+  return res;
+}
 
 export const encryptMessage = async (
   args: EncryptMessageArgs

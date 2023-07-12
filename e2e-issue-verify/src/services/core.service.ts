@@ -12,7 +12,9 @@ import {
   type IssueStaticCredentialArgs,
   type IssueStaticCredentialRes,
 } from "@/types/issue-static-credential";
-import { z } from "zod";
+import { type QueryByExample } from "@/types/presentation";
+import { env } from "@/env.mjs";
+import { prisma } from "@/server/db";
 
 export const issueStaticCredential = async (
   args: IssueStaticCredentialArgs
@@ -138,13 +140,100 @@ export const issueStaticCredential = async (
   return res;
 };
 
-const createPresReqQueryByExampleResSchema = z.object({
-  requestId: z.string(),
-  didcommUrl: z.string(),
-})
-type CreatePresReqQueryByExampleRes = z.infer<typeof createPresReqQueryByExampleResSchema>;
-export const createPresentationRequestQueryByExample = async (args: MattrConfig) => {
-  const retrievePresentationTemplatesRes = await MattrService.retrievePresentationTemplates(args);
-  const templates = retrievePresentationTemplatesRes.data.data;
-  return;
+/**
+ * Create DID (did:key, Ed25519) of the trusted issuer
+ * Create PresentationRequest
+ * Sign PresentationRequest
+ * Add JWS to DB
+ * Return DB.PresentationRequest
+ * @param args 
+ * @returns Prisma.PresentationRequest
+ */
+export const createPresentationRequestQueryByExample = async (
+  args: MattrConfig
+) => {
+  const didDocument = await MattrService.createDid({
+    config: args,
+    body: {
+      method: "key",
+    },
+  });
+
+  const trustedIssuer = {
+    did: didDocument.data.did,
+    authenticationKey:
+      didDocument.data.localMetadata.initialDidDocument.authentication[0] as string,
+  };
+
+  const query: QueryByExample = {
+    required: true,
+    reason: "Please present your credential for Kakapo Airline Pilot License",
+    example: [
+      {
+        "@context": [""],
+        type: ["KakapoAirlinePilotCredential"],
+        trustedIssuer: [
+          {
+            required: true,
+            issuer: trustedIssuer.did,
+          },
+        ],
+      },
+    ],
+  };
+
+  const createPresentationTemplateRes =
+    await MattrService.createPresentationTemplate({
+      config: args,
+      body: {
+        domain: args.tenantDomain,
+        name: "PRESENTATION_TEMPLATE",
+        query: [
+          {
+            type: "QueryByExmple",
+            credentialQuery: [query],
+          },
+        ],
+      },
+    });
+
+  const templateId = createPresentationTemplateRes.data.id;
+
+  const challenge = randomUUID();
+
+  const createPresentationRequestRes = await MattrService.createPresentationRequest({
+    config: args,
+    body: {
+      challenge,
+      did: trustedIssuer.did,
+      templateId,
+      callbackUrl: `${env.NEXT_PUBLIC_APP_URL}/api/receive-presentation-response`,
+    }
+  })
+  
+  const signMessageRes = await MattrService.signMessage({
+    config: args,
+    body: {
+      didUrl: trustedIssuer.authenticationKey,
+      payload: createPresentationRequestRes.data.request as unknown,
+    }
+  })
+
+  const jws = signMessageRes.data as string;
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  const expiresAt = createPresentationRequestRes.data.request.expires_time as number;
+  const record = await prisma.presentationRequest.create({
+    data: {
+      signedJws: jws,
+      challenge,
+      expiresAt,
+    },
+    select: {
+      id: true,
+      signedJws: true,
+      challenge: true,
+      expiresAt: true,
+    }
+  })
+  return record;
 };
