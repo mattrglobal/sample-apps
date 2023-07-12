@@ -147,7 +147,7 @@ export const issueStaticCredential = async (
  * Sign PresentationRequest
  * Add JWS to DB
  * Return DB.PresentationRequest
- * @param args
+ * @param args MattrConfig
  * @returns Prisma.PresentationRequest
  */
 export const createPresentationRequestQueryByExample = async (
