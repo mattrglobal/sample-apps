@@ -4,6 +4,7 @@ import {
   issueStaticCredentialResSchema,
 } from "@/types/issue-static-credential";
 import * as CoreService from "@/services/core.service";
+import { mattrConfigSchema } from "@/types/common";
 
 export const coreRoutes = createTRPCRouter({
   issueStaticCredential: publicProcedure
@@ -12,7 +13,9 @@ export const coreRoutes = createTRPCRouter({
     .mutation(async ({ input }) => {
       return await CoreService.issueStaticCredential(input);
     }),
-  createPresentationRequestQueryByExample: publicProcedure.query(() => ({
-    firedAt: Date.now(),
-  })),
+  createPresentationRequestQueryByExample: publicProcedure
+    .input(mattrConfigSchema)
+    .mutation(async ({ input }) => {
+      return await CoreService.createPresentationRequestQueryByExample(input);
+    }),
 });
