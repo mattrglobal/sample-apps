@@ -1,19 +1,22 @@
+import { env } from "@/env.mjs";
 import { type MattrConfig, mattrConfigSchema } from "@/types/common";
 import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { type FC } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import QRCode from "react-qr-code";
 
 const PresentationRequestForm: FC = () => {
-  const { register, handleSubmit } = useForm<MattrConfig>({
+  const { register, handleSubmit, getValues } = useForm<MattrConfig>({
     resolver: zodResolver(mattrConfigSchema),
   });
 
-  const mutation = api.coreRoutes.createPresentationRequestQueryByExample.useMutation()
+  const mutation =
+    api.coreRoutes.createPresentationRequestQueryByExample.useMutation();
 
   const onSubmit: SubmitHandler<MattrConfig> = async (data) => {
     console.log(JSON.stringify(data));
-    await mutation.mutateAsync(data)
+    await mutation.mutateAsync(data);
   };
   return (
     <div>
@@ -31,8 +34,18 @@ const PresentationRequestForm: FC = () => {
           <label htmlFor="tenant-domain">Tenant Domain</label>
           <input type="text" id="tenant-domain" {...register("tenantDomain")} />
         </div>
-        <button type="submit">Generate QR code</button>
+        <button type="submit">
+          {mutation.isLoading ? "Generating QR code..." : "Generate QR code"}
+        </button>
       </form>
+      {mutation.isSuccess && mutation.data.signedJws && (
+        <QRCode
+          className="w-full content-center items-center"
+          value={`didcomm://${env.NEXT_PUBLIC_APP_URL}/api/redirect/${
+            mutation.data.id
+          }?tenantDomain=${getValues("tenantDomain")}`}
+        />
+      )}
     </div>
   );
 };
