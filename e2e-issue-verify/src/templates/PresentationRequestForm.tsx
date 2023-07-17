@@ -20,7 +20,7 @@ const renderer = ({
 );
 
 /**
- * Component for verifying verifiable credentials
+ * Component for verifying verifiable credentials via QR code
  *
  * Actions:
  * 1. Trigger event to create PresentationRequest on server-side
@@ -41,11 +41,6 @@ const PresentationRequestForm: FC = () => {
     console.log(JSON.stringify(data));
     await mutation.mutateAsync(data);
   };
-  // if (mutation.isSuccess) {
-  //   const int = BigInt(mutation.data?.expiresAt);
-  //   const expiry = Number(BigInt(mutation.data?.expiresAt));
-  //   console.log(`Expires at: ${JSON.stringify(new Date(expiry))}`);
-  // }
 
   return (
     <div>
@@ -81,18 +76,27 @@ const PresentationRequestForm: FC = () => {
         <div>
           <QRCode
             className="w-full content-center items-center"
+            // This URL tells MATTR Wallet to visit the API route at /pages/api/redirect/[id].ts
+            // So that MATTR Wallet can have access to the signed PresentationRequest without taking too long scanning the QR code
             value={`didcomm://${env.NEXT_PUBLIC_APP_URL}/api/redirect/${
               mutation.data.id
             }?tenantDomain=${getValues("tenantDomain")}`}
           />
-          You have{" "}
-          <strong>
-            <Countdown
-              date={Number(BigInt(mutation.data?.expiresAt))}
-              renderer={renderer}
-            />
-          </strong>{" "}
-          until this QR code expires
+          {new Date() >= new Date(Number(BigInt(mutation.data?.expiresAt))) && (
+            <p>{`QR Code expired!`}</p>
+          )}
+          {new Date() < new Date(Number(BigInt(mutation.data?.expiresAt))) && (
+            <p>
+              You have{" "}
+              <strong>
+                <Countdown
+                  date={Number(BigInt(mutation.data?.expiresAt))}
+                  renderer={renderer}
+                />
+              </strong>{" "}
+              until this QR code expires
+            </p>
+          )}
         </div>
       )}
       {mutation.isError && (
