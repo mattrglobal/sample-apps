@@ -131,7 +131,7 @@ export const issueStaticCredential = async (
   if (encryptMessageRes.status !== 200) {
     return (res = {
       success: false,
-      status: "Failed to encrypt credential",
+      status: "Credential created, but failed to encrypt credential",
     });
   }
 

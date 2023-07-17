@@ -12,7 +12,7 @@ export type IssueStaticCredentialArgs = z.infer<
 const credentialIssuanceStatus = z.union([
   z.literal("Credential issued"),
   z.literal("Failed to create credential"),
-  z.literal("Failed to encrypt credential"),
+  z.literal("Credential created, but failed to encrypt credential"),
   z.literal("Credential encrypted, but failed to send credential"),
 ]);
 export const issueStaticCredentialResSchema = z.object({

@@ -93,7 +93,12 @@ const IssueCredentialForm = () => {
                   ? "Issuing Credental..."
                   : "Issue Credential"}
               </button>
-              {mutation.data?.success && (
+              {!mutation.data?.success && (
+                <span className="mt-2 block text-red-600">
+                  Error: {mutation.data?.status}
+                </span>
+              )}
+              {!mutation.isSuccess && mutation.data && (
                 <span className="mt-2 block text-green-600">
                   Credential issued!
                 </span>
