@@ -49,8 +49,9 @@ export const issueStaticCredential = async (
   const createCredentialReqBody: CreateCredentialReqBody = {
     payload: {
       name: "Kakapo Airline Pilot",
-      type: ["KakapoAirlinePilotCredential"],
+      type: CREDENTIAL_INFO.type,
       issuer,
+      "@context": CREDENTIAL_INFO.contexts,
       credentialBranding,
       credentialSubject: {
         id: args.walletDid,
@@ -175,7 +176,7 @@ export const createPresentationRequestQueryByExample = async (
       type: CREDENTIAL_INFO.type,
       trustedIssuer: [
         {
-          required: true,
+          required: false,
           issuer: trustedIssuer.did,
         },
       ],
