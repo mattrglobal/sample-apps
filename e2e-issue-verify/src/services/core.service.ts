@@ -143,17 +143,24 @@ export const issueStaticCredential = async (
 };
 
 /**
- * Create DID (did:key, Ed25519) of the trusted issuer
- * Create PresentationRequest
- * Sign PresentationRequest
- * Add JWS to DB
- * Return DB.PresentationRequest
+ * Creating a PresentationRequest for rendering QR code on front-end
+ *
+ * 1. Create DID (did:key, Ed25519) of the trusted issuer
+ * 2. Create PresentationTemplate
+ * 3. Create PresentationRequest
+ * 4. Sign PresentationRequest
+ * 5. Add JWS to DB
+ * 6. Return DB.PresentationRequest
  * @param args MattrConfig
  * @returns Prisma.PresentationRequest
  */
 export const createPresentationRequestQueryByExample = async (
   args: MattrConfig
 ) => {
+  // Creating new DID
+  // IMPORTANT: We DO NOT recommend doing this in production systems.
+  // You should have a permanant DID store in your environment for any issuance & verification purposes.
+  // We decided on creating new DIDs each time so that you don't have to struggle finding the right DID document/URLs.
   const didDocument = await MattrService.createDid({
     config: args,
     body: {
@@ -183,6 +190,10 @@ export const createPresentationRequestQueryByExample = async (
     },
   };
 
+  // Creating new PresentationTemplate
+  // IMPORTANT: We DO NOT recommend doing this in production systems.
+  // You should have a permanant PresentationTemplate store in your system for verification purposes.
+  // We decided on creating new PresentationTemplates each time so that you don't have to risk with constructing the incorrect payloads when creating PresentationTemplates by yourself.
   const createPresentationTemplateRes =
     await MattrService.createPresentationTemplate({
       config: args,
