@@ -3,15 +3,31 @@ import { type MattrConfig, mattrConfigSchema } from "@/types/common";
 import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { type FC } from "react";
+import Countdown from "react-countdown";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import QRCode from "react-qr-code";
 
+const renderer = ({
+  minutes,
+  seconds,
+}: {
+  minutes: number;
+  seconds: number;
+}) => (
+  <span>
+    {minutes} minutes and {seconds} seconds
+  </span>
+);
+
 /**
- * Step 1: Create PresentationRequest
- * Step 2: Render QR code + start countdown timer + start fetching PresentationRequest.response (long-polling)
- * Step 3 (VERY IMPORTANT): Stop all of step 2 once PresentationRequest.response is non-empty
- * Step 4: Display PresentationRequest.response, show reset button
- * Step 5: Revert UI back to prior to step 1
+ * Component for verifying verifiable credentials
+ *
+ * Actions:
+ * 1. Trigger event to create PresentationRequest on server-side
+ * 2. Render QR code + start countdown timer + start fetching PresentationRequest.response (long-polling)
+ * 3. (VERY IMPORTANT): Stop all of step 2 once PresentationRequest.response is non-empty
+ * 4. Display PresentationRequest.response, show reset button
+ * 5. Revert UI back to prior to step 1
  */
 const PresentationRequestForm: FC = () => {
   const { register, handleSubmit, getValues } = useForm<MattrConfig>({
@@ -25,6 +41,11 @@ const PresentationRequestForm: FC = () => {
     console.log(JSON.stringify(data));
     await mutation.mutateAsync(data);
   };
+  // if (mutation.isSuccess) {
+  //   const int = BigInt(mutation.data?.expiresAt);
+  //   const expiry = Number(BigInt(mutation.data?.expiresAt));
+  //   console.log(`Expires at: ${JSON.stringify(new Date(expiry))}`);
+  // }
 
   return (
     <div>
@@ -64,6 +85,14 @@ const PresentationRequestForm: FC = () => {
               mutation.data.id
             }?tenantDomain=${getValues("tenantDomain")}`}
           />
+          You have{" "}
+          <strong>
+            <Countdown
+              date={Number(BigInt(mutation.data?.expiresAt))}
+              renderer={renderer}
+            />
+          </strong>{" "}
+          until this QR code expires
         </div>
       )}
       {mutation.isError && (
