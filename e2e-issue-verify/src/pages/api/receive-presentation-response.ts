@@ -23,10 +23,10 @@ export const PresentationResponsePayloadSchema = z.object({
  * @param req
  * @param res
  */
-export default async function handler(
+const handler = async(
   req: NextApiRequest,
   res: NextApiResponse
-) {
+) => {
   try {
     // Validate request body
     const body = PresentationResponsePayloadSchema.parse(req.body);
@@ -65,3 +65,5 @@ export default async function handler(
     res.status(202).json({ message });
   }
 }
+
+export default handler;

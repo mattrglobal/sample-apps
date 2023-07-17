@@ -2,20 +2,18 @@ import { env } from "@/env.mjs";
 import { type MattrConfig, mattrConfigSchema } from "@/types/common";
 import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { type FC } from "react";
+import React, { useState, type FC } from "react";
 import Countdown from "react-countdown";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import QRCode from "react-qr-code";
 
-const renderer = ({
-  minutes,
-  seconds,
-}: {
+type RendererProps = {
   minutes: number;
   seconds: number;
-}) => (
+};
+const renderer = (props: RendererProps) => (
   <span>
-    {minutes} minutes and {seconds} seconds
+    {props.minutes} minutes and {props.seconds} seconds
   </span>
 );
 
@@ -26,8 +24,8 @@ const renderer = ({
  * 1. Trigger event to create PresentationRequest on server-side
  * 2. Render QR code + start countdown timer + start fetching PresentationRequest.response (long-polling)
  * 3. (VERY IMPORTANT): Stop all of step 2 once PresentationRequest.response is non-empty
- * 4. Display PresentationRequest.response, show reset button
- * 5. Revert UI back to prior to step 1
+ * 4. Render & display PresentationRequest.response
+ * 5. Show button for reverting the UI back to step 1 (optional)
  */
 const PresentationRequestForm: FC = () => {
   const { register, handleSubmit, getValues } = useForm<MattrConfig>({
@@ -38,9 +36,42 @@ const PresentationRequestForm: FC = () => {
     api.coreRoutes.createPresentationRequestQueryByExample.useMutation();
 
   const onSubmit: SubmitHandler<MattrConfig> = async (data) => {
-    console.log(JSON.stringify(data));
     await mutation.mutateAsync(data);
   };
+
+  const MUTATE_ASYNC = () => console.log(`Fire api.getPresentationResponse()`);
+
+  const interval = setInterval(() => {
+    MUTATE_ASYNC();
+  }, 5000);
+
+  // const id = mutation.data?.id;
+  // if (id) {
+  //   console.log(
+  //     `Need to check PresnetationRequest.response where ID = ${id} @ ${new Date().toISOString()}`
+  //   );
+  // } else {
+  //   console.log(`Do nothing - because Req ID is ${JSON.stringify(id)}`);
+  // }
+
+  // Query for PresentationRequest.response every 5 minutes + update UI accordingly
+  // const QUERY_PRESENTATION_RESPONSE = api.coreRoutes.getPresentationResponse.useMutation();
+  // useEffect(() => {
+  //   const id = mutation.data?.id;
+  //   if (id) {
+  //     console.log(`Check PresnetationRequest.response where ID = ${id} @ ${new Date().toISOString()}`);
+
+  //   } else {
+  //     console.log(`Do nothing - because Req ID is ${JSON.stringify(id)}`);
+  //   }
+  //   // return () => clearInterval(interval);
+  // }, [mutation.data?.id]);
+
+  const now = new Date();
+  let qrCodeExpiresAt = new Date();
+  if (mutation.data?.expiresAt) {
+    qrCodeExpiresAt = new Date(Number(BigInt(mutation.data.expiresAt)));
+  }
 
   return (
     <div>
@@ -82,10 +113,10 @@ const PresentationRequestForm: FC = () => {
               mutation.data.id
             }?tenantDomain=${getValues("tenantDomain")}`}
           />
-          {new Date() >= new Date(Number(BigInt(mutation.data?.expiresAt))) && (
-            <p>{`QR Code expired!`}</p>
-          )}
-          {new Date() < new Date(Number(BigInt(mutation.data?.expiresAt))) && (
+          {/* Notify people if QR code expired */}
+          {now >= qrCodeExpiresAt && <p>{`QR Code expired!`}</p>}
+          {/* Notify people how long they have until QR code expires */}
+          {now < qrCodeExpiresAt && (
             <p>
               You have{" "}
               <strong>
