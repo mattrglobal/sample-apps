@@ -235,12 +235,6 @@ sequenceDiagram
 While running the app, go to `localhost:3000/api`. You'll see the endpoint being used to create the QR code for the credential offer, as well as the endpoints for the claims source and the interaction hook.
 
 ## 🤔 Common issues
-
-<details>
-  <summary> Why does my wallet sometimes recognise the QR code but sometimes doesn't? </summary>
-  The server metadata responds with a cache control header with `max-age=600`, meaning the mobile wallet will cache the response for 10 mins. Therefore, if the user scans a QR code that contains a new configuration before the existing cache expires, it will result in an error.
-</details>
-
 <details>
   <summary> Why is it that I'm able to generate a QR code URI using the latest credential configuration ID but some other times it fails with "Invalid credentials" error? </summary>
   Updates of (and newly created) credential configurations will take up to one minute to propagate to our backend service due to caching. Therefore, if you create an credential offer URI before a new configuration becomes available on our backend, it will result in an error in your wallet.
