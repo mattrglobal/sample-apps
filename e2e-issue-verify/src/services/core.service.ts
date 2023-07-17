@@ -25,11 +25,24 @@ export const issueStaticCredential = async (
     status: "Credential issued",
   };
   const logger = getLogger("CoreService.issueStaticCredential()");
+
+  // Create a new did:key of type Ed25519 as the Issuer
+  // We DO NOT recommend using this approach in production systems
+  // Instead, you should be storing the Issuer DID information somewhere in your system, ready for retrieval when required
+  // We decided to create new DIDs for this flow to show you exactly where the DID values come from, so you don't risk spending hours debugging.
+  const createDidRes = await MattrService.createDid({
+    config: args.config,
+    body: {
+      method: "key",
+    },
+  });
+  const didDocument = createDidRes.data;
+  const keyAgreementObj = didDocument.localMetadata.initialDidDocument
+    .keyAgreement[0] as { id: string };
   // Keeping core data for issuer in here after gettng DidDocument
   const issuerDidDocument = {
-    did: "did:key:z6MkpnKPPwokibFQrRAvvGKFuDLFmZxw1ZcWA2UY8HHXvTuM",
-    keyAgreement:
-      "did:key:z6MkpnKPPwokibFQrRAvvGKFuDLFmZxw1ZcWA2UY8HHXvTuM#z6LSnSySouLZWRPAx4x4ArWzaRgyCNBSwpnikV7ZnoxUNVto",
+    did: didDocument.did,
+    keyAgreement: keyAgreementObj.id,
   };
 
   const credentialBranding: CredentialBranding = {

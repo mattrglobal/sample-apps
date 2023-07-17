@@ -9,7 +9,7 @@ export default function Home() {
         <title>E2E Issuer & Verifier</title>
       </Head>
       <main>
-        {/* <IssueCredentialForm /> */}
+        <IssueCredentialForm />
         <PresentationRequestForm />
       </main>
     </>
