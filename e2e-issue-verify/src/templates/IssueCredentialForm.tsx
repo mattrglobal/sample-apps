@@ -98,10 +98,9 @@ const IssueCredentialForm = () => {
                   Credential issued!
                 </span>
               )}
-              {!mutation.data?.success && (
+              {mutation.isError && (
                 <span className="mt-2 block text-red-800">
-                  Credential issuance failed. Error:{" "}
-                  {mutation.data?.status}
+                  Credential issuance failed. Error: {mutation.error.message}
                 </span>
               )}
             </form>
