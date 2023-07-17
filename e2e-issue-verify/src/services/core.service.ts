@@ -46,22 +46,21 @@ export const issueStaticCredential = async (
   };
 
   const credentialBranding: CredentialBranding = {
-    backgroundColor: "#FEFBFF",
-    watermarkImageUrl:
-      "https://silvereye.mattrlabs.com/assets/hbkW-o7A3CzfZZqLFx58J.svg",
+    backgroundColor: CREDENTIAL_INFO.credentialBranding.backgroundColor,
+    watermarkImageUrl: CREDENTIAL_INFO.credentialBranding.watermarkImageUrl,
   };
 
   const issuer: Issuer = {
     id: issuerDidDocument.did,
-    name: "Kakapo Airlines",
-    logoUrl: "https://silvereye.mattrlabs.com/assets/wm80sZB5ZFscf8FJ0oF_k.svg",
-    iconUrl: "https://silvereye.mattrlabs.com/assets/dggFEuZ6ez6sJ-Wkuo0r-.svg",
+    name: CREDENTIAL_INFO.issuer.name,
+    logoUrl: CREDENTIAL_INFO.issuer.logoUrl,
+    iconUrl: CREDENTIAL_INFO.issuer.iconUrl,
   };
 
   const now = new Date();
   const createCredentialReqBody: CreateCredentialReqBody = {
     payload: {
-      name: "Kakapo Airline Pilot",
+      name: CREDENTIAL_INFO.name,
       type: CREDENTIAL_INFO.type,
       issuer,
       "@context": CREDENTIAL_INFO.contexts,
@@ -268,6 +267,8 @@ export const createPresentationRequestQueryByExample = async (
       expiresAt: true,
     },
   });
-  console.log(`Done`);
+  console.log(
+    `Created PresentationRequest where ID is ${record.id}, stored to DB`
+  );
   return record;
 };

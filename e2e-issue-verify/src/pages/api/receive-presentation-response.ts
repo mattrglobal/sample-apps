@@ -2,7 +2,7 @@ import { prisma } from "@/server/db";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
-export const PresentationResponsePayloadSchema = z.object({
+const PresentationResponsePayloadSchema = z.object({
   presentationType: z.string(),
   challengeId: z.string(),
   verified: z.boolean(),
@@ -11,7 +11,7 @@ export const PresentationResponsePayloadSchema = z.object({
 });
 
 /**
- * Processing response payload against each PresentationRequest
+ * Processing response payload against each PresentationRequest stored in the DB
  * 1. Validate payload req.body -> body
  * 2. Extract challengeId from body -> challenge
  * 3. Convert body into string -> RESPONSE
@@ -19,14 +19,11 @@ export const PresentationResponsePayloadSchema = z.object({
  * 5. Update ROW.response with RESPONSE
  * 6. Return 201 response with success message
  *
- * Note: Response status can be any 200-level response
+ * Note: Response status needs to be a 200-level response for the wallet to acknowledge that it has indeed send through the presentation-response to this endpoint (callback URL)
  * @param req
  * @param res
  */
-const handler = async(
-  req: NextApiRequest,
-  res: NextApiResponse
-) => {
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     // Validate request body
     const body = PresentationResponsePayloadSchema.parse(req.body);
@@ -64,6 +61,6 @@ const handler = async(
     console.log(message);
     res.status(202).json({ message });
   }
-}
+};
 
 export default handler;
