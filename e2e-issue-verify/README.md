@@ -33,9 +33,9 @@ Prerequisites:
 
 Setup guide:
 
-1. Clone this repository
-2. Go to the project directory
-3. Create a `.env` file in the project folder, paste the contents from `.example.env` into `.env`
+1. Clone this repository: `https://github.com/mattrglobal/sample-apps.git`
+2. Go to the project directory by entering `cd e2e-issue-verify` into your terminal
+3. Create a `.env` file in the project directory, paste the contents from `.example.env` into `.env`
 4. In terminal, type `ngrok http 3000`
 5. In the `.env` file, replace `NEXT_PUBLIC_APP_URL=""` with `NEXT_PUBLIC_APP_URL="https://ngrok-url"`, where `ngrok-url` is the ngrok URL you get from step 4
 6. Open another terminal of the same project, type `yarn dev`
