@@ -1,5 +1,7 @@
+import CustomTabs from "@/components/Tabs";
 import IssueCredentialForm from "@/templates/IssueCredentialForm";
 import PresentationRequestForm from "@/templates/PresentationRequestForm";
+import { Button } from "@material-tailwind/react";
 import Head from "next/head";
 
 export default function Home() {
@@ -9,8 +11,9 @@ export default function Home() {
         <title>E2E Issuer & Verifier</title>
       </Head>
       <main>
-        <IssueCredentialForm />
-        <PresentationRequestForm />
+      <CustomTabs />
+        {/* <IssueCredentialForm />
+        <PresentationRequestForm /> */}
       </main>
     </>
   );

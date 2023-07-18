@@ -2,6 +2,7 @@ import { env } from "@/env.mjs";
 import { type MattrConfig, mattrConfigSchema } from "@/types/common";
 import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Button } from "@material-tailwind/react";
 import React, { useEffect, useState, type FC } from "react";
 import Countdown from "react-countdown";
 import { type SubmitHandler, useForm } from "react-hook-form";
@@ -40,9 +41,11 @@ const PresentationRequestForm: FC = () => {
   );
   const [lastCheckedPresentationResponse, SetLastCheckedPresentationResponse] =
     useState(new Date());
-  const { register, handleSubmit, getValues } = useForm<MattrConfig>({
-    resolver: zodResolver(mattrConfigSchema),
-  });
+  const { register, handleSubmit, getValues, formState } = useForm<MattrConfig>(
+    {
+      resolver: zodResolver(mattrConfigSchema),
+    }
+  );
 
   const mutation =
     api.coreRoutes.createPresentationRequestQueryByExample.useMutation();
@@ -111,6 +114,11 @@ const PresentationRequestForm: FC = () => {
             {...register("token")}
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           />
+          {formState.errors.token && (
+            <span className="mt-2 block text-red-800">
+              {formState.errors.token.message}
+            </span>
+          )}
         </div>
         <div id="tenant-domain" className="mb-5">
           <label htmlFor="tenant-domain">Tenant Domain</label>
@@ -120,10 +128,15 @@ const PresentationRequestForm: FC = () => {
             {...register("tenantDomain")}
             className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           />
+          {formState.errors.tenantDomain && (
+            <span className="mt-2 block text-red-800">
+              {formState.errors.tenantDomain.message}
+            </span>
+          )}
         </div>
-        <button type="submit" className="bg-blue-500">
+        <Button type="submit" className="bg-blue-500">
           {mutation.isLoading ? "Generating QR code..." : "Generate QR code"}
-        </button>
+        </Button>
       </form>
       {mutation.isSuccess && mutation.data.signedJws && (
         <div>

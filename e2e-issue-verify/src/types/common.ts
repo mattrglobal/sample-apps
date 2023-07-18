@@ -1,8 +1,12 @@
 import { z } from "zod";
 
 export const mattrConfigSchema = z.object({
-  tenantDomain: z.string(),
-  token: z.string(),
+  tenantDomain: z
+    .string()
+    .nonempty(
+      "Please provide a MATTR tenant domain. For e.g, your-tenant.vii.mattr.global"
+    ),
+  token: z.string().nonempty("Please provide a MATTR auth token"),
 });
 
 export const issuerSchema = z.object({
