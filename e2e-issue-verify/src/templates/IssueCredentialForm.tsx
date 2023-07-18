@@ -68,6 +68,11 @@ const IssueCredentialForm = () => {
                   placeholder="your-tenant-subdomain.vii.mattr.global"
                   {...register("config.tenantDomain")}
                 />
+                {formState.errors.config?.tenantDomain && (
+                  <span className="mt-2 block text-red-800">
+                    {formState.errors.config.tenantDomain.message}
+                  </span>
+                )}
               </div>
               <div>
                 {/* token */}
@@ -83,24 +88,29 @@ const IssueCredentialForm = () => {
                   className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 sm:text-sm"
                   {...register("config.token")}
                 />
+                {formState.errors.config?.token && (
+                  <span className="mt-2 block text-red-800">
+                    {formState.errors.config.token.message}
+                  </span>
+                )}
               </div>
               <button
                 type="submit"
                 disabled={formState.isSubmitting || mutation.isLoading}
-                className="w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 disabled:bg-slate-500 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+                className="disabled:bg-slate-500 w-full rounded-lg bg-primary-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
               >
                 {formState.isSubmitting || mutation.isLoading
                   ? "Issuing Credental..."
                   : "Issue Credential"}
               </button>
-              {!mutation.data?.success && (
+              {mutation.data?.success === false && (
                 <span className="mt-2 block text-red-600">
                   Error: {mutation.data?.status}
                 </span>
               )}
-              {!mutation.isSuccess && mutation.data && (
+              {mutation.isSuccess && mutation.data.success && (
                 <span className="mt-2 block text-green-600">
-                  Credential issued!
+                  {`Credential issued! Please check your MATTR wallet. `}
                 </span>
               )}
               {mutation.isError && (

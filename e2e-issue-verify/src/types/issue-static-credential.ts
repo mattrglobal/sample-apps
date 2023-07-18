@@ -3,7 +3,10 @@ import { mattrConfigSchema } from "./common";
 
 export const issueStaticCredentialArgsSchema = z.object({
   config: mattrConfigSchema,
-  walletDid: z.string(),
+  walletDid: z
+    .string()
+    .nonempty("Please provide a wallet DID")
+    .startsWith("did", "Please provide valid wallet DID"),
 });
 export type IssueStaticCredentialArgs = z.infer<
   typeof issueStaticCredentialArgsSchema
