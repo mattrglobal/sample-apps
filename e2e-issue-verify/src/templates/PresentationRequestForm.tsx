@@ -2,7 +2,7 @@ import { env } from "@/env.mjs";
 import { type MattrConfig, mattrConfigSchema } from "@/types/common";
 import { api } from "@/utils/api";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useState, type FC } from "react";
+import React, { useEffect, useState, type FC } from "react";
 import Countdown from "react-countdown";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import QRCode from "react-qr-code";
@@ -17,6 +17,13 @@ const renderer = (props: RendererProps) => (
   </span>
 );
 
+enum PresentationRequestStage {
+  NO_QR_CODE = "No QR code",
+  FETCHING_QR_COD = "Fetching QR code",
+  DISPLAY_QR_CODE = "Displaying QR code",
+  GOT_PRESENTATION_RESPONSE = "Got presentation response",
+}
+
 /**
  * Component for verifying verifiable credentials via QR code
  *
@@ -28,6 +35,11 @@ const renderer = (props: RendererProps) => (
  * 5. Show button for reverting the UI back to step 1 (optional)
  */
 const PresentationRequestForm: FC = () => {
+  const [stage, setStage] = useState<PresentationRequestStage>(
+    PresentationRequestStage.NO_QR_CODE
+  );
+  const [lastCheckedPresentationResponse, SetLastCheckedPresentationResponse] =
+    useState(new Date());
   const { register, handleSubmit, getValues } = useForm<MattrConfig>({
     resolver: zodResolver(mattrConfigSchema),
   });
@@ -39,33 +51,43 @@ const PresentationRequestForm: FC = () => {
     await mutation.mutateAsync(data);
   };
 
-  const MUTATE_ASYNC = () => console.log(`Fire api.getPresentationResponse()`);
-
-  const interval = setInterval(() => {
-    MUTATE_ASYNC();
-  }, 5000);
-
-  // const id = mutation.data?.id;
-  // if (id) {
-  //   console.log(
-  //     `Need to check PresnetationRequest.response where ID = ${id} @ ${new Date().toISOString()}`
-  //   );
-  // } else {
-  //   console.log(`Do nothing - because Req ID is ${JSON.stringify(id)}`);
-  // }
-
   // Query for PresentationRequest.response every 5 minutes + update UI accordingly
-  // const QUERY_PRESENTATION_RESPONSE = api.coreRoutes.getPresentationResponse.useMutation();
-  // useEffect(() => {
-  //   const id = mutation.data?.id;
-  //   if (id) {
-  //     console.log(`Check PresnetationRequest.response where ID = ${id} @ ${new Date().toISOString()}`);
+  const QUERY_PRESENTATION_RESPONSE =
+    api.coreRoutes.getPresentationResponse.useMutation();
 
-  //   } else {
-  //     console.log(`Do nothing - because Req ID is ${JSON.stringify(id)}`);
-  //   }
-  //   // return () => clearInterval(interval);
-  // }, [mutation.data?.id]);
+  /**
+   * Setting stage to be DISPLAY_QR_CODE once a PresentationRequest.id returned from the API
+   */
+  useEffect(() => {
+    if (mutation.data?.id || mutation.isSuccess) {
+      setStage(PresentationRequestStage.DISPLAY_QR_CODE);
+    }
+  }, [mutation.data?.id, mutation.isSuccess]);
+
+  /**
+   * Handler responsible for updating the stage of the page depends on API response
+   *
+   * - If the stage is DISPLAY_QR_CODE, keep the interval going
+   * - As soon as data.response from QUERY_PRESENTATION_RESPONSE is a string, not null or undefined, then we can update the stage to be GOT_PRESENTATION_RESPONSE
+   */
+  useEffect(() => {
+    if (stage === PresentationRequestStage.DISPLAY_QR_CODE) {
+      console.log(`DISPLAY_QR_CODE`);
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      const interval = setInterval(async () => {
+        SetLastCheckedPresentationResponse(new Date());
+        const { mutateAsync, data } = QUERY_PRESENTATION_RESPONSE;
+        await mutateAsync({
+          id: mutation.data?.id as string,
+        });
+        if (typeof data?.response === "string") {
+          console.log(`Response -> ${JSON.stringify(data?.response)}`);
+          setStage(PresentationRequestStage.GOT_PRESENTATION_RESPONSE);
+        }
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [QUERY_PRESENTATION_RESPONSE, mutation.data?.id, stage]);
 
   const now = new Date();
   let qrCodeExpiresAt = new Date();
@@ -128,11 +150,23 @@ const PresentationRequestForm: FC = () => {
               until this QR code expires
             </p>
           )}
+          <p>
+            Last checked presentation response @{" "}
+            <strong>
+              {lastCheckedPresentationResponse.toISOString().slice(0, 10)},
+              {lastCheckedPresentationResponse.toLocaleTimeString()} -{" "}
+              {Intl.DateTimeFormat().resolvedOptions().timeZone}{" "}
+            </strong>
+          </p>
         </div>
       )}
       {mutation.isError && (
         <p>Failed to generate QR code! Error: {mutation.error.message}</p>
       )}
+      <p>
+        <strong>Presentation response:</strong>{" "}
+        {QUERY_PRESENTATION_RESPONSE.data?.response}
+      </p>
     </div>
   );
 };
