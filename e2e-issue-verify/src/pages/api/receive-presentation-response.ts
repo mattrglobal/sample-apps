@@ -19,7 +19,9 @@ const PresentationResponsePayloadSchema = z.object({
  * 5. Update ROW.response with RESPONSE
  * 6. Return 201 response with success message
  *
- * Note: Response status needs to be a 200-level response for the wallet to acknowledge that it has indeed send through the presentation-response to this endpoint (callback URL)
+ * Note:
+ * Response status needs to be a 200-level response
+ * This is notify the wallet that it has INDEED sent out the presentation-response payload to this endpoint (callback URL)
  * @param req
  * @param res
  */
