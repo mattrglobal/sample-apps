@@ -138,48 +138,52 @@ const PresentationRequestForm: FC = () => {
           {mutation.isLoading ? "Generating QR code..." : "Generate QR code"}
         </Button>
       </form>
-      {mutation.isSuccess && mutation.data.signedJws && (
-        <div>
-          <QRCode
-            className="w-full content-center items-center"
-            // This URL tells MATTR Wallet to visit the API route at /pages/api/redirect/[id].ts
-            // So that MATTR Wallet can have access to the signed PresentationRequest without taking too long scanning the QR code
-            value={`didcomm://${env.NEXT_PUBLIC_APP_URL}/api/redirect/${
-              mutation.data.id
-            }?tenantDomain=${getValues("tenantDomain")}`}
-          />
-          {/* Notify people if QR code expired */}
-          {now >= qrCodeExpiresAt && <p>{`QR Code expired!`}</p>}
-          {/* Notify people how long they have until QR code expires */}
-          {now < qrCodeExpiresAt && (
+      {mutation.isSuccess &&
+        mutation.data.signedJws &&
+        typeof QUERY_PRESENTATION_RESPONSE.data?.response !== "string" && (
+          <div className="w-full content-center items-center text-center">
+            <QRCode
+              className="w-full content-center items-center mb-4"
+              // This URL tells MATTR Wallet to visit the API route at /pages/api/redirect/[id].ts
+              // So that MATTR Wallet can have access to the signed PresentationRequest without taking too long scanning the QR code
+              value={`didcomm://${env.NEXT_PUBLIC_APP_URL}/api/redirect/${
+                mutation.data.id
+              }?tenantDomain=${getValues("tenantDomain")}`}
+            />
+            {/* Notify people if QR code expired */}
+            {now >= qrCodeExpiresAt && <p>{`QR Code expired!`}</p>}
+            {/* Notify people how long they have until QR code expires */}
+            {now < qrCodeExpiresAt && (
+              <p>
+                You have{" "}
+                <strong>
+                  <Countdown
+                    date={Number(BigInt(mutation.data?.expiresAt))}
+                    renderer={renderer}
+                  />
+                </strong>{" "}
+                until this QR code expires
+              </p>
+            )}
             <p>
-              You have{" "}
+              Last checked presentation response @{" "}
               <strong>
-                <Countdown
-                  date={Number(BigInt(mutation.data?.expiresAt))}
-                  renderer={renderer}
-                />
-              </strong>{" "}
-              until this QR code expires
+                {lastCheckedPresentationResponse.toISOString().slice(0, 10)},
+                {lastCheckedPresentationResponse.toLocaleTimeString()} -{" "}
+                {Intl.DateTimeFormat().resolvedOptions().timeZone}{" "}
+              </strong>
             </p>
-          )}
-          <p>
-            Last checked presentation response @{" "}
-            <strong>
-              {lastCheckedPresentationResponse.toISOString().slice(0, 10)},
-              {lastCheckedPresentationResponse.toLocaleTimeString()} -{" "}
-              {Intl.DateTimeFormat().resolvedOptions().timeZone}{" "}
-            </strong>
-          </p>
-        </div>
-      )}
+          </div>
+        )}
       {mutation.isError && (
         <p>Failed to generate QR code! Error: {mutation.error.message}</p>
       )}
-      <p>
-        <strong>Presentation response:</strong>{" "}
-        {QUERY_PRESENTATION_RESPONSE.data?.response}
-      </p>
+      {QUERY_PRESENTATION_RESPONSE.data?.response && (
+        <p>
+          <strong>{`Presentation response (claims): `}</strong>
+          {QUERY_PRESENTATION_RESPONSE.data?.response}
+        </p>
+      )}
     </div>
   );
 };
