@@ -84,7 +84,8 @@ const PresentationRequestForm: FC = () => {
           id: mutation.data?.id as string,
         });
         if (typeof data?.response === "string") {
-          console.log(`Response -> ${JSON.stringify(data?.response)}`);
+          const json = JSON.stringify(data?.response);
+          console.log(`Response -> ${json}`);
           setStage(PresentationRequestStage.GOT_PRESENTATION_RESPONSE);
         }
       }, 5000);
@@ -143,7 +144,7 @@ const PresentationRequestForm: FC = () => {
         typeof QUERY_PRESENTATION_RESPONSE.data?.response !== "string" && (
           <div className="w-full content-center items-center text-center">
             <QRCode
-              className="w-full content-center items-center mb-4"
+              className="mb-4 w-full content-center items-center"
               // This URL tells MATTR Wallet to visit the API route at /pages/api/redirect/[id].ts
               // So that MATTR Wallet can have access to the signed PresentationRequest without taking too long scanning the QR code
               value={`didcomm://${env.NEXT_PUBLIC_APP_URL}/api/redirect/${
@@ -179,10 +180,12 @@ const PresentationRequestForm: FC = () => {
         <p>Failed to generate QR code! Error: {mutation.error.message}</p>
       )}
       {QUERY_PRESENTATION_RESPONSE.data?.response && (
-        <p>
-          <strong>{`Presentation response (claims): `}</strong>
-          {QUERY_PRESENTATION_RESPONSE.data?.response}
-        </p>
+        <div className="w-full content-center items-center px-25 py-10 text-left">
+          <p>
+            <strong>{`Presentation response (claims): `}</strong>
+            {QUERY_PRESENTATION_RESPONSE.data?.response}
+          </p>
+        </div>
       )}
     </div>
   );
