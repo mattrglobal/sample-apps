@@ -4,8 +4,8 @@
   "description": "A simple way to parse a JSON body from a callback",
   "main": "callback-express.js",
   "dependencies": {
-    "body-parser": "1.19.0",
-    "express": "4.17.1"
+    "body-parser": "1.20.2",
+    "express": "4.18.2"
   },
   "devDependencies": {},
   "scripts": {
