@@ -13,16 +13,16 @@ Pre-requisites:
 * You'll need a valid Access token for the MATTR Platform, if you do not have a tenent set up [get started here](https://mattr.global/get-started).
 * Have a valid [Verifier DID](https://learn.mattr.global/api-ref#operation/retrieveListOfDids) and [Presentation  Template](https://learn.mattr.global/api-ref#operation/createPresTemplate) and know the ID's of each.
 * Download the MATTR Mobile Wallet app and hold a Credential matching the Presentation Request 
-* Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet
+* Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet.
 
 1. Clone the sample-apps repo
 2. Change to the `verify-callback-express` directory
-3. npm install dependencies
+3. yarn install dependencies
 
 
 ```
 cd verify-callback-express
-npm install
+yarn install
 ```
 
 Environment variables are used from a `.env` file. 
@@ -41,7 +41,7 @@ NGROK_AUTHTOKEN=<ngrok-auth-token>
 ### Start the server
 Append your valid Platform access token to the end of the start command to start the Express server
 ```
-npm start <access_token>
+yarn start <access_token>
 ```
 
 > The access token is stored in memory and used to make API calls to your tenant over HTTPS
