@@ -13,16 +13,16 @@ Pre-requisites:
 * You'll need a valid Access token for the MATTR Platform, if you do not have a tenent set up [get started here](https://mattr.global/get-started).
 * Have a valid [Verifier DID](https://learn.mattr.global/api-ref#operation/retrieveListOfDids) and [Presentation  Template](https://learn.mattr.global/api-ref#operation/createPresTemplate) and know the ID's of each.
 * Download the MATTR Mobile Wallet app and hold a Credential matching the Presentation Request 
-* Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet
+* Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet.
 
 1. Clone the sample-apps repo
 2. Change to the `verify-callback-express` directory
-3. npm install dependencies
+3. yarn install dependencies
 
 
 ```
 cd verify-callback-express
-npm install
+yarn install
 ```
 
 Environment variables are used from a `.env` file. 
@@ -31,16 +31,17 @@ Rename the `.env-template` to `.env` and provide the details from your tenant.
 TENANT=tenant.vii.mattr.global
 TEMPLATEID=<presentation-request-template-uuid>
 VERIFIERDID=<verifier-did>
-
+NGROK_AUTHTOKEN=<ngrok-auth-token>
 ```
 * For `TENANT` add in the domain of your tenant
 * Add the `id` of the [Presentation Template](https://learn.mattr.global/api-ref#operation/createPresTemplate) from your tenant to `TEMPLATEID`
 * Add a DID to `VERIFIERDID` that that [exists on your tenant](https://learn.mattr.global/api-ref#operation/retrieveListOfDids)
+* Add the ngrok auth token from your [ngrok account](https://dashboard.ngrok.com/login) as `NGROK_AUTHTOKEN`.
 
 ### Start the server
 Append your valid Platform access token to the end of the start command to start the Express server
 ```
-npm start <access_token>
+yarn start <access_token>
 ```
 
 > The access token is stored in memory and used to make API calls to your tenant over HTTPS
@@ -48,12 +49,9 @@ npm start <access_token>
 ## Steps
 The App starts an Ngrok tunnel to your localhost.
 
-The App will call out to your tenant to:
-1. Create a Presentation Request.
-2. Look-up the DIDUrl of the Verifier DID
-3. Sign the Presentation Request with the Verifier DIDUrl
-
-It uses the signed Presentation Request JWS to display a QR Code. Open the MATTR Mobile Wallet holding a matching Verifiable Credential and scan the QR code.
+The App will call out to your tenant and create a Presentation Request.
+It uses the `didcommUri` value from the response to display a QR code.
+Open the MATTR Mobile Wallet holding a matching Verifiable Credential and scan the QR code.
 Or, copy the displayed Deeplink URL and sent via alternate messaging means to the mobile device with the MATTR Mobile App and open the link.
 
 The 'Verification Request' screen should be displayed.
