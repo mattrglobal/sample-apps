@@ -5,11 +5,9 @@
 A collection of developer apps and API tooling that you can use to interface with the MATTR Platform.
 
 ## Projects
-* [oidc-client-react](/oidc-client-react/README.md) – A simple React App that can be configured as an OIDC Client for Verify using OIDC flows.
 * [callback-express](/callback-express/README.md) – Set up a Node.js Express app that listens for Callback and displays the output.
 * [verify-callback-express](/verify-callback-express/README.md) – A Node.js Express app that can orchestrate calls to your MATTR tenant to initiate a Verify a Credential using a Callback flow.
 * [issue-direct-credential-express](/issue-direct-credential-express/README.md) – A Node.js Express app that can orchestrate calls to your MATTR tenant to create a credential and make it obtainable by the mobile wallet.
-* [verify-cborld-presentation](/verify-cborld-presentation/README.md) – A React app that can scan a QR code, which is presenting a CBOR-LD Verifiable Credential, decode and verify it using your MATTR tenant.
 * [credential-templates](/credential-templates/README.md) – Credential template files for use with MATTR VII. Example files available for profiles: Compact, Compact Semantic.
 
 ## API Guides
