@@ -25,7 +25,7 @@
     "@nestjs/platform-express": "10.2.6",
     "class-validator": "0.14.0",
     "hbs": "4.2.0",
-    "jose": "4.15.1",
+    "jose": "4.15.5",
     "ngrok": "4.3.3",
     "reflect-metadata": "0.1.13",
     "rimraf": "5.0.5",
