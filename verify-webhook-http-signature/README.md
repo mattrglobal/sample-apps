@@ -6,8 +6,9 @@
 
 # Pre-requisites:
 
-- You'll need a valid Access token for the MATTR Platform, if you do not have a tenent set up [get started here](https://mattr.global/get-started).
+- You'll need a valid Access token for the MATTR Platform, if you do not have a tenant set up [get started here](https://mattr.global/get-started).
 - Have your local development environment setup with Node and NPM/Yarn, you will need to make outbound calls to the internet
+- This sample app uses ngrok to establish a reverse proxy to your machine. You'll need an ngrok account and a valid Authtoken (you can sign up for a free account [here](https://ngrok.com/)).
 
 # Installation
 
