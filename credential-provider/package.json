@@ -23,10 +23,10 @@
     "@nestjs/core": "10.2.6",
     "@nestjs/jwt": "10.1.1",
     "@nestjs/platform-express": "10.2.6",
+    "@ngrok/ngrok": "^1.2.0",
     "class-validator": "0.14.0",
     "hbs": "4.2.0",
-    "jose": "4.15.1",
-    "ngrok": "4.3.3",
+    "jose": "4.15.5",
     "reflect-metadata": "0.1.13",
     "rimraf": "5.0.5",
     "rxjs": "7.8.1",
@@ -75,5 +75,8 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "resolutions": {
+    "string-width": "4.2.3"
   }
 }

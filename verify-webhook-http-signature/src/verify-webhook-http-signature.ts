@@ -6,7 +6,7 @@ import dotenv from "dotenv";
 import express from "express";
 import { Request } from "express";
 import http from "http";
-import ngrok from "ngrok";
+import ngrok from "@ngrok/ngrok";
 
 import { Verifier, verifyRequest } from "@mattrglobal/http-signatures";
 
@@ -108,8 +108,9 @@ app.post(
 
 const server = app.listen(2001, async () => {
   try {
-    const url = await ngrok.connect(2001);
-    console.log(`ngrok url is ${url}`);
+    const ngrokListener = await ngrok.forward({ addr: 2001, authtoken: process.env.NGROK_AUTHTOKEN });
+    const ngrokUrl = ngrokListener.url();
+    console.log(`ngrok url is ${ngrokUrl}`);
 
     // Fetch Mattr JWKs
     const jwksResponse = await axios.get(jwksRequestUrl, {
@@ -122,7 +123,7 @@ const server = app.listen(2001, async () => {
       webhookBaseUrl,
       {
         events: ["OidcIssuerCredentialIssued"],
-        url: `${url}/receive-webhook`,
+        url: `${ngrokUrl}/receive-webhook`,
       },
       { headers: { authorization: `Bearer ${authToken}` } }
     );
