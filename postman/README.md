@@ -22,11 +22,13 @@ Save the following files locally:
 5. Select the new _MATTR VII Tenant (Example ENV)_ environment that should appear in your environments list.
 6. Update the following variables with your tenant details:
    - `baseUrl`: Replace with your tenant's URL.
-   - `auth0Base`: Replace with the Authentication server URL.
+   - `auth0Base`: Replace with your Authentication server URL.
    - `tenantClientId`: Replace with your Client ID.
    - `tenantClientSecret`: Replace with your Client Secret.
    - `tenantAudience`: Replace with your tenant's URL.
-7. Select the 'Save' button.
+7. Select the `Save` button.
+
+If you are unsure of any of these details, please [contact us](http://mattr.globa/contact-us).
 
 ### Step 4: Import collection
 
