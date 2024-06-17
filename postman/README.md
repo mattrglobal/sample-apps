@@ -1,78 +1,43 @@
-# Postman
+# MATTR VII Postman Collection
 
-Postman is a collaboration platform for API development. Postman's features simplifying each step of building an API and streamline collaboration so you can create better APIs—faster.
-
-## Install
-
-Visit the Postman [downloads page](https://www.postman.com/downloads/) to install the desktop client for your system.
+Postman is a collaboration platform for API development. This postman collection provides a simple interface to use MATTR VII API. Its categorised endpoints, sample request body and pre-request scripts make it easier and quicker to interact with your tenant.
 
 ## Getting started
-- Copy the `Platform Core API.postman_collection.json` and `MATTR Tenant env.postman_environment.json` and save them locally
 
-## Setup
+### Step 1: Install Postman
 
-In Postman, a Collection is the series of operations and some configuration, Environment Variables hold specific values for your tenant. They need to be imported in 2 separate steps.
+Visit the Postman [downloads page](https://www.postman.com/downloads/) to install a desktop client for your system.
 
-### First import the Tenant Environment Variables
+### Step 2: Download required files
+Save the following files locally:
+- [`MATTR VII API Collection`](https://github.com/mattrglobal/sample-apps/blob/am/update-postman-readme/postman/mattr-vii.postman_collection.json): This Postman Collection includes API operations and some configuration.
+- [`MATTR VII Tenant Environment`](https://github.com/mattrglobal/sample-apps/blob/am/update-postman-readme/postman/mattr-vii.postman_environment.json): This Postman Environment Variables hold specific values for your MATTR VII tenant.
 
-Go to Manage Environment button in the top-right
-Choose `Import` button
-![import env](./assets/postman-import-env.png)
+### Step 3: Import Tenant Environment Variables
 
-Select the `MATTR Tenant env.postman_environment.json` file from your local drive
-Once the file has successfully imported you will see the Environment available
+1. Open Postman.
+2. Select the **Import** button in the _My Workspace_ area.
+3. Select the **Enviornments** button in the _My Workspace_ sidebar.
+4. Select the local version of the [_MATTR VII Tenant Environment_](https://github.com/mattrglobal/sample-apps/blob/am/update-postman-readme/postman/mattr-vii.postman_environment.json) file you saved earlier.
+5. Select the new _MATTR VII Tenant (Example ENV)_ environment that should appear in your environments list.
+6. Update the following variables with your tenant details:
+   - `baseUrl`: Replace with your tenant's URL.
+   - `auth0Base`: Replace with the Authentication server URL.
+   - `tenantClientId`: Replace with your Client ID.
+   - `tenantClientSecret`: Replace with your Client Secret.
+   - `tenantAudience`: Replace with your tenant's URL.
+7. Select the 'Save' button.
 
-![Manage Environments](./assets/postman-manage-env.png)
+### Step 4: Import collection
 
-To add your Tenant specific variable click on the text `MATTR Tenant env`
-
-![Environment variables](./assets/postman-edit-env.png)
-
-* `baseUrl` replace `tenant` with your subdomain provided during tenant creation
-* `extUrl` if you intend to use extensions like the OIDC Bridge, replace `tenant` with your subdomain
-* `bearerToken` will be updated automatically using a Pre-request scripted at the Collection level (included)
-* `auth_url` & `auth_audience` can remain as-is
-* `auth_client_id` is your Client ID for authorization to the API 
-* `auth_client_secret` is your Client Secret for authorization to the API
-* `issuerDID` and `subjectDid` can be updated later
-
-Click 'Update' to save.
-
-### Next import the Collection
-
-Click on 'Import' button in the menu in the top-left  
-![Import Collection](./assets/postman-import-collection.png)
-
-In File tab, click Upload file button
-Select the `Platform Core API.postman_collection.json` file. 
-
-Once the file has successfully imported you will see the Platform Core API Collection
+1. Select the **Import** button in the _My Workspace_ area.
+2. Select the local version of the [_MATTR VII API Collection_]([https://github.com/mattrglobal/sample-apps/blob/am/update-postman-readme/postman/mattr-vii.postman_environment.json](https://github.com/mattrglobal/sample-apps/blob/am/update-postman-readme/postman/mattr-vii.postman_collection.json) file you saved earlier.
+3. Once the file was successfully imported you will see the Platform Core API Collection.
 
 ## Try it out
-First, make sure you can obtain a valid access token from the 'Create API Auth Token' endpoint inside the `Security` folder:
 
-![auth](assets/postman-auth.png)
-
-This operation will make use of the environment variables you configured above. If you do not obtain a valid 200 response then make sure you check your variables in Environment.
-
-### Next step
-
-Go to a protected endpoint e.g.
-`DIDs` > `Retrieve a List of DIDs`
-
-Hit `Send` in the top right of the Request pane (middle of the application)
-
-See the response in the `Preview` section of the Response pane on the right.
-
-![Result from Get DIDs](./assets/postman-result.png)
-
-## Further configuration
-The Collection contains a Pre-Request script, which will fetch an access token from the Authorization Token endpoint if the access token in the `bearerToken` variable is missing or expired.
-
-![Pre-request Script](./assets/postman-pre-req-script.png)
-
-If you receive an 'unauthorized' error, check that you have selected the correct Environment and that this script matches those variables.
-
----
+1. Go to a protected endpoint (e.g. `DIDs` > `Retrieve a List of DIDs`).
+2. Select **Send** in the top right corner of the request pane.
+3. The response should be displayed in the _Response_ pane.
 
 <p align="center"><a href="https://mattr.global" target="_blank"><img height="40px" src ="../docs/assets/mattr-logo-tm.svg"></a></p><p align="center">Copyright © MATTR Limited. <a href="./LICENSE">Some rights reserved.</a><br/>“MATTR” is a trademark of MATTR Limited, registered in New Zealand and other countries.</p>
