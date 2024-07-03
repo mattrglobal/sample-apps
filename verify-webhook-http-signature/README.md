@@ -45,10 +45,10 @@ The App starts an Ngrok tunnel to your localhost.
 The App will call out to your tenant to:
 
 1. Retrieve the list of platform webhook JWKs.
-2. Create a webhook to listen for the OidcIssuerCredentialIssued event
+2. Create a webhook to listen for the OpenIdCredentialIssued event
 3. Start a web server to receive and verify webhook callbacks
 
 You can then:
 
-1. Follow the [instructions to issue a credential via OIDC bridge](https://learn.mattr.global/tutorials/web-credentials/issue/oidc-bridge/overview)
+1. Follow the [instructions to issue a credential via OIDC bridge](https://learn.mattr.global/guides/issuance/oid4vci)
 2. Observe the callback request being received and the http signature of the request being verified.
