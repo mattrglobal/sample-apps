@@ -15,6 +15,5 @@ The corresponding payload file can be found on [./payload.json](./payload.json)
 
 ## Useful reads
 
-- [Generate PDF tutorial](https://learn.mattr.global/tutorials/compact-credentials/format-extensions/pdf/generate-pdf)
-- [PDF template management](https://learn.mattr.global/tutorials/compact-credentials/format-extensions/pdf/template-management)
-- [PDF design guidelines](https://learn.mattr.global/tutorials/compact-credentials/format-extensions/pdf/design-guideline)
+- [Generate PDF tutorial](https://learn.mattr.global/guides/issuance/direct/compact#format-the-signed-compact-credential)
+- [PDF template management](https://learn.mattr.global/guides/issuance/direct/compact/templates/pdf)
