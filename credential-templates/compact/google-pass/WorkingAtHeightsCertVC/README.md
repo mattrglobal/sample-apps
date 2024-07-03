@@ -21,6 +21,5 @@ The corresponding payload file can be found on [./payload.json](./payload.json)
 
 ## Useful reads
 
-- [Generate digital pass tutorial](https://learn.mattr.global/tutorials/compact-credentials/format-extensions/digital-pass/generate-digital-pass)
-- [Template management](https://learn.mattr.global/tutorials/compact-credentials/format-extensions/digital-pass/template-management)
-- [Design guidelines](https://learn.mattr.global/tutorials/compact-credentials/format-extensions/digital-pass/design-guideline)
+- [Generate digital pass tutorial](https://learn.mattr.global/guides/issuance/direct/compact#format-the-signed-compact-credential)
+- [Template management](https://learn.mattr.global/guides/issuance/direct/compact/templates/google)
