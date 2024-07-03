@@ -11,6 +11,6 @@
 
 ## Useful reads
 
-- [Compact Credential Overview](https://learn.mattr.global/tutorials/compact-credentials/overview)
-- [Issue a Semantic Compact Credential](https://learn.mattr.global/tutorials/compact-credentials/issue-semantic-compact)
-- [Verify a Compact Credential](https://learn.mattr.global/tutorials/compact-credentials/verify)
+- [Compact Credential Overview](https://learn.mattr.global/docs/profiles/compact)
+- [Issue a Semantic Compact Credential](https://learn.mattr.global/guides/issuance/direct/compact)
+- [Verify a Compact Credential](https://learn.mattr.global/guides/verification/direct/compact)
