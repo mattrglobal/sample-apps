@@ -18,7 +18,7 @@ This sample app will act as the API behind the **Kākāpō Transport Agency**. I
 
 Behind the scenes, the Kākāpō Transport Agency uses [Auth0](https://auth0.com/) as an identity provider.
 
-Inevitably, the Kākāpō Transport Agency also has its own databases to store sensitive & confidential information, such as the _license number_ of a driver. When issuing new drivers licenses, it is not enoguh to only use information available on the IDP (Auth0). This is why the Kākāpō Transport Agency also configured a [**claim source**](https://learn.mattr.global/tutorials/offer/openid-credential-provisioning/configure-a-claims-source) on MATTR VII. This helps MATTR VII issue credentials using detailed driver/license information by connecting to a Kākāpō Transport Agency data source via an API endpoint they have built themselves. (In our case: `GET localhost:3000/core/user?email=ANY_EMAIL`.)
+Inevitably, the Kākāpō Transport Agency also has its own databases to store sensitive & confidential information, such as the _license number_ of a driver. When issuing new drivers licenses, it is not enoguh to only use information available on the IDP (Auth0). This is why the Kākāpō Transport Agency also configured a [**Claim source**](https://learn.mattr.global/docs/capabilities/issuance/oid4vci/claims-source) on MATTR VII. This helps MATTR VII issue credentials using detailed driver/license information by connecting to a Kākāpō Transport Agency data source via an API endpoint they have built themselves. (In our case: `GET localhost:3000/core/user?email=ANY_EMAIL`.)
 
 ## 🧠 Technical Journey
 This diagram assumes that you've already finished setting up the sample-app and is showcasing the flow from the moment you scanned the QR code
