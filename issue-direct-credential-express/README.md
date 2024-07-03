@@ -4,7 +4,7 @@
 
 This demostrates the flow of issuing a direct verifibale credential via QR Code, DeepLink, or Async Messaging.
 
-- You need to create your issuer DID in MATTR Platform. See our [Learn site](https://learn.mattr.global/tutorials/dids/use-did) for details.
+- You need to create your issuer DID in MATTR Platform. See our [Learn site](https://learn.mattr.global/guides/platform/identifiers/dids/web) for details.
 
 # Installation
 
