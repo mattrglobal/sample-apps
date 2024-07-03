@@ -52,7 +52,7 @@ router.post("/presentations/request", express.json(), async (req, res, next) => 
 /**
  * Endpoint that returns the received presentation response.
  *
- * https://learn.mattr.global/tutorials/verify/using-callback/callback-intro
+ * https://learn.mattr.global/guides/verification/presentation/callback
  */
 router.get("/presentations/:uid/response", async (req, res) => {
   const { uid } = req.params;
