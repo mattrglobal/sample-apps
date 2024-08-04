@@ -6,7 +6,7 @@
   "dependencies": {
     "@ngrok/ngrok": "^0.9.1",
     "dotenv": "^8.6.0",
-    "express": "^4.18.2",
+    "express": "^4.19.2",
     "jsonwebtoken": "^9.0.0",
     "qrcode": "^1.5.3"
   },
