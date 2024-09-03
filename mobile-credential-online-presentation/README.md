@@ -1,3 +1,6 @@
+> [!NOTE]
+> This is a tech preview. If you are interested in in trialling this capability, please reach out via [https://mattr.global/contact-us](https://mattr.global/contact-us).
+
 # Mobile Credential Online Presentation Sample App
 
 This sample app demonstrates the usage of the Web Verifier SDK to present mobile credentials online on the same device and across devices.
