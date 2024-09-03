@@ -12,7 +12,7 @@ You can also provide additional configuration, e.g. restricting the supported mo
 A sample request to configure your verifier tenant using `curl` looks like this:
 
 ```bash
-curl -X POST https://example.com/api \
+curl -X PUT https://<YOUR_TENANT_DOMAIN>/v2/presentations/configuration \
 -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>" \
 -H "Content-Type: application/json" \
 -d '{
