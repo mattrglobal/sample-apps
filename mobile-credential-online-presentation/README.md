@@ -70,6 +70,10 @@ The `handleRedirectCallback` function from the SDK will extract the `response_co
 > The simplest way is to provide it as an environment variable when running the app.
 > Alternatively, you can persist the verifier tenant URL in `localStorage` when making the credential request, and retrieve it on the redirected tab.
 
+### Cross device presentation
+
+In the cross device flow, you don't need to invoke the `handleRedirectCallback`, but you can directly pass an `onSuccess` and an `onFailure` handler to the `crossDeviceCallback` option in the credential request.
+
 ## Running the app
 
 This is a NextJS app, using the App Router.
