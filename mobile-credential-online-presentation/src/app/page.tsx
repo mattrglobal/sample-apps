@@ -1,16 +1,10 @@
 "use client";
 
+import { Results } from "@/components/results";
 import * as MATTRVerifierSDK from "@mattrglobal/verifier-sdk-web";
-import type {
-  Claim,
-  CredentialQuery,
-} from "@mattrglobal/verifier-sdk-web/dist/typings/verifier/types";
+import type { CredentialQuery } from "@mattrglobal/verifier-sdk-web/dist/typings/verifier/types";
+import { redirectDocument } from "@remix-run/node";
 import { useCallback, useEffect, useState } from "react";
-
-type ResultError = { message: string };
-type ResultSuccess = { verified: boolean; claims: Record<string, string> };
-type ResultLoading = { loading: true };
-type Result = ResultSuccess | ResultError | ResultLoading;
 
 const MDL_CREDENTIAL_QUERY = {
   profile: MATTRVerifierSDK.OpenidPresentationCredentialProfileSupported.MOBILE,
@@ -25,45 +19,9 @@ const MDL_CREDENTIAL_QUERY = {
   },
 };
 
-// A helper function to extract the verification status and the claims form the PresentationSuccessResult
-function mapToResult(result: MATTRVerifierSDK.PresentationSuccessResult) {
-  let credential: MATTRVerifierSDK.MobileCredentialPresentationCredential | undefined;
-  if ("credentials" in result) {
-    credential = result?.credentials?.[0];
-  }
-
-  const isoClaims = (credential?.claims?.["org.iso.18013.5.1"] ?? {}) as Record<string, Claim>;
-
-  const claims = Object.entries(isoClaims).map(([key, value]) => {
-    if (key === "portrait") {
-      const image = imageDataUri(value.value as string);
-      return ["image", image];
-    }
-    return [key, value.value];
-  });
-
-  return {
-    verified: credential?.verificationResult.verified,
-    claims: Object.fromEntries(claims),
-  } as Result;
-}
-
-// A helper function to map the binary image data to a data URI string for rendering
-function imageDataUri(data: string) {
-  const signatures = {
-    iVBORw0KGgo: "image/png",
-    "/9j/": "image/jpg",
-    _9j_: "image/jpeg",
-  } as Record<string, string>;
-
-  const prefix = Object.keys(signatures).find((prefix) => data.startsWith(prefix));
-  const mimeType = prefix ? signatures[prefix] : "image/jpeg";
-  const base64Data = data.replace(/_/g, "/").replace(/-/g, "+");
-  return `data:${mimeType};base64,${base64Data}`;
-}
-
 export default function Home() {
-  const [results, setResults] = useState<Result | null>(null);
+  const [results, setResults] = useState<MATTRVerifierSDK.PresentationSessionResult | null>(null);
+  const [loading, setLoading] = useState(false);
   const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(
     process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"),
   );
@@ -92,11 +50,11 @@ export default function Home() {
           credentialQuery: [JSON.parse(credentialQuery.query) as CredentialQuery],
           challenge: MATTRVerifierSDK.utils.generateChallenge(),
           redirectUri: redirectUri,
-          ...(mode && { mode: mode }),
+          ...(mode && { mode: mode }), // optionally provide the presentation mode
           crossDeviceCallback: {
             onSuccess: (callbackResponse) => {
               if ("result" in callbackResponse) {
-                setResults(mapToResult(callbackResponse.result));
+                setResults(callbackResponse.result);
               }
             },
             onFailure: (error) => {
@@ -111,9 +69,14 @@ export default function Home() {
 
         const result = await MATTRVerifierSDK.requestCredentials(options);
         if ("error" in result) {
-          alert(
-            `Request failed. Please ensure ${redirectUri} is a public domain and is configured on your tenant as a redirect URI`,
-          );
+          const cause = result.error.cause;
+          if (typeof cause === "object" && cause && "status" in cause && cause.status === 404) {
+            alert(`Request failed. Please check if your tenant URL is correct: ${apiBaseUrl}`)
+          } else {
+            alert(
+              `Request failed. Please ensure ${redirectUri} is a public domain and is configured on your tenant as a redirect URI`,
+            );
+          }
         }
       } catch (e) {
         if (e instanceof Error) {
@@ -137,34 +100,38 @@ export default function Home() {
     // A single function call handles the redirect callback for the same device flow
     const result = await MATTRVerifierSDK.handleRedirectCallback();
     if (result.isErr()) {
-      setResults({ message: result.error.message });
+      alert(`Error retrieving results: ${result.error.message}`);
       return;
     }
 
     const presentationResult = result.value.result;
     if (!("sessionId" in presentationResult) || "error" in presentationResult) {
-      setResults({ message: "Something went wrong" });
+      alert("Something went wrong")
       return;
     }
 
-    setResults(mapToResult(presentationResult));
+    setResults(presentationResult);
+    setLoading(false);
   }, []);
 
   useEffect(() => {
     setRedirectUri(window.location.origin);
+    setApiBaseUrl(process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"))
   }, []);
 
   // In the same device flow, we check if URL contains a hash and and handle the
   // redirect when the page loads
   useEffect(() => {
-    if (window.location.hash !== null) {
-      setResults({ loading: true });
+    console.log("this runs", window.location.hash)
+    if (window.location.hash) {
+    console.log("this runs too")
+      setLoading(true);
       handleRedirect();
     }
   }, [handleRedirect]);
 
   return (
-    <main className="flex min-h-screen flex-col p-4 lg:max-w-6xl lg:mx-auto">
+    <main className="flex flex-col min-h-screen bg-gray-50 p-4 lg:px-16 lg:max-w-6xl lg:mx-auto">
       <h1 className="text-xl font-semibold tracking-tight py-8 lg:py-16 lg:text-3xl">
         Request Mobile Credentials Online
       </h1>
@@ -172,8 +139,8 @@ export default function Home() {
       <div className="flex flex-col gap-4 lg:flex-row lg:gap-16">
         <div className="flex flex-col w-full lg:w-[50%]">
           <div className="flex flex-col gap-y-4 w-full">
-            {!apiBaseUrl && (
-              <div className="flex flex-col gap-y-1">
+            {!process.env.NEXT_PUBLIC_API_BASE_URL && (
+              <div className="flex flex-col gap-y-1 pb-4">
                 <label htmlFor="baseApi" className="font-semibold text-gray-600">
                   Your MATTR verifier Tenant URL
                 </label>
@@ -195,15 +162,27 @@ export default function Home() {
 
           {credentialQueryVisible || credentialQuery.error ? (
             <div>
-              <div className="py-3 flex justify-between">
                 <button
                   type="button"
-                  className={`flex pointer ${!credentialQuery.error && "underline"}`}
+                  className={`flex pointer ${!credentialQuery.error && "underline py-3"}`}
                   onClick={() => setCredentialQueryVisible(!credentialQueryVisible)}
                   disabled={credentialQuery.error !== null}
                 >
-                  Hide credential config
+                  Hide credential request
                 </button>
+
+                  <div className="flex flex-col gap-4">
+              <div>
+                <h3 className="font-semibold text-gray-600 pb-1">Verifier tenant URL</h3>
+                  <div className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{apiBaseUrl || "N/A"}</div>
+              </div>
+              <div>
+                <h3 className="font-semibold text-gray-600 pb-1">Redirect URI</h3>
+                  <div className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{redirectUri || "N/A"}</div>
+              </div>
+              <div>
+              <div className="flex justify-between pb-1">
+                <h3 className="font-semibold text-gray-600">Credential query</h3>
                 <button
                   type="button"
                   className="underline"
@@ -217,7 +196,6 @@ export default function Home() {
                   Reset
                 </button>
               </div>
-
               <textarea
                 id="credential-query"
                 rows={20}
@@ -235,6 +213,8 @@ export default function Home() {
               {credentialQuery.error && (
                 <div className="pb-4 text-red-500">{credentialQuery.error}</div>
               )}
+                  </div>
+                  </div>
             </div>
           ) : (
             <button
@@ -242,13 +222,13 @@ export default function Home() {
               className="flex flex-start underline py-3"
               onClick={() => setCredentialQueryVisible(!credentialQueryVisible)}
             >
-              Show credential config
+              Show credential request
             </button>
           )}
-          <div className="flex flex-row gap-x-4">
+          <div className="flex flex-col md:flex-row gap-4">
             <button
-              type="submit"
-              className="px-4 py-4 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
+              type="button"
+              className="flex-1 min-h-16 px-4 py-4 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
               onClick={() => requestCredentials()}
               disabled={credentialQuery.error !== null}
             >
@@ -256,7 +236,7 @@ export default function Home() {
             </button>
             <button
               type="button"
-              className="px-4 py-2 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
+              className="flex-1 min-h-16 px-4 py-2 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
               onClick={() => requestCredentials(MATTRVerifierSDK.Mode.sameDevice)}
               disabled={credentialQuery.error !== null}
             >
@@ -264,7 +244,7 @@ export default function Home() {
             </button>
             <button
               type="button"
-              className="px-4 py-2 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
+              className="flex-1 min-h-16 px-4 py-2 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
               onClick={() => requestCredentials(MATTRVerifierSDK.Mode.crossDevice)}
               disabled={credentialQuery.error !== null}
             >
@@ -275,30 +255,8 @@ export default function Home() {
 
         <div className="flex flex-col w-full lg:w-[50%]">
           <h2 className="lg:pt-0 py-4 text-lg lg:text-xl font-semibold tracking-tight">Results</h2>
-          {!results && <p className="text-gray-500">No results yet</p>}
-          {results && "loading" in results && <p className="text-gray-500">Loading...</p>}
-          {results && "claims" in results && (
-            <div className="flex flex-col gap-4">
-              <img width={200} src={results.claims.image} alt="portrait" />
-              <div>
-                <div className="text-sm text-slate-500">Given Name</div>
-                <div>{results.claims.given_name}</div>
-              </div>
-              <div>
-                <div className="text-sm text-slate-500">Family Name</div>
-                <div>{results.claims.family_name}</div>
-              </div>
-              <div>
-                <div className="text-sm text-slate-500">Age over 18</div>
-                <div>{results.claims.age_over_18 ? "true" : "false"}</div>
-              </div>
-              <div>
-                <div className="text-sm text-slate-500">Presentation Status</div>
-                <div>{results.verified ? "verified" : "not verified"}</div>
-              </div>
-            </div>
-          )}
-          {results && "message" in results && <p className="text-red-500">{results.message}</p>}
+          {!results && <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>}
+          {results && <Results presentationResult={results} />}
         </div>
       </div>
     </main>
