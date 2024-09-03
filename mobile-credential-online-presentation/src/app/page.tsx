@@ -3,7 +3,6 @@
 import { Results } from "@/components/results";
 import * as MATTRVerifierSDK from "@mattrglobal/verifier-sdk-web";
 import type { CredentialQuery } from "@mattrglobal/verifier-sdk-web/dist/typings/verifier/types";
-import { redirectDocument } from "@remix-run/node";
 import { useCallback, useEffect, useState } from "react";
 
 const MDL_CREDENTIAL_QUERY = {
@@ -174,11 +173,11 @@ export default function Home() {
                   <div className="flex flex-col gap-4">
               <div>
                 <h3 className="font-semibold text-gray-600 pb-1">Verifier tenant URL</h3>
-                  <div className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{apiBaseUrl || "N/A"}</div>
+                  <div className="font-mono text-sm py-1">{apiBaseUrl || "N/A"}</div>
               </div>
               <div>
                 <h3 className="font-semibold text-gray-600 pb-1">Redirect URI</h3>
-                  <div className="font-mono text-sm bg-gray-100 px-2 py-1 rounded">{redirectUri || "N/A"}</div>
+                  <div className="font-mono text-sm py-1">{redirectUri || "N/A"}</div>
               </div>
               <div>
               <div className="flex justify-between pb-1">
