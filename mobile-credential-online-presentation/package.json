@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mattrglobal/verifier-sdk-web": "0.1.1-preview.1257",
+    "@mattrglobal/verifier-sdk-web": "0.1.1-preview.1303",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18"
