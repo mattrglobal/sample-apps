@@ -51,7 +51,7 @@ export default function Home() {
           redirectUri: redirectUri,
           ...(mode && { mode: mode }), // optionally provide the presentation mode
           crossDeviceCallback: {
-            onSuccess: (callbackResponse) => {
+            onComplete: (callbackResponse) => {
               if ("result" in callbackResponse) {
                 setResults(callbackResponse.result);
               }

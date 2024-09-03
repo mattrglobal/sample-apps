@@ -72,7 +72,7 @@ The `handleRedirectCallback` function from the SDK will extract the `response_co
 
 ### Cross device presentation
 
-In the cross device flow, you don't need to invoke the `handleRedirectCallback`, but you can directly pass an `onSuccess` and an `onFailure` handler to the `crossDeviceCallback` option in the credential request.
+In the cross device flow, you don't need to invoke the `handleRedirectCallback`, but you can directly pass an `onComplete` and an `onFailure` handler to the `crossDeviceCallback` option in the credential request.
 
 ## Running the app
 
