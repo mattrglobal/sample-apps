@@ -1,5 +1,6 @@
 "use client";
 
+import { CredentialConfig } from "@/components/config";
 import { Results } from "@/components/results";
 import * as MATTRVerifierSDK from "@mattrglobal/verifier-sdk-web";
 import type { CredentialQuery } from "@mattrglobal/verifier-sdk-web/dist/typings/verifier/types";
@@ -19,22 +20,39 @@ const MDL_CREDENTIAL_QUERY = {
 };
 
 export default function Home() {
-  const [results, setResults] = useState<MATTRVerifierSDK.PresentationSessionResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const [results, setResults] = useState<MATTRVerifierSDK.PresentationSessionResult | null>(null);
+
+  // The apiBaseURl is the URL of a MATTR verifier tenant. This app is handling the same device
+  // flow by loading the results directly after the redirect. If the apiBaseUrl is not provided
+  // via an environment variable, you can provide the URL in an input field and it is presisted
+  // in localStorage.
   const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(
     process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"),
   );
   const [redirectUri, setRedirectUri] = useState<string | null>(null);
+
+  // The app allows the user to edit the credential query, see the CredentialConfig component.
   const [credentialQuery, setCredentialQuery] = useState<{ error: string | null; query: string }>({
     error: null,
     query: JSON.stringify(MDL_CREDENTIAL_QUERY, null, 2),
   });
-  const [credentialQueryVisible, setCredentialQueryVisible] = useState(false);
+  const resetCredentialQuery = () =>
+    setCredentialQuery({ error: null, query: JSON.stringify(MDL_CREDENTIAL_QUERY, null, 2) });
+
+  // When the app loads, we set the redirect URI and the API base URL.
+  useEffect(() => {
+    setRedirectUri(window.location.origin);
+    setApiBaseUrl(process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"));
+  }, []);
 
   // To request credentials, we need to
   // 1. initialise the SDK,
   // 2. repare the request options, and
   // 3. call the requestCredentials function
+  //
+  // The mode is optional. If it is not provided, the SDK will determine the mode by the user
+  // agent, using the same device flow for mobile, and the cross device flow otherwise.
   const requestCredentials = useCallback(
     async (mode?: MATTRVerifierSDK.Mode) => {
       try {
@@ -57,8 +75,8 @@ export default function Home() {
               }
             },
             onFailure: (error) => {
-              console.log("SDK Error: ", error);
               if (error.type === "Abort") {
+                alert("The request was aborted");
                 return;
               }
               alert(`There was an error processing the request - ${error.message}`);
@@ -66,11 +84,15 @@ export default function Home() {
           },
         };
 
-        const result = await MATTRVerifierSDK.requestCredentials(options);
-        if ("error" in result) {
-          const cause = result.error.cause;
+        // Note, this is returning a response containing the session ID. This *does not* already
+        // contain the presentation results. The results are retrieved either via the
+        // handleRedirectCallback in the same device flow, or in the crossDeviceCallback handlers.
+        const response = await MATTRVerifierSDK.requestCredentials(options);
+
+        if ("error" in response) {
+          const cause = response.error.cause;
           if (typeof cause === "object" && cause && "status" in cause && cause.status === 404) {
-            alert(`Request failed. Please check if your tenant URL is correct: ${apiBaseUrl}`)
+            alert(`Request failed. Please check if your tenant URL is correct: ${apiBaseUrl}`);
           } else {
             alert(
               `Request failed. Please ensure ${redirectUri} is a public domain and is configured on your tenant as a redirect URI`,
@@ -86,15 +108,14 @@ export default function Home() {
     [redirectUri, apiBaseUrl, credentialQuery],
   );
 
+  // This function wraps the handleRedirectCallback function from the SDK to set the results
+  // in the page's state.
   const handleRedirect = useCallback(async () => {
-    // The API base URL must exist in localstorage so that we are able to handle the
-    // redirect and can intialise the SDK
-    const url = process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl");
-    if (!url) {
+    if (!apiBaseUrl) {
       alert("Verifier tenant URL is missing");
       return;
     }
-    MATTRVerifierSDK.initialise({ apiBaseUrl: url });
+    MATTRVerifierSDK.initialise({ apiBaseUrl: apiBaseUrl });
 
     // A single function call handles the redirect callback for the same device flow
     const result = await MATTRVerifierSDK.handleRedirectCallback();
@@ -105,25 +126,18 @@ export default function Home() {
 
     const presentationResult = result.value.result;
     if (!("sessionId" in presentationResult) || "error" in presentationResult) {
-      alert("Something went wrong")
+      alert("Something went wrong");
       return;
     }
 
     setResults(presentationResult);
     setLoading(false);
-  }, []);
-
-  useEffect(() => {
-    setRedirectUri(window.location.origin);
-    setApiBaseUrl(process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"))
-  }, []);
+  }, [apiBaseUrl]);
 
   // In the same device flow, we check if URL contains a hash and and handle the
   // redirect when the page loads
   useEffect(() => {
-    console.log("this runs", window.location.hash)
     if (window.location.hash) {
-    console.log("this runs too")
       setLoading(true);
       handleRedirect();
     }
@@ -159,71 +173,14 @@ export default function Home() {
             )}
           </div>
 
-          {credentialQueryVisible || credentialQuery.error ? (
-            <div>
-                <button
-                  type="button"
-                  className={`flex pointer ${!credentialQuery.error && "underline py-3"}`}
-                  onClick={() => setCredentialQueryVisible(!credentialQueryVisible)}
-                  disabled={credentialQuery.error !== null}
-                >
-                  Hide credential request
-                </button>
+          <CredentialConfig
+            apiBaseUrl={apiBaseUrl}
+            redirectUri={redirectUri}
+            credentialQuery={credentialQuery}
+            setCredentialQuery={setCredentialQuery}
+            resetCredentialQuery={resetCredentialQuery}
+          />
 
-                  <div className="flex flex-col gap-4">
-              <div>
-                <h3 className="font-semibold text-gray-600 pb-1">Verifier tenant URL</h3>
-                  <div className="font-mono text-sm py-1">{apiBaseUrl || "N/A"}</div>
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-600 pb-1">Redirect URI</h3>
-                  <div className="font-mono text-sm py-1">{redirectUri || "N/A"}</div>
-              </div>
-              <div>
-              <div className="flex justify-between pb-1">
-                <h3 className="font-semibold text-gray-600">Credential query</h3>
-                <button
-                  type="button"
-                  className="underline"
-                  onClick={() =>
-                    setCredentialQuery({
-                      error: null,
-                      query: JSON.stringify(MDL_CREDENTIAL_QUERY, null, 2),
-                    })
-                  }
-                >
-                  Reset
-                </button>
-              </div>
-              <textarea
-                id="credential-query"
-                rows={20}
-                className="w-full bg-gray-100 mb-4 p-2 rounded font-mono"
-                value={credentialQuery.query}
-                onChange={(e) => {
-                  try {
-                    JSON.parse(e.target.value);
-                    setCredentialQuery({ error: null, query: e.target.value });
-                  } catch (error) {
-                    setCredentialQuery({ error: "Invalid JSON", query: e.target.value });
-                  }
-                }}
-              />
-              {credentialQuery.error && (
-                <div className="pb-4 text-red-500">{credentialQuery.error}</div>
-              )}
-                  </div>
-                  </div>
-            </div>
-          ) : (
-            <button
-              type="button"
-              className="flex flex-start underline py-3"
-              onClick={() => setCredentialQueryVisible(!credentialQueryVisible)}
-            >
-              Show credential request
-            </button>
-          )}
           <div className="flex flex-col md:flex-row gap-4">
             <button
               type="button"
@@ -254,7 +211,9 @@ export default function Home() {
 
         <div className="flex flex-col w-full lg:w-[50%]">
           <h2 className="lg:pt-0 py-4 text-lg lg:text-xl font-semibold tracking-tight">Results</h2>
-          {!results && <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>}
+          {!results && (
+            <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>
+          )}
           {results && <Results presentationResult={results} />}
         </div>
       </div>

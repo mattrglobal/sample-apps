@@ -3,7 +3,9 @@ import type { Claim } from "@mattrglobal/verifier-sdk-web";
 
 type ResultSuccess = { verified: boolean; claims: Record<string, string> };
 
-// A helper function to extract the verification status and the claims form the PresentationSuccessResult
+// A helper function to extract the verification status and the claims form the
+// PresentationSuccessResult. It transforms the binary data from the 'portrait'
+// claim into a data URI.
 function mapToResult(result: MATTRVerifierSDK.PresentationSuccessResult) {
   let credential: MATTRVerifierSDK.MobileCredentialPresentationCredential | undefined;
   if ("credentials" in result) {
@@ -27,6 +29,8 @@ function mapToResult(result: MATTRVerifierSDK.PresentationSuccessResult) {
 }
 
 // A helper function to map the binary image data to a data URI string for rendering
+// This helper function will also handle binary encoded PNGs. Note that ISO18013-5
+// requires the 'portrait' claim to be a binary encoded JPEG.
 function imageDataUri(data: string) {
   const signatures = {
     iVBORw0KGgo: "image/png",
@@ -50,9 +54,9 @@ export function Results({
   if ("credentialErrors" in presentationResult) {
     return (
       <div>
-        {presentationResult?.credentialErrors?.map(error => (
+        {presentationResult?.credentialErrors?.map((error) => (
           <div
-            key={`cred-error-${error.docType}`}
+            key={`cred-err-${error.docType}`}
           >{`Error presenting '${error.docType}': ${error.errorCode}`}</div>
         ))}
       </div>
