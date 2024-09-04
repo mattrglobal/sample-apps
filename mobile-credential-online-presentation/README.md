@@ -103,5 +103,5 @@ npm run dev
 
 > [!NOTE]
 > When presenting a Mobile Credential via a same-device workflow, the SDK is performing a side-effect after the redirect by loading the session results.
-> This conflicts with Reacts "Strict Mode", which is intentionally running every every effect twice.
+> This conflicts with React's _Strict Mode_, which is intentionally running every effect twice.
 > If you expierence any issue with disappearing results, check whether "Strict mode" is disabled in your NextJS configuration (`next.config.mjs`).
