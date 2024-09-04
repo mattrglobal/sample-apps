@@ -14,6 +14,7 @@ Refer to the [API reference](https://online-presentations-tech-preview.redoc.ly/
 
 <details>
   <summary>Sample configuration request</summary>
+
   ```bash
   curl -X PUT https://<YOUR_TENANT_DOMAIN>/v2/presentations/configuration \
   -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>" \
@@ -42,6 +43,7 @@ You also need to [create a trusted Mobile Credential issuer](https://online-pres
 
 <details>
   <summary>Sample request to add a trusted issuer</summary>
+
   ```bash
   curl -X PUT https://<YOUR_TENANT_DOMAIN>/v2/credentials/mobile/trusted-issuers \
   -H "Authorization: Bearer <YOUR_ACCESS_TOKEN>" \
