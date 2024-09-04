@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-white`}>
-        <header className="flex justify-between p-4 bg-white border-b-2">
+        <header className="flex justify-between p-4 lg:p-6 bg-white border-b-2">
           <MATTRLogo />
           <GitHubLogo />
         </header>
