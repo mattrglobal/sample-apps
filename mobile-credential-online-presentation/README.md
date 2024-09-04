@@ -3,7 +3,7 @@
 
 # Mobile Credential Online Presentation Sample App
 
-This sample app demonstrates using the Web Verifier SDK for online presentation of [Mobile Credentials](https://learn.mattr.global/docs/profiles/mobile) via either a same-device or cross-device workflow.
+This sample app demonstrates using the Verifier Web SDK for online presentation of [Mobile Credentials](https://learn.mattr.global/docs/profiles/mobile) via either a same-device or cross-device workflow.
 
 ## Prerequisites
 
@@ -72,13 +72,13 @@ On completion of the request in the wallet, the user is redirected back to the b
 The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/verifier-sdk-web/preview/functions/handleRedirectCallback.html) function extracts the `response_code` from the URL and retrieves the presentation results.
 
 > [!NOTE]
-> For the SDK to retrieve the results when rendering the page the user is redirected to, the SDK must be able to access the verifier tenant URL.
+> For the Verifier Web SDK to retrieve the results when rendering the page the user is redirected to, the SDK must be able to access the verifier tenant URL.
 > The recommended way to achieve this is to provide the URL as an environment variable when running the app.
 > Alternatively, you can persist the verifier tenant URL in `localStorage` when making the credential request, and retrieve it on the redirected tab.
 
 ### Cross-device workflows
 
-In the cross-device flow you can pass an `onComplete` and an `onFailure` handler directly to the `crossDeviceCallback` option in the credential request. You do not need to invoke the `handleRedirectCallback` function. 
+In the cross-device flow you can pass an `onComplete` and an `onFailure` handler directly to the `crossDeviceCallback` option in the credential request. You do not need to invoke the `handleRedirectCallback` function.
 
 ## Running the app
 
@@ -89,7 +89,7 @@ NEXT_PUBLIC_API_BASE_URL=<YOUR_TENANT_URL>
 ```
 to a `.env.local` file at the root of the project.
 
-This app only consists of a single page, and the main code on how to use the Web Verifier SDK can be found in `src/app/page.tsx`.
+This app only consists of a single page, and the main code on how to use the Verifier Web SDK can be found in `src/app/page.tsx`.
 
 To run the app, call the following commands in your terminal:
 
@@ -102,6 +102,6 @@ npm run dev
 ```
 
 > [!NOTE]
-> When presenting a Mobile Credential via a same-device workflow, the SDK is performing a side-effect after the redirect by loading the session results.
+> When presenting a Mobile Credential via a same-device workflow, the Verifier Web SDK is performing a side-effect after the redirect by loading the session results.
 > This conflicts with React's _Strict Mode_, which is intentionally running every effect twice.
 > If you experience any issues with disappearing results, check whether _Strict mode_ is disabled in your NextJS configuration (`next.config.mjs`).
