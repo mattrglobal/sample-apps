@@ -49,7 +49,7 @@ You can either use a hosting service of your choice, or use cloudflare or ngrok 
 > * Update the [redirect URIs](https://online-presentations-tech-preview.redoc.ly/tag/Mobile-Credentials-Verification#operation/putVerifierConfiguration!path=redirectUris&t=request) in your verifier tenant configuration (see above).
 > * Access the app via the public domain when you are interacting with it.
 >
-> The credential request to the verifier tenant validates the origin of the request and the request will fail when it is being made from `localhost`.
+> The origin of the credential request is validated by the verifier tenant and the request will fail when it is being made from `localhost`.
 
 ### Credential holding in the wallet
 
