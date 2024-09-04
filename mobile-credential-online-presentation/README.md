@@ -87,7 +87,7 @@ You can configure your verifier tenant URL by setting the `NEXT_PUBLIC_API_BASE_
 ```
 NEXT_PUBLIC_API_BASE_URL=<YOUR_TENANT_URL>
 ```
-to a `.env.local` file to the root of the project.
+to a `.env.local` file at the root of the project.
 
 This app only consists of a single page, and the main code on how to use the Web Verifier SDK can be found in `src/app/page.tsx`.
 
