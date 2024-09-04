@@ -73,7 +73,7 @@ The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/veri
 
 > [!NOTE]
 > For the SDK to retrieve the results when rendering the page the user is redirected to, the SDK must be able to access the verifier tenant URL.
-> The simplest way is to provide it as an environment variable when running the app.
+> The recommended way to achieve this is to provide the URL as an environment variable when running the app.
 > Alternatively, you can persist the verifier tenant URL in `localStorage` when making the credential request, and retrieve it on the redirected tab.
 
 ### Cross device presentation
