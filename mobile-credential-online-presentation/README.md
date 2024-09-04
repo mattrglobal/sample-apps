@@ -78,7 +78,7 @@ The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/veri
 
 ### Cross-device workflows
 
-In the cross device flow, you don't need to invoke the `handleRedirectCallback`, but you can directly pass an `onComplete` and an `onFailure` handler to the `crossDeviceCallback` option in the credential request.
+In the cross-device flow you can pass an `onComplete` and an `onFailure` handler directly to the `crossDeviceCallback` option in the credential request. You do not need to invoke the `handleRedirectCallback` function. 
 
 ## Running the app
 
