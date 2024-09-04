@@ -68,7 +68,7 @@ If you don't provide a `mode` in the `RequestCredentialsOptions`, the SDK will d
 ### Same-device workflows
 
 When credentials are requested in the same-device flow, the user is redirected to a wallet to fulfil the request.
-On completion of the request in the wallet, the user is redirected back to the browser to the redirect URI from the credential request.
+On completion of the request in the wallet, the user is redirected back to the browser using the redirect URI configured in the credential request.
 The `handleRedirectCallback` function from the SDK will extract the `response_code` from the URL, and retrieve the presentation results.
 
 > [!NOTE]
