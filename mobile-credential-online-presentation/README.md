@@ -39,7 +39,9 @@ curl -X PUT https://<YOUR_TENANT_DOMAIN>/v2/presentations/configuration \
 
 ### Making the app publically available
 
-The app needs to be publically available for the online presentation to work.
+The app needs to be publicly available for online presentation to work. You can either:
+- Use a hosting service of your choice.
+- Use cloudflare or ngrok tunnels to make your locally running app publicly available.
 You can either use a hosting service of your choice, or use cloudflare or ngrok tunnels to expose your locally running app publically.
 
 > [!IMPORTANT]
