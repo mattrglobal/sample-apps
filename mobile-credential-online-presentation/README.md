@@ -54,7 +54,7 @@ You can either use a hosting service of your choice, or use cloudflare or ngrok 
 ### Credential holding in the wallet
 
 The default credential query requests a credential of doctype `org.iso.18013.5.1.mDL`, but you can change the credential query in the sample app directly.
-You need to ensure your wallet holds a credential that can fulfil the credential query you are using.
+Make sure your wallet holds a credential that matches the credential query you are configuring.
 
 
 ## SDK Guide
