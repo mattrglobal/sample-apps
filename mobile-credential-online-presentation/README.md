@@ -76,7 +76,7 @@ The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/veri
 > The recommended way to achieve this is to provide the URL as an environment variable when running the app.
 > Alternatively, you can persist the verifier tenant URL in `localStorage` when making the credential request, and retrieve it on the redirected tab.
 
-### Cross device presentation
+### Cross-device workflows
 
 In the cross device flow, you don't need to invoke the `handleRedirectCallback`, but you can directly pass an `onComplete` and an `onFailure` handler to the `crossDeviceCallback` option in the credential request.
 
