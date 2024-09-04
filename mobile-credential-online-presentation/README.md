@@ -65,7 +65,7 @@ If you don't provide a `mode` in the `RequestCredentialsOptions`, the SDK will d
 * Mobile devices will use the same-device flow.
 * Other devices will use the cross-device flow.
 
-### Same device presentation
+### Same-device workflows
 
 When request credentials in the same device flow, the user will be redirected to a wallet to fulfil the credential request.
 On completion of the request in the wallet, the user is redirected back to the browser to the redirect URI from the credential request.
