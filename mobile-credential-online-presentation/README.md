@@ -40,6 +40,7 @@ Refer to the [API reference](https://online-presentations-tech-preview.redoc.ly/
 </details>
 
 You also need to [create a trusted Mobile Credential issuer](https://online-presentations-tech-preview.redoc.ly/tag/Mobile-Credentials-Verification#operation/addMobileCredentialTrustedIssuer) using the issuer's certificate.
+Check out our [IACA Validator](https://tools.mattrlabs.dev/pem) if you have issues with the issuer certificate (or if you want to inspect the contents of the certificate).
 
 <details>
   <summary>Sample request to add a trusted issuer</summary>
