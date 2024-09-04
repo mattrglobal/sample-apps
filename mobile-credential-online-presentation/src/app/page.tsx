@@ -144,13 +144,13 @@ export default function Home() {
   }, [handleRedirect]);
 
   return (
-    <main className="flex flex-col min-h-screen bg-gray-50 p-4 lg:px-16 lg:max-w-6xl lg:mx-auto">
-      <h1 className="text-xl font-semibold tracking-tight py-8 lg:py-16 lg:text-3xl">
+    <div className="flex flex-col mx-auto max-w-6xl mt-4 p-4 lg:mt-8">
+      <h1 className="text-xl font-bold tracking-tight pb-4 lg:pb-8 lg:text-4xl lg:mt-8">
         Request Mobile Credentials Online
       </h1>
 
-      <div className="flex flex-col gap-4 lg:flex-row lg:gap-16">
-        <div className="flex flex-col w-full lg:w-[50%]">
+      <div className="flex flex-col gap-4 lg:flex-row lg:gap-8">
+        <div className="flex flex-col w-full lg:w-[50%] bg-white border-[1px] rounded-lg p-4 lg:p-8">
           <div className="flex flex-col gap-y-4 w-full">
             {!process.env.NEXT_PUBLIC_API_BASE_URL && (
               <div className="flex flex-col gap-y-1 pb-4">
@@ -181,7 +181,7 @@ export default function Home() {
             resetCredentialQuery={resetCredentialQuery}
           />
 
-          <div className="flex flex-col md:flex-row gap-4">
+          <div className="flex flex-col mt-4 md:flex-row gap-4">
             <button
               type="button"
               className="flex-1 min-h-16 px-4 py-4 rounded bg-black text-white hover:bg-gray-700d disabled:bg-gray-400"
@@ -209,14 +209,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full lg:w-[50%]">
-          <h2 className="lg:pt-0 py-4 text-lg lg:text-xl font-semibold tracking-tight">Results</h2>
+        <div className="flex flex-col w-full p-4 lg:p-8 rounded border-[1px] lg:w-[50%] bg-white border-[1px] rounded-lg">
+          <h2 className="text-lg lg:text-xl lg:pb-2 font-semibold tracking-tight">Results</h2>
           {!results && (
             <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>
           )}
           {results && <Results presentationResult={results} />}
         </div>
       </div>
-    </main>
+    </div>
   );
 }

@@ -19,7 +19,7 @@ export function CredentialConfig({
     return (
       <button
         type="button"
-        className="flex flex-start underline py-3"
+        className="flex flex-start underline"
         onClick={() => setConfigVisible(!configVisible)}
       >
         Show credential request
@@ -31,14 +31,14 @@ export function CredentialConfig({
     <div>
       <button
         type="button"
-        className={`flex pointer py-3 text-gray-400 ${!credentialQuery.error && "underline text-black"}`}
+        className={`flex pointer text-gray-400 ${!credentialQuery.error && "underline text-black"}`}
         onClick={() => setConfigVisible(!configVisible)}
         disabled={credentialQuery.error !== null}
       >
         Hide credential request
       </button>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col mt-4 gap-4">
         <div>
           <h3 className="font-semibold text-gray-600 pb-1">Verifier tenant URL</h3>
           <div className="font-mono text-sm py-1">{apiBaseUrl || "N/A"}</div>

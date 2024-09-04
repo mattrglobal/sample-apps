@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { MATTRLogo, GitHubLogo } from "@/components/header-logo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,24 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-white`}>{children}</body>
+      <body className={`${inter.className} bg-white`}>
+        <header className="flex justify-between p-4 bg-white border-b-2">
+          <MATTRLogo />
+          <GitHubLogo />
+        </header>
+        <main className="min-h-screen">
+          <div
+            style={{
+              backgroundImage: `url("/blur-portal.svg"), linear-gradient(rgba(255,255,255,0.7), #fff), url("/pattern-mesh-tile.svg")`,
+              backgroundSize: "auto, auto, 3rem",
+              backgroundPosition: "0 135%, 0 0, 0 0",
+              backgroundRepeat: "no-repeat, no-repeat, repeat",
+            }}
+            className={"block min-h-full w-full absolute top-0 left-0 bg-opacity-20 -z-10"}
+          />
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
