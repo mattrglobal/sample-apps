@@ -46,7 +46,7 @@ You can either use a hosting service of your choice, or use cloudflare or ngrok 
 
 > [!IMPORTANT]
 > If you use a tunneling service, make sure to
-> * update the redirect URIs in your verifier tenant configuration (see above), and to
+> * Update the [redirect URIs](https://online-presentations-tech-preview.redoc.ly/tag/Mobile-Credentials-Verification#operation/putVerifierConfiguration!path=redirectUris&t=request) in your verifier tenant configuration (see above).
 > * access the app yourself via the public domain.
 >
 > The credential request to the verifier tenant validates the origin of the request and the request will fail when it is being made from `localhost`.
