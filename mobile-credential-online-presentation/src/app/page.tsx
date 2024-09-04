@@ -146,7 +146,7 @@ export default function Home() {
   return (
     <div className="flex flex-col mx-auto max-w-6xl mt-4 p-4 lg:mt-8">
       <h1 className="text-xl font-bold tracking-tight pb-4 lg:pb-8 lg:text-4xl lg:mt-8">
-        Request Mobile Credentials Online
+        Mobile Credential Online Presentation
       </h1>
 
       <div className="flex flex-col gap-4 lg:flex-row lg:gap-8">
