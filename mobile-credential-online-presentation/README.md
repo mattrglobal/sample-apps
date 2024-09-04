@@ -90,9 +90,10 @@ On completion of the request in the wallet, the user is redirected back to the b
 The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/verifier-sdk-web/preview/functions/handleRedirectCallback.html) function extracts the `response_code` from the URL and retrieves the presentation results.
 
 > [!NOTE]
-> For the Verifier Web SDK to retrieve the results when rendering the page the user is redirected to, the SDK must be able to access the verifier tenant URL.
-> The recommended way to achieve this is to provide the URL as an environment variable when running the app.
-> Alternatively, you can persist the verifier tenant URL in `localStorage` when making the credential request, and retrieve it on the redirected tab.
+> The Verifier Web SDK has to access the verifier tenant URL to retrieve the results.
+> Since the user is redirected from the wallet to a new browser tab, it is insufficient to store the tenant URL only in the sample app's state.
+> The recommended way to make the tenant URL accessible is to provide it as an environment variable when running the app.
+> Alternatively, you can persist the verifier tenant URL in `localStorage` when making the credential request, and retrieve it in the redirected tab.
 
 ### Cross-device workflows
 
