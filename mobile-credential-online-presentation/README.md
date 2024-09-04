@@ -61,7 +61,7 @@ Make sure your wallet holds a credential that matches the credential query you a
 
 ### Automatic mode detection
 
-If you don't provide a `mode` in the `RequestCredentialsOptions`, the SDK will determine the mode automatically by checking the user agent of the device in use.
+If you don't provide a `mode` in the `RequestCredentialsOptions`, the SDK will determine the mode automatically by checking the user agent of the device in use:
 Mobile devices will use the same device flow, all other devices the cross device flow.
 
 ### Same device presentation
