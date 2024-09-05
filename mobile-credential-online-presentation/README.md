@@ -60,7 +60,6 @@ Check out our [IACA Validator](https://tools.mattrlabs.dev/pem) if you have issu
 The app needs to be publicly available for online presentation to work. You can either:
 - Use a hosting service of your choice.
 - Use cloudflare or ngrok tunnels to make your locally running app publicly available.
-You can either use a hosting service of your choice, or use cloudflare or ngrok tunnels to expose your locally running app publically.
 
 > [!IMPORTANT]
 > If you use a tunneling service, make sure to
