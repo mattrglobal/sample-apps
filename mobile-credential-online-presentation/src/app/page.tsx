@@ -25,7 +25,7 @@ export default function Home() {
 
   // The apiBaseURl is the URL of a MATTR verifier tenant. This app is handling the same device
   // flow by loading the results directly after the redirect. If the apiBaseUrl is not provided
-  // via an environment variable, you can provide the URL in an input field and it is presisted
+  // via an environment variable, you can provide the URL in an input field and it is persisted
   // in localStorage.
   const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(null);
   const [redirectUri, setRedirectUri] = useState<string | null>(null);
@@ -207,7 +207,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full p-4 lg:p-8 rounded border-[1px] lg:w-[50%] bg-white rounded-lg">
+        <div className="flex flex-col w-full p-4 lg:p-8 rounded-lg border-[1px] lg:w-[50%] bg-white">
           <h2 className="text-lg lg:text-xl lg:pb-2 font-semibold tracking-tight">Results</h2>
           {!results && (
             <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>
