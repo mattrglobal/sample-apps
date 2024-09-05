@@ -23,13 +23,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<MATTRVerifierSDK.PresentationSessionResult | null>(null);
 
-  // The apiBaseURl is the URL of a MATTR verifier tenant. This app is handling the same device
+  // The apiBaseUrl is the URL of a MATTR verifier tenant. This app is handling the same device
   // flow by loading the results directly after the redirect. If the apiBaseUrl is not provided
-  // via an environment variable, you can provide the URL in an input field and it is presisted
+  // via an environment variable, you can provide the URL in an input field and it is persisted
   // in localStorage.
-  const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(
-    process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"),
-  );
+  const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(null);
   const [redirectUri, setRedirectUri] = useState<string | null>(null);
 
   // The app allows the user to edit the credential query, see the CredentialConfig component.
@@ -48,7 +46,7 @@ export default function Home() {
 
   // To request credentials, we need to
   // 1. initialise the SDK,
-  // 2. repare the request options, and
+  // 2. prepare the request options, and
   // 3. call the requestCredentials function
   //
   // The mode is optional. If it is not provided, the SDK will determine the mode by the user
@@ -134,14 +132,14 @@ export default function Home() {
     setLoading(false);
   }, [apiBaseUrl]);
 
-  // In the same device flow, we check if URL contains a hash and and handle the
+  // In the same device flow, we check if URL contains a hash and handle the
   // redirect when the page loads
   useEffect(() => {
-    if (window.location.hash) {
+    if (window.location.hash && apiBaseUrl !== null) {
       setLoading(true);
       handleRedirect();
     }
-  }, [handleRedirect]);
+  }, [handleRedirect, apiBaseUrl]);
 
   return (
     <div className="flex flex-col mx-auto max-w-6xl mt-4 p-4 lg:mt-8">
@@ -209,7 +207,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full p-4 lg:p-8 rounded border-[1px] lg:w-[50%] bg-white rounded-lg">
+        <div className="flex flex-col w-full p-4 lg:p-8 rounded-lg border-[1px] lg:w-[50%] bg-white">
           <h2 className="text-lg lg:text-xl lg:pb-2 font-semibold tracking-tight">Results</h2>
           {!results && (
             <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>
