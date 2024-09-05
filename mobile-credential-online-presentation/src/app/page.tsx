@@ -23,7 +23,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<MATTRVerifierSDK.PresentationSessionResult | null>(null);
 
-  // The apiBaseURl is the URL of a MATTR verifier tenant. This app is handling the same device
+  // The apiBaseUrl is the URL of a MATTR verifier tenant. This app is handling the same device
   // flow by loading the results directly after the redirect. If the apiBaseUrl is not provided
   // via an environment variable, you can provide the URL in an input field and it is persisted
   // in localStorage.
