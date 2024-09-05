@@ -27,9 +27,7 @@ export default function Home() {
   // flow by loading the results directly after the redirect. If the apiBaseUrl is not provided
   // via an environment variable, you can provide the URL in an input field and it is presisted
   // in localStorage.
-  const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(
-    process.env.NEXT_PUBLIC_API_BASE_URL || localStorage.getItem("apiBaseUrl"),
-  );
+  const [apiBaseUrl, setApiBaseUrl] = useState<string | null>(null);
   const [redirectUri, setRedirectUri] = useState<string | null>(null);
 
   // The app allows the user to edit the credential query, see the CredentialConfig component.

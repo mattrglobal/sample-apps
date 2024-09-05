@@ -31,7 +31,7 @@ export function CredentialConfig({
     <div>
       <button
         type="button"
-        className={`flex pointer text-gray-400 ${!credentialQuery.error && "underline text-black"}`}
+        className={`flex pointer ${credentialQuery.error ? "no-underline text-gray-400" : "underline text-black"}`}
         onClick={() => setConfigVisible(!configVisible)}
         disabled={credentialQuery.error !== null}
       >
