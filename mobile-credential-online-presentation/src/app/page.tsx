@@ -209,7 +209,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col w-full p-4 lg:p-8 rounded border-[1px] lg:w-[50%] bg-white border-[1px] rounded-lg">
+        <div className="flex flex-col w-full p-4 lg:p-8 rounded border-[1px] lg:w-[50%] bg-white rounded-lg">
           <h2 className="text-lg lg:text-xl lg:pb-2 font-semibold tracking-tight">Results</h2>
           {!results && (
             <p className="text-gray-500">{loading ? "Loading results ..." : "No results yet."}</p>
