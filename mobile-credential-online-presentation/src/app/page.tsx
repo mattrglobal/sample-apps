@@ -46,7 +46,7 @@ export default function Home() {
 
   // To request credentials, we need to
   // 1. initialise the SDK,
-  // 2. repare the request options, and
+  // 2. prepare the request options, and
   // 3. call the requestCredentials function
   //
   // The mode is optional. If it is not provided, the SDK will determine the mode by the user
