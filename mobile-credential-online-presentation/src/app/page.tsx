@@ -132,7 +132,7 @@ export default function Home() {
     setLoading(false);
   }, [apiBaseUrl]);
 
-  // In the same device flow, we check if URL contains a hash and and handle the
+  // In the same device flow, we check if URL contains a hash and handle the
   // redirect when the page loads
   useEffect(() => {
     if (window.location.hash) {
