@@ -135,11 +135,11 @@ export default function Home() {
   // In the same device flow, we check if URL contains a hash and handle the
   // redirect when the page loads
   useEffect(() => {
-    if (window.location.hash) {
+    if (window.location.hash && apiBaseUrl !== null) {
       setLoading(true);
       handleRedirect();
     }
-  }, [handleRedirect]);
+  }, [handleRedirect, apiBaseUrl]);
 
   return (
     <div className="flex flex-col mx-auto max-w-6xl mt-4 p-4 lg:mt-8">
