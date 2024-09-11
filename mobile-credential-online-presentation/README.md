@@ -1,5 +1,5 @@
 > [!NOTE]
-> This is a tech preview. If you are interested in in trialling this capability, please reach out via [https://mattr.global/contact-us](https://mattr.global/contact-us).
+> This is a tech preview. If you are interested in trialling this capability, please reach out via [https://mattr.global/contact-us](https://mattr.global/contact-us).
 
 # Mobile Credential Online Presentation Sample App
 
@@ -55,7 +55,7 @@ Check out our [IACA Validator](https://tools.mattrlabs.dev/pem) if you have issu
   ```
 </details>
 
-### Making the app publically available
+### Making the app publicly available
 
 The app needs to be publicly available for online presentation to work. You can either:
 - Use a hosting service of your choice.
