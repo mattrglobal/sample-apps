@@ -11,14 +11,14 @@ Visit the Postman [downloads page](https://www.postman.com/downloads/) to instal
 ### Step 2: Download collection and environment files
 
 Save the following files locally:
-- [`MATTR VII API Collection`](https://github.com/mattrglobal/sample-apps/blob/master/postman/mattr-vii.postman_collection.json): This Postman Collection includes API operations and some configuration.
-- [`MATTR VII Tenant Environment`](https://github.com/mattrglobal/sample-apps/blob/master/postman/mattr-vii.postman_environment.json): This Postman Environment Variables hold specific values for your MATTR VII tenant.
+- [`MATTR VII API Collection`](./mattr-vii.postman_collection.json): This Postman Collection includes API operations and some configuration.
+- [`MATTR VII Tenant Environment`](./mattr-vii.postman_environment.json): This Postman Environment Variables hold specific values for your MATTR VII tenant.
 
 ### Step 3: Import collection and environment files into Postman
 
 1. Open Postman.
 2. Select the **Import** button in the _My Workspace_ area.
-3. Select the local versions of the [_MATTR VII Tenant Environment_](https://github.com/mattrglobal/sample-apps/blob/master/postman/mattr-vii.postman_environment.json) and the [_MATTR VII API Collection_](https://github.com/mattrglobal/sample-apps/blob/master/postman/mattr-vii.postman_collection.json) files you saved earlier.
+3. Select the local versions of the [_MATTR VII Tenant Environment_](./mattr-vii.postman_environment.json) and the [_MATTR VII API Collection_](./mattr-vii.postman_collection.json) files you saved earlier.
 
 ### Step 4: Update environment variables
    
