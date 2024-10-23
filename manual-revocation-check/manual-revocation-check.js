@@ -31,7 +31,7 @@ function toBitArray(input) {
   return bitArray;
 }
 
-// Compact Credentials are base32 encoded CBOR web tokens
+// CWT credentials are base32 encoded CBOR web tokens
 // Revocable compact credentials contain a reference to the
 // public revocation list and their index in that list.
 function retrieveRevocationUrlFromCompact(compact) {
