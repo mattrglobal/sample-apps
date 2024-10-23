@@ -63,7 +63,7 @@ async function isCompactRevoked(url, index) {
   return revocationList[index] === 1;
 }
 
-// The public revocation list endpoint for web semantic credentials
+// The public revocation list endpoint for JSON credentials
 // returns a revocation credential that includes the encoded revocation
 // list. The list is a base64url encoded and gzip compressed bitstring.
 async function isWebSemanticRevoked(url, index) {
