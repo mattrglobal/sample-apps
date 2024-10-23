@@ -8,7 +8,7 @@ Credential revocation is a critical feature that allows issuers to invalidate pr
 
 MATTR provides capabilities to issue revokable credentials, to manage the revocation status of credentials, and to check the revocation status of a credential. Check out our [Credential Management](https://learn.mattr.global/docs/capabilities/management) capabilities and our [Revocation Tutorial](https://learn.mattr.global/tutorials/management/revocation) to learn more.
 
-While we highly suggest to leverage your MATTR tenant for credential management, credentials also include the necessary information to check their revocation status manually to enable interoperability.
+While we highly recommend to leverage your MATTR tenant for credential management, credentials also enable unauthenticated relying parties to check their revocation status to enable interoperability.
 
 This sample script demonstrates how to retrieve the revocation list data, how to decode the data, and how to check the revocation status.
 
