@@ -44,7 +44,7 @@ If you provide the encoded form, the script will decode the credential and retri
 node manual-revocation-check.js CSC:/1/2KCE3I...
 ```
 
-If you decode the compact credential yourself, you can pass the revocation list URL and index.
+If you decode the credential yourself, you can pass the revocation list URL and index.
 
 ```bash
 node manual-revocation-check.js https://learn.vii.au01.mattr.global/core/v2/credentials/compact/revocation-lists/0ec79c8e-9859-46c0-a277-6e48f468b16e 1
