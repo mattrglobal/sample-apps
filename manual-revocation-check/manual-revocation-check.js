@@ -46,7 +46,7 @@ function retrieveRevocationUrlFromCompact(compact) {
   return { listUrl, index };
 }
 
-// The public revocation list endpoint for compact credentials
+// The public revocation list endpoint for CWT credentials
 // returns a CBOR web token that includes the gzip compressed
 // revocation list as a bitstring.
 async function isCompactRevoked(url, index) {
