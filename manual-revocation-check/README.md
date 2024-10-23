@@ -16,7 +16,7 @@ This sample script demonstrates how to retrieve the revocation list data, how to
 
 ### Web Semantic Credentials
 
-Web Semantic credentials contain a `credentialStatus` field that holds the reference to a revocation list.
+JSON credentials contain a `credentialStatus` field that holds the reference to a revocation list.
 
 ```json
     "credentialStatus": {
