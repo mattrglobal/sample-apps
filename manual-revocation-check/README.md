@@ -38,7 +38,7 @@ node manual-revocation-check.js https://learn.vii.au01.mattr.global/core/v2/cred
 
 CWT and Semantic CWT credentials are usually shared and verified in their encoded forms. For convenience, you can provide the encoded credential or the revocation list URL and index to the script.
 
-If you provide the encoded compact credential, the script will decode the credential and retrieve the list URL and index.
+If you provide the encoded form, the script will decode the credential and retrieve the list URL and index.
 
 ```bash
 node manual-revocation-check.js CSC:/1/2KCE3I...
