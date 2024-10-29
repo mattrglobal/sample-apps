@@ -34,7 +34,7 @@ You can check the revocation status of this credential by running the script wit
 node manual-revocation-check.js https://learn.vii.au01.mattr.global/core/v2/credentials/web-semantic/revocation-lists/0ec79c8e-9859-46c0-a277-6e48f468b16e 1
 ```
 
-### CWT and semantic CWT credentials
+### CWT and Semantic CWT credentials
 
 CWT and Semantic CWT credentials are usually shared and verified in their encoded forms. For convenience, you can provide the encoded credential or the revocation list URL and index to the script.
 
