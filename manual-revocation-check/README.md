@@ -20,10 +20,10 @@ JSON credentials contain a `credentialStatus` field that holds the reference to 
 
 ```json
     "credentialStatus": {
-        "id": "https://re-labs.vii.au01.mattr.global/core/v2/credentials/web-semantic/revocation-lists/0ec79c8e-9859-46c0-a277-6e48f468b16e#1",
+        "id": "https://labs-mattr-university.vii.au01.mattr.global/core/v2/credentials/web-semantic/revocation-lists/57698edc-0826-4628-a2eb-888cb840d4b5#0",
         "type": "RevocationList2020Status",
-        "revocationListIndex": "1",
-        "revocationListCredential": "https://re-labs.vii.au01.mattr.global/core/v2/credentials/web-semantic/revocation-lists/0ec79c8e-9859-46c0-a277-6e48f468b16e"
+        "revocationListIndex": "0",
+        "revocationListCredential": "https://labs-mattr-university.vii.au01.mattr.global/core/v2/credentials/web-semantic/revocation-lists/57698edc-0826-4628-a2eb-888cb840d4b5"
     },
 ```
 
@@ -41,7 +41,7 @@ CWT and Semantic CWT credentials are usually shared and verified in their encode
 If you provide the encoded form, the script will decode the credential and retrieve the list URL and index.
 
 ```bash
-node manual-revocation-check.js CSC:/1/2KCE3I...
+node manual-revocation-check.js CSC:/1/2KCE3IQEJB5DCMSLNFYUYUQBE2QFSAIJU4AXQJLENFSDU53FMI5G2YLUORZC25LONF3GK4TTNF2HSLTNMF2HI4TMMFRHGLTDN4DBUZZBHGDAIGTLJHJAAZDOMFWWK22FNVWWCICUMFZW2YLONBQWY5LNNZUU6ZTVJVAVIVCSEBGGCYTTEBKW42LWMVZHG2LUPE5AAAIAACRAEAADPCCWQ5DUOBZTULZPNRQWE4ZNNVQXI5DSFV2W42LWMVZHG2LUPEXHM2LJFZQXKMBRFZWWC5DUOIXGO3DPMJQWYL3DN5ZGKL3WGIXWG4TFMRSW45DJMFWHGL3DN5WXAYLDOQXXEZLWN5RWC5DJN5XC23DJON2HGLZXGM3WGMBWHBTC2NDFMM2C2NBTMY4C2YTDHA4S2NRZMUZDMMJUMEZWKZDGA7MEAUBXE2MBKC2XJAKLSCN2AVW6OJMQLBAJQWGFUIV55FG2U7NK6B4DRSTNOKHVLRBEON47KCHLKZ42FAOMHCA24SHRWIOAAVCKTNQQAE7J2INROWI4DS3ZK3JEXVQGGZ4UGAJFFI
 ```
 
 If you decode the credential yourself, you can pass the revocation list URL and index.
@@ -50,6 +50,14 @@ If you decode the credential yourself, you can pass the revocation list URL and 
 node manual-revocation-check.js https://learn.vii.au01.mattr.global/core/v2/credentials/compact/revocation-lists/0ec79c8e-9859-46c0-a277-6e48f468b16e 1
 ```
 
+## Results
+
+The results are displayed in your terminal, showing the inferred credential type and the revocation status.
+
+```
+[Credential Type]    CWT
+[Revocation status]  Revoked
+```
 
 ---
 

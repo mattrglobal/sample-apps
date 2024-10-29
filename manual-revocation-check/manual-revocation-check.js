@@ -7,15 +7,22 @@ const urlOrCompact = process.argv[2];
 const index = process.argv[3];
 
 if (!urlOrCompact) {
-  throw new Error("No URL or compact credential provided.");
+  console.error("No URL or compact credential provided.");
+  process.exit();
 }
 
-if (!urlOrCompact.startsWith("http") && !urlOrCompact.startsWith("CSC") && !urlOrCompact.startsWith("CSS")) {
-  throw new Error("Invalid argument provided. Neither URL, nor encoded compact credential");
+if (
+  !urlOrCompact.startsWith("http") &&
+  !urlOrCompact.startsWith("CSC") &&
+  !urlOrCompact.startsWith("CSS")
+) {
+  console.error("Invalid argument provided. Neither URL, nor encoded compact credential.");
+  process.exit();
 }
 
 if (urlOrCompact.startsWith("http") && !index) {
-  throw new Error("No index provided for revocation list URL");
+  console.error("No index provided for revocation list URL.");
+  process.exit();
 }
 
 function toBitArray(input) {
@@ -50,7 +57,17 @@ function retrieveRevocationUrlFromCompact(compact) {
 // returns a CBOR web token that includes the gzip compressed
 // revocation list as a bitstring.
 async function isCompactRevoked(url, index) {
-  const response = await fetch(url);
+  let response;
+  try {
+    response = await fetch(url);
+    if (!response.ok) {
+      console.error("Can not fetch revocation list from provided URL.")
+      process.exit()
+    }
+  } catch (_) {
+    console.error("Fetching revocation list from URL failed.")
+    process.exit()
+  }
   const bytes = await response.arrayBuffer();
 
   const cwt = cborDecode(Buffer.from(bytes));
@@ -67,34 +84,41 @@ async function isCompactRevoked(url, index) {
 // returns a revocation credential that includes the encoded revocation
 // list. The list is a base64url encoded and gzip compressed bitstring.
 async function isWebSemanticRevoked(url, index) {
-  const response = await fetch(url);
-  const revocationCredential = await response.json();
+  let response;
+  try {
+    response = await fetch(url);
+    if (!response.ok) {
+      console.error("Can not fetch revocation list from provided URL.")
+      process.exit()
+    }
+  } catch (_) {
+    console.error("Fetching revocation list from URL failed.")
+    process.exit()
+  }
 
+  const revocationCredential = await response.json();
   const { encodedList } = revocationCredential.credentialSubject;
+
   const list = pako.ungzip(base64.decodeURLSafe(encodedList));
   const listBitArray = toBitArray(list);
 
   return listBitArray[index] === 1;
 }
 
-
 let isRevoked;
 if (urlOrCompact.startsWith("CSC") || urlOrCompact.startsWith("CSS")) {
-  console.log("Compact Credential provided\n")
-  console.log("Decoding compact credential\n")
+  console.log(`\n[Credential Type]    ${urlOrCompact.startsWith("CSS") ? "Semantic " : ""}CWT (encoded)`);
   const { listUrl, index } = retrieveRevocationUrlFromCompact(urlOrCompact);
-  console.log("Fetching revocation list and checking revocation status\n")
   isRevoked = await isCompactRevoked(listUrl, index);
 } else if (urlOrCompact.includes("compact")) {
-  console.log("Revocation list URL for compact credential provided\n")
-  console.log("Fetching revocation list and checking revocation status\n")
+  console.log(`\n[Credential Type]    ${urlOrCompact.includes("semantic") ? "Semantic " : ""}CWT`);
   isRevoked = await isCompactRevoked(urlOrCompact, index);
 } else if (urlOrCompact.includes("web-semantic")) {
-  console.log("Revocation list URL for Web Semantic credential provided\n")
-  console.log("Fetching revocation list and checking revocation status\n")
+  console.log("\n[Credential Type]    JSON");
   isRevoked = await isWebSemanticRevoked(urlOrCompact, index);
 } else {
-  throw new Error("Unknown credential type");
+  console.error("Can not identify credential type.");
+  process.exit()
 }
 
-console.log(`Revocation Status: ${isRevoked ? "Revoked" : "Not revoked"}`);
+console.log(`[Revocation status]  ${isRevoked ? "Revoked" : "Not revoked"}`);
