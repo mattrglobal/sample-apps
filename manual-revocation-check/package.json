@@ -1,0 +1,30 @@
+{
+  "name": "manual-revocation-check",
+  "version": "1.0.0",
+  "description": "A sample script how to check the revocation status of a compact or web semantic credential manually via the public revocation list endpoint.",
+  "main": "manual-revocation-check.js",
+  "dependencies": {
+    "@stablelib/base64": "^2.0.0",
+    "base32-decode": "^1.0.0",
+    "cbor-x": "^1.6.0",
+    "pako": "^2.1.0"
+  },
+  "scripts": {
+    "start": "node manual-revocation-check.js",
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattrglobal/sample-apps.git"
+  },
+  "keywords": [
+    "sampleapp",
+    "mattr"
+  ],
+  "author": "ralf.engbers@mattr.global",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/mattrglobal/sample-apps/issues"
+  },
+  "homepage": "https://github.com/mattrglobal/sample-apps#readme",
+  "type": "module"
+}
