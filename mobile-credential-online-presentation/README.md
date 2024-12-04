@@ -1,13 +1,13 @@
-# Mobile Credential Online Presentation Sample App
+# mDocs Online Presentation Sample App
 
-This sample app demonstrates using the Verifier Web SDK for online presentation of [Mobile Credentials](https://learn.mattr.global/docs/profiles/mobile) via either a same-device or cross-device workflow.
+This sample app demonstrates using the MATTR [Verifier Web SDK](https://learn.mattr.global/docs/verification/online/mdocs/verifier-web-sdk) for [online presentation](https://learn.mattr.global/docs/verification/online/mdocs/overview) of [mDocs](https://learn.mattr.global/docs/mdocs) via either a [same-device](https://learn.mattr.global/docs/verification/online/mdocs/overview#same-device-verification-workflow) or [cross-device](https://learn.mattr.global/docs/verification/online/mdocs/overview#cross-device-verification-workflow) workflow.
 
 ## Prerequisites
 
 ### MATTR verifier tenant configuration
 
 You must create a verifier configuration on your MATTR VII tenant.
-Refer to the [API reference](https://online-presentations-tech-preview.redoc.ly/tag/Mobile-Credentials-Verification#operation/putVerifierConfiguration) for a complete description of this configuration and different settings you can control.
+Refer to the [API reference](https://learn.mattr.global/api-reference/latest/tag/mDocs-verification#operation/putVerifierConfiguration) for a complete description of this configuration and different settings you can control.
 
 <details>
   <summary>Sample configuration request</summary>
@@ -36,7 +36,7 @@ Refer to the [API reference](https://online-presentations-tech-preview.redoc.ly/
   ```
 </details>
 
-You also need to [create a trusted Mobile Credential issuer](https://online-presentations-tech-preview.redoc.ly/tag/Mobile-Credentials-Verification#operation/addMobileCredentialTrustedIssuer) using the issuer's certificate.
+You also need to [create a trusted issuer](https://learn.mattr.global/api-reference/latest/tag/mDocs-verification#operation/addMobileCredentialTrustedIssuer) using the issuer's certificate.
 Check out our [IACA Validator](https://tools.mattrlabs.dev/pem) if you have issues with the issuer certificate (or if you want to inspect the contents of the certificate).
 
 <details>
@@ -60,7 +60,7 @@ The app needs to be publicly available for online presentation to work. You can 
 
 > [!IMPORTANT]
 > If you use a tunneling service, make sure to
-> * Update the [redirect URIs](https://online-presentations-tech-preview.redoc.ly/tag/Mobile-Credentials-Verification#operation/putVerifierConfiguration!path=redirectUris&t=request) in your verifier tenant configuration (see above).
+> * Update the [redirect URIs](https://learn.mattr.global/api-reference/latest/tag/mDocs-verification#operation/putVerifierConfiguration!path=redirectUris&t=request) in your verifier tenant configuration (see above).
 > * Access the app via the public domain when you are interacting with it.
 >
 > The origin of the credential request is validated by the verifier tenant and the request will fail when it is being made from `localhost`.
@@ -69,7 +69,6 @@ The app needs to be publicly available for online presentation to work. You can 
 
 The default credential query requests a credential of doctype `org.iso.18013.5.1.mDL`, but you can change the credential query in the sample app directly.
 Make sure your wallet holds a credential that matches the credential query you are configuring.
-
 
 ## SDK Guide
 
@@ -83,7 +82,7 @@ If you don't provide a `mode` in the `RequestCredentialsOptions`, the SDK will d
 
 When credentials are requested in the same-device flow, the user is redirected to a wallet to fulfil the request.
 On completion of the request in the wallet, the user is redirected back to the browser using the redirect URI configured in the credential request.
-The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/verifier-sdk-web/preview/functions/handleRedirectCallback.html) function extracts the `response_code` from the URL and retrieves the presentation results.
+The SDK's [`handleRedirectCallback`](https://api-reference-sdk.mattr.global/verifier-sdk-web/latest/functions/handleRedirectCallback.html) function extracts the `response_code` from the URL and retrieves the presentation results.
 
 > [!NOTE]
 > The Verifier Web SDK has to access the verifier tenant URL to retrieve the results.
@@ -117,6 +116,6 @@ npm run dev
 ```
 
 > [!NOTE]
-> This sample app will load the session results immediately after the redirect when presenting a Mobile Credential via a same-device workflow.
+> This sample app will load the session results immediately after the redirect when presenting an mDoc via a same-device workflow.
 > Because you can only retrieve the results once, this conflicts with React's _Strict Mode_, which is intentionally running every effect twice.
 > If you experience any issues with disappearing results, check whether _Strict mode_ is disabled in your NextJS configuration (`next.config.mjs`).
