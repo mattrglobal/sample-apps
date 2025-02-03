@@ -69,7 +69,7 @@ export class MattrService {
   public async createClaimSource(
     args: CreateClaimSourceArgs,
   ): Promise<AxiosResponse<CreateClaimSourceResBody>> {
-    const url = `${this.BASE_URL}/core/v1/claimsources`;
+    const url = `${this.BASE_URL}/core/v1/claim-sources`;
     const body = args.body;
     const config = this.buildConfig(args.token);
     const res = this.http
@@ -94,7 +94,7 @@ export class MattrService {
   public async getAuthProviders(
     args: GetAuthProvidersArgs,
   ): Promise<AxiosResponse<GetAuthProvidersResBody>> {
-    const url = `${this.BASE_URL}/v1/users/authenticationproviders`;
+    const url = `${this.BASE_URL}/v1/users/authentication-providers`;
     const config = this.buildConfig(args.token);
     const res = this.http
       .get(url, config)
@@ -241,7 +241,7 @@ export class MattrService {
   public async getClaimSources(
     args: GetClaimSourcesArgs,
   ): Promise<AxiosResponse<GetClaimSourcesResBody>> {
-    const url = `${this.BASE_URL}/v1/claimsources`;
+    const url = `${this.BASE_URL}/v1/claim-sources`;
     const config = this.buildConfig(args.token);
     const res = this.http
       .get(url, config)
@@ -284,7 +284,7 @@ export class MattrService {
   public async deleteClaimSource(
     args: DeleteClaimSourceArgs,
   ): Promise<AxiosResponse> {
-    const url = `${this.BASE_URL}/v1/claimsources/${args.query.id}`;
+    const url = `${this.BASE_URL}/v1/claim-sources/${args.query.id}`;
     const config = this.buildConfig(args.token);
     const res = this.http
       .delete(url, config)
