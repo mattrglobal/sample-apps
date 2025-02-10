@@ -1,7 +1,7 @@
 [![MATTR](/docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 ### Credential template  
-# Working at Heights Certificate – Compact, PDF
+# Working at Heights Certificate – CWT, PDF
 
 ## For designers
 
@@ -9,11 +9,11 @@ Download the [design package file](./_forDesigners/InDesignPackageFile.zip) to s
 
 ## For developers
 
-Work with the designers so the fields key on config.json is the same as the form fields on the PDF template
+Work with the designers so the fields key on config.json is the same as the form fields on the PDF template.
 
-The corresponding payload file can be found on [./payload.json](./payload.json)
+The corresponding payload file can be found on [./payload.json](./payload.json).
 
 ## Useful reads
 
-- [Generate PDF tutorial](https://learn.mattr.global/guides/issuance/direct/compact#format-the-signed-compact-credential)
-- [PDF template management](https://learn.mattr.global/guides/issuance/direct/compact/templates/pdf)
+- [CWT Credentials direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
+- [PDF template management](https://learn.mattr.global/guides/issuance-direct/cwt/pdf-templates)
