@@ -4375,9 +4375,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners",
+                  "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "mobile", "documentsigners"]
+                  "path": ["v2", "credentials", "mobile", "document-signers"]
                 },
                 "description": "Creates a new Document Signer Certificate (DSC) that can be used to sign new Mobile Credentials.\n\n### **Analytic events**\n* MOBILE_CREDENTIAL_DOCUMENT_SIGNER_CREATE_START\n* MOBILE_CREDENTIAL_DOCUMENT_SIGNER_CREATE_SUCCESS\n* MOBILE_CREDENTIAL_DOCUMENT_SIGNER_CREATE_FAIL"
               },
@@ -4412,9 +4412,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners"]
+                      "path": ["v2", "credentials", "mobile", "document-signers"]
                     }
                   },
                   "status": "Created",
@@ -4459,9 +4459,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners"]
+                      "path": ["v2", "credentials", "mobile", "document-signers"]
                     }
                   },
                   "status": "Bad Request",
@@ -4489,9 +4489,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners",
+                  "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "mobile", "documentsigners"]
+                  "path": ["v2", "credentials", "mobile", "document-signers"]
                 },
                 "description": "Retrieves all existing DSCs from the tenant.\n\n### **Analytic events**\n* MOBILE_CREDENTIAL_DOCUMENT_SIGNER_RETRIEVE_LIST_START\n* MOBILE_CREDENTIAL_DOCUMENT_SIGNER_RETRIEVE_LIST_SUCCESS\n* MOBILE_CREDENTIAL_DOCUMENT_SIGNER_RETRIEVE_LIST_FAIL"
               },
@@ -4512,9 +4512,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners"]
+                      "path": ["v2", "credentials", "mobile", "document-signers"]
                     }
                   },
                   "status": "OK",
@@ -4556,9 +4556,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                  "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                  "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                   "variable": [
                     {
                       "key": "documentSignerId",
@@ -4600,9 +4600,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -4652,9 +4652,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -4700,9 +4700,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -4730,9 +4730,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                  "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                  "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                   "variable": [
                     {
                       "key": "documentSignerId",
@@ -4760,9 +4760,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -4794,9 +4794,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -4819,9 +4819,9 @@
                 "method": "DELETE",
                 "header": [],
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                  "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                  "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                   "variable": [
                     {
                       "key": "documentSignerId",
@@ -4845,9 +4845,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -4874,9 +4874,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/mobile/documentsigners/:documentSignerId",
+                      "raw": "{{baseUrl}}/v2/credentials/mobile/document-signers/:documentSignerId",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "mobile", "documentsigners", ":documentSignerId"],
+                      "path": ["v2", "credentials", "mobile", "document-signers", ":documentSignerId"],
                       "variable": [
                         {
                           "key": "documentSignerId"
@@ -10421,9 +10421,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates"]
+                          "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates"]
                         },
                         "description": "Creates an Apple Pass template based on the provided `.zip` file. Refer to our [Design an Apple Pass template](https://learn.mattr.global/tutorials/create/compact-credentials/template-management/apple-digital-pass-design-guideline) tutorial for more information on how to design the template and how to structure the `.zip` file.\n\n> The Apple Pass template uses the official Apple Pass bundle structure.\n\n### **Analytic events**\n* CREDENTIAL_COMPACT_APPLE_PASS_TEMPLATE_CREATE_START\n* CREDENTIAL_COMPACT_APPLE_PASS_TEMPLATE_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_APPLE_PASS_TEMPLATE_CREATE_FAIL"
                       },
@@ -10507,9 +10507,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates"]
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates"]
                             }
                           },
                           "status": "Created",
@@ -10603,9 +10603,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates"]
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates"]
                             }
                           },
                           "status": "Bad Request",
@@ -10633,9 +10633,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates"],
                           "query": [
                             {
                               "key": "limit",
@@ -10670,9 +10670,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -10717,9 +10717,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -10824,9 +10824,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -10917,9 +10917,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11018,9 +11018,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11119,9 +11119,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11154,9 +11154,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -11184,9 +11184,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11222,9 +11222,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11260,9 +11260,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11295,9 +11295,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -11321,9 +11321,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11354,9 +11354,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11392,9 +11392,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "apple", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "apple", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11471,9 +11471,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates"]
+                          "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates"]
                         },
                         "description": "Creates a Google Pass template based on the provided `.zip` file. Refer to our [Design a Google Pass template](https://learn.mattr.global/tutorials/create/compact-credentials/template-management/google-digital-pass-design-guideline) tutorial for more information on how to design the template and how to structure the `.zip` file.\n\n### **Analytic events**\n* CREDENTIAL_COMPACT_GOOGLE_PASS_TEMPLATE_CREATE_START\n* CREDENTIAL_COMPACT_GOOGLE_PASS_TEMPLATE_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_GOOGLE_PASS_TEMPLATE_CREATE_FAIL"
                       },
@@ -11533,9 +11533,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates"]
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates"]
                             }
                           },
                           "status": "Created",
@@ -11605,9 +11605,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates"]
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates"]
                             }
                           },
                           "status": "Bad Request",
@@ -11635,9 +11635,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates"],
                           "query": [
                             {
                               "key": "limit",
@@ -11672,9 +11672,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -11719,9 +11719,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -11802,9 +11802,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -11871,9 +11871,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -11948,9 +11948,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12021,9 +12021,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12051,9 +12051,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -12081,9 +12081,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12119,9 +12119,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12157,9 +12157,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12192,9 +12192,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -12218,9 +12218,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12251,9 +12251,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12289,9 +12289,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact", "digitalpass", "google", "templates", ":id"],
+                              "path": ["v2", "credentials", "compact", "digital-pass", "google", "templates", ":id"],
                               "variable": [
                                 {
                                   "key": "id"
@@ -12627,9 +12627,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple",
+                  "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "compact", "digitalpass", "apple"]
+                  "path": ["v2", "credentials", "compact", "digital-pass", "apple"]
                 },
                 "description": "Returns an Apple Pass representation of a provided Compact Credential based on an existing Apple Pass template.\n\n> The request will fail if the provided credential isn't valid or has expired.\n\n### **Analytic events**\n* CREDENTIAL_COMPACT_APPLE_PASS_CREATE_START\n* CREDENTIAL_COMPACT_APPLE_PASS_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_APPLE_PASS_CREATE_FAIL"
               },
@@ -12664,9 +12664,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple",
+                      "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact", "digitalpass", "apple"]
+                      "path": ["v2", "credentials", "compact", "digital-pass", "apple"]
                     }
                   },
                   "status": "OK",
@@ -12711,9 +12711,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/apple",
+                      "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/apple",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact", "digitalpass", "apple"]
+                      "path": ["v2", "credentials", "compact", "digital-pass", "apple"]
                     }
                   },
                   "status": "Bad Request",
@@ -12755,9 +12755,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google",
+                  "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "compact", "digitalpass", "google"]
+                  "path": ["v2", "credentials", "compact", "digital-pass", "google"]
                 },
                 "description": "Returns a Google Pass representation of a provided Compact Credential based on an existing Google Pass template.\n\n> The request will fail if the provided credential isn't valid or has expired.\n\n### **Analytic events**\n* CREDENTIAL_COMPACT_GOOGLE_PASS_CREATE_START\n* CREDENTIAL_COMPACT_GOOGLE_PASS_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_GOOGLE_PASS_CREATE_FAIL"
               },
@@ -12792,9 +12792,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google",
+                      "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact", "digitalpass", "google"]
+                      "path": ["v2", "credentials", "compact", "digital-pass", "google"]
                     }
                   },
                   "status": "OK",
@@ -12839,9 +12839,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact/digitalpass/google",
+                      "raw": "{{baseUrl}}/v2/credentials/compact/digital-pass/google",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact", "digitalpass", "google"]
+                      "path": ["v2", "credentials", "compact", "digital-pass", "google"]
                     }
                   },
                   "status": "Bad Request",
@@ -13753,9 +13753,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates"]
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates"]
                         },
                         "description": "Creates an Apple Pass template based on the provided `.zip` file. Refer to our [Design an Apple Pass template](https://learn.mattr.global/tutorials/create/compact-credentials/template-management/apple-digital-pass-design-guideline) tutorial for more information on how to design the template and how to structure the `.zip` file.\n\n> The Apple Pass template uses the official Apple Pass bundle structure.\n\n### **Analytic events**\n* CREDENTIAL_COMPACT_SEMANTIC_APPLE_PASS_TEMPLATE_CREATE_START\n* CREDENTIAL_COMPACT_SEMANTIC_APPLE_PASS_TEMPLATE_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_SEMANTIC_APPLE_PASS_TEMPLATE_CREATE_FAIL"
                       },
@@ -13839,9 +13839,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates"]
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates"]
                             }
                           },
                           "status": "Created",
@@ -13935,9 +13935,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates"]
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates"]
                             }
                           },
                           "status": "Bad Request",
@@ -13965,9 +13965,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates"],
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates"],
                           "query": [
                             {
                               "key": "limit",
@@ -14002,9 +14002,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates"],
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -14049,9 +14049,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates"],
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -14156,9 +14156,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -14249,13 +14249,13 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14358,13 +14358,13 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14467,13 +14467,13 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14510,9 +14510,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -14540,13 +14540,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14586,13 +14586,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14632,13 +14632,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14675,9 +14675,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple", "templates", ":id"],
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple", "templates", ":id"],
                           "variable": [
                             {
                               "key": "id",
@@ -14701,13 +14701,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14742,13 +14742,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14788,13 +14788,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "apple",
                                 "templates",
                                 ":id"
@@ -14875,9 +14875,9 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google", "templates"]
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google", "templates"]
                         },
                         "description": "Creates a Google Pass template based on the provided `.zip` file. Refer to our [Design a Google Pass template](https://learn.mattr.global/tutorials/create/compact-credentials/template-management/google-digital-pass-design-guideline) tutorial for more information on how to design the template and how to structure the `.zip` file.\n\n### **Analytic events**\n* CREDENTIAL_COMPACT_SEMANTIC_GOOGLE_PASS_TEMPLATE_CREATE_START\n* CREDENTIAL_COMPACT_SEMANTIC_GOOGLE_PASS_TEMPLATE_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_SEMANTIC_GOOGLE_PASS_TEMPLATE_CREATE_FAIL"
                       },
@@ -14937,9 +14937,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google", "templates"]
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google", "templates"]
                             }
                           },
                           "status": "Created",
@@ -15009,9 +15009,9 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google", "templates"]
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google", "templates"]
                             }
                           },
                           "status": "Bad Request",
@@ -15039,9 +15039,9 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates",
                           "host": ["{{baseUrl}}"],
-                          "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google", "templates"],
+                          "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google", "templates"],
                           "query": [
                             {
                               "key": "limit",
@@ -15076,9 +15076,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google", "templates"],
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -15123,9 +15123,9 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates",
                               "host": ["{{baseUrl}}"],
-                              "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google", "templates"],
+                              "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google", "templates"],
                               "query": [
                                 {
                                   "key": "limit",
@@ -15206,13 +15206,13 @@
                           ]
                         },
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                           "host": ["{{baseUrl}}"],
                           "path": [
                             "v2",
                             "credentials",
                             "compact-semantic",
-                            "digitalpass",
+                            "digital-pass",
                             "google",
                             "templates",
                             ":id"
@@ -15283,13 +15283,13 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15368,13 +15368,13 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15449,13 +15449,13 @@
                               ]
                             },
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15487,13 +15487,13 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                           "host": ["{{baseUrl}}"],
                           "path": [
                             "v2",
                             "credentials",
                             "compact-semantic",
-                            "digitalpass",
+                            "digital-pass",
                             "google",
                             "templates",
                             ":id"
@@ -15525,13 +15525,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15571,13 +15571,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15617,13 +15617,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15660,13 +15660,13 @@
                           }
                         ],
                         "url": {
-                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                          "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                           "host": ["{{baseUrl}}"],
                           "path": [
                             "v2",
                             "credentials",
                             "compact-semantic",
-                            "digitalpass",
+                            "digital-pass",
                             "google",
                             "templates",
                             ":id"
@@ -15694,13 +15694,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15735,13 +15735,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -15781,13 +15781,13 @@
                               }
                             ],
                             "url": {
-                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google/templates/:id",
+                              "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google/templates/:id",
                               "host": ["{{baseUrl}}"],
                               "path": [
                                 "v2",
                                 "credentials",
                                 "compact-semantic",
-                                "digitalpass",
+                                "digital-pass",
                                 "google",
                                 "templates",
                                 ":id"
@@ -16246,9 +16246,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple",
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple"]
+                  "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple"]
                 },
                 "description": "Returns an Apple Pass representation of a provided Compact Semantic Credential based on an existing Apple Pass template.\n\n> The request will fail if the provided credential isn't valid or has expired.\n### **Analytic events**\n* CREDENTIAL_COMPACT_SEMANTIC_APPLE_PASS_CREATE_START\n* CREDENTIAL_COMPACT_SEMANTIC_APPLE_PASS_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_SEMANTIC_APPLE_PASS_CREATE_FAIL"
               },
@@ -16283,9 +16283,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple",
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple"]
+                      "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple"]
                     }
                   },
                   "status": "OK",
@@ -16330,9 +16330,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/apple",
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/apple",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact-semantic", "digitalpass", "apple"]
+                      "path": ["v2", "credentials", "compact-semantic", "digital-pass", "apple"]
                     }
                   },
                   "status": "Bad Request",
@@ -16374,9 +16374,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google",
+                  "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google"]
+                  "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google"]
                 },
                 "description": "Returns a Google Pass representation of a provided Compact Credential based on an existing Google Pass template.\n\n> The request will fail if the provided credential isn't valid or has expired.\n### **Analytic events**\n* CREDENTIAL_COMPACT_SEMANTIC_GOOGLE_PASS_CREATE_START\n* CREDENTIAL_COMPACT_SEMANTIC_GOOGLE_PASS_CREATE_SUCCESS\n* CREDENTIAL_COMPACT_SEMANTIC_GOOGLE_PASS_CREATE_FAIL"
               },
@@ -16411,9 +16411,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google",
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google"]
+                      "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google"]
                     }
                   },
                   "status": "OK",
@@ -16458,9 +16458,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digitalpass/google",
+                      "raw": "{{baseUrl}}/v2/credentials/compact-semantic/digital-pass/google",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "compact-semantic", "digitalpass", "google"]
+                      "path": ["v2", "credentials", "compact-semantic", "digital-pass", "google"]
                     }
                   },
                   "status": "Bad Request",
@@ -16626,9 +16626,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/linkeddata/convert",
+                  "raw": "{{baseUrl}}/v2/credentials/web-semantic/linked-data/convert",
                   "host": ["{{baseUrl}}"],
-                  "path": ["v2", "credentials", "web-semantic", "linkeddata", "convert"]
+                  "path": ["v2", "credentials", "web-semantic", "linked-data", "convert"]
                 },
                 "description": "> Compressed Web credentials are currently marked as 'Retired' as per our [Service Level Agreement](https://learn.mattr.global/docs/terms/service-level-agreement). This capability is no longer actively enhanced or supported and will be removed from the MATTR VII platform on 19 Aug 2024. It is highly recommended to issue [Compact Semantic Credentials](https://learn.mattr.global/tutorials/create/compact-credentials/create-semantic-compact) instead.\nConvert a document like a JSON-LD Credential or a Verifiable Presentation into a CBOR-LD document, and vice versa.\n\nThe Convert operation can accept JSON-LD documents as an input and convert them to a CBOR-LD document represented in Base64. \nCBOR-LD documents can represent the same information in a smaller size that is more friendly for offline use-cases, such as embedding into a QR code printed onto physical media or a PDF.\n\nDocuments can also be converted from CBOR-LD in Base64 format to JSON-LD, the response can either be encoded in Base 64 or plain JSON. This is useful for accepting compressed Credentials or Verifiable Presentations and converting them for use on other operations like [Verify a Credential](#operation/verify-credential) or [Verify a Presentation](#operation/verifyPres).\n\n**Wallet Presentations**  \nThe MATTR mobile wallet can create verifiable presentations from a single credential in a CBOR-LD format and encode this into a QR, a further layer of GZip compression is performed.\n\n**Limitations**  \nCalculating the exact size of a credential/document that can be encoded into a QR and safely read by a camera is not straightforward. Larger credentials are unlikely to work, including those with embedded images (photos), large nested claims, or credentials with large signatures like BBS, it is generally best to confirm by testing across a range of devices.\n\nDeeply nested JSON-LD structures are currently unable to be converted to CBOR-LD due to limitations of the library, so it is possible to see errors.\n\nWe are aware that inline contexts may affect the performance for CBOR-LD compression. The Create Credential endpoint uses an inline `@vocab` context, this may change in the future.\n\n### **Analytic events**\n* LINKED_DATA_CONVERT_STARTLINKED_DATA_CONVERT_START\n* LINKED_DATA_CONVERT_STARTLINKED_DATA_CONVERT_SUCCESS\n* LINKED_DATA_CONVERT_STARTLINKED_DATA_CONVERT_FAIL"
               },
@@ -16663,9 +16663,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/web-semantic/linkeddata/convert",
+                      "raw": "{{baseUrl}}/v2/credentials/web-semantic/linked-data/convert",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "web-semantic", "linkeddata", "convert"]
+                      "path": ["v2", "credentials", "web-semantic", "linked-data", "convert"]
                     }
                   },
                   "status": "OK",
@@ -16710,9 +16710,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/v2/credentials/web-semantic/linkeddata/convert",
+                      "raw": "{{baseUrl}}/v2/credentials/web-semantic/linked-data/convert",
                       "host": ["{{baseUrl}}"],
-                      "path": ["v2", "credentials", "web-semantic", "linkeddata", "convert"]
+                      "path": ["v2", "credentials", "web-semantic", "linked-data", "convert"]
                     }
                   },
                   "status": "Bad Request",
@@ -16897,9 +16897,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/users/authenticationproviders",
+                  "raw": "{{baseUrl}}/core/v1/users/authentication-providers",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "users", "authenticationproviders"]
+                  "path": ["core", "v1", "users", "authentication-providers"]
                 },
                 "description": "Configures an Authentication Provider on the tenant.\n\nAn authentication or identity provider (IdP) is a platform that is typically used to store and manage user accounts on behalf of an organisation or a service provider. MATTR VII uses the authentication provider to authenticate end users before issuing them credentials.\n\n> Only one authentication provider can be configured on a tenant.\n\nThe `/.well-known/openid-configuration` endpoint of the Authentication Provider must contain values for the `authorization_endpoint`, `token_endpoint` and `scopes_supported`.\n\n### **Analytic events**\n* USER_AUTHENTICATION_PROVIDER_CREATE_START\n* USER_AUTHENTICATION_PROVIDER_CREATE_SUCCESS\n* USER_AUTHENTICATION_PROVIDER_CREATE_FAIL"
               },
@@ -16934,9 +16934,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders"]
+                      "path": ["core", "v1", "users", "authentication-providers"]
                     }
                   },
                   "status": "Created",
@@ -16981,9 +16981,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders"]
+                      "path": ["core", "v1", "users", "authentication-providers"]
                     }
                   },
                   "status": "Bad Request",
@@ -17011,9 +17011,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/users/authenticationproviders",
+                  "raw": "{{baseUrl}}/core/v1/users/authentication-providers",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "users", "authenticationproviders"],
+                  "path": ["core", "v1", "users", "authentication-providers"],
                   "query": [
                     {
                       "key": "limit",
@@ -17048,9 +17048,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders"],
+                      "path": ["core", "v1", "users", "authentication-providers"],
                       "query": [
                         {
                           "key": "limit",
@@ -17095,9 +17095,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders"],
+                      "path": ["core", "v1", "users", "authentication-providers"],
                       "query": [
                         {
                           "key": "limit",
@@ -17139,9 +17139,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                  "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                  "path": ["core", "v1", "users", "authentication-providers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -17169,9 +17169,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17207,9 +17207,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17245,9 +17245,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17294,9 +17294,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                  "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                  "path": ["core", "v1", "users", "authentication-providers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -17338,9 +17338,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17390,9 +17390,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17442,9 +17442,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17477,9 +17477,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                  "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                  "path": ["core", "v1", "users", "authentication-providers", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -17503,9 +17503,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17536,9 +17536,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17574,9 +17574,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/users/authenticationproviders/:id",
+                      "raw": "{{baseUrl}}/core/v1/users/authentication-providers/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "users", "authenticationproviders", ":id"],
+                      "path": ["core", "v1", "users", "authentication-providers", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -17814,9 +17814,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/claimsources",
+                  "raw": "{{baseUrl}}/core/v1/claim-sources",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "claimsources"]
+                  "path": ["core", "v1", "claim-sources"]
                 },
                 "description": "Configures a new claims source for your tenant. When issuing a new credential, MATTR VII will make either a GET or a POST request to the claims source using the configured request parameters and fetch available data. This fetched data can then be included in the issued credential.\n\n### **Analytic event**\n* CLAIM_SOURCE_CREATE_START\n* CLAIM_SOURCE_CREATE_SUCCESS\n* CLAIM_SOURCE_CREATE_FAIL\n"
               },
@@ -17851,9 +17851,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources"]
+                      "path": ["core", "v1", "claim-sources"]
                     }
                   },
                   "status": "Created",
@@ -17898,9 +17898,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources"]
+                      "path": ["core", "v1", "claim-sources"]
                     }
                   },
                   "status": "Bad Request",
@@ -17928,9 +17928,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/claimsources",
+                  "raw": "{{baseUrl}}/core/v1/claim-sources",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "claimsources"],
+                  "path": ["core", "v1", "claim-sources"],
                   "query": [
                     {
                       "key": "limit",
@@ -17965,9 +17965,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources"],
+                      "path": ["core", "v1", "claim-sources"],
                       "query": [
                         {
                           "key": "limit",
@@ -18012,9 +18012,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources"],
+                      "path": ["core", "v1", "claim-sources"],
                       "query": [
                         {
                           "key": "limit",
@@ -18056,9 +18056,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                  "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "claimsources", ":id"],
+                  "path": ["core", "v1", "claim-sources", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -18086,9 +18086,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18124,9 +18124,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18162,9 +18162,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18211,9 +18211,9 @@
                   }
                 },
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                  "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "claimsources", ":id"],
+                  "path": ["core", "v1", "claim-sources", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -18255,9 +18255,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18307,9 +18307,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18359,9 +18359,9 @@
                       }
                     },
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18394,9 +18394,9 @@
                   }
                 ],
                 "url": {
-                  "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                  "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                   "host": ["{{baseUrl}}"],
-                  "path": ["core", "v1", "claimsources", ":id"],
+                  "path": ["core", "v1", "claim-sources", ":id"],
                   "variable": [
                     {
                       "key": "id",
@@ -18420,9 +18420,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18453,9 +18453,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
@@ -18491,9 +18491,9 @@
                       }
                     ],
                     "url": {
-                      "raw": "{{baseUrl}}/core/v1/claimsources/:id",
+                      "raw": "{{baseUrl}}/core/v1/claim-sources/:id",
                       "host": ["{{baseUrl}}"],
-                      "path": ["core", "v1", "claimsources", ":id"],
+                      "path": ["core", "v1", "claim-sources", ":id"],
                       "variable": [
                         {
                           "key": "id"
