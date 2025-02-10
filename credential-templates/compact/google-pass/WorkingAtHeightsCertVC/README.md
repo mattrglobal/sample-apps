@@ -1,7 +1,7 @@
 [![MATTR](/docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 ### Credential template  
-# Working at Heights Certificate – Compact, Google Pass
+# Working at Heights Certificate – CWT, Google Pass
 
 ## For designers
 
@@ -17,9 +17,9 @@ Image requirements:
 
 ## For developers
 
-The corresponding payload file can be found on [./payload.json](./payload.json)
+The corresponding payload file can be found on [./payload.json](./payload.json).
 
 ## Useful reads
 
-- [Generate digital pass tutorial](https://learn.mattr.global/guides/issuance/direct/compact#format-the-signed-compact-credential)
-- [Template management](https://learn.mattr.global/guides/issuance/direct/compact/templates/google)
+- [CWT Credentials direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
+- [Template management](https://learn.mattr.global/guides/issuance-direct/cwt/google-templates)
