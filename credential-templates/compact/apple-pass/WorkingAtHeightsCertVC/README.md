@@ -27,5 +27,5 @@ The corresponding payload file can be found on [./payload.json](./payload.json)
 
 ## Useful reads
 
-- [CWT Credential direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
+- [CWT Credentials direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
 - [Template management](https://learn.mattr.global/guides/issuance-direct/cwt/apple-templates)
