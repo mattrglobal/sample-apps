@@ -1,7 +1,7 @@
 [![MATTR](/docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 ### Credential template  
-# Working at Heights Certificate – CWT Semantic, PDF
+# Working at Heights Certificate – Semantic CWT, PDF
 
 ## For designers
 
@@ -15,5 +15,5 @@ The corresponding payload file can be found on [./payload.json](./payload.json).
 
 ## Useful reads
 
-- [Direct CWT credential issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
+- [Semantic CWT Credentials direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
 - [PDF template management](https://learn.mattr.global/guides/issuance-direct/cwt/pdf-templates)
