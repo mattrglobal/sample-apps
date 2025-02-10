@@ -1,7 +1,7 @@
 [![MATTR](/docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 ### Credential template  
-# Working at Heights Certificate – Compact, Apple Pass
+# Working at Heights Certificate – CWT, Apple Pass
 
 ## For designers
 
@@ -27,5 +27,5 @@ The corresponding payload file can be found on [./payload.json](./payload.json)
 
 ## Useful reads
 
-- [Generate digital pass tutorial](https://learn.mattr.global/guides/issuance/direct/compact#format-the-signed-compact-credential)
-- [Template management](https://learn.mattr.global/guides/issuance/direct/compact/templates/apple)
+- [CWT Credential direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
+- [Template management](https://learn.mattr.global/guides/issuance-direct/cwt/apple-templates)
