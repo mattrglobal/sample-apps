@@ -1,7 +1,7 @@
 [![MATTR](/docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
 ### Credential template  
-# Working at Heights Certificate – CWT Semantic, Apple Pass
+# Working at Heights Certificate – Semantic CWT, Apple Pass
 
 ## For designers
 
@@ -27,5 +27,5 @@ The corresponding payload file can be found on [./payload.json](./payload.json).
 
 ## Useful reads
 
-- [Semantic CWT Credential direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
+- [Semantic CWT Credentials direct issuance guide](https://learn.mattr.global/guides/issuance-direct/cwt)
 - [Template management](https://learn.mattr.global/guides/issuance-direct/cwt/apple-templates)
