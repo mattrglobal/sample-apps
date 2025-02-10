@@ -1,6 +1,6 @@
 [![MATTR](/docs/assets/mattr-logo-square.svg)](https://github.com/mattrglobal)
 
-# Credential Templates – Compact Semantic
+# Credential Templates – Semantic CWT Credentials
 
 ## Example credentials
 
@@ -11,6 +11,5 @@
 
 ## Useful reads
 
-- [Compact Credential Overview](https://learn.mattr.global/docs/profiles/compact)
-- [Issue a Semantic Compact Credential](https://learn.mattr.global/guides/issuance/direct/compact)
-- [Verify a Compact Credential](https://learn.mattr.global/guides/verification/direct/compact)
+- [CWT Credentials Overview](https://learn.mattr.global/docs/cwt)
+- [Issue a Semantic CWT Credential](https://learn.mattr.global/guides/issuance-direct/cwt)
