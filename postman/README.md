@@ -11,14 +11,14 @@ Visit the Postman [downloads page](https://www.postman.com/downloads/) to instal
 ### Step 2: Download collection and environment files
 
 Save the following files locally:
-- [`MATTR VII API Collection`](./mattr-vii.postman_collection.json): This Postman Collection includes API operations and some configuration.
-- [`MATTR VII Tenant Environment`](./mattr-vii.postman_environment.json): This Postman Environment Variables hold specific values for your MATTR VII tenant.
+- [`Platform API Collection`](./platform-v9.0.0-postman-collection.json): This Postman Collection includes API operations and some configuration.
+- [`Tenant Environment`](./mattr-vii.postman_environment.json): This Postman Environment Variables hold specific values for your MATTR VII tenant.
 
 ### Step 3: Import collection and environment files into Postman
 
 1. Open Postman.
 2. Select the **Import** button in the _My Workspace_ area.
-3. Select the local versions of the [_MATTR VII Tenant Environment_](./mattr-vii.postman_environment.json) and the [_MATTR VII API Collection_](./mattr-vii.postman_collection.json) files you saved earlier.
+3. Select the local versions of the [_Tenant Environment_](./mattr-vii.postman_environment.json) and the [_Platform API Collection_](./platform-v9.0.0-postman-collection.json) files you saved earlier.
 
 ### Step 4: Update environment variables
    
@@ -41,5 +41,17 @@ If you are unsure of any of these details, please [contact us](http://mattr.glob
 3. Select the Retrieve a list of DIDs endpoint (You can find it under _Tenant configuration > DIDs_).
 4. Select **Send** in the top right corner of the request pane.
 5. The response should be displayed in the _Response_ pane.
+
+### Management API
+
+To use the Management API collection, repeat steps 2-4 with the following adjustments:
+
+1. In step 2, download the [Management API collection](./management-v1.11.0-postman-collection.json) file.
+2. In step 3, import the [Management API collection](./management-v1.11.0-postman-collection.json) file.
+3. In step 4, change the following variables:
+   - `baseUrl`: Replace with `https://manage.mattr.global`.
+   - `auth0Base`: Replace with `https://auth.manage.mattr.global`.
+   - `tenantClientId`: Replace with your Client ID for the Management API.
+   - `tenantClientSecret`: Replace with your Client Secret for the Management API.
 
 <p align="center"><a href="https://mattr.global" target="_blank"><img height="40px" src ="../docs/assets/mattr-logo-tm.svg"></a></p><p align="center">Copyright © MATTR Limited. <a href="./LICENSE">Some rights reserved.</a><br/>“MATTR” is a trademark of MATTR Limited, registered in New Zealand and other countries.</p>
