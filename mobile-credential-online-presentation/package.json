@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@mattrglobal/verifier-sdk-web": "1.0.1",
-    "next": "14.2.5",
+    "next": "14.2.26",
     "react": "^18",
     "react-dom": "^18"
   },
