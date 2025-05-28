@@ -5,16 +5,13 @@
 A collection of developer apps and API tooling that you can use to interface with the MATTR Platform.
 
 ## Projects
-* [callback-express](/callback-express/README.md) – Set up a Node.js Express app that listens for Callback and displays the output.
-* [verify-callback-express](/verify-callback-express/README.md) – A Node.js Express app that can orchestrate calls to your MATTR tenant to initiate a Verify a Credential using a Callback flow.
-* [issue-direct-credential-express](/issue-direct-credential-express/README.md) – A Node.js Express app that can orchestrate calls to your MATTR tenant to create a credential and make it obtainable by the mobile wallet.
-* [credential-templates](/credential-templates/README.md) – Credential template files for use with MATTR VII. Example files available for profiles: Compact, Compact Semantic.
+* [claims-source-app](/claims-source-app/README.md) – A mock Claims Source that you can use for our [OID4VCI Claims Source tutorial]().
+* [verifier-web-tutorial](/verifier-web-tutorial/README.md) – A NextJS app that uses MATTRs Verifier Web SDK to verify mDocs presented via an online presentation workflow as per ISO/IEC 18013-7:2024 and OID4VP.
 
-## API Guides
-* Postman Collection & Env [import files](/postman/README.md)
+## Utilities
 
-## Related Projects
-* [JSON-LD Lint](https://github.com/mattrglobal/jsonld-lint) – A set of packages designed to lint JSON-LD documents, including a CLI and more.
+* [Credential templates](/credential-templates/README.md)
+* [Postman Collection](/postman/README.md)
 
 ---
 
