@@ -1,7 +1,8 @@
 [
   {
-    "email": "name1@example.com",
-    "age": 21
+    "email": "erika.mustermann@example.com",
+    "age": 21,
+    "givenName": "me"
   },
   {
     "email": "name2@example.com",
