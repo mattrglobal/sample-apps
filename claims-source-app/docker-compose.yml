@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    platform: linux/arm64
+    build: .
+    ports:
+      - "3000:3000"
+    env_file: .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    restart: unless-stopped

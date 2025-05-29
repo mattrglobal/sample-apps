@@ -1,0 +1,15 @@
+[
+  {
+    "email": "erika.mustermann@example.com",
+    "age": 21,
+    "givenName": "me"
+  },
+  {
+    "email": "name2@example.com",
+    "age": 35
+  },
+  {
+    "email": "name3@example.com",
+    "age": 65
+  }
+]
