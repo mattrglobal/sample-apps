@@ -84,7 +84,13 @@ export default function Index() {
 					<Text style={styles.buttonText}>Claim Credential</Text>
 				</TouchableOpacity>
 				{/* Proximity Presentation - Step 1.5: Add Proximity Presentation button */}
-				{/* Online Presentation - Step 2.7: Add Online Presentation button */}\
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => router.replace("/proximity-presentation")}
+				>
+					<Text style={styles.buttonText}>Proximity Presentation</Text>
+				</TouchableOpacity>
+				{/* Online Presentation - Step 2.7: Add Online Presentation button */}
 				<TouchableOpacity
 					style={styles.button}
 					onPress={() => setIsScannerVisible(true)}

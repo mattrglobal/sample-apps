@@ -22,6 +22,10 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
       NSFaceIDUsageDescription: "Face ID is used to secure your credentials.",
       NSCameraUsageDescription: "Camera is used to scan QR codes.",
       // Add Bluetooth permissions
+      NSBluetoothAlwaysUsageDescription:
+        "This app uses Bluetooth to communicate with verifiers or holders.",
+      NSBluetoothPeripheralUsageDescription:
+        "This app uses Bluetooth to communicate with verifiers or holders.",
     },
     config: {
       usesNonExemptEncryption: false,
