@@ -19,6 +19,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     bundleIdentifier: "",
     infoPlist: {
       // Add Face ID and Camera usage permissions
+      NSFaceIDUsageDescription: "Face ID is used to secure your credentials.",
+      NSCameraUsageDescription: "Camera is used to scan QR codes.",
       // Add Bluetooth permissions
     },
     config: {
@@ -78,6 +80,15 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
      * https://api-reference-sdk.mattr.global/mobile-credential-holder-react-native/latest/index.html#md:platform-android
      *
      */
+    "./withRemoveAPNSCapability.js",
+    [
+      "./withAndroidHolderSDK.js",
+      {
+        mattrDomain: "credentials",
+        mattrScheme:
+          "io.mattrlabs.sample.reactnativemobilecredentialholdertutorialapp",
+      },
+    ],
 
     // You may not have the APNS Capability enabled in your profile.
   ],
