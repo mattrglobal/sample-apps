@@ -6,7 +6,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: "react-native-mdocs-holder-tutorial-sample-app",
   version: "1.0.0",
   // Online presentation - Step 1.1: Update application custom scheme.
-  scheme: "react-native-mdocs-holder-tutorial-sample-app",
+  scheme: "mdoc-openid4vp",
   orientation: "portrait",
   icon: "./assets/icon.png",
   splash: {

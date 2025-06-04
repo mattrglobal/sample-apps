@@ -38,6 +38,12 @@ export default function Index() {
 			});
 		}
 		// Online Presentation - Step 2.2: Handle the 'mdoc-openid4vp://' scheme prefix
+		else if (scannedValue.startsWith("mdoc-openid4vp://")) {
+			router.replace({
+				pathname: "/online-presentation",
+				params: { scannedValue },
+			});
+		}
 	};
 
 	if (isLoading) {
@@ -78,7 +84,13 @@ export default function Index() {
 					<Text style={styles.buttonText}>Claim Credential</Text>
 				</TouchableOpacity>
 				{/* Proximity Presentation - Step 1.5: Add Proximity Presentation button */}
-				{/* Online Presentation - Step 2.7: Add Online Presentation button */}
+				{/* Online Presentation - Step 2.7: Add Online Presentation button */}\
+				<TouchableOpacity
+					style={styles.button}
+					onPress={() => setIsScannerVisible(true)}
+				>
+					<Text style={styles.buttonText}>Online Presentation</Text>
+				</TouchableOpacity>
 			</View>
 			{/*  Display the list of credentials and their metadata */}
 			<CredentialsList

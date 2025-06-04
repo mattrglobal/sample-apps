@@ -5,6 +5,8 @@ import {
 	initialise,
 } from "@mattrglobal/mobile-credential-holder-react-native";
 // Online Presentation - Step 2.3: Import expo-linking and expo-router
+import * as Linking from "expo-linking";
+import { useRouter } from "expo-router";
 import type React from "react";
 import {
 	createContext,
@@ -36,6 +38,7 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 	const [error, setError] = useState<string | null>(null);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	// Online Presentation - Step 2.4: Initialize router variable
+	const router = useRouter();
 
 	// Claim a Credential - Step 1.2: Initialize the Holder SDK
 	const initialiseHolder = useCallback(async () => {
@@ -103,6 +106,31 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 	);
 
 	// Online Presentation - Step 2.5: Handle deep link
+	useEffect(() => {
+		if (!isHolderInitialised) return;
+
+		const handleDeepLink = (event: { url: string }) => {
+			const { url } = event;
+			console.log("Deep link received:", url);
+
+			if (url.startsWith("mdoc-openid4vp://")) {
+				router.replace({
+					pathname: "/online-presentation",
+					params: { scannedValue: url },
+				});
+			}
+		};
+
+		Linking.getInitialURL().then((url) => {
+			if (url) {
+				console.log("Initial URL:", url);
+				handleDeepLink({ url });
+			}
+		});
+
+		const subscription = Linking.addEventListener("url", handleDeepLink);
+		return () => subscription.remove();
+	}, [isHolderInitialised, router]);
 
 	const contextValue = useMemo(
 		() => ({
