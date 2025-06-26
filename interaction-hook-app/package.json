@@ -3,12 +3,14 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"tunnel": "node tunnel.js",
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
 	},
 	"dependencies": {
+		"@ngrok/ngrok": "^1.5.1",
 		"jose": "^5.2.0",
 		"next": "14.0.4",
 		"react": "^18",
@@ -16,6 +18,7 @@
 		"zod": "^3.22.4"
 	},
 	"devDependencies": {
+		"dotenv": "^16.5.0",
 		"@types/node": "^20",
 		"@types/react": "^18",
 		"@types/react-dom": "^18",

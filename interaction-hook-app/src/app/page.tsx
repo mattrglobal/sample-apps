@@ -12,9 +12,11 @@ const PRONOUN_OPTIONS = [
 	"Custom",
 ];
 
-const passedClaims = z.object({
-	name: z.string(),
-});
+const passedClaims = z
+	.object({
+		name: z.string().optional(),
+	})
+	.optional();
 
 export default function Home() {
 	const router = useRouter();
@@ -32,6 +34,7 @@ export default function Home() {
 		}
 	}, [sessionToken]);
 
+	// Claims that are forwarded to the interaction hook
 	const claims = useMemo(
 		() => decodedToken && passedClaims.parse(decodedToken.claims),
 		[decodedToken],
