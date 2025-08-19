@@ -18,7 +18,9 @@ dotenv.config({ path: join(__dirname, ".env") });
 	const url = await ngrok.connect({ addr: 3000, authtoken: authtoken });
 	console.log(`\nPublic Interaction Hook URL: \n\n${url.url()}\n`);
 	console.log(`Update your .env.local file with: APP_URL="${url.url()}"`);
-	console.log(`Update MATTR VII interaction hook URL to: ${url.url()}\n`);
+	console.log(
+		`Update MATTR VII interaction hook URL to: ${url.url()}/api/interaction-hook\n`,
+	);
 })();
 
 process.stdin.resume();
