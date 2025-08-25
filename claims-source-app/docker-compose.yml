@@ -3,10 +3,15 @@ version: '3.8'
 services:
   app:
     platform: linux/arm64
-    build: .
+    build: 
+      context: .
+      args:
+        PORT: ${PORT:-3000}
     ports:
-      - "3000:3000"
+      - "${PORT:-3000}:${PORT:-3000}"
     env_file: .env
+    environment:
+      - PORT=${PORT:-3000}
     volumes:
       - .:/app
       - /app/node_modules

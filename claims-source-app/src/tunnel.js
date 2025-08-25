@@ -1,12 +1,14 @@
 import 'dotenv/config'
 import ngrok from '@ngrok/ngrok'
 
+const PORT = process.env.PORT || 3000
+
 (async function () {
   const authtoken = process.env.NGROK_AUTHTOKEN;
   if (!authtoken) {
     throw Error("NGORK_AUTHTOKEN missing in .env file");
   }
-  const url = await ngrok.connect({ addr: 3000, authtoken: authtoken });
+  const url = await ngrok.connect({ addr: PORT, authtoken: authtoken });
   console.log(`\nPublic Claims Source URL: \n\n${url.url()}/claims\n`);
 })();
 
