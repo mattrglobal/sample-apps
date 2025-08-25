@@ -8,13 +8,13 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@ngrok/ngrok": "^1.5.1",
-    "dotenv": "^16.5.0",
+    "@ngrok/ngrok": "^1.5.2",
+    "dotenv": "^16.6.1",
     "express": "^5.1.0"
   },
   "type": "module",
   "devDependencies": {
-    "concurrently": "^9.1.2",
+    "concurrently": "^9.2.1",
     "nodemon": "^3.1.10"
   }
 }

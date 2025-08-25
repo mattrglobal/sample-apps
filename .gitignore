@@ -71,3 +71,10 @@ Desktop.ini
 *.swp
 *.swo
 README.private.md
+
+######################
+# Env Files
+######################
+.env
+.env.local
+.env.development.local

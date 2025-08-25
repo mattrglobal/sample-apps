@@ -18,18 +18,6 @@ function checkPortAvailable(port) {
   })
 }
 
-// Function to find available port starting from given port
-async function findAvailablePort(startPort) {
-  let port = startPort
-  while (!(await checkPortAvailable(port))) {
-    port++
-    if (port > startPort + 100) {
-      throw new Error(`No available port found starting from ${startPort}`)
-    }
-  }
-  return port
-}
-
 const app = express()
 
 app.get('/claims', (req, res) => {
@@ -61,24 +49,19 @@ app.get('/claims', (req, res) => {
 })
 
 // Start server with port conflict detection for default port
-async function startServer() {
-  let finalPort = PORT
-  
-  // If using default port 3000, check for conflicts and find alternative if needed
-  if (PORT == 3000 && !process.env.PORT) {
-    const isAvailable = await checkPortAvailable(3000)
+async function startServer() {  
+    const isAvailable = await checkPortAvailable(PORT)
     if (!isAvailable) {
-      console.warn(`Port 3000 is already in use, finding alternative port...`)
-      finalPort = await findAvailablePort(3001)
-      console.warn(`Using port ${finalPort} instead`)
+      console.warn(`Port ${PORT} is already in use. Please use another port via the PORT environment variable.`)
+
+      process.exit(1)
     }
-  }
   
-  app.listen(finalPort, () => {
-    console.log(`Claims source app listening on port ${finalPort}`)
+  app.listen(PORT, () => {
+    console.log(`Claims source app listening on port ${PORT}`)
   })
   
-  return finalPort
+  return PORT
 }
 
 startServer().catch(console.error)
