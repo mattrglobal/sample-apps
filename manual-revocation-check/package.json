@@ -10,7 +10,7 @@
     "pako": "^2.1.0"
   },
   "scripts": {
-    "start": "node manual-revocation-check.js",
+    "start": "node manual-revocation-check.js"
   },
   "repository": {
     "type": "git",
