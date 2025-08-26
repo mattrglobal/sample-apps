@@ -1,8 +1,22 @@
 import fs from 'fs'
 import 'dotenv/config'
 import express from 'express'
+import net from 'net'
 
 const database = JSON.parse(fs.readFileSync("database.json"))
+const PORT = process.env.PORT || 3000
+
+// Function to check if port is available
+function checkPortAvailable(port) {
+  return new Promise((resolve) => {
+    const server = net.createServer()
+    server.listen(port, () => {
+      server.once('close', () => resolve(true))
+      server.close()
+    })
+    server.on('error', () => resolve(false))
+  })
+}
 
 const app = express()
 
@@ -34,4 +48,20 @@ app.get('/claims', (req, res) => {
   res.json(user)
 })
 
-app.listen(3000, async () => {})
+// Start server with port conflict detection for default port
+async function startServer() {  
+    const isAvailable = await checkPortAvailable(PORT)
+    if (!isAvailable) {
+      console.warn(`Port ${PORT} is already in use. Please use another port via the PORT environment variable.`)
+
+      process.exit(1)
+    }
+  
+  app.listen(PORT, () => {
+    console.log(`Claims source app listening on port ${PORT}`)
+  })
+  
+  return PORT
+}
+
+startServer().catch(console.error)
