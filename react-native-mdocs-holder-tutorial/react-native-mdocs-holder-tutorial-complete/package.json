@@ -8,7 +8,7 @@
     "ios": "expo run:ios"
   },
   "dependencies": {
-    "@mattrglobal/mobile-credential-holder-react-native": "^6.0.0",
+    "@mattrglobal/mobile-credential-holder-react-native": "^8.0.0",
     "expo": "^53.0.9",
     "expo-build-properties": "~0.14.6",
     "expo-constants": "~17.1.6",
