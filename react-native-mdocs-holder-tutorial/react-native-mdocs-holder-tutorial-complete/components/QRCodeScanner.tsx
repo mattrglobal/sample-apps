@@ -53,7 +53,7 @@ export default function QRCodeScanner({ onScanComplete }: QRCodeScannerProps) {
 	if (!device) {
 		return (
 			<View style={styles.centered}>
-				<Text style={styles.errorText}>No back camera device found.</Text>
+				<Text style={styles.errorText}>No camera device found.</Text>
 			</View>
 		);
 	}

@@ -1,8 +1,12 @@
 import {
 	type MobileCredentialMetadata,
+	UserAuthenticationBehavior,
+	type UserAuthenticationConfiguration,
+	UserAuthenticationType,
 	deleteCredential,
 	getCredentials,
 	initialise,
+	isInitialised,
 } from "@mattrglobal/mobile-credential-holder-react-native";
 // Online Presentation - Step 2.3: Import expo-linking and expo-router
 import * as Linking from "expo-linking";
@@ -42,15 +46,43 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 
 	// Claim a Credential - Step 1.2: Initialize the Holder SDK
 	const initialiseHolder = useCallback(async () => {
-		const result = await initialise();
+		try {
+			// Check if SDK is already initialized
+			const alreadyInitialized = await isInitialised();
+			if (alreadyInitialized) {
+				setIsHolderInitialised(true);
+				return;
+			}
 
-		if (result.isErr()) {
-			setError(result.error.message || "Failed to initialise holder.");
-		} else {
-			setIsHolderInitialised(true);
+			// Configure user authentication - using default settings for this tutorial
+			const userAuthConfig: UserAuthenticationConfiguration = {
+				userAuthenticationBehavior: UserAuthenticationBehavior.None, // No authentication required for tutorial
+				userAuthenticationType: UserAuthenticationType.BiometricOrPasscode, // iOS only
+			};
+
+			const result = await initialise({
+				userAuthenticationConfiguration: userAuthConfig,
+				credentialIssuanceConfiguration: {
+					autoTrustMobileCredentialIaca: true,
+					redirectUri:
+						"io.mattrlabs.sample.reactnativemobilecredentialholdertutorialapp://credentials/callback",
+				},
+			});
+
+			if (result.isErr()) {
+				setError(result.error.message || "Failed to initialise holder.");
+			} else {
+				setIsHolderInitialised(true);
+			}
+		} catch (err) {
+			setError(
+				err instanceof Error
+					? err.message
+					: "Unknown error during initialization",
+			);
+		} finally {
+			setIsLoading(false);
 		}
-
-		setIsLoading(false);
 	}, []);
 
 	useEffect(() => {
