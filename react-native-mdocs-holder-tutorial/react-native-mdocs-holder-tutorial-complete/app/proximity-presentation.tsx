@@ -2,6 +2,7 @@
 import RequestCredentialSelector from "@/components/RequestCredentialSelector";
 import { useHolder } from "@/providers/HolderProvider";
 import {
+	type CreateProximityPresentationSessionOptions,
 	type PresentationSessionSuccessRequest,
 	createProximityPresentationSession,
 	sendProximityPresentationResponse,
@@ -14,7 +15,7 @@ import QRCode from "react-native-qrcode-svg";
 
 export default function ProximityPresentation() {
 	const router = useRouter();
-	const { isHolderInitialised } = useHolder();
+	const { isHolderInitialized } = useHolder();
 	const [error, setError] = useState<string | null>(null);
 	const [deviceEngagement, setDeviceEngagement] = useState<string | null>(null);
 	const [requests, setRequests] = useState<
@@ -49,7 +50,7 @@ export default function ProximityPresentation() {
 		);
 	}, []);
 
-	if (!isHolderInitialised) {
+	if (!isHolderInitialized) {
 		return (
 			<View style={styles.container}>
 				<Text style={styles.errorText}>
@@ -62,27 +63,34 @@ export default function ProximityPresentation() {
 	// Step 1.2: Add handleStartSession function
 	const handleStartSession = useCallback(async () => {
 		try {
-			const result = await createProximityPresentationSession({
+			const options: CreateProximityPresentationSessionOptions = {
 				onRequestReceived: (data) => {
 					if ("error" in data) {
-						handleError(`Request received error: ${data.error}`);
+						handleError(
+							`Request received error: ${data.error.message}`,
+						);
 						return;
 					}
 					setRequests(data.request);
 				},
-				onSessionTerminated: () => {
+				onSessionTerminated: (error) => {
+					if (error) {
+						console.log(`Session terminated with error: ${error.message}`);
+					}
 					resetState();
 					navigateToIndex();
 				},
-			});
+			};
+
+			const result = await createProximityPresentationSession(options);
 			if (result.isErr()) {
 				throw new Error(
-					`Error creating proximity session: ${JSON.stringify(result.error)}`,
+					`Error creating proximity session: ${result.error.message || result.error.type}`,
 				);
 			}
 			setDeviceEngagement(result.value.deviceEngagement);
-		} catch (err: any) {
-			handleError(err.message);
+		} catch (err: unknown) {
+			handleError(err instanceof Error ? err.message : String(err));
 		}
 	}, [handleError, resetState, navigateToIndex]);
 
@@ -97,8 +105,9 @@ export default function ProximityPresentation() {
 			await terminateProximityPresentationSession();
 			resetState();
 			navigateToIndex();
-		} catch (err: any) {
-			handleError(`Failed to terminate session: ${err.message}`);
+		} catch (err: unknown) {
+			const message = err instanceof Error ? err.message : String(err);
+			handleError(`Failed to terminate session: ${message}`);
 		}
 	}, [resetState, handleError, navigateToIndex]);
 
@@ -129,12 +138,14 @@ export default function ProximityPresentation() {
 			});
 			if (result.isErr()) {
 				await terminateSession();
-				throw new Error(`Error sending proximity response: ${result.error}`);
+				throw new Error(
+					`Error sending proximity response: ${result.error.message || result.error.type}`,
+				);
 			}
 			Alert.alert("Success", "Presentation response sent successfully!");
 			navigateToIndex();
-		} catch (err: any) {
-			handleError(err.message);
+		} catch (err: unknown) {
+			handleError(err instanceof Error ? err.message : String(err));
 		}
 	}, [selectedCredentialIds, handleError, terminateSession, navigateToIndex]);
 
