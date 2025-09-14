@@ -14,7 +14,6 @@ This tutorial demonstrates how to build an **Interaction Hook** for MATTR VII - 
 2. [Quick Start](#quick-start)
 3. [Project Structure](#project-structure)
 4. [Resources](#resources)
-6. [Architecture](#architecture)
 
 ## Prerequisites
 
@@ -42,7 +41,6 @@ touch .env.local
 
 # 6. Start ngrok tunnel
 ngrok http 3000
-# Note: The sample app includes 'npm run tunnel' helper for this
 
 # 7. Update APP_URL in .env.local with ngrok URL
 
@@ -66,7 +64,6 @@ interaction-hook-app/
 │   │   └── globals.css              # Global styles
 ├── .env-example                      # Environment template
 ├── package.json                      # Dependencies
-├── tunnel.js                         # ngrok helper script
 └── README.md                         # This file
 ```
 
