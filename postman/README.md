@@ -11,6 +11,7 @@ Visit the Postman [downloads page](https://www.postman.com/downloads/) to instal
 ### Step 2: Download collection and environment files
 
 Save the following files locally:
+
 - [`Platform API Collection`](./platform-v12.1.0-postman-collection.json): This Postman Collection includes API operations and some configuration.
 - [`Tenant Environment`](./mattr-vii.postman_environment.json): This file defines variables for your MATTR VII tenant. You will need to update it with your own tenant variables later.
 
@@ -21,22 +22,22 @@ Save the following files locally:
 3. Select the local versions of the _Tenant Environment_ and the _Platform API Collection_ files you downloaded in the previous step.
 
 ### Step 4: Update environment variables
-   
+
 1. Select the **Environments** button in the _My Workspace_ sidebar.
-2. Select the _MATTR VII Tenant_ environment from your environments list.
-3. Update the following variables with your tenant details:
+2. Hover over the _MATTR VII Tenant_ name in the environments list and select **Set Active** (you should see it marked as active).
+3. Select the _MATTR VII Tenant_ environment.
+4. Update the following variables with your tenant details:
    - `baseUrl`: Replace with your tenant's URL.
    - `auth0Base`: Replace with your Authentication server URL.
    - `tenantClientId`: Replace with your Client ID.
    - `tenantClientSecret`: Replace with your Client Secret.
    - `tenantAudience`: Replace with your tenant's URL.
-4. Select the `Save` button.
 
 If you are unsure of any of these details, please [contact us](mailto:dev-support@mattr.global).
 
 ### Step 5: Try it out
 
-1. Select the Collections button in the _My Workspace_ sidebar.
+1. Select the **Collections** button in the _My Workspace_ sidebar.
 2. Select the MATTR VII API collection.
 3. Select the _Retrieve all IACAs_ endpoint (You can find it under _Tenant configuration > Identifiers > IACA_).
 4. Select **Send** in the top right corner of the request pane.
