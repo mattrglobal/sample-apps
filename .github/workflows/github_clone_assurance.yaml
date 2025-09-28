@@ -11,13 +11,19 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      id-token: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: mirror repo
-        uses: mattrinternal/sre-reusable-action/actions/github-clone-assurance@master
-        with:
-          github_repository: ${{ env.GITHUB_REPOSITORY }}
-          github_ref_name: ${{ env.GITHUB_REF_NAME }}
-          remote_git_user_name: ${{ secrets.MATTRASSURANCE_GIT_USER_NAME }}
-          remote_git_user_email: ${{ secrets.MATTRASSURANCE_GIT_USER_EMAIL }}
-          remote_git_user_pat: ${{ secrets.MATTRASSURANCE_GIT_USER_PAT }}
-          remote_git_repo: 'mattrassurance/sample-apps'
+        run: |
+          rm -r .git
+          rm -r .github
+          git init --initial-branch=${{ github.ref_name }}
+          git config --local user.name ${{ secrets.MATTRASSURANCE_GIT_USER_NAME }}
+          git config --local user.email ${{ secrets.MATTRASSURANCE_GIT_USER_EMAIL }}
+          git add .
+          git commit -m "Backing up ${{ github.repository }} to mattrassurance org"
+          git remote add origin https://${{ secrets.MATTRASSURANCE_GIT_USER_NAME }}:${{ secrets.MATTRASSURANCE_GIT_USER_PAT }}@github.com/mattrassurance/${{ github.event.repository.name }}.git
+          git push origin ${{ github.ref_name }} --force
