@@ -1,5 +1,5 @@
 import { CameraView } from "expo-camera";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Alert, Modal, SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import { styles } from "./styles";
 
@@ -20,14 +20,19 @@ export function QRScannerModal({
 }: QRScannerModalProps) {
   const [scanned, setScanned] = useState(false);
   const [scanningEnabled, setScanningEnabled] = useState(true);
+  const handlerCalledRef = useRef(false);
 
   const handleBarCodeScanned = ({ data }: { data: string }) => {
-    if (!scanningEnabled || scanned) return;
+    if (!scanningEnabled || scanned || handlerCalledRef.current) {
+      return;
+    }
+
+    // Immediately mark as handled and disable scanning
+    handlerCalledRef.current = true;
+    setScanningEnabled(false);
+    setScanned(true);
 
     console.log(`Scanned barcode with data: ${data}`);
-
-    setScanned(true);
-    setScanningEnabled(false);
 
     // Check if data starts with "mdoc:"
     if (!data || !data.startsWith("mdoc:")) {
@@ -45,10 +50,18 @@ export function QRScannerModal({
     }
 
     console.log("Valid mDoc QR code detected:", data);
-    onQRCodeDetected(data);
+
+    // Close modal immediately to stop camera
+    onClose();
+
+    // Call handler after modal is closed to prevent camera from firing again
+    setTimeout(() => {
+      onQRCodeDetected(data);
+    }, 300);
   };
 
   const resetScanner = () => {
+    handlerCalledRef.current = false;
     setScanned(false);
     setScanningEnabled(true);
   };
@@ -91,14 +104,16 @@ export function QRScannerModal({
             </View>
           ) : (
             <>
-              <CameraView
-                style={styles.camera}
-                facing="back"
-                barcodeScannerSettings={{
-                  barcodeTypes: ["qr"],
-                }}
-                onBarcodeScanned={handleBarCodeScanned}
-              />
+              {!scanned && (
+                <CameraView
+                  style={styles.camera}
+                  facing="back"
+                  barcodeScannerSettings={{
+                    barcodeTypes: ["qr"],
+                  }}
+                  onBarcodeScanned={handleBarCodeScanned}
+                />
+              )}
 
               <View style={styles.qrOverlay}>
                 <View style={styles.qrFrame} />
