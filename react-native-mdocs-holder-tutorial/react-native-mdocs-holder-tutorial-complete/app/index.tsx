@@ -18,7 +18,7 @@ import { useHolder } from "@/providers/HolderProvider";
 export default function Index() {
 	const router = useRouter();
 	const {
-		isHolderInitialised,
+		isHolderInitialized,
 		error,
 		isLoading,
 		mobileCredentials,
@@ -64,7 +64,7 @@ export default function Index() {
 		);
 	}
 
-	if (!isHolderInitialised) {
+	if (!isHolderInitialized) {
 		return (
 			<View style={styles.centered}>
 				<Text>No holder instance</Text>

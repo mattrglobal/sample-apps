@@ -11,10 +11,10 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function OnlinePresentation() {
 	const router = useRouter();
-	const { scannedValue: authorisationRequestUri } = useGlobalSearchParams<{
+	const { scannedValue: authorizationRequestUri } = useGlobalSearchParams<{
 		scannedValue: string;
 	}>();
-	const { isHolderInitialised } = useHolder();
+	const { isHolderInitialized } = useHolder();
 
 	const [onlinePresentationSession, setOnlinePresentationSession] =
 		useState<OnlinePresentationSession | null>(null);
@@ -42,33 +42,31 @@ export default function OnlinePresentation() {
 	}, []);
 	// Step 2.6: Create Online Presentation Session
 	useEffect(() => {
-		if (!isHolderInitialised || !authorisationRequestUri) return;
+		if (!isHolderInitialized || !authorizationRequestUri) return;
 
 		const createSession = async () => {
 			try {
 				const result = await createOnlinePresentationSession({
-					authorisationRequestUri,
+					authorizationRequestUri,
 					requireTrustedVerifier: false,
 				});
 
 				if (result.isErr()) {
-					throw new Error("Error creating presentation session");
+					throw new Error(result.error.message || "Error creating presentation session");
 				}
 
-				const session = result.value;
+				setOnlinePresentationSession(result.value);
 
-				setOnlinePresentationSession(session);
-
-				if (session.matchedCredentials) {
-					setRequests(session.matchedCredentials);
+				if (result.value.matchedCredentials) {
+					setRequests(result.value.matchedCredentials);
 				}
-			} catch (err: any) {
-				handleError(err.message);
+			} catch (err: unknown) {
+				handleError(err instanceof Error ? err.message : String(err));
 			}
 		};
 
 		createSession();
-	}, [isHolderInitialised, authorisationRequestUri, handleError]);
+	}, [isHolderInitialized, authorizationRequestUri, handleError]);
 
 	// Step 4.1: Add handleSendResponse function
 	const handleSendResponse = useCallback(async () => {
@@ -87,13 +85,14 @@ export default function OnlinePresentation() {
 			});
 
 			if (sendResponseResult.isErr()) {
-				throw new Error("Failed to send presentation response");
+				throw new Error(sendResponseResult.error.message || "Failed to send presentation response");
 			}
 
 			router.replace("/");
 			Alert.alert("Success", "Presentation response sent successfully!");
-		} catch (err: any) {
-			handleError(err.message);
+		} catch (err: unknown) {
+			const message = err instanceof Error ? err.message : String(err);
+			handleError(message);
 			Alert.alert(
 				"Error",
 				"Failed to send presentation response. Terminating session...",

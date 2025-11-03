@@ -1,8 +1,11 @@
 import {
 	type MobileCredentialMetadata,
+	UserAuthenticationBehavior,
+	UserAuthenticationType,
 	deleteCredential,
 	getCredentials,
-	initialise,
+	initialize,
+	isInitialized,
 } from "@mattrglobal/mobile-credential-holder-react-native";
 // Online Presentation - Step 2.3: Import expo-linking and expo-router
 import * as Linking from "expo-linking";
@@ -19,7 +22,7 @@ import {
 import { Alert } from "react-native";
 
 type HolderContextProps = {
-	isHolderInitialised: boolean;
+	isHolderInitialized: boolean;
 	getMobileCredentials: () => Promise<void>;
 	mobileCredentials: MobileCredentialMetadata[];
 	deleteMobileCredential: (credentialId: string) => Promise<void>;
@@ -30,7 +33,7 @@ type HolderContextProps = {
 const HolderContext = createContext<HolderContextProps | undefined>(undefined);
 
 export function HolderProvider({ children }: { children: React.ReactNode }) {
-	const [isHolderInitialised, setIsHolderInitialised] =
+	const [isHolderInitialized, setIsHolderInitialized] =
 		useState<boolean>(false);
 	const [mobileCredentials, setMobileCredentials] = useState<
 		MobileCredentialMetadata[]
@@ -41,39 +44,64 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 	const router = useRouter();
 
 	// Claim a Credential - Step 1.2: Initialize the Holder SDK
-	const initialiseHolder = useCallback(async () => {
-		const result = await initialise();
+	const initializeHolder = useCallback(async () => {
+		try {
+			// Check if SDK is already initialized
+			const alreadyInitialized = await isInitialized();
+			if (alreadyInitialized) {
+				setIsHolderInitialized(true);
+				return;
+			}
 
-		if (result.isErr()) {
-			setError(result.error.message || "Failed to initialise holder.");
-		} else {
-			setIsHolderInitialised(true);
+			const result = await initialize({
+				userAuthenticationConfiguration: {
+					userAuthenticationBehavior: UserAuthenticationBehavior.OnInitialize,
+					userAuthenticationType: UserAuthenticationType.BiometricOrPasscode,
+				},
+				credentialIssuanceConfiguration: {
+					autoTrustMobileCredentialIaca: true,
+					redirectUri:
+						"io.mattrlabs.sample.reactnativemobilecredentialholdertutorialapp://credentials/callback",
+				},
+			});
+
+			if (result.isErr()) {
+				setError(result.error.message || "Failed to initialize holder.");
+			} else {
+				setIsHolderInitialized(true);
+			}
+		} catch (err) {
+			setError(
+				err instanceof Error
+					? err.message
+					: "Unknown error during initialization",
+			);
+		} finally {
+			setIsLoading(false);
 		}
-
-		setIsLoading(false);
 	}, []);
 
 	useEffect(() => {
-		initialiseHolder();
-	}, [initialiseHolder]);
+		initializeHolder();
+	}, [initializeHolder]);
 
 	const getMobileCredentials = useCallback(async () => {
-		if (!isHolderInitialised) return;
+		if (!isHolderInitialized) return;
 		const credentials = await getCredentials();
 		setMobileCredentials(credentials);
-	}, [isHolderInitialised]);
+	}, [isHolderInitialized]);
 
 	// When the holder is initialized, get the mobile credentials to display in the app
 	useEffect(() => {
-		if (isHolderInitialised) {
+		if (isHolderInitialized) {
 			getMobileCredentials();
 		}
-	}, [isHolderInitialised, getMobileCredentials]);
+	}, [isHolderInitialized, getMobileCredentials]);
 
 	// An example implementation of deleting a credential, used for demonstration purposes
 	const deleteMobileCredential = useCallback(
 		async (credentialId: string) => {
-			if (!isHolderInitialised) return;
+			if (!isHolderInitialized) return;
 
 			Alert.alert(
 				"Confirm Deletion",
@@ -102,16 +130,15 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 				],
 			);
 		},
-		[isHolderInitialised, getMobileCredentials],
+		[isHolderInitialized, getMobileCredentials],
 	);
 
 	// Online Presentation - Step 2.5: Handle deep link
 	useEffect(() => {
-		if (!isHolderInitialised) return;
+		if (!isHolderInitialized) return;
 
 		const handleDeepLink = (event: { url: string }) => {
 			const { url } = event;
-			console.log("Deep link received:", url);
 
 			if (url.startsWith("mdoc-openid4vp://")) {
 				router.replace({
@@ -121,20 +148,21 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 			}
 		};
 
+		// Check for cold start deep link
 		Linking.getInitialURL().then((url) => {
 			if (url) {
-				console.log("Initial URL:", url);
 				handleDeepLink({ url });
 			}
 		});
 
+		// Listen for deep links when app is already running
 		const subscription = Linking.addEventListener("url", handleDeepLink);
 		return () => subscription.remove();
-	}, [isHolderInitialised, router]);
+	}, [isHolderInitialized, router]);
 
 	const contextValue = useMemo(
 		() => ({
-			isHolderInitialised,
+			isHolderInitialized,
 			error,
 			isLoading,
 			getMobileCredentials,
@@ -142,7 +170,7 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 			deleteMobileCredential,
 		}),
 		[
-			isHolderInitialised,
+			isHolderInitialized,
 			error,
 			isLoading,
 			getMobileCredentials,
