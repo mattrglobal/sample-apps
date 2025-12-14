@@ -2,6 +2,9 @@
   "name": "verifier-web-tutorial",
   "version": "0.1.0",
   "private": true,
+  "overrides": {
+    "valibot": "^1.2.0"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -9,7 +12,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mattrglobal/verifier-sdk-web": "^2.0.1",
+    "@mattrglobal/verifier-sdk-web": "^2.1.0",
     "next": "15.4.10",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
