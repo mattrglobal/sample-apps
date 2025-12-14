@@ -10,7 +10,7 @@
   "dependencies": {
     "@ngrok/ngrok": "^1.5.2",
     "dotenv": "^16.6.1",
-    "express": "^5.1.0"
+    "express": "^5.2.1"
   },
   "type": "module",
   "devDependencies": {
