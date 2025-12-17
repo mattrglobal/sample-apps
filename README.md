@@ -7,6 +7,7 @@ A collection of developer apps and API tooling that you can use to interface wit
 ## Projects
 * [claims-source-app](/claims-source-app/README.md) – A mock Claims Source that you can use for our [OID4VCI Claims Source tutorial]().
 * [verifier-web-tutorial](/verifier-web-tutorial/README.md) – A NextJS app that uses MATTRs Verifier Web SDK to verify mDocs presented via an online presentation workflow as per ISO/IEC 18013-7:2024 and OID4VP.
+* [webhook-app](/webhook-app/README.md) – A webhook receiver for MATTR VII webhooks with HTTP signature validation.
 
 ## Utilities
 
