@@ -6,7 +6,7 @@ This project provides the minimal implementation of a claims source to be integr
 
 ## Database
 
-The `database.json` file acts as our database and holds an array of user objects. Add your own claims to that array and ensure that every object has the `email` claim used to query the array, plus any claims taht your credential configuration requires.
+The `database.json` file acts as our database and holds an array of user objects. Add your own claims to that array and ensure that every object has the `email` claim used to query the array, plus any claims that your credential configuration requires.
 
 ## Configuration
 
