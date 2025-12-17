@@ -1,4 +1,0 @@
-MATTR_TENANT_URL=https://your-tenant.vii.mattr.global
-MATTR_WEBHOOK_ID=
-NGROK_AUTHTOKEN=
-PORT=3000
