@@ -77,6 +77,11 @@ app.post('/webhook', async (req, res) => {
   }
 
   console.log('\n--- Webhook End ---\n')
+
+  /* Always respond with a 2xx response if the webhook event was received successfully.
+   * In case of failures, MATTR VII will retry sending the webhook event a maximum of 
+   * three times.
+   */
   res.sendStatus(200)
 })
 
