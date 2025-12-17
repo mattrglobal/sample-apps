@@ -1,0 +1,21 @@
+{
+  "name": "webhook-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently -k -n \"TUNNEL,APP\" -c \"cyan,green\" \"node src/tunnel.js\" \"nodemon src/index.js\""
+  },
+  "author": "MATTR Labs",
+  "license": "ISC",
+  "description": "Simple webhook receiver for MATTR VII webhooks with HTTP signature validation",
+  "dependencies": {
+    "@mattrglobal/http-signatures": "^4.1.0",
+    "@ngrok/ngrok": "^1.5.2",
+    "dotenv": "^16.6.1",
+    "express": "^5.2.1"
+  },
+  "type": "module",
+  "devDependencies": {
+    "concurrently": "^9.2.1",
+    "nodemon": "^3.1.10"
+  }
+}
