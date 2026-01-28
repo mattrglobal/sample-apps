@@ -43,7 +43,7 @@ export default function Home() {
       // Step 6.2 - Use challenge from backend
       challenge: await createRequest(),
       openid4vpConfiguration: {
-        walletProviderId: "<your-wallet-provider-id>",
+        walletProviderId: process.env.NEXT_PUBLIC_WALLET_PROVIDER_ID,
         redirectUri: window.location.origin
       }
     }
@@ -76,7 +76,7 @@ export default function Home() {
   useEffect(() => {
     MATTRVerifierSDK.initialize({
       apiBaseUrl: process.env.NEXT_PUBLIC_TENANT_URL as string,
-      applicationId: "<your-application-id>"
+      applicationId: process.env.NEXT_PUBLIC_APPLICATION_ID as string,
     })
   }, [])
 
