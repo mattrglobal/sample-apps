@@ -6,7 +6,7 @@ This NextJS app is the result of the [Verifier Web SDK tutorial](https://learn.m
 
 To run the app, you need:
 
-- Access to a [MATTR VII tenant](https://learn.mattr.global/docs/platform-management/portal#creating-a-tenant). Sign-up for a free trial [here](https://learn.mattr.global/docs/resources/get-started).
+- Access to a MATTR VII tenant. Sign-up for a free trial [here](https://learn.mattr.global/docs/resources/get-started).
 - Provide the following environment variables:
 
 ```
