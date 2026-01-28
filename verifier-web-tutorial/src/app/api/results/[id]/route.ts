@@ -10,7 +10,7 @@ async function getToken(tenantUrl: string) {
         body: JSON.stringify({
             client_id: process.env.MATTR_CLIENT_ID,
             client_secret: process.env.MATTR_CLIENT_SECRET,
-            audience: process.env.NEXT_PUBLIC_TENANT_URL,
+            audience: tenantUrl,
             grant_type: 'client_credentials'
         })
     })
@@ -33,7 +33,7 @@ export async function GET(_: Request, { params }: { params: Promise<{ id: string
     }
 
     const response = await fetch(
-        `${process.env.NEXT_PUBLIC_TENANT_URL}/v2/presentations/sessions/${id}/result`,
+        `${tenantUrl}/v2/presentations/sessions/${id}/result`,
         {
             headers: {
                 authorization: `Bearer ${await getToken(tenantUrl)}`
