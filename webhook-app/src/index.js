@@ -2,7 +2,7 @@ import 'dotenv/config'
 import express from 'express'
 import { verifyRequest } from '@mattrglobal/http-signatures'
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 7311
 const MATTR_TENANT_URL = process.env.MATTR_TENANT_URL
 const MATTR_WEBHOOK_ID = process.env.MATTR_WEBHOOK_ID
 

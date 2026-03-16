@@ -7,12 +7,12 @@ services:
     build: 
       context: .
       args:
-        PORT: ${PORT:-3000}
+        PORT: ${PORT:-7311}
     ports:
-      - "${PORT:-3000}:${PORT:-3000}"
+      - "${PORT:-7311}:${PORT:-7311}"
     env_file: .env
     environment:
-      - PORT=${PORT:-3000}
+      - PORT=${PORT:-7311}
     volumes:
       - .:/app
       - /app/node_modules
