@@ -1,15 +1,23 @@
 [
   {
-    "email": "erika.mustermann@example.com",
-    "age": 21,
-    "givenName": "me"
+    "licenseNumber": "DL-123456",
+    "resident_address": "123 Main St, Anytown, USA",
+    "resident_city": "Springfield",
+    "resident_state": "IL",
+    "resident_postal_code": "62701"
   },
   {
-    "email": "name2@example.com",
-    "age": 35
+    "licenseNumber": "DL-789012",
+    "resident_address": "456 Oak Avenue, Downtown",
+    "resident_city": "Portland",
+    "resident_state": "OR",
+    "resident_postal_code": "97201"
   },
   {
-    "email": "name3@example.com",
-    "age": 65
+    "licenseNumber": "DL-345678",
+    "resident_address": "789 Pine Boulevard, Uptown",
+    "resident_city": "Austin",
+    "resident_state": "TX",
+    "resident_postal_code": "73301"
   }
 ]
