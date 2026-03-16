@@ -19,7 +19,7 @@ This tutorial demonstrates how to build an **Interaction Hook** for MATTR VII - 
 
 - Node.js 20+ and npm
 - MATTR VII tenant account with access to create interaction hooks
-- ngrok installed for local development tunneling ([download here](https://ngrok.com/download))
+- [ngrok](https://ngrok.com/download) account and auth token for local development tunneling
 - Basic knowledge of React and Next.js
 
 ## Quick Start
@@ -32,23 +32,23 @@ cd interaction-hook-app
 # 2. Install dependencies
 npm install
 
-# 3. Create environment file
-touch .env.local
+# 3. Create environment file from template
+cp env-template .env
 
 # 4. Configure MATTR VII interaction hook and get the secret
 
-# 5. Update .env.local with your values
+# 5. Update .env with your values (including NGROK_AUTHTOKEN)
 
-# 6. Start ngrok tunnel
-ngrok http 3000
-
-# 7. Update APP_URL in .env.local with ngrok URL
-
-# 8. Update interaction hook URL in MATTR VII
-
-# 9. Start development server
+# 6. Start the development server (automatically starts ngrok tunnel)
 npm run dev
+
+# 7. Copy the ngrok URL from the TUNNEL output and update APP_URL in .env
+
+# 8. Update interaction hook URL in MATTR VII with the ngrok URL
 ```
+
+> **Note:** `npm run dev` starts both the ngrok tunnel and the Next.js dev server concurrently.
+> Use `npm run dev:app` to start only the Next.js dev server without the tunnel.
 
 ## Project Structure
 
@@ -62,7 +62,9 @@ interaction-hook-app/
 │   │   │       └── route.ts         # API handler
 │   │   ├── layout.tsx               # App layout
 │   │   └── globals.css              # Global styles
-├── .env-example                      # Environment template
+│   ├── tunnel.mjs                   # ngrok tunnel setup
+│   └── check-port.mjs              # Port availability check
+├── env-template                      # Environment template
 ├── package.json                      # Dependencies
 └── README.md                         # This file
 ```

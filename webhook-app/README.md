@@ -8,19 +8,19 @@ This project provides a webhook receiver for MATTR VII webhooks with HTTP signat
 
 ### Environment Variables
 
-The project contains an `env-example` file that you can use and rename to `.env` and add the required variables:
+The project contains an `env-template` file that you can copy to `.env` and add the required variables:
 
 ```
 MATTR_TENANT_URL=https://your-tenant.vii.mattr.global
 MATTR_WEBHOOK_ID=<your-webhook-id>
 NGROK_AUTHTOKEN=<your-ngrok-authtoken>
-PORT=3000
+PORT=7311
 ```
 
 - `MATTR_TENANT_URL` : Your MATTR VII tenant URL.
 - `MATTR_WEBHOOK_ID` : The ID of your MATTR VII Webhook.
 - `NGROK_AUTHTOKEN` : Your ngrok authentication token.
-- `PORT` : Port for the webhook server (optional, defaults to 3000).
+- `PORT` : Port for the webhook server (optional, defaults to 7311).
 
 ### MATTR VII Configuration
 
@@ -36,7 +36,7 @@ You can start the app either via npm:
 
 ```bash
 npm install
-npm run start
+npm run dev
 ```
 
 Or using Docker:

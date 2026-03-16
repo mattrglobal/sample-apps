@@ -2,7 +2,8 @@
   "name": "webhook-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "concurrently -k -n \"TUNNEL,APP\" -c \"cyan,green\" \"node src/tunnel.js\" \"nodemon src/index.js\""
+    "dev": "concurrently -k -n \"TUNNEL,APP\" -c \"cyan,green\" \"node src/tunnel.js\" \"nodemon src/index.js\"",
+    "dev:app": "nodemon src/index.js"
   },
   "author": "MATTR Labs",
   "license": "ISC",

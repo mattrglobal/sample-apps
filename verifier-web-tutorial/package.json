@@ -6,13 +6,16 @@
     "valibot": "^1.2.0"
   },
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "concurrently -k -n \"TUNNEL,APP\" -c \"cyan,green\" \"node src/tunnel.mjs\" \"node src/check-port.mjs && next dev --turbopack -p ${PORT:-7312}\"",
+    "dev:app": "node src/check-port.mjs && next dev --turbopack -p ${PORT:-7312}",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@mattrglobal/verifier-sdk-web": "^2.1.0",
+    "@ngrok/ngrok": "^1.5.2",
+    "dotenv": "^16.6.1",
     "next": "16.1.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -23,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",
