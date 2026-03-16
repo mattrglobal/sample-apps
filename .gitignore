@@ -9,7 +9,7 @@ op
 .cache/
 .env
 .env.*
-!.env.example
+!env-template
 
 ######################
 # NextJS
