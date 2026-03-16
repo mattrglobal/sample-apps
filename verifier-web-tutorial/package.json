@@ -6,8 +6,8 @@
     "valibot": "^1.2.0"
   },
   "scripts": {
-    "dev": "concurrently -k -n \"TUNNEL,APP\" -c \"cyan,green\" \"node src/tunnel.mjs\" \"next dev --turbopack\"",
-    "dev:app": "next dev --turbopack",
+    "dev": "concurrently -k -n \"TUNNEL,APP\" -c \"cyan,green\" \"node src/tunnel.mjs\" \"node src/check-port.mjs && next dev --turbopack -p ${PORT:-7312}\"",
+    "dev:app": "node src/check-port.mjs && next dev --turbopack -p ${PORT:-7312}",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
