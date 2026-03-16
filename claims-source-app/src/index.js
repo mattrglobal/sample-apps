@@ -4,7 +4,7 @@ import express from 'express'
 import net from 'net'
 
 const database = JSON.parse(fs.readFileSync("database.json"))
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 7310
 
 // Function to check if port is available
 function checkPortAvailable(port) {

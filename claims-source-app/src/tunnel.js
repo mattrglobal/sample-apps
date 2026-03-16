@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import ngrok from '@ngrok/ngrok'
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 7310;
 
 (async function () {
   const authtoken = process.env.NGROK_AUTHTOKEN;

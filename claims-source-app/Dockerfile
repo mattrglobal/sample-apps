@@ -6,7 +6,7 @@ COPY . .
 
 RUN npm install
 
-ARG PORT=3000
+ARG PORT=7310
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
