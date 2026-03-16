@@ -23,7 +23,7 @@ NGROK_AUTHTOKEN=
 - `MATTR_CLIENT_ID=` and `MATTR_CLIENT_SECRET`: Required to retrieve the presentation results via an authenticated backend API call. You can use the MATTR Portal to [create new clients](https://learn.mattr.global/docs/platform-management/create-client) for your MATTR VII tenant.
 - `NGROK_AUTHTOKEN`: Your ngrok authentication token for exposing the app publicly.
 
-This project contains an `env-template` file which you can use to create your local `.env.local` file (which is the default environment file for NextJS apps).
+This project contains an `env-template` file which you can copy to `.env` to configure your local environment.
 
 ### Exposing the app publicly
 

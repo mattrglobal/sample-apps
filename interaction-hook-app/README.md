@@ -33,16 +33,16 @@ cd interaction-hook-app
 npm install
 
 # 3. Create environment file from template
-cp .env-example .env.local
+cp env-template .env
 
 # 4. Configure MATTR VII interaction hook and get the secret
 
-# 5. Update .env.local with your values (including NGROK_AUTHTOKEN)
+# 5. Update .env with your values (including NGROK_AUTHTOKEN)
 
 # 6. Start the development server (automatically starts ngrok tunnel)
 npm run dev
 
-# 7. Copy the ngrok URL from the TUNNEL output and update APP_URL in .env.local
+# 7. Copy the ngrok URL from the TUNNEL output and update APP_URL in .env
 
 # 8. Update interaction hook URL in MATTR VII with the ngrok URL
 ```
@@ -64,7 +64,7 @@ interaction-hook-app/
 │   │   └── globals.css              # Global styles
 │   ├── tunnel.mjs                   # ngrok tunnel setup
 │   └── check-port.mjs              # Port availability check
-├── .env-example                      # Environment template
+├── env-template                      # Environment template
 ├── package.json                      # Dependencies
 └── README.md                         # This file
 ```

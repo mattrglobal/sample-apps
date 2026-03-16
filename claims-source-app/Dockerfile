@@ -10,4 +10,4 @@ ARG PORT=7310
 ENV PORT=${PORT}
 EXPOSE ${PORT}
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "run", "dev"]

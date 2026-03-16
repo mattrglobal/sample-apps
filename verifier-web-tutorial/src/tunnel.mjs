@@ -6,7 +6,7 @@ const PORT = process.env.PORT || 7312;
 (async function () {
   const authtoken = process.env.NGROK_AUTHTOKEN;
   if (!authtoken) {
-    throw Error("NGROK_AUTHTOKEN missing in .env.local file");
+    throw Error("NGROK_AUTHTOKEN missing in .env file");
   }
   console.log(`Starting ngrok tunnel connecting to port ${PORT}...`);
   const url = await ngrok.connect({ addr: PORT, authtoken: authtoken });
