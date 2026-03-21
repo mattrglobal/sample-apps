@@ -16,7 +16,7 @@
     "@mattrglobal/verifier-sdk-web": "^2.1.0",
     "@ngrok/ngrok": "^1.5.2",
     "dotenv": "^16.6.1",
-    "next": "16.1.5",
+    "next": "16.1.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
