@@ -43,12 +43,13 @@ export default function Home() {
     } as MATTRVerifierSDK.CredentialQuery
 
     // Step 4.2 - Add credential request
+    const walletProviderId = process.env.NEXT_PUBLIC_WALLET_PROVIDER_ID
     const options: MATTRVerifierSDK.RequestCredentialsOptions = {
       credentialQuery: [credentialQuery],
       // Step 6.2 - Use challenge from backend
       challenge: await createRequest(),
       openid4vpConfiguration: {
-        walletProviderId: process.env.NEXT_PUBLIC_WALLET_PROVIDER_ID,
+        ...(walletProviderId && { walletProviderId }),
         redirectUri: window.location.origin
       }
     }
