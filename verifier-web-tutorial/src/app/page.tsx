@@ -16,10 +16,15 @@ export default function Home() {
   }
 
   // Step 6.3 - Create retrieveResults function
-  const retrieveResults = useCallback(async (id: string) => {
-    const response = await fetch(`api/results/${id}`)
-    const { results } = await response.json()
-    setResults(results as MATTRVerifierSDK.PresentationSessionResult)
+  const retrieveResults = useCallback(async (credentialsResponse: MATTRVerifierSDK.RequestCredentialsResponse) => {
+    console.log(credentialsResponse)
+    if ("result" in credentialsResponse && credentialsResponse.result !== undefined) {
+      setResults(credentialsResponse.result as MATTRVerifierSDK.PresentationSessionResult)
+    } else {
+      const response = await fetch(`api/results/${credentialsResponse.sessionId}`)
+      const { results } = await response.json()
+      setResults(results as MATTRVerifierSDK.PresentationSessionResult)
+    }
   }, [])
 
   // Step 4.1 - Create requestCredentials function
@@ -53,7 +58,7 @@ export default function Home() {
     // Step 5.2 - Retrieve cross-device verification results
     if (results.isOk()) {
       // Step 6.4 - Call retrieveResults function on cross-device workflow
-      retrieveResults(results.value.sessionId);
+      retrieveResults(results.value);
     } else {
       alert(`Error retrieving results: ${results.error.message}`)
     }
@@ -65,7 +70,7 @@ export default function Home() {
 
     if (results.isOk()) {
       // Step 6.5 - Call retrieveResults function on same-device redirect
-      retrieveResults(results.value.sessionId);
+      retrieveResults(results.value);
     } else {
       alert(`Error retrieving results: ${results.error.message}`)
       return
