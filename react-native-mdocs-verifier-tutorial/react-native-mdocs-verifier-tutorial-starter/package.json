@@ -14,18 +14,18 @@
 		"web": "expo start --web"
 	},
 	"dependencies": {
-		"@mattrglobal/mobile-credential-verifier-react-native": "^8.1.0",
-		"expo": "^53.0.9",
-		"expo-build-properties": "^0.14.6",
-		"expo-camera": "~16.1.11",
-		"expo-status-bar": "~2.0.1",
-		"react": "19.0.0",
-		"react-native": "0.79.2"
+		"@mattrglobal/mobile-credential-verifier-react-native": "^9.0.1",
+		"expo": "^55",
+		"expo-build-properties": "~55.0.13",
+		"expo-camera": "~55.0.15",
+		"expo-status-bar": "~55.0.5",
+		"react": "19.2.0",
+		"react-native": "0.83.4"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@types/react": "~19.0.10",
-		"typescript": "~5.8.3"
+		"@types/react": "~19.2.10",
+		"typescript": "~5.9.2"
 	},
 	"private": true
 }

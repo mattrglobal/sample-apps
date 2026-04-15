@@ -51,9 +51,12 @@ export default function App() {
 		const initializeSDK = async () => {
 			try {
 				setLoadingMessage("Initializing SDK...");
-				console.log("Initializing verifier SDK...");
-				await initialize();
-				console.log("SDK initialized successfully");
+				const result = await initialize();
+				if (result.isErr()) {
+					console.error("Failed to initialize SDK:", result.error);
+					Alert.alert("Error", "Failed to initialize the verifier SDK");
+					return;
+				}
 				setIsSDKInitialized(true);
 
 				setLoadingMessage("Loading certificates...");
