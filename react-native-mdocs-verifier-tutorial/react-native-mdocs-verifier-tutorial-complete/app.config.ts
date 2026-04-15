@@ -37,7 +37,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 			{
 				android: {
 					minSdkVersion: 24,
-					compileSdkVersion: 35,
+					compileSdkVersion: 36,
 					targetSdkVersion: 34,
 					kotlinVersion: "2.0.21",
 				},
@@ -50,7 +50,4 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 			},
 		],
 	],
-	experiments: {
-		typedRoutes: true,
-	},
 });
