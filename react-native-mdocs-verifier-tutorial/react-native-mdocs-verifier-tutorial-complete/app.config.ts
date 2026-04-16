@@ -14,7 +14,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 		backgroundColor: "#ffffff",
 	},
 	ios: {
-		bundleIdentifier: "com.alabbasmattr.rnmdocsverifiersampleapp",
+		bundleIdentifier: "global.mattr.learn.rnmdocsverifiersampleapp",
 		infoPlist: {
 			NSCameraUsageDescription: "This app uses the camera to scan QR codes.",
 			NSBluetoothAlwaysUsageDescription:
@@ -24,7 +24,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 		},
 	},
 	android: {
-		package: "com.alabbasmattr.rnmdocsverifiersampleapp",
+		package: "global.mattr.learn.rnmdocsverifiersampleapp",
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#ffffff",
