@@ -2,6 +2,7 @@
 import {
 	type MobileCredentialResponse,
 	type TrustedIssuerCertificate,
+	addTrustedIssuerCertificates,
 	createProximityPresentationSession,
 	getTrustedIssuerCertificates,
 	initialize,
@@ -20,6 +21,7 @@ import {
 	View,
 } from "react-native";
 import { CertificateManagementModal } from "./CertificateManagementModal";
+import { MONTCLIFF_DMV_IACA } from "./certificates";
 import { QRScannerModal } from "./QRScannerModal";
 import { VerificationResultsModal } from "./VerificationResultsModal";
 import { styles } from "./styles";
@@ -60,11 +62,12 @@ export default function App() {
 				setIsSDKInitialized(true);
 
 				setLoadingMessage("Loading certificates...");
-				const certificates = await getTrustedIssuerCertificates();
-				if (certificates) {
-					console.log(`Loaded ${certificates.length} trusted certificates`);
-					setTrustedCertificates(certificates);
+				let certificates = await getTrustedIssuerCertificates();
+				if (certificates.length === 0) {
+					await addTrustedIssuerCertificates([MONTCLIFF_DMV_IACA]);
+					certificates = await getTrustedIssuerCertificates();
 				}
+				setTrustedCertificates(certificates);
 			} catch (error) {
 				console.error("Failed to initialize SDK:", error);
 				Alert.alert(
