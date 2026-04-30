@@ -11,7 +11,6 @@
  */
 import {
 	type MobileCredentialResponse,
-	type TrustedIssuerCertificate,
 	addTrustedIssuerCertificates,
 	createProximityPresentationSession,
 	getTrustedIssuerCertificates,
@@ -31,10 +30,8 @@ import {
 	View,
 } from "react-native";
 // Import the modal components that implement each tutorial capability:
-// - CertificateManagementModal: Manage trusted issuer certificates (Tutorial: "Manage certificates")
 // - QRScannerModal: Scan a QR code presented by a holder wallet (Tutorial: "Verify mDocs - Step 1")
 // - VerificationResultsModal: Display verification results (Tutorial: "Verify mDocs - Step 2")
-import { CertificateManagementModal } from "./CertificateManagementModal";
 import { MONTCLIFF_DMV_IACA } from "./certificates";
 import { QRScannerModal } from "./QRScannerModal";
 import { VerificationResultsModal } from "./VerificationResultsModal";
@@ -45,7 +42,7 @@ import { styles } from "./styles";
  *
  * This component implements the following tutorial capabilities:
  * 1. Initialize the SDK so the app can use its functions and classes.
- * 2. Manage certificates which enable the app to verify mDocs issued by trusted issuers.
+ * 2. Register the trusted IACA certificate used to verify mDocs issued by the tutorial issuer.
  * 3. Scan a QR code presented by a wallet app and establish a secure BLE communication channel.
  * 4. Send presentation requests to the wallet, receive a response, and verify its content.
  * 5. Display the verification results to the verifier app user.
@@ -56,26 +53,15 @@ export default function App() {
 	const [isSDKInitialized, setIsSDKInitialized] = useState(false);
 	const [loadingMessage, setLoadingMessage] = useState<string | false>(false);
 
-	// Manage Certificates - Step 1.1: Add certificates state variable
-	// Holds the list of trusted IACA certificates. Every mDoc is signed by a chain of trust;
-	// for the app to verify a presented mDoc, it must validate the root IACA certificate
-	// is associated with a trusted issuer.
-	const [trustedCertificates, setTrustedCertificates] = useState<
-		TrustedIssuerCertificate[]
-	>([]);
-
 	// Verify mDocs - Step 1.2: Create receivedDocuments variable
 	// Stores the MobileCredentialResponse returned by the SDK after verifying the mDoc(s)
 	// included in the wallet's proximity presentation response.
 	const [verificationResults, setVerificationResults] =
 		useState<MobileCredentialResponse | null>(null);
 
-	// Modal states for navigation between the three main screens:
-	// 1. Certificate Management - add/view/remove trusted IACA certificates
-	// 2. QR Scanner - scan a QR code presented by a holder's wallet app
-	// 3. Verification Results - display the outcome of the mDoc verification
-	const [showCertificateManagement, setShowCertificateManagement] =
-		useState(false);
+	// Modal states for navigation between the two main screens:
+	// 1. QR Scanner - scan a QR code presented by a holder's wallet app
+	// 2. Verification Results - display the outcome of the mDoc verification
 	const [isScanning, setIsScanning] = useState(false);
 	const [showVerificationResults, setShowVerificationResults] = useState(false);
 
@@ -88,9 +74,10 @@ export default function App() {
 	 * This runs once on app launch and performs two actions:
 	 * 1. Calls `initialize()` to set up the MobileCredentialVerifier SDK so the app
 	 *    can use its functions and classes for proximity verification.
-	 * 2. Loads any existing trusted IACA certificates from local storage. If none exist,
-	 *    it pre-loads the sample Montcliff DMV IACA certificate used in the tutorial
-	 *    so the app is ready to verify the tutorial mDoc out of the box.
+	 * 2. On first launch (no certificates stored yet), registers the sample Montcliff
+	 *    DMV IACA certificate so the app is ready to verify the tutorial mDoc out of
+	 *    the box. Every mDoc is signed by a chain of trust, so the SDK needs at least
+	 *    one trusted root IACA certificate to validate a presented mDoc.
 	 */
 	useEffect(() => {
 		const initializeSDK = async () => {
@@ -104,16 +91,12 @@ export default function App() {
 				}
 				setIsSDKInitialized(true);
 
-				// After initialization, load trusted IACA certificates.
-				// If no certificates exist yet, add the sample Montcliff DMV IACA
-				// certificate so the tutorial mDoc can be verified immediately.
+				// Setup certificates - Step 1: Register the trusted IACA certificate on first launch.
 				setLoadingMessage("Loading certificates...");
-				let certificates = await getTrustedIssuerCertificates();
+				const certificates = await getTrustedIssuerCertificates();
 				if (certificates.length === 0) {
 					await addTrustedIssuerCertificates([MONTCLIFF_DMV_IACA]);
-					certificates = await getTrustedIssuerCertificates();
 				}
-				setTrustedCertificates(certificates);
 			} catch (error) {
 				console.error("Failed to initialize SDK:", error);
 				Alert.alert(
@@ -246,20 +229,8 @@ export default function App() {
 								styles.button,
 								!isSDKInitialized && styles.buttonDisabled,
 							]}
-							onPress={() => setShowCertificateManagement(true)}
-							disabled={!isSDKInitialized}
-						>
-							<Text style={styles.buttonText}>Certificate Management</Text>
-						</TouchableOpacity>
-
-						<TouchableOpacity
-							style={[
-								styles.button,
-								(!isSDKInitialized || trustedCertificates.length === 0) &&
-									styles.buttonDisabled,
-							]}
 							onPress={() => setIsScanning(true)}
-							disabled={!isSDKInitialized || trustedCertificates.length === 0}
+							disabled={!isSDKInitialized}
 						>
 							<Text style={styles.buttonText}>Scan QR Code</Text>
 						</TouchableOpacity>
@@ -270,25 +241,8 @@ export default function App() {
 							SDK not initialized. Please restart the app.
 						</Text>
 					)}
-					{isSDKInitialized && trustedCertificates.length === 0 && (
-						<Text style={styles.errorText}>
-							No trusted issuer certificates added. Add certificates to verify
-							mDocs.
-						</Text>
-					)}
 				</View>
 			)}
-
-			{/* Manage Certificates - Step 2.6: Create CertificateManagementView
-			    This modal enables the user to add, view, and remove trusted IACA certificates.
-			    These certificates are required to verify that a presented mDoc was signed by
-			    a trusted issuer's root certificate (chain of trust validation). */}
-			<CertificateManagementModal
-				visible={showCertificateManagement}
-				onClose={() => setShowCertificateManagement(false)}
-				trustedCertificates={trustedCertificates}
-				setTrustedCertificates={setTrustedCertificates}
-			/>
 
 			{/* Verify mDocs - Step 1.2: Create QRScannerView
 			    This modal provides the QR code scanning capability. In the ISO 18013-5 proximity
