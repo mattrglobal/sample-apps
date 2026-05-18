@@ -43,6 +43,12 @@ Thumbs.db
 Desktop.ini
 
 ######################
+# Xcode
+######################
+xcuserdata/
+*.xcuserstate
+
+######################
 # Mac OSX
 ######################
 .DS_Store
