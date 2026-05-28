@@ -47,6 +47,14 @@ Desktop.ini
 ######################
 xcuserdata/
 *.xcuserstate
+*.xcframework
+
+######################
+# MATTR SDK distributions
+######################
+# SDKs are distributed separately and added by each developer locally.
+# Don't commit the unzipped artifacts that the sample apps look for.
+*/repo/global/
 
 ######################
 # Mac OSX
