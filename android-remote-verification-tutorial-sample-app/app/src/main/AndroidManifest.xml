@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.RemoteVerifierTutorial">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.RemoteVerifierTutorial">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!--
+            OID4VP callback handler from the MobileCredentialVerifier SDK.
+            The scheme is bound to ${applicationId}, so the deep link automatically
+            matches whatever package name you set in app/build.gradle.kts. The
+            redirect URI registered for your verifier application in your MATTR VII
+            tenant must use this same scheme, e.g. ${applicationId}://oid4vp-callback
+        -->
+        <activity
+            android:name="global.mattr.mobilecredential.verifier.a2apresentation.callback.Openid4VpCallbackActivity"
+            android:exported="true"
+            tools:node="merge">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="${applicationId}"
+                    android:host="oid4vp-callback" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
