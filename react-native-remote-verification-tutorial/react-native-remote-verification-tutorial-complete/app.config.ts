@@ -8,7 +8,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	orientation: "portrait",
 	icon: "./assets/icon.png",
 	userInterfaceStyle: "light",
-	// Add the custom URL scheme used for the wallet redirect (this would be your iOS bundle identifier).
+	// Update the scheme property
 	scheme: "",
 	splash: {
 		image: "./assets/splash.png",
@@ -16,9 +16,11 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 		backgroundColor: "#ffffff",
 	},
 	ios: {
+		// Update the bundle identifier
 		bundleIdentifier: "",
 	},
 	android: {
+		// Update the package name
 		package: "",
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
