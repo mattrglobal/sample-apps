@@ -9,6 +9,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	icon: "./assets/icon.png",
 	userInterfaceStyle: "light",
 	// Add the custom URL scheme used for the wallet redirect
+	scheme: "",
 	splash: {
 		image: "./assets/splash.png",
 		resizeMode: "contain",

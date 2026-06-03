@@ -8,21 +8,18 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 	orientation: "portrait",
 	icon: "./assets/icon.png",
 	userInterfaceStyle: "light",
-	// The custom URL scheme the wallet uses to redirect back to this app after a presentation.
-	// On iOS the redirect URI is `{scheme}://my/path`; on Android it is `{scheme}://oid4vp-callback`.
-	// This value must match the bundle identifier / package name and the redirect URI you configure
-	// on your MATTR VII verifier application.
-	scheme: "global.mattr.learn.rnremoteverifiersampleapp",
+	// Add the custom URL scheme used for the wallet redirect (this would be your iOS bundle identifier).
+	scheme: "",
 	splash: {
 		image: "./assets/splash.png",
 		resizeMode: "contain",
 		backgroundColor: "#ffffff",
 	},
 	ios: {
-		bundleIdentifier: "global.mattr.learn.rnremoteverifiersampleapp",
+		bundleIdentifier: "",
 	},
 	android: {
-		package: "global.mattr.learn.rnremoteverifiersampleapp",
+		package: "",
 		adaptiveIcon: {
 			foregroundImage: "./assets/adaptive-icon.png",
 			backgroundColor: "#ffffff",
