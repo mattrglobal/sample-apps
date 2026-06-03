@@ -10,7 +10,8 @@
 	"scripts": {
 		"start": "expo start",
 		"android": "expo run:android",
-		"ios": "expo run:ios"
+		"ios": "expo run:ios",
+		"postinstall": "patch-package"
 	},
 	"dependencies": {
 		"@mattrglobal/mobile-credential-verifier-react-native": "^9.0.1",
@@ -24,6 +25,7 @@
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@types/react": "~19.2.10",
+		"patch-package": "^8.0.0",
 		"typescript": "~5.9.2"
 	},
 	"private": true
