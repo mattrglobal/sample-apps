@@ -139,7 +139,9 @@ export default function App() {
       }
 
       const session = result.value;
-      if (!session.isSuccess) {
+      // A session-level failure (aborted, wallet unavailable, verification/response error) is
+      // signaled by `error` being present on the result. There is no `isSuccess` flag.
+      if (session.error) {
         throw new Error(`Verification session failed: ${session.error.message}`);
       }
 
