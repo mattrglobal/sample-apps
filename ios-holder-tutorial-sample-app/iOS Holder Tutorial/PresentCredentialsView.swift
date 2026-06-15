@@ -6,15 +6,10 @@
 
 import MobileCredentialHolderSDK
 import SwiftUI
-import Combine
 
 struct PresentCredentialsView: View {
-    @ObservedObject var viewModel: PresentCredentialsViewModel
+    var viewModel: PresentCredentialsViewModel
     @State var selectedID: String?
-
-    init(viewModel: PresentCredentialsViewModel) {
-        self.viewModel = viewModel
-    }
 
     var body: some View {
         ScrollView {
@@ -81,7 +76,7 @@ struct PresentCredentialsView: View {
 
 // MARK: PresentCredentialsViewModel
 
-class PresentCredentialsViewModel: ObservableObject {
+class PresentCredentialsViewModel {
     @Binding var requestedDocuments: [MobileCredentialRequest]
     @Binding var matchedCredentials: [MobileCredential]
     @Binding var matchedMetadata: [MobileCredentialMetadata]

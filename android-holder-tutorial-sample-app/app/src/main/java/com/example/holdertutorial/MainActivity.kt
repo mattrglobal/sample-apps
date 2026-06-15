@@ -41,6 +41,7 @@ import global.mattr.mobilecredential.holder.MobileCredentialHolder
 import global.mattr.mobilecredential.holder.ProximityPresentationSession
 import global.mattr.mobilecredential.holder.issuance.CredentialIssuanceConfiguration
 import global.mattr.mobilecredential.holder.issuance.dto.DiscoveredCredentialOffer
+import global.mattr.mobilecredential.holder.issuance.dto.RetrieveCredentialResult
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -142,11 +143,11 @@ fun HomeScreen(activity: Activity, navController: NavController) {
         SharedData.discoveredCredentialOffer?.let { discoveredOffer ->
             Text("Received Credential Offer from ${discoveredOffer.issuer}")
             LazyColumn(Modifier.fillMaxWidth()) {
-                items(discoveredOffer.credentials, key = { it.doctype }) { credential ->
+                items(discoveredOffer.credentials, key = { it.docType }) { credential ->
                     Card(Modifier.fillMaxWidth()) {
                         Column(Modifier.padding(4.dp)) {
                             Text("Name: ${credential.name ?: ""}")
-                            Text("DocType: ${credential.doctype}")
+                            Text("DocType: ${credential.docType}")
                         }
                     }
                 }
@@ -196,16 +197,24 @@ private fun onRetrieveCredentials(
             )
 
             // Claim Credential - Step 4.6: Display retrieved credentials
-            SharedData.retrievedCredentials = retrieveCredentialResults.mapNotNull {
-                try {
-                    // The credential ID can be used to get the full credential from the SDK storage.
-                    // fetchUpdatedStatusList - Whether to enforce the online revocation status check for the credential.
-                    // Returned object contains all credential data, including the user's PII.
-                    mdocHolder.getCredential(it.credentialId!!, fetchUpdatedStatusList = false)
-                } catch (e: Exception) {
-                    val msg = "Failed to get credential from storage"
-                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
-                    null
+            // RetrieveCredentialResult is a sealed interface with Success and Failure variants.
+            SharedData.retrievedCredentials = retrieveCredentialResults.mapNotNull { result ->
+                when (result) {
+                    is RetrieveCredentialResult.Success -> try {
+                        // The credential ID can be used to get the full credential from the SDK storage.
+                        // fetchUpdatedStatusList - Whether to enforce the online revocation status check for the credential.
+                        // Returned object contains all credential data, including the user's PII.
+                        mdocHolder.getCredential(result.credentialId, fetchUpdatedStatusList = false)
+                    } catch (e: Exception) {
+                        val msg = "Failed to get credential from storage"
+                        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+                        null
+                    }
+                    is RetrieveCredentialResult.Failure -> {
+                        val msg = "Failed to retrieve ${result.docType}: ${result.error}"
+                        Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show()
+                        null
+                    }
                 }
             }
 

@@ -4,12 +4,11 @@
 //
 
 import SwiftUI
-import Combine
 // Claim Credential - Step 1.2: Import MobileCredentialHolderSDK
 import MobileCredentialHolderSDK
 
 struct ContentView: View {
-   @ObservedObject var viewModel: ViewModel = ViewModel()
+   @State var viewModel: ViewModel = ViewModel()
    var body: some View {
        NavigationStack(path: $viewModel.navigationPath) {
            VStack {
@@ -72,6 +71,10 @@ struct ContentView: View {
                }
                // Navigate to online presentation view
                viewModel.navigationPath.append(NavigationState.onlinePresentation)
+           }
+           // Claim Credential - Step 1.4: Initialize the SDK when the view appears
+           .task {
+               await viewModel.initialize()
            }
        }
    }
@@ -191,32 +194,32 @@ struct ContentView: View {
    }
 }
 
-class ViewModel: ObservableObject {
-   @Published var navigationPath = NavigationPath()
+@Observable class ViewModel {
+   var navigationPath = NavigationPath()
    // Claim Credential - Step 1.3: Add MobileCredentialHolder var
     var mobileCredentialHolder: MobileCredentialHolder
 
    // Claim Credential - Step 3.1: Add DiscoveredCredentialOffer and discoveredCredentialOfferURL vars
-    @Published var discoveredCredentialOffer: DiscoveredCredentialOffer?
+    var discoveredCredentialOffer: DiscoveredCredentialOffer?
     var discoveredCredentialOfferURL = ""
 
    // Claim Credential - Step 4.1: Add retrievedCredentials var
-    @Published var retrievedCredentials: [MobileCredential] = []
+    var retrievedCredentials: [MobileCredential] = []
 
 
    // Proximity Presentation - Step 1.2: Create deviceEngagementString and proximityPresentationSession variables
-    @Published var deviceEngagementString: String?
-    @Published var proximityPresentationSession: ProximityPresentationSession?
+    var deviceEngagementString: String?
+    var proximityPresentationSession: ProximityPresentationSession?
 
 
    // Proximity and Online Presentation: Create variables for credential presentations
-    @Published var matchedCredentials: [MobileCredential] = []
-    @Published var matchedMetadata: [MobileCredentialMetadata] = []
-    @Published var credentialRequest: [MobileCredentialRequest] = []
+    var matchedCredentials: [MobileCredential] = []
+    var matchedMetadata: [MobileCredentialMetadata] = []
+    var credentialRequest: [MobileCredentialRequest] = []
 
 
    // Online Presentation - Step 2.1: Create a variable to hold the online presentation session object
-    @Published var onlinePresentationSession: OnlinePresentationSession?
+    var onlinePresentationSession: OnlinePresentationSession?
 
 
    var shouldDisplayOnlinePresentation: Bool {
@@ -226,18 +229,24 @@ class ViewModel: ObservableObject {
 
    // Claim Credential - Step 1.4: Initialize MobileCredentialHolder SDK
     init() {
-    do {
         mobileCredentialHolder = MobileCredentialHolder.shared
-        try mobileCredentialHolder.initialize(
-            userAuthenticationConfiguration: UserAuthenticationConfiguration(userAuthenticationBehavior: .onDeviceKeyAccess),
-            credentialIssuanceConfiguration: CredentialIssuanceConfiguration(
-                redirectUri: Constants.redirectUri,
-                autoTrustMobileCredentialIaca: true
-            )
-        )
-    } catch {
-        print(error)
     }
+
+   // `initialize` is asynchronous as of iOS Holder SDK v6.0.0, so it runs in an async method called
+   // from the view's `.task` modifier when the view appears.
+    @MainActor
+    func initialize() async {
+        do {
+            try await mobileCredentialHolder.initialize(
+                userAuthenticationConfiguration: UserAuthenticationConfiguration(userAuthenticationBehavior: .onDeviceKeyAccess),
+                credentialIssuanceConfiguration: CredentialIssuanceConfiguration(
+                    redirectUri: Constants.redirectUri,
+                    autoTrustMobileCredentialIaca: true
+                )
+            )
+        } catch {
+            print(error)
+        }
     }
 
    @MainActor
@@ -286,10 +295,13 @@ extension ViewModel {
                Task {
                    var credentials: [MobileCredential] = []
                    for result in retrievedCredentialResults {
-                       if let credentialId = result.credentialId {
+                       switch result {
+                       case .success(_, let credentialId):
                            if let credential = try? await mobileCredentialHolder.getCredential(credentialId: credentialId) {
                                credentials.append(credential)
                            }
+                       case .failure(let docType, let error):
+                           print("Failed to retrieve \(docType): \(error)")
                        }
                    }
                    self.retrievedCredentials = credentials
@@ -313,13 +325,12 @@ extension ViewModel {
        Task {
            do {
                onlinePresentationSession = try await mobileCredentialHolder.createOnlinePresentationSession(authorizationRequestUri: authorizationRequestURI, requireTrustedVerifier: false)
-               matchedMetadata = onlinePresentationSession?.matchedCredentials?
+               let matched = onlinePresentationSession?.getMatchedCredentials() ?? []
+               matchedMetadata = matched
                    .flatMap { $0.matchedMobileCredentials }
-                   .compactMap { $0 } ?? []
 
-               credentialRequest = onlinePresentationSession?.matchedCredentials?
-                   .compactMap { $0.request }
-                   .compactMap { $0 } ?? []
+               credentialRequest = matched
+                   .map { $0.request }
            } catch {
                print(error.localizedDescription)
            }

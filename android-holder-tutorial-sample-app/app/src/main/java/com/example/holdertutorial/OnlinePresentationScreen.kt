@@ -57,10 +57,10 @@ fun OnlinePresentationScreen(activity: Activity, requestUri: String) {
         }
     }
 
-    // session.matchedCredentials - Map that pairs credential requests to lists of the stored credentials that match those requests.
+    // session.getMatchedCredentials() - Map that pairs credential requests to lists of the stored credentials that match those requests.
     // Credentials in the list will only contain the requested claim names (e.g. "given_name", "family_name") without values.
     // Values can be retrieved from storage by calling getCredential() with the credential id.
-    val (requested, matched) = session?.matchedCredentials?.entries?.firstOrNull() ?: return
+    val (requested, matched) = session?.getMatchedCredentials()?.entries?.firstOrNull() ?: return
 
     var matchedCredentials by remember { mutableStateOf(matched) }
     var selectedCredentialId by remember { mutableStateOf(matchedCredentials.first().id) }
