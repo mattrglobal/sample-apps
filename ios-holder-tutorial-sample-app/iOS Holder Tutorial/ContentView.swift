@@ -115,7 +115,7 @@ struct ContentView: View {
                        Text("No. of claims:")
                            .bold()
                        Spacer()
-                       Text("\(credential.claims.count)")
+                       Text("\(credential.claims?.count ?? 0)")
                    }
                }
            }
