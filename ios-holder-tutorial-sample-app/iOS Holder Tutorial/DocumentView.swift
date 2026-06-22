@@ -5,7 +5,6 @@
 
 import MobileCredentialHolderSDK
 import SwiftUI
-import Combine
 
     struct DocumentView: View {
 
@@ -53,23 +52,23 @@ import Combine
 
     // MARK: DocumentViewModel
 
-    class DocumentViewModel: ObservableObject {
+    class DocumentViewModel {
         var docType: String
 
         var namespacesAndClaims: [String: [String: String?]]
 
         init(from credential: MobileCredential) {
             self.docType = credential.docType
-            self.namespacesAndClaims = credential.claims?.reduce(into: [String: [String: String]]()) { result, outerElement in
+            self.namespacesAndClaims = credential.claims.reduce(into: [String: [String: String]]()) { result, outerElement in
                 let (outerKey, innerDict) = outerElement
                 result[outerKey] = innerDict.mapValues { $0.textRepresentation }
-            } ?? [:]
+            }
         }
 
         init(from credentialMetadata: MobileCredentialMetadata) {
             self.docType = credentialMetadata.docType
             var result: [String: [String: String?]] = [:]
-            credentialMetadata.claims?.forEach { namespace, claimIDs in
+            credentialMetadata.claims.forEach { namespace, claimIDs in
                 var transformedClaims: [String: String?] = [:]
                 claimIDs.forEach { claimID in
                     transformedClaims[claimID] = Optional<String>.none

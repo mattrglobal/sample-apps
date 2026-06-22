@@ -6,7 +6,7 @@
 import SwiftUI
 
 struct TransactionCodeInputView: View {
-    @ObservedObject var viewModel: ViewModel
+    var viewModel: ViewModel
     @State private var transactionCode = ""
     @Environment(\.dismiss) private var dismiss
 
