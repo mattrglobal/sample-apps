@@ -111,7 +111,8 @@ class DocumentViewModel: ObservableObject {
     init(from presentation: MobileCredentialPresentation) {
         self.docType = presentation.docType
         self.verificationResult = presentation.verificationResult.verified ? "Verified" : "Invalid"
-        self.verificationFailedReason = presentation.verificationResult.reason?.message
+        // From v6.0.0, the failure detail is exposed via `failureType` (was `reason`).
+        self.verificationFailedReason = presentation.verificationResult.failureType?.message
 
         self.namespacesAndClaims = presentation.claims?.reduce(into: [String: [String: String]]()) { result, outerElement in
             let (outerKey, innerDict) = outerElement

@@ -6,8 +6,15 @@
 // Certificate Management screen.
 //
 // In a production app, you would manage these certificates dynamically rather than hardcoding them.
+import Foundation
+
 enum Constants {
-    static let montcliffPEM = 
+    // From iOS Verifier SDK v6.0.0, the SDK is tethered to a MATTR VII tenant. Replace these with
+    // your tenant host and the Verifier Application `id` created on that tenant.
+    static let tenantHost = URL(string: "https://your-tenant.vii.mattr.global")!
+    static let applicationId = "<YOUR_VERIFIER_APPLICATION_ID>"
+
+    static let montcliffPEM =
 """
     MIICYzCCAgmgAwIBAgIKXhjLoCkLWBxREDAKBggqhkjOPQQDAjA4MQswCQYDVQQG
     EwJBVTEpMCcGA1UEAwwgbW9udGNsaWZmLWRtdi5tYXR0cmxhYnMuY29tIElBQ0Ew
