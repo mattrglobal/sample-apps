@@ -30,7 +30,7 @@
 		"react-native-vision-camera": "^4.6.3"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.20.0",
+		"@babel/core": "^7.29.6",
 		"@biomejs/biome": "^1.9.4",
 		"@types/react": "~19.2.10",
 		"typescript": "~5.9.2"
