@@ -130,12 +130,17 @@ final class VerifierViewModel: ObservableObject {
                     request: [mobileCredentialRequest],
                     challenge: UUID().uuidString
                 )
-                guard let receivedCredentials = onlinePresentationResult.mobileCredentialResponse?.credentials else {
-                    let errorMessage = onlinePresentationResult.error?.message ?? "No error message"
-                    print("No response received: \(errorMessage)")
+                // From v6.0.0, OnlinePresentationSessionResult is a @frozen enum with success and
+                // failure cases, so branch over it with switch/case instead of inspecting nullable
+                // fields. success carries (sessionId, challenge, mobileCredentialResponse); failure
+                // carries (sessionId, challenge, error).
+                switch onlinePresentationResult {
+                case .success(_, _, let mobileCredentialResponse):
+                    receivedDocuments = mobileCredentialResponse?.credentials ?? []
+                case .failure(_, _, let error):
+                    print("No response received: \(error.message)")
                     return
                 }
-                receivedDocuments = receivedCredentials
             } catch {
                 print(error.localizedDescription)
             }
