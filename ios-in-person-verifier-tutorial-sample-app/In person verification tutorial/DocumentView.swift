@@ -117,7 +117,9 @@ class DocumentViewModel {
         self.docType = presentation.docType
         self.verificationResult = presentation.verificationResult.verified ? "Verified" : "Invalid"
         // From v6.0.0, the failure detail is exposed via `failureType` (was `reason`).
-        self.verificationFailedReason = presentation.verificationResult.failureType?.message
+        // `MobileCredentialVerificationFailureType` is a String-backed enum; its `rawValue`
+        // is the human-readable failure message (e.g. "mDoc authentication failed").
+        self.verificationFailedReason = presentation.verificationResult.failureType?.rawValue
         
         self.namespacesAndClaims = presentation.claims?.reduce(into: [String: [String: String]]()) { result, outerElement in
             let (outerKey, innerDict) = outerElement
