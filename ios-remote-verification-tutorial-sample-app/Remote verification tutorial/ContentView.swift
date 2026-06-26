@@ -68,8 +68,11 @@ final class VerifierViewModel: ObservableObject {
     @Published var navigationPath = NavigationPath()
     @Published var receivedDocuments: [MobileCredentialPresentation] = []
 
+    // From v6.0.0, the applicationId is supplied via PlatformConfiguration (it is no longer passed
+    // to requestMobileCredentials) and also drives SDK Tethering.
     let platformConfiguration = PlatformConfiguration(
-        tenantHost: Constants.tenantHost
+        tenantHost: Constants.tenantHost,
+        applicationId: Constants.applicationID
     )
 
     var mobileCredentialVerifier: MobileCredentialVerifier
@@ -95,11 +98,20 @@ final class VerifierViewModel: ObservableObject {
     // platform configuration (your tenant host). Trusted issuer certificates are managed
     // in your MATTR VII tenant rather than in the app for this workflow.
     init() {
-        do {
-            mobileCredentialVerifier = MobileCredentialVerifier.shared
-            try mobileCredentialVerifier.initialize(platformConfiguration: platformConfiguration)
-        } catch {
-            print(error.localizedDescription)
+        mobileCredentialVerifier = MobileCredentialVerifier.shared
+        // From v6.0.0, initialize is asynchronous and drives SDK Tethering: on first launch it
+        // registers this app instance with the tenant and obtains a license, so it can throw
+        // failedToRegister and invalidLicense.
+        Task {
+            do {
+                try await mobileCredentialVerifier.initialize(platformConfiguration: platformConfiguration)
+            } catch MobileCredentialVerifierError.failedToRegister {
+                // Registration with the MATTR VII tenant failed — check connectivity and configuration.
+            } catch MobileCredentialVerifierError.invalidLicense {
+                // The SDK license is missing, invalid, or expired.
+            } catch {
+                print(error.localizedDescription)
+            }
         }
     }
 
@@ -111,17 +123,24 @@ final class VerifierViewModel: ObservableObject {
         Task { @MainActor in
             receivedDocuments = []
             do {
+                // From v6.0.0, applicationId is no longer passed here (it comes from
+                // PlatformConfiguration) and challenge is optional — omit it to let the SDK generate
+                // a secure challenge, or pass your own to bind the response to this request.
                 let onlinePresentationResult = try await mobileCredentialVerifier.requestMobileCredentials(
                     request: [mobileCredentialRequest],
-                    challenge: UUID().uuidString,
-                    applicationId: Constants.applicationID
+                    challenge: UUID().uuidString
                 )
-                guard let receivedCredentials = onlinePresentationResult.mobileCredentialResponse?.credentials else {
-                    let errorMessage = onlinePresentationResult.error?.message ?? "No error message"
-                    print("No response received: \(errorMessage)")
+                // From v6.0.0, OnlinePresentationSessionResult is a @frozen enum with success and
+                // failure cases, so branch over it with switch/case instead of inspecting nullable
+                // fields. success carries (sessionId, challenge, mobileCredentialResponse); failure
+                // carries (sessionId, challenge, error).
+                switch onlinePresentationResult {
+                case .success(_, _, let mobileCredentialResponse):
+                    receivedDocuments = mobileCredentialResponse?.credentials ?? []
+                case .failure(_, _, let error):
+                    print("No response received: \(error.message)")
                     return
                 }
-                receivedDocuments = receivedCredentials
             } catch {
                 print(error.localizedDescription)
             }

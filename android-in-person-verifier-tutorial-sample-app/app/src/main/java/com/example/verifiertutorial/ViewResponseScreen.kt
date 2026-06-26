@@ -32,8 +32,10 @@ import global.mattr.mobilecredential.verifier.dto.MobileCredentialElement
 fun ViewResponseScreen() {
     // Verify mDocs - Step 4.5: Define content
     // For tutorial simplicity, only the first credential in the response is displayed, since the sample request only asks for a single document type (mDL).
+    // From Android Verifier SDK v7.0.0, MobileCredentialResponse.credentials and .credentialErrors
+    // are non-nullable lists, so we check for emptiness rather than null.
     val credential = SharedData.credentialResponse?.credentials?.firstOrNull()
-    if (credential == null || SharedData.credentialResponse?.credentialErrors != null) {
+    if (credential == null || SharedData.credentialResponse?.credentialErrors?.isNotEmpty() == true) {
         // Verify mDocs - Step 4.6: Show error
         // Show an error if something went wrong during the retrieval
         Box(Modifier.fillMaxSize()) {

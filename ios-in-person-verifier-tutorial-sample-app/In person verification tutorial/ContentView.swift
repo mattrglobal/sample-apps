@@ -138,14 +138,25 @@ final class VerifierViewModel {
     // to prepare the SDK for use. A trusted IACA certificate is also pre-loaded so the app
     // can verify mDocs issued by the Montcliff DMV test issuer out of the box.
     init() {
-        do {
-            mobileCredentialVerifier = MobileCredentialVerifier.shared
-            try mobileCredentialVerifier.initialize()
-            Task {
-               try? await mobileCredentialVerifier.addTrustedIssuerCertificates(certificates: [Constants.montcliffPEM])
+        mobileCredentialVerifier = MobileCredentialVerifier.shared
+        // From v6.0.0, initialize is asynchronous and requires a PlatformConfiguration. On first
+        // launch it registers this app instance with the tenant and obtains a license, so it can
+        // throw failedToRegister and invalidLicense.
+        Task {
+            do {
+                let platformConfiguration = PlatformConfiguration(
+                    tenantHost: Constants.tenantHost,
+                    applicationId: Constants.applicationId
+                )
+                try await mobileCredentialVerifier.initialize(platformConfiguration: platformConfiguration)
+                try? await mobileCredentialVerifier.addTrustedIssuerCertificates(certificates: [Constants.montcliffPEM])
+            } catch MobileCredentialVerifierError.failedToRegister {
+                // Registration with the MATTR VII tenant failed — check connectivity and configuration.
+            } catch MobileCredentialVerifierError.invalidLicense {
+                // The SDK license is missing, invalid, or expired.
+            } catch {
+                print(error.localizedDescription)
             }
-        } catch {
-            print(error.localizedDescription)
         }
     }
 }

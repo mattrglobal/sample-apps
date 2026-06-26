@@ -28,11 +28,14 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mobileverifiertutorial.ui.theme.MobileVerifierTutorialTheme
 import global.mattr.mobilecredential.verifier.MobileCredentialVerifier
-import global.mattr.mobilecredential.verifier.PlatformConfiguration
+import global.mattr.mobilecredential.verifier.OnlinePresentationSessionResult
+import global.mattr.mobilecredential.common.platformconfig.PlatformConfiguration
 import global.mattr.mobilecredential.verifier.deviceretrieval.devicerequest.DataElements
 import global.mattr.mobilecredential.verifier.deviceretrieval.devicerequest.NameSpaces
 import global.mattr.mobilecredential.verifier.dto.MobileCredentialPresentation
 import global.mattr.mobilecredential.verifier.dto.MobileCredentialRequest
+import global.mattr.mobilecredential.verifier.exception.VerifierException.FailedToRegisterException
+import global.mattr.mobilecredential.verifier.exception.VerifierException.InvalidLicenseException
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -57,16 +60,27 @@ class MainActivity : ComponentActivity() {
             }
         }
 
-        // Step 2.3: Setup platform configuration with the MATTR VII tenant host.
+        // Step 2.3: Setup platform configuration with the MATTR VII tenant host and Verifier
+        // Application id. From Android Verifier SDK v7.0.0, the applicationId is supplied here (it is
+        // no longer passed to requestMobileCredentials) and also drives SDK Tethering.
         val platformConfiguration = PlatformConfiguration(
-            tenantHost = URL(Constants.TENANT_HOST)
+            tenantHost = URL(Constants.TENANT_HOST),
+            applicationId = Constants.APPLICATION_ID
         )
 
-        // Step 2.4: Initialize the SDK. Must complete before any other SDK calls.
+        // Step 2.4: Initialize the SDK. Must complete before any other SDK calls. Initialization
+        // registers the app instance with the tenant and obtains a license, so it can throw
+        // FailedToRegisterException and InvalidLicenseException.
         lifecycleScope.launch {
-            MobileCredentialVerifier.initialize(
-                context = this@MainActivity, platformConfiguration = platformConfiguration
-            )
+            try {
+                MobileCredentialVerifier.initialize(
+                    context = this@MainActivity, platformConfiguration = platformConfiguration
+                )
+            } catch (e: FailedToRegisterException) {
+                // Registration with the MATTR VII tenant failed — check connectivity and configuration.
+            } catch (e: InvalidLicenseException) {
+                // The SDK license is missing, invalid, or expired.
+            }
         }
     }
 }
@@ -135,15 +149,23 @@ class VerifierViewModel : ViewModel() {
                 // Step 3.2: Request credentials. The SDK launches the wallet via OID4VP and
                 // suspends until the wallet redirects back via the deep link registered in
                 // AndroidManifest.xml, at which point the response is returned here.
+                // From v7.0.0, applicationId is no longer passed here — it comes from the
+                // PlatformConfiguration supplied at initialization.
                 val onlinePresentationResult = MobileCredentialVerifier.requestMobileCredentials(
                     activity = activity,
-                    request = listOf(mobileCredentialRequest),
-                    applicationId = Constants.APPLICATION_ID
+                    request = listOf(mobileCredentialRequest)
                 )
 
-                // Step 4.2: Surface the verified credentials to the UI.
-                _receivedDocuments.value =
-                    onlinePresentationResult.mobileCredentialResponse?.credentials ?: emptyList()
+                // Step 4.2: Surface the verified credentials to the UI. From v7.0.0,
+                // OnlinePresentationSessionResult is a sealed interface with Success/Failure variants.
+                _receivedDocuments.value = when (onlinePresentationResult) {
+                    is OnlinePresentationSessionResult.Success ->
+                        onlinePresentationResult.mobileCredentialResponse?.credentials ?: emptyList()
+                    is OnlinePresentationSessionResult.Failure -> {
+                        // onlinePresentationResult.error is available here.
+                        emptyList()
+                    }
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
