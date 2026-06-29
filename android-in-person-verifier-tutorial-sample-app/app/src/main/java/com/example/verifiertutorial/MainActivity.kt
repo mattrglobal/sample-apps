@@ -38,8 +38,8 @@ class MainActivity : ComponentActivity() {
             // registers this app instance with the tenant and obtains a license, so a PlatformConfiguration
             // pointing at your tenant and Verifier Application is required.
             val platformConfiguration = PlatformConfiguration(
-                tenantHost = URL("https://your-tenant.vii.mattr.global"),
-                applicationId = "<YOUR_VERIFIER_APPLICATION_ID>"
+                tenantHost = URL(Constants.TENANT_HOST),
+                applicationId = Constants.APPLICATION_ID
             )
             try {
                 // This function initializes storage, registers the app instance, obtains a license,
