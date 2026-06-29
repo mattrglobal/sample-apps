@@ -93,3 +93,5 @@ README.private.md
 .env
 .env.local
 .env.development.local
+# Superpowers process artifacts (specs/plans) - do not commit to product PRs
+docs/superpowers/
