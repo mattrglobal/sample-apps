@@ -29,7 +29,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mobileverifiertutorial.ui.theme.MobileVerifierTutorialTheme
 import global.mattr.mobilecredential.verifier.MobileCredentialVerifier
 import global.mattr.mobilecredential.verifier.OnlinePresentationSessionResult
-import global.mattr.mobilecredential.common.platformconfig.PlatformConfiguration
+import global.mattr.mobilecredential.verifier.platformconfig.PlatformConfiguration
 import global.mattr.mobilecredential.verifier.deviceretrieval.devicerequest.DataElements
 import global.mattr.mobilecredential.verifier.deviceretrieval.devicerequest.NameSpaces
 import global.mattr.mobilecredential.verifier.dto.MobileCredentialPresentation
