@@ -21,7 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.verifiertutorial.ui.theme.VerifierTutorialTheme
 import global.mattr.mobilecredential.verifier.dto.MobileCredentialResponse
 import global.mattr.mobilecredential.verifier.MobileCredentialVerifier
-import global.mattr.mobilecredential.common.platformconfig.PlatformConfiguration
+import global.mattr.mobilecredential.verifier.platformconfig.PlatformConfiguration
 import global.mattr.mobilecredential.verifier.exception.VerifierException.FailedToRegisterException
 import global.mattr.mobilecredential.verifier.exception.VerifierException.InvalidLicenseException
 import kotlinx.coroutines.launch
@@ -38,8 +38,8 @@ class MainActivity : ComponentActivity() {
             // registers this app instance with the tenant and obtains a license, so a PlatformConfiguration
             // pointing at your tenant and Verifier Application is required.
             val platformConfiguration = PlatformConfiguration(
-                tenantHost = URL("https://your-tenant.vii.mattr.global"),
-                applicationId = "<YOUR_VERIFIER_APPLICATION_ID>"
+                tenantHost = URL(Constants.TENANT_HOST),
+                applicationId = Constants.APPLICATION_ID
             )
             try {
                 // This function initializes storage, registers the app instance, obtains a license,
