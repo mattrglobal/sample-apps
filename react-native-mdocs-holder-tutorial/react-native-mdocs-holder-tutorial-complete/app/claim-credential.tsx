@@ -85,10 +85,31 @@ export default function ClaimCredential() {
 				retrieved.error.message || "Failed to retrieve credentials.",
 			);
 		} else {
-			Alert.alert(
-				"Success",
-				`Retrieved ${retrieved.value.length} credential(s) successfully!`,
-			);
+			// A credential offer can contain more than one credential, and each one is
+			// retrieved independently. Narrow each item on isSuccess so that a credential
+			// that failed to retrieve is not reported as a success.
+			let successCount = 0;
+			const failureMessages: string[] = [];
+
+			for (const item of retrieved.value) {
+				if (item.isSuccess) {
+					successCount++;
+				} else {
+					failureMessages.push(`${item.docType}: ${item.error.message}`);
+				}
+			}
+
+			if (failureMessages.length === 0) {
+				Alert.alert(
+					"Success",
+					`Retrieved ${successCount} credential(s) successfully!`,
+				);
+			} else {
+				Alert.alert(
+					"Partial Success",
+					`Retrieved ${successCount} credential(s). Failed to retrieve ${failureMessages.length}:\n${failureMessages.join("\n")}`,
+				);
+			}
 		}
 		// Refresh the list of mobile credentials in the holder application
 		await getMobileCredentials();
@@ -155,11 +176,12 @@ export default function ClaimCredential() {
 			<ScrollView style={{ flex: 1 }}>
 				{credentialOffer.credentials.map(
 					(cred: OfferedCredential, index: number) => (
-						<View key={`${cred.doctype}-${index}`} style={styles.card}>
+						<View key={`${cred.docType}-${index}`} style={styles.card}>
 							<Text style={styles.cardTitle}>{cred.name}</Text>
-							<Text style={styles.text}>Document Type: {cred.doctype}</Text>
+							<Text style={styles.text}>Document Type: {cred.docType}</Text>
+							{/* An offer only includes claims when it contains claim data */}
 							<Text style={styles.text}>
-								Number of Claims: {cred.claims?.length}
+								Number of Claims: {cred.claims?.length ?? 0}
 							</Text>
 						</View>
 					),

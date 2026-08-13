@@ -56,7 +56,7 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 			const result = await initialize({
 				userAuthenticationConfiguration: {
 					userAuthenticationBehavior: UserAuthenticationBehavior.OnInitialize,
-					userAuthenticationType: UserAuthenticationType.BiometricOrPasscode,
+					userAuthenticationType: UserAuthenticationType.UserPresence,
 				},
 				credentialIssuanceConfiguration: {
 					autoTrustMobileCredentialIaca: true,
@@ -87,8 +87,23 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 
 	const getMobileCredentials = useCallback(async () => {
 		if (!isHolderInitialized) return;
-		const credentials = await getCredentials();
-		setMobileCredentials(credentials);
+
+		try {
+			const result = await getCredentials();
+
+			if (result.isErr()) {
+				setError(result.error.message || "Failed to get credentials.");
+				return;
+			}
+
+			setMobileCredentials(result.value);
+		} catch (err) {
+			setError(
+				err instanceof Error
+					? err.message
+					: "Unknown error while getting credentials",
+			);
+		}
 	}, [isHolderInitialized]);
 
 	// When the holder is initialized, get the mobile credentials to display in the app
@@ -113,7 +128,18 @@ export function HolderProvider({ children }: { children: React.ReactNode }) {
 						style: "destructive",
 						onPress: async () => {
 							try {
-								await deleteCredential(credentialId);
+								const result = await deleteCredential(credentialId);
+
+								// Expected failures are returned as an error result rather
+								// than thrown, so handle them before reporting success
+								if (result.isErr()) {
+									Alert.alert(
+										"Error",
+										result.error.message || "Failed to delete credential.",
+									);
+									return;
+								}
+
 								Alert.alert("Success", "Credential deleted successfully.");
 								await getMobileCredentials();
 							} catch (err) {
