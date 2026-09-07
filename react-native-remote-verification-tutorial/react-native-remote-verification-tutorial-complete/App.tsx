@@ -50,18 +50,25 @@ export default function App() {
   /**
    * Step 2: Initialize the SDK
    *
-   * Runs once on app launch. Unlike the in-person (proximity) flow, the remote flow requires a
-   * `tenantHost`: the SDK starts presentation sessions with this MATTR VII tenant, which performs the
-   * verification server-side and returns the results.
+   * Runs once on app launch. `platformConfiguration` is required from SDK v10.0.0: it registers this
+   * app instance with your MATTR VII tenant (the SDK Backend) and obtains the license the SDK needs to
+   * operate. The same tenant starts the presentation sessions, performs the verification server-side
+   * and returns the results.
    */
   useEffect(() => {
     const initializeSDK = async () => {
       try {
         setLoadingMessage("Initializing SDK...");
         const result = await initialize({
-          platformConfiguration: { tenantHost: Constants.TENANT_HOST },
+          platformConfiguration: {
+            tenantHost: Constants.TENANT_HOST,
+            applicationId: Constants.APPLICATION_ID,
+          },
         });
         if (result.isErr()) {
+          // `FailedToRegister` means this app instance could not be registered with the tenant, and
+          // `InvalidLicense` means the SDK license is missing or expired. Both require network access
+          // and a verifier application whose bundle ID or package fingerprint matches this app.
           console.error("Failed to initialize SDK:", result.error);
           Alert.alert("Error", "Failed to initialize the verifier SDK");
           return;
@@ -130,7 +137,6 @@ export default function App() {
       // `challenge` must be a unique, unpredictable value for every request to mitigate replay attacks.
       const result = await requestMobileCredentials({
         request: [mobileCredentialRequest],
-        applicationId: Constants.APPLICATION_ID,
         challenge: Crypto.randomUUID(),
       });
 
@@ -139,12 +145,14 @@ export default function App() {
       }
 
       const session = result.value;
-      // A session-level failure (aborted, wallet unavailable, verification/response error) is
-      // signaled by `error` being present on the result. There is no `isSuccess` flag.
-      if (session.error) {
+      // `OnlinePresentationSessionResult` is discriminated on `isSuccess`. On a failure result
+      // (aborted, wallet unavailable, verification or response error) `error` is always present.
+      if (!session.isSuccess) {
         throw new Error(`Verification session failed: ${session.error.message}`);
       }
 
+      // `mobileCredentialResponse` is absent when the verifier application is configured to deliver
+      // results over the back channel only, so the credentials never reach this app.
       const response = session.mobileCredentialResponse;
       if (!response) {
         throw new Error("No verification results were returned by the tenant.");
