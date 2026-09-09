@@ -3,7 +3,7 @@
  *
  * Import the required functions and types from the MATTR Mobile Credential Verifier SDK.
  * These are used throughout the app to:
- * - `initialize`: Initialize the SDK so the app can use its functions and classes.
+ * - `initialize`: Initialize the SDK, registering this app instance with your MATTR VII tenant.
  * - `createProximityPresentationSession`: Establish a BLE session with a holder's wallet after scanning their QR code.
  * - `sendProximityPresentationRequest`: Send a presentation request to the wallet and receive a verified response.
  * - `terminateProximityPresentationSession`: Clean up the session after verification is complete.
@@ -33,6 +33,7 @@ import {
 // - QRScannerModal: Scan a QR code presented by a holder wallet (Tutorial: "Verify mDocs - Step 1")
 // - VerificationResultsModal: Display verification results (Tutorial: "Verify mDocs - Step 2")
 import { MONTCLIFF_DMV_IACA } from "./certificates";
+import { Constants } from "./Constants";
 import { QRScannerModal } from "./QRScannerModal";
 import { VerificationResultsModal } from "./VerificationResultsModal";
 import { styles } from "./styles";
@@ -73,7 +74,10 @@ export default function App() {
 	 *
 	 * This runs once on app launch and performs two actions:
 	 * 1. Calls `initialize()` to set up the MobileCredentialVerifier SDK so the app
-	 *    can use its functions and classes for proximity verification.
+	 *    can use its functions and classes for proximity verification. From v10.0.0
+	 *    `platformConfiguration` is required: it registers this app instance with your
+	 *    MATTR VII tenant (the SDK Backend) and obtains the SDK license. Network access
+	 *    is required when registration or license renewal is performed.
 	 * 2. On first launch (no certificates stored yet), registers the sample Montcliff
 	 *    DMV IACA certificate so the app is ready to verify the tutorial mDoc out of
 	 *    the box. Every mDoc is signed by a chain of trust, so the SDK needs at least
@@ -83,8 +87,17 @@ export default function App() {
 		const initializeSDK = async () => {
 			try {
 				setLoadingMessage("Initializing SDK...");
-				const result = await initialize();
+				const result = await initialize({
+					platformConfiguration: {
+						tenantHost: Constants.TENANT_HOST,
+						applicationId: Constants.APPLICATION_ID,
+					},
+				});
 				if (result.isErr()) {
+					// `FailedToRegister` means this app instance could not be registered with the
+					// tenant, and `InvalidLicense` means the SDK license is missing or expired. Both
+					// require network access and a verifier application whose bundle ID or package
+					// fingerprint matches this app.
 					console.error("Failed to initialize SDK:", result.error);
 					Alert.alert("Error", "Failed to initialize the verifier SDK");
 					return;
@@ -93,9 +106,28 @@ export default function App() {
 
 				// Setup certificates - Step 1: Register the trusted IACA certificate on first launch.
 				setLoadingMessage("Loading certificates...");
-				const certificates = await getTrustedIssuerCertificates();
-				if (certificates.length === 0) {
-					await addTrustedIssuerCertificates([MONTCLIFF_DMV_IACA]);
+				const certificatesResult = await getTrustedIssuerCertificates();
+				if (certificatesResult.isErr()) {
+					console.error(
+						"Failed to read trusted issuer certificates:",
+						certificatesResult.error,
+					);
+					Alert.alert("Error", "Failed to load the trusted issuer certificates");
+					return;
+				}
+
+				if (certificatesResult.value.length === 0) {
+					const addResult = await addTrustedIssuerCertificates([
+						MONTCLIFF_DMV_IACA,
+					]);
+					if (addResult.isErr()) {
+						console.error(
+							"Failed to add trusted issuer certificate:",
+							addResult.error,
+						);
+						Alert.alert("Error", "Failed to add the trusted issuer certificate");
+						return;
+					}
 				}
 			} catch (error) {
 				console.error("Failed to initialize SDK:", error);

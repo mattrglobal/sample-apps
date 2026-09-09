@@ -68,7 +68,7 @@ export function VerificationResultsModal({ visible, onClose, verificationResults
         </View>
 
         <ScrollView style={styles.content}>
-          {verificationResults.credentials && verificationResults.credentials.length > 0 ? (
+          {verificationResults.credentials.length > 0 ? (
             <View>
               {/* Verify mDocs - Step 4: Display overall verification status.
                   Shows whether the first credential in the response passed verification.
@@ -77,12 +77,12 @@ export function VerificationResultsModal({ visible, onClose, verificationResults
               <View style={[styles.center, styles.marginBottom]}>
                 <Text
                   style={
-                    verificationResults.credentials[0].verificationResult?.verified
+                    verificationResults.credentials[0].verificationResult.verified
                       ? styles.verificationSuccess
                       : styles.verificationFailed
                   }
                 >
-                  {verificationResults.credentials[0].verificationResult?.verified
+                  {verificationResults.credentials[0].verificationResult.verified
                     ? "✓ Verified"
                     : "✗ Verification Failed"}
                 </Text>
@@ -116,7 +116,7 @@ export function VerificationResultsModal({ visible, onClose, verificationResults
                   {/* Verify mDocs - Step 4: Display verification failure reason.
                       If the mDoc did not pass verification (e.g. untrusted issuer,
                       expired certificate, invalid signature), show the failure type and message. */}
-                  {!credential.verificationResult?.verified && credential.verificationResult?.reason && (
+                  {!credential.verificationResult.verified && (
                     <View style={styles.card}>
                       <Text style={styles.listItemTitle}>Verification Failed:</Text>
                       <Text>Type: {credential.verificationResult.reason.type}</Text>
