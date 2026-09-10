@@ -2,6 +2,7 @@
 import RequestCredentialSelector from "@/components/RequestCredentialSelector";
 import { useHolder } from "@/providers/HolderProvider";
 import {
+	BleMode,
 	type CreateProximityPresentationSessionOptions,
 	type PresentationSessionSuccessRequest,
 	createProximityPresentationSession,
@@ -64,6 +65,7 @@ export default function ProximityPresentation() {
 	const handleStartSession = useCallback(async () => {
 		try {
 			const options: CreateProximityPresentationSessionOptions = {
+				bleMode: BleMode.MDocPeripheralServer,
 				onRequestReceived: (data) => {
 					if ("error" in data) {
 						handleError(
