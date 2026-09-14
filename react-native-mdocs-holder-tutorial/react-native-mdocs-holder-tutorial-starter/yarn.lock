@@ -1374,10 +1374,10 @@
     "@jridgewell/resolve-uri" "^3.1.0"
     "@jridgewell/sourcemap-codec" "^1.4.14"
 
-"@mattrglobal/mobile-credential-holder-react-native@^8.1.1":
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/@mattrglobal/mobile-credential-holder-react-native/-/mobile-credential-holder-react-native-8.1.2.tgz#6c9f0ed338c5d7fe0479a3d115680930bcf31c44"
-  integrity sha512-TzUH9CmBsy5PBDOuyMFT0lKAfkgrpI2ByDgZib4MCZohxmp9UnpqNmfOyfj1Z7dn2PX+Xbh+Lqcdz0Pf8cC13w==
+"@mattrglobal/mobile-credential-holder-react-native@^10.0.0":
+  version "10.0.0"
+  resolved "https://registry.yarnpkg.com/@mattrglobal/mobile-credential-holder-react-native/-/mobile-credential-holder-react-native-10.0.0.tgz#7dff65f9728c1d840c5f35d8f3fad4534be4103d"
+  integrity sha512-phN0/6mC1gWf6NZnOs1UBHxhYK+hc94sWELikueJ1/hyvH7h65iVBTweLRAFl5fBXzJYNldCWZoS/WRk5LNAUQ==
   dependencies:
     neverthrow "4.3.0"
     zod "3.22.3"
@@ -2752,38 +2752,6 @@ expo-constants@~55.0.15:
   dependencies:
     "@expo/env" "~2.1.1"
 
-expo-dev-client@~55.0.28:
-  version "55.0.28"
-  resolved "https://registry.yarnpkg.com/expo-dev-client/-/expo-dev-client-55.0.28.tgz#0189f72ebb6540f668e62f65d8e4a49b596570e9"
-  integrity sha512-QZK6Ylx8Jg7lhOOHCxwC10g+i34ggMBAqV497JXFqla1tuuYiEw1poNJS5pD/60ZLe8kyy5PYPB4E9ezDHA9yQ==
-  dependencies:
-    expo-dev-launcher "55.0.29"
-    expo-dev-menu "55.0.24"
-    expo-dev-menu-interface "55.0.2"
-    expo-manifests "~55.0.16"
-    expo-updates-interface "~55.1.6"
-
-expo-dev-launcher@55.0.29:
-  version "55.0.29"
-  resolved "https://registry.yarnpkg.com/expo-dev-launcher/-/expo-dev-launcher-55.0.29.tgz#3a791e5cf5e95209fd8665ee928d5c635abc3a80"
-  integrity sha512-Rusz6VfVUAXPArkQhnxC5yY70RCfGNZv+06qCGIkm2boQ3wOiSUwJic8oIt7kW6yD2rkpm24q/7F/6r5joPfng==
-  dependencies:
-    "@expo/schema-utils" "^55.0.3"
-    expo-dev-menu "55.0.24"
-    expo-manifests "~55.0.16"
-
-expo-dev-menu-interface@55.0.2:
-  version "55.0.2"
-  resolved "https://registry.yarnpkg.com/expo-dev-menu-interface/-/expo-dev-menu-interface-55.0.2.tgz#aead1b9980c904d61c59e9182e13b2b37bcb2161"
-  integrity sha512-DomUNvGzY/xliwnMdbAYY780sCv19N7zIbifc0ClcoCzJZpNSCkvJ2qGIFRPyM/7DmqmlHGCKi8di7kYYLKNEg==
-
-expo-dev-menu@55.0.24:
-  version "55.0.24"
-  resolved "https://registry.yarnpkg.com/expo-dev-menu/-/expo-dev-menu-55.0.24.tgz#6af52133cd9de105d28317eb47938ffedb041e3b"
-  integrity sha512-/J93rADODlKpmaN9uywTd/RMywPDeUo/bAnrZNxlHrFUuO1VCGqYLhacITg2zebU8hucaou8pa8zVsTQaUCv6w==
-  dependencies:
-    expo-dev-menu-interface "55.0.2"
-
 expo-file-system@~55.0.17:
   version "55.0.17"
   resolved "https://registry.yarnpkg.com/expo-file-system/-/expo-file-system-55.0.17.tgz#81e4bc15773ed0c0098edd26a8c2d31f3844219d"
@@ -2808,11 +2776,6 @@ expo-image@^55.0.9:
   dependencies:
     sf-symbols-typescript "^2.2.0"
 
-expo-json-utils@~55.0.2:
-  version "55.0.2"
-  resolved "https://registry.yarnpkg.com/expo-json-utils/-/expo-json-utils-55.0.2.tgz#ef79888b881ef5b92d27245d3a758bc5debcbccf"
-  integrity sha512-QJMOZOPOG7CTnKcrdVaiummn2va1MCO56z++eyWkDv3GBRODldM6MFMDf/jTREWthFc2Nxo6TuyWRrEV9S6n/Q==
-
 expo-keep-awake@~55.0.6:
   version "55.0.6"
   resolved "https://registry.yarnpkg.com/expo-keep-awake/-/expo-keep-awake-55.0.6.tgz#b5bac9a811e0dfe77deefeaf57e9c73b5dbcc839"
@@ -2825,13 +2788,6 @@ expo-linking@~55.0.14:
   dependencies:
     expo-constants "~55.0.15"
     invariant "^2.2.4"
-
-expo-manifests@~55.0.16:
-  version "55.0.16"
-  resolved "https://registry.yarnpkg.com/expo-manifests/-/expo-manifests-55.0.16.tgz#d10c4f259561d37bc2bd1ef3047d8ab8482c915b"
-  integrity sha512-BR9BPcNsSnCKlQ/d7ECywr+2T54+bTSr26HjRjSua949o4mO/iPIrLjK0lOAa1oIczju6a6oUFckZD2OljxP0g==
-  dependencies:
-    expo-json-utils "~55.0.2"
 
 expo-modules-autolinking@55.0.18:
   version "55.0.18"
@@ -2894,11 +2850,6 @@ expo-symbols@^55.0.7:
   dependencies:
     "@expo-google-fonts/material-symbols" "^0.4.1"
     sf-symbols-typescript "^2.0.0"
-
-expo-updates-interface@~55.1.6:
-  version "55.1.6"
-  resolved "https://registry.yarnpkg.com/expo-updates-interface/-/expo-updates-interface-55.1.6.tgz#18a806d65a28229ed4a7f920fceb9dda678c5c09"
-  integrity sha512-evxNpagCkjT3lE6bGV570TFzRtKuIuLY8I37RYHoriXCJ+ZKCN1hbmklK29uAixya+BxGpeTI2K4FqYeJLvfrw==
 
 expo-web-browser@~55.0.14:
   version "55.0.14"
