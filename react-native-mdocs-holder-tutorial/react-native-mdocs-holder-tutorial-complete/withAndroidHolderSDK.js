@@ -2,7 +2,7 @@
  * Expo Config Plugin for MATTR Mobile Credential Holder SDK (Android)
  *
  * This plugin configures the Android build for the MATTR Mobile Credential Holder SDK.
- * It performs three critical tasks:
+ * It performs four critical tasks:
  *
  * 1. MAVEN REPOSITORY SETUP
  *    - Adds the local Maven repository for the MATTR SDK native Android libraries
@@ -18,6 +18,10 @@
  *    - Adds MATTR SDK's WebCallbackActivity to handle OAuth redirects
  *    - Configures it to ONLY handle: appscheme://credentials/callback
  *    - This activity processes OAuth responses and passes them to the SDK
+ *
+ * 4. DEVELOPMENT LAUNCH INTENT FILTER
+ *    - Registers appscheme://expo-development-client on MainActivity
+ *    - Allows `expo run:android` to open the app once it has been installed
  *
  * WHY THIS IS NEEDED:
  * - Without the Maven repo: SDK native libraries won't be found during build
@@ -65,6 +69,8 @@ function withAndroidHolderSDK(config) {
 		const androidManifest = config.modResults;
 		const application = androidManifest.manifest.application[0];
 
+		const appScheme = config.android?.package;
+
 		// Find MainActivity and clean up its intent filters
 		const mainActivity = application.activity?.find(
 			(activity) => activity.$["android:name"] === ".MainActivity",
@@ -84,11 +90,7 @@ function withAndroidHolderSDK(config) {
 
 						// Remove the app scheme if it doesn't have a host
 						// This prevents MainActivity from catching all app scheme URLs
-						if (
-							scheme ===
-								"io.mattrlabs.sample.reactnativemobilecredentialholdertutorialapp" &&
-							!hasHost
-						) {
+						if (scheme === appScheme && !hasHost) {
 							return false;
 						}
 
@@ -114,6 +116,8 @@ function withAndroidHolderSDK(config) {
 		const androidManifest = config.modResults;
 
 		const application = androidManifest.manifest.application[0];
+
+		const appScheme = config.android?.package;
 
 		// Check if the activity already exists
 		const activityExists = application.activity?.some(
@@ -155,8 +159,7 @@ function withAndroidHolderSDK(config) {
 						data: [
 							{
 								$: {
-									"android:scheme":
-										"io.mattrlabs.sample.reactnativemobilecredentialholdertutorialapp",
+									"android:scheme": appScheme,
 									"android:host": "credentials",
 									"android:pathPrefix": "/callback",
 								},
@@ -171,6 +174,47 @@ function withAndroidHolderSDK(config) {
 				application.activity = [];
 			}
 			application.activity.push(webCallbackActivity);
+		}
+
+		return config;
+	});
+
+	// Register the development launch deep link on MainActivity
+	config = withAndroidManifest(config, (config) => {
+		const application = config.modResults.manifest.application[0];
+		const appScheme = config.android?.package;
+
+		const mainActivity = application.activity?.find(
+			(activity) => activity.$["android:name"] === ".MainActivity",
+		);
+
+		if (!appScheme || !mainActivity) {
+			return config;
+		}
+
+		const alreadyRegistered = mainActivity["intent-filter"]?.some((filter) =>
+			filter.data?.some(
+				(dataNode) => dataNode.$["android:host"] === "expo-development-client",
+			),
+		);
+
+		if (!alreadyRegistered) {
+			mainActivity["intent-filter"] = mainActivity["intent-filter"] ?? [];
+			mainActivity["intent-filter"].push({
+				action: [{ $: { "android:name": "android.intent.action.VIEW" } }],
+				category: [
+					{ $: { "android:name": "android.intent.category.DEFAULT" } },
+					{ $: { "android:name": "android.intent.category.BROWSABLE" } },
+				],
+				data: [
+					{
+						$: {
+							"android:scheme": appScheme,
+							"android:host": "expo-development-client",
+						},
+					},
+				],
+			});
 		}
 
 		return config;
