@@ -26,5 +26,6 @@
     "url": "https://github.com/mattrglobal/sample-apps/issues"
   },
   "homepage": "https://github.com/mattrglobal/sample-apps#readme",
-  "type": "module"
+  "type": "module",
+  "packageManager": "yarn@4.18.1"
 }
