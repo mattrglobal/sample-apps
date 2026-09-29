@@ -14,22 +14,39 @@ app.get('/claims', (req, res) => {
     return res.status(401).json({ error: "Unauthorized" });
   }
 
-  // Get the email form the request query.
-  const { email } = req.query;
+  // The Claims source tutorial queries by `licenseNumber`. The Claim sets
+  // tutorial queries by `recordId`, which MATTR VII maps from the claim set
+  // identifier on the credential offer.
+  const { licenseNumber, recordId } = req.query;
 
   // Query your database. In a production use case, you would connect
   // to your user database, we are simply searching in a local JSON file.
-  const user = database.find((user) => user.email === email)
+  if (recordId) {
+    const record = database.find((record) => record.recordId === recordId)
 
-  // Return 404 Not Found when there is no user with the provided email
-  // address.
+    // Return an empty object when the record is not in the database yet, so
+    // that MATTR VII issues the credential using claims supplied on the offer.
+    if (!record) {
+      console.log(`No record found with recordId "${recordId}", returning no claims`)
+      return res.json({})
+    }
+
+    console.log(`Returning record data for "${recordId}"`);
+    console.log(record)
+    return res.json(record)
+  }
+
+  const user = database.find((user) => user.licenseNumber === licenseNumber)
+
+  // Return 404 Not Found when there is no user with the provided license
+  // number.
   if (!user) {
-    console.error(`User not found with email "${email}"`)
+    console.error(`User not found with licenseNumber "${licenseNumber}"`)
     return res.status(404).json({ error: "User not found" });
   }
 
   // Debug logs for the user data that are return to be used as claims.
-  console.log(`Returning user data for "${email}"`);
+  console.log(`Returning user data for "${licenseNumber}"`);
   console.log(user)
 
   res.json(user)
