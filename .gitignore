@@ -3,6 +3,7 @@
 # Project Specific
 ######################
 node_modules
+.yarn/
 lib
 jest_results
 op
