@@ -1,0 +1,166 @@
+version: 2
+
+# Minor and patch bumps inside each app's existing ranges are handled by the weekly
+# refresh workflow (deps-weekly-refresh.yml), which updates every lockfile in one PR.
+# Dependabot only opens what the refresh can't do: majors, and security fixes.
+
+registries:
+  npm-mattr:
+    type: npm-registry
+    url: https://registry.npmjs.org
+    token: ${{ secrets.NPM_TOKEN }}
+
+updates:
+  # Node and Next.js apps
+  - package-ecosystem: npm
+    directories:
+      - "/claims-source-app"
+      - "/interaction-hook-app"
+      - "/manual-revocation-check"
+      - "/verifier-web-tutorial"
+      - "/webhook-app"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Pacific/Auckland
+    open-pull-requests-limit: 8
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      # Version-locked to each other, so they move together.
+      next-react-major:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+          - "react"
+          - "react-dom"
+          - "@types/react"
+          - "@types/react-dom"
+        update-types:
+          - major
+      # Same dependency across several apps lands in one PR.
+      majors:
+        group-by: dependency-name
+        patterns:
+          - "*"
+        update-types:
+          - major
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
+
+  # React Native (Expo) tutorials, starter and complete
+  - package-ecosystem: npm
+    directories:
+      - "/react-native-in-person-verifier-tutorial/react-native-in-person-verifier-tutorial-complete"
+      - "/react-native-in-person-verifier-tutorial/react-native-in-person-verifier-tutorial-starter"
+      - "/react-native-mdocs-holder-tutorial/react-native-mdocs-holder-tutorial-complete"
+      - "/react-native-mdocs-holder-tutorial/react-native-mdocs-holder-tutorial-starter"
+      - "/react-native-remote-verification-tutorial/react-native-remote-verification-tutorial-complete"
+      - "/react-native-remote-verification-tutorial/react-native-remote-verification-tutorial-starter"
+    registries:
+      - npm-mattr
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Pacific/Auckland
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "build(deps)"
+      prefix-development: "build(deps-dev)"
+    groups:
+      security:
+        applies-to: security-updates
+        patterns:
+          - "*"
+      rn-tooling-major:
+        group-by: dependency-name
+        patterns:
+          - "*"
+        update-types:
+          - major
+    ignore:
+      - dependency-name: "*"
+        update-types:
+          - version-update:semver-minor
+          - version-update:semver-patch
+      # Expo SDK, React Native and MATTR SDK majors are upgraded deliberately, together
+      # with the matching Learn tutorial (`npx expo install --fix`), never one at a time.
+      - dependency-name: "expo"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "expo-*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@expo/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-native"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@mattrglobal/*"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: gradle
+    directories:
+      - "/android-holder-tutorial-sample-app"
+      - "/android-in-person-verifier-tutorial-sample-app"
+      - "/android-remote-verification-tutorial-sample-app"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Pacific/Auckland
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "build(deps)"
+    groups:
+      android:
+        group-by: dependency-name
+        patterns:
+          - "*"
+    ignore:
+      # Resolved from each app's local `repo/` folder, which isn't committed.
+      - dependency-name: "global.mattr.mobilecredential:*"
+
+  - package-ecosystem: docker
+    directories:
+      - "/claims-source-app"
+      - "/webhook-app"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Pacific/Auckland
+    open-pull-requests-limit: 2
+    commit-message:
+      prefix: "build(deps)"
+    groups:
+      docker:
+        group-by: dependency-name
+        patterns:
+          - "*"
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: weekly
+      day: monday
+      time: "09:00"
+      timezone: Pacific/Auckland
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: "build(ci)"
+    groups:
+      github-actions:
+        patterns:
+          - "*"
