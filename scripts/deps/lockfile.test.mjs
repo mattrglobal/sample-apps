@@ -1,15 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import {
-	compareVersions,
-	diffVersions,
-	directAncestors,
-	isMajorBump,
-	parseNpmLock,
-	parseYarnLock,
-	pruneYarnLock,
-	resolvedDirect,
-} from "./lockfile.mjs";
+import { diffVersions, parseNpmLock, parseYarnLock, pruneYarnLock } from "./lockfile.mjs";
 
 const npmLock = JSON.stringify({
 	lockfileVersion: 3,
@@ -73,15 +64,8 @@ test("parseYarnLock reads scoped and multi-descriptor entries and skips the work
 	assert.equal(v.has("__metadata"), false);
 });
 
-test("resolvedDirect matches the exact package.json range", () => {
-	assert.equal(resolvedDirect("npm", npmLock, "next", "16.3.8"), "16.3.8");
-	assert.equal(resolvedDirect("yarn", yarnLock, "expo", "^55"), "55.0.10");
-	assert.equal(resolvedDirect("yarn", yarnLock, "glob", "^10.2.2"), "10.5.0");
-	assert.equal(resolvedDirect("yarn", yarnLock, "glob", "^9"), undefined);
-});
-
 test("pruneYarnLock keeps the header, metadata and held packages only", () => {
-	const pruned = pruneYarnLock(yarnLock, new Set(["@expo/cli"]));
+	const pruned = pruneYarnLock(yarnLock, (name) => name === "@expo/cli");
 	assert.match(pruned, /^# This file is generated/);
 	assert.match(pruned, /__metadata:\n {2}version: 10/);
 	assert.match(pruned, /"@expo\/cli@npm:55.0.32":/);
@@ -97,18 +81,4 @@ test("diffVersions reports changed, added and removed packages", () => {
 		{ name: "b", from: ["2.0.0"], to: [] },
 		{ name: "c", from: [], to: ["3.0.0"] },
 	]);
-});
-
-test("version helpers", () => {
-	assert.ok(compareVersions("10.0.0", "9.9.9") > 0);
-	assert.ok(compareVersions("1.2.3", "1.2.10") < 0);
-	assert.equal(isMajorBump("9.0.2", "10.0.0"), true);
-	assert.equal(isMajorBump("0.3.1", "0.4.0"), true);
-	assert.equal(isMajorBump("16.1.5", "16.3.8"), false);
-});
-
-test("directAncestors walks the dependency graph up to direct dependencies", () => {
-	assert.deepEqual(directAncestors("npm", npmLock, "@next/env", new Set(["next"])), ["next"]);
-	assert.deepEqual(directAncestors("yarn", yarnLock, "@expo/cli", new Set(["expo", "glob"])), ["expo"]);
-	assert.deepEqual(directAncestors("yarn", yarnLock, "glob", new Set(["expo"])), []);
 });

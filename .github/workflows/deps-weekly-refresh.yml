@@ -1,7 +1,7 @@
 name: Weekly dependency refresh
 
 # Re-resolves every app's lockfile to the newest versions its package.json ranges allow,
-# and opens (or updates) a single PR whose body looks ahead at what is still pending.
+# and opens (or updates) a single PR listing what changed.
 
 on:
   schedule:
@@ -14,7 +14,9 @@ concurrency:
   cancel-in-progress: false
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: write
+  actions: write
 
 jobs:
   refresh:
@@ -23,8 +25,6 @@ jobs:
     timeout-minutes: 45
     env:
       COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -33,18 +33,16 @@ jobs:
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
 
       - name: Refresh lockfiles
         id: refresh
         run: node scripts/deps/refresh.mjs --report "$RUNNER_TEMP/deps-report.md"
 
       - name: Open or update the PR
+        id: pr
         if: steps.refresh.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
-          # A PAT, not GITHUB_TOKEN, so the PR triggers the ci-apps checks.
-          token: ${{ secrets.GH_TOKEN }}
           branch: deps/weekly-refresh
           base: master
           add-paths: |
@@ -55,3 +53,11 @@ jobs:
           body-path: ${{ runner.temp }}/deps-report.md
           sign-commits: true
           delete-branch: true
+
+      # Pushes made with GITHUB_TOKEN don't trigger pull_request workflows, so start the
+      # app checks on the PR branch directly. They report on the PR's head commit.
+      - name: Run app checks on the PR
+        if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ci-apps.yml --repo "$GITHUB_REPOSITORY" --ref deps/weekly-refresh

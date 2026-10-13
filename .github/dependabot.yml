@@ -4,12 +4,6 @@ version: 2
 # refresh workflow (deps-weekly-refresh.yml), which updates every lockfile in one PR.
 # Dependabot only opens what the refresh can't do: majors, and security fixes.
 
-registries:
-  npm-mattr:
-    type: npm-registry
-    url: https://registry.npmjs.org
-    token: ${{ secrets.NPM_TOKEN }}
-
 updates:
   # Node and Next.js apps
   - package-ecosystem: npm
@@ -66,8 +60,6 @@ updates:
       - "/react-native-mdocs-holder-tutorial/react-native-mdocs-holder-tutorial-starter"
       - "/react-native-remote-verification-tutorial/react-native-remote-verification-tutorial-complete"
       - "/react-native-remote-verification-tutorial/react-native-remote-verification-tutorial-starter"
-    registries:
-      - npm-mattr
     schedule:
       interval: weekly
       day: monday
