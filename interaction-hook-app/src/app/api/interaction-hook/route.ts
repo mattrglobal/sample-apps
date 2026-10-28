@@ -19,17 +19,17 @@ import { SignJWT, jwtVerify, type JWTVerifyResult } from "jose";
 // This ensures we receive the expected data structure from the frontend
 const requestSchema = z.object({
 	data: z.object({
-		name: z.string().min(1, { message: "Name is required" }),
-		pronouns: z.string().min(1, { message: "Pronouns are required" }),
+		name: z.string().min(1, { error: "Name is required" }),
+		pronouns: z.string().min(1, { error: "Pronouns are required" }),
 	}),
-	token: z.string().min(1, { message: "Session token is required" }),
+	token: z.string().min(1, { error: "Session token is required" }),
 });
 
 // Backend API Route - Step 5.2: Define validation schema for JWT payload
 // This validates the structure of the JWT from MATTR VII
 const jwtSchema = z.object({
-	state: z.string().min(1, { message: "State parameter is required" }),
-	redirectUrl: z.string().url({ message: "Invalid redirect URL" }),
+	state: z.string().min(1, { error: "State parameter is required" }),
+	redirectUrl: z.url({ error: "Invalid redirect URL" }),
 	// Note: The JWT may contain other fields, but these are the required ones
 });
 
@@ -144,7 +144,7 @@ export async function POST(request: Request) {
 			return Response.json(
 				{
 					error: "Invalid request data",
-					details: error.errors.map((e) => e.message).join(", "),
+					details: error.issues.map((e) => e.message).join(", "),
 				},
 				{ status: 400 },
 			);
