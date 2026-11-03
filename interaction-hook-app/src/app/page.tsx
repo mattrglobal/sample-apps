@@ -13,7 +13,7 @@
  */
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useMemo, useState } from "react";
+import { Suspense, useCallback, useMemo, useState } from "react";
 import { decodeJwt } from "jose";
 import { z } from "zod";
 
@@ -33,7 +33,7 @@ const passedClaims = z
 	})
 	.optional();
 
-export default function Home() {
+function HomeForm() {
 	// Frontend Setup - Step 2.3: Initialize Next.js routing and URL parameters
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -305,5 +305,19 @@ export default function Home() {
 				)}
 			</div>
 		</main>
+	);
+}
+
+export default function Home() {
+	return (
+		<Suspense
+			fallback={
+				<main className="flex h-full w-full items-center justify-center bg-gray-100 p-8 text-black">
+					<p>Loading interaction hook…</p>
+				</main>
+			}
+		>
+			<HomeForm />
+		</Suspense>
 	);
 }
