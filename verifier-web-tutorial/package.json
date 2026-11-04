@@ -15,7 +15,7 @@
   "dependencies": {
     "@mattrglobal/verifier-sdk-web": "^2.1.0",
     "@ngrok/ngrok": "^1.5.2",
-    "dotenv": "^16.6.1",
+    "dotenv": "^18.0.9",
     "next": "16.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
@@ -23,13 +23,13 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "concurrently": "^9.2.1",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.2",
+    "concurrently": "^10.0.6",
+    "eslint": "^10",
+    "eslint-config-next": "16.4.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^7"
   }
 }

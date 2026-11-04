@@ -181,7 +181,7 @@ __metadata:
     "@stablelib/base64": "npm:^2.0.0"
     base32-decode: "npm:^1.0.0"
     cbor-x: "npm:^1.6.0"
-    pako: "npm:^2.1.0"
+    pako: "npm:^3.0.3"
   languageName: unknown
   linkType: soft
 
@@ -245,10 +245,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"pako@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "pako@npm:2.1.0"
-  checksum: 10c0/8e8646581410654b50eb22a5dfd71159cae98145bd5086c9a7a816ec0370b5f72b4648d08674624b3870a521e6a3daffd6c2f7bc00fdefc7063c9d8232ff5116
+"pako@npm:^3.0.3":
+  version: 3.0.3
+  resolution: "pako@npm:3.0.3"
+  checksum: 10c0/556ce60a9232817719a5f80ba77c9facc5741007a27e369305c6c4c3e0f32d700bd394f1d303d29032871b5dde81e3f74574a5834bfafa005f019e964d731dac
   languageName: node
   linkType: hard
 
