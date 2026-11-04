@@ -1,0 +1,63 @@
+name: Weekly dependency refresh
+
+# Re-resolves every app's lockfile to the newest versions its package.json ranges allow,
+# and opens (or updates) a single PR listing what changed.
+
+on:
+  schedule:
+    # Monday 09:00 NZDT (08:00 NZST)
+    - cron: "0 20 * * 0"
+  workflow_dispatch:
+
+concurrency:
+  group: deps-weekly-refresh
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: write
+
+jobs:
+  refresh:
+    if: github.repository == 'mattrglobal/sample-apps'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
+      - name: Refresh lockfiles
+        id: refresh
+        run: node scripts/deps/refresh.mjs --report "$RUNNER_TEMP/deps-report.md"
+
+      - name: Open or update the PR
+        id: pr
+        if: steps.refresh.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        with:
+          branch: deps/weekly-refresh
+          base: master
+          add-paths: |
+            **/package-lock.json
+            **/yarn.lock
+          commit-message: "build(deps): weekly in-range dependency refresh"
+          title: "build(deps): weekly in-range dependency refresh"
+          body-path: ${{ runner.temp }}/deps-report.md
+          sign-commits: true
+          delete-branch: true
+
+      # Pushes made with GITHUB_TOKEN don't trigger pull_request workflows, so start the
+      # app checks on the PR branch directly. They report on the PR's head commit.
+      - name: Run app checks on the PR
+        if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run ci-apps.yml --repo "$GITHUB_REPOSITORY" --ref deps/weekly-refresh

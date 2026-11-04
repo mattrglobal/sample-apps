@@ -1,0 +1,86 @@
+name: CI apps
+
+# Installs each changed JS app from its lockfile, then builds the Next.js apps and
+# type-checks the complete React Native apps. The native Android and iOS apps aren't
+# built: their MATTR SDKs are added locally and aren't available in CI. The React Native
+# apps install a private MATTR SDK, so they're only checked when an NPM_TOKEN secret exists.
+
+on:
+  pull_request:
+    branches: [master]
+  # Started by deps-weekly-refresh.yml for its PR branch.
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  changed:
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.apps.outputs.apps }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: List changed apps
+        id: apps
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          BASE_SHA=${BASE_SHA:-$(git merge-base origin/master HEAD)}
+          apps=$(git ls-files '*package-lock.json' '*yarn.lock' | xargs -n1 dirname | while read -r dir; do
+            if ! git diff --quiet "$BASE_SHA"...HEAD -- "$dir"; then echo "$dir"; fi
+          done | jq -R . | jq -sc .)
+          echo "apps=$apps" >> "$GITHUB_OUTPUT"
+          echo "Changed apps: $apps"
+
+  check:
+    needs: changed
+    if: needs.changed.outputs.apps != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJSON(needs.changed.outputs.apps) }}
+    defaults:
+      run:
+        working-directory: ${{ matrix.app }}
+    env:
+      COREPACK_ENABLE_DOWNLOAD_PROMPT: "0"
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+
+      - name: Skip without registry access
+        id: access
+        if: startsWith(matrix.app, 'react-native-') && env.NPM_TOKEN == ''
+        run: echo "::notice::No NPM_TOKEN secret for the private MATTR SDK, skipping ${{ matrix.app }}"
+
+      - name: Install
+        if: steps.access.conclusion == 'skipped'
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then export YARN_NPM_AUTH_TOKEN="$NPM_TOKEN"; fi
+          if [ -f yarn.lock ]; then
+            corepack yarn install --immutable --mode=skip-build
+          else
+            npm ci --ignore-scripts --no-audit --no-fund
+          fi
+
+      - name: Build
+        if: steps.access.conclusion == 'skipped' && hashFiles(format('{0}/package-lock.json', matrix.app)) != ''
+        run: npm run build --if-present
+
+      - name: Type-check
+        if: steps.access.conclusion == 'skipped' && startsWith(matrix.app, 'react-native-') && endsWith(matrix.app, '-complete')
+        run: corepack yarn tsc --noEmit
