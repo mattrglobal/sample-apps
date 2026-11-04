@@ -28,7 +28,7 @@
 		"@types/react-dom": "^19",
 		"autoprefixer": "^10.0.1",
 		"baseline-browser-mapping": "^2.10.8",
-		"concurrently": "^9.2.1",
+		"concurrently": "^10.0.6",
 		"eslint": "^9",
 		"eslint-config-next": "16.1.5",
 		"postcss": "^8",
