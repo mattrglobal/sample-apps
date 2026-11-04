@@ -101,6 +101,9 @@ updates:
         update-types: ["version-update:semver-major"]
       - dependency-name: "@mattrglobal/*"
         update-types: ["version-update:semver-major"]
+      # The Learn holder tutorial quotes QRCodeScanner.tsx, which the v5 API breaks.
+      - dependency-name: "react-native-vision-camera"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: gradle
     directories:
