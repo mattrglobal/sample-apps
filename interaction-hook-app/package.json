@@ -29,7 +29,7 @@
 		"autoprefixer": "^10.0.1",
 		"baseline-browser-mapping": "^2.10.8",
 		"concurrently": "^10.0.6",
-		"eslint": "^9",
+		"eslint": "^10",
 		"eslint-config-next": "16.1.5",
 		"postcss": "^8",
 		"tailwindcss": "^4.3.3",
