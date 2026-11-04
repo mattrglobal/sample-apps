@@ -15,7 +15,7 @@
 	"dependencies": {
 		"@ngrok/ngrok": "^1.5.2",
 		"dotenv": "^18.0.9",
-		"jose": "^5.2.0",
+		"jose": "^6.2.14",
 		"next": "16.4.5",
 		"react": "^19",
 		"react-dom": "^19",
