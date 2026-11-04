@@ -11,12 +11,12 @@
   "dependencies": {
     "@mattrglobal/http-signatures": "^4.1.0",
     "@ngrok/ngrok": "^1.5.2",
-    "dotenv": "^16.6.1",
+    "dotenv": "^18.0.9",
     "express": "^5.2.1"
   },
   "type": "module",
   "devDependencies": {
-    "concurrently": "^9.2.5",
+    "concurrently": "^10.0.6",
     "nodemon": "^3.1.10"
   }
 }

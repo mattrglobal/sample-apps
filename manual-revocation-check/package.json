@@ -7,7 +7,7 @@
     "@stablelib/base64": "^2.0.0",
     "base32-decode": "^1.0.0",
     "cbor-x": "^1.6.0",
-    "pako": "^2.1.0"
+    "pako": "^3.0.3"
   },
   "scripts": {
     "start": "node manual-revocation-check.js"
