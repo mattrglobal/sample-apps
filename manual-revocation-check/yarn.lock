@@ -5,44 +5,44 @@ __metadata:
   version: 10
   cacheKey: 10c0
 
-"@cbor-extract/cbor-extract-darwin-arm64@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@cbor-extract/cbor-extract-darwin-arm64@npm:2.2.0"
+"@cbor-extract/cbor-extract-darwin-arm64@npm:2.2.3":
+  version: 2.2.3
+  resolution: "@cbor-extract/cbor-extract-darwin-arm64@npm:2.2.3"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@cbor-extract/cbor-extract-darwin-x64@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@cbor-extract/cbor-extract-darwin-x64@npm:2.2.0"
+"@cbor-extract/cbor-extract-darwin-x64@npm:2.2.3":
+  version: 2.2.3
+  resolution: "@cbor-extract/cbor-extract-darwin-x64@npm:2.2.3"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@cbor-extract/cbor-extract-linux-arm64@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@cbor-extract/cbor-extract-linux-arm64@npm:2.2.0"
+"@cbor-extract/cbor-extract-linux-arm64@npm:2.2.3":
+  version: 2.2.3
+  resolution: "@cbor-extract/cbor-extract-linux-arm64@npm:2.2.3"
   conditions: os=linux & cpu=arm64
   languageName: node
   linkType: hard
 
-"@cbor-extract/cbor-extract-linux-arm@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@cbor-extract/cbor-extract-linux-arm@npm:2.2.0"
+"@cbor-extract/cbor-extract-linux-arm@npm:2.2.3":
+  version: 2.2.3
+  resolution: "@cbor-extract/cbor-extract-linux-arm@npm:2.2.3"
   conditions: os=linux & cpu=arm
   languageName: node
   linkType: hard
 
-"@cbor-extract/cbor-extract-linux-x64@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@cbor-extract/cbor-extract-linux-x64@npm:2.2.0"
+"@cbor-extract/cbor-extract-linux-x64@npm:2.2.3":
+  version: 2.2.3
+  resolution: "@cbor-extract/cbor-extract-linux-x64@npm:2.2.3"
   conditions: os=linux & cpu=x64
   languageName: node
   linkType: hard
 
-"@cbor-extract/cbor-extract-win32-x64@npm:2.2.0":
-  version: 2.2.0
-  resolution: "@cbor-extract/cbor-extract-win32-x64@npm:2.2.0"
+"@cbor-extract/cbor-extract-win32-x64@npm:2.2.3":
+  version: 2.2.3
+  resolution: "@cbor-extract/cbor-extract-win32-x64@npm:2.2.3"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -57,9 +57,9 @@ __metadata:
   linkType: hard
 
 "@stablelib/base64@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@stablelib/base64@npm:2.0.0"
-  checksum: 10c0/41f5cf577a5a519c2117ca9d051234030e8af5d5e2a1659b9430fcd3804da490d4c713d2425098b068f8853c93452ee4f7c93b475cf8c7189a34ec87a93da865
+  version: 2.0.1
+  resolution: "@stablelib/base64@npm:2.0.1"
+  checksum: 10c0/54a7d98bc6f5d939100843954f351f7859708c0803ed087afba2db67ed4dc98500e2d2f1325479d448d80cfbc5027e850d61429bb2c060a89b28244b144e32d5
   languageName: node
   linkType: hard
 
@@ -77,16 +77,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cbor-extract@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "cbor-extract@npm:2.2.0"
+"cbor-extract@npm:^2.2.3":
+  version: 2.2.3
+  resolution: "cbor-extract@npm:2.2.3"
   dependencies:
-    "@cbor-extract/cbor-extract-darwin-arm64": "npm:2.2.0"
-    "@cbor-extract/cbor-extract-darwin-x64": "npm:2.2.0"
-    "@cbor-extract/cbor-extract-linux-arm": "npm:2.2.0"
-    "@cbor-extract/cbor-extract-linux-arm64": "npm:2.2.0"
-    "@cbor-extract/cbor-extract-linux-x64": "npm:2.2.0"
-    "@cbor-extract/cbor-extract-win32-x64": "npm:2.2.0"
+    "@cbor-extract/cbor-extract-darwin-arm64": "npm:2.2.3"
+    "@cbor-extract/cbor-extract-darwin-x64": "npm:2.2.3"
+    "@cbor-extract/cbor-extract-linux-arm": "npm:2.2.3"
+    "@cbor-extract/cbor-extract-linux-arm64": "npm:2.2.3"
+    "@cbor-extract/cbor-extract-linux-x64": "npm:2.2.3"
+    "@cbor-extract/cbor-extract-win32-x64": "npm:2.2.3"
     node-gyp: "npm:latest"
     node-gyp-build-optional-packages: "npm:5.1.1"
   dependenciesMeta:
@@ -104,19 +104,19 @@ __metadata:
       optional: true
   bin:
     download-cbor-prebuilds: bin/download-prebuilds.js
-  checksum: 10c0/c36dec273f2114fcfe3b544d03d8bfddd2d537d114b9f94ba52a9366a8b852ea9725850e3d29ceda5df6894faeb37026e3bf2cb0d2bb4429f0a699fcfdfa1b8b
+  checksum: 10c0/5c799c442a37ace16638937fd0fe07a691e011d31e3bb8e37b8e7b1714d246031cfbfa03d83bfa7c0db889aa983d4c7da7ef3d188e944c165a78af07eee0bfd5
   languageName: node
   linkType: hard
 
 "cbor-x@npm:^1.6.0":
-  version: 1.6.0
-  resolution: "cbor-x@npm:1.6.0"
+  version: 1.6.9
+  resolution: "cbor-x@npm:1.6.9"
   dependencies:
-    cbor-extract: "npm:^2.2.0"
+    cbor-extract: "npm:^2.2.3"
   dependenciesMeta:
     cbor-extract:
       optional: true
-  checksum: 10c0/c6ab391e935a60c8a768080806f2c9aee01b2b124de68997e3e4cb700753757286860186094a92f510b595d7f8c77b3023d9125a05247afcbfea08cae45a0615
+  checksum: 10c0/6b123d60dacfb956ec7b8d91de15e59e963a09f8d9f3a1b7a64ecf48d19c1288e7ef3e0c3feaa6f6acfa996c0aaa009bc05826729af15538accdff8fb8c9e03b
   languageName: node
   linkType: hard
 
@@ -128,9 +128,9 @@ __metadata:
   linkType: hard
 
 "detect-libc@npm:^2.0.1":
-  version: 2.0.3
-  resolution: "detect-libc@npm:2.0.3"
-  checksum: 10c0/88095bda8f90220c95f162bf92cad70bd0e424913e655c20578600e35b91edc261af27531cf160a331e185c0ced93944bc7e09939143225f56312d7fd800fdb7
+  version: 2.1.2
+  resolution: "detect-libc@npm:2.1.2"
+  checksum: 10c0/acc675c29a5649fa1fb6e255f993b8ee829e510b6b56b0910666949c80c364738833417d0edb5f90e4e46be17228b0f2b66a010513984e18b15deeeac49369c4
   languageName: node
   linkType: hard
 
@@ -215,8 +215,8 @@ __metadata:
   linkType: hard
 
 "node-gyp@npm:latest":
-  version: 13.0.2
-  resolution: "node-gyp@npm:13.0.2"
+  version: 13.1.0
+  resolution: "node-gyp@npm:13.1.0"
   dependencies:
     env-paths: "npm:^2.2.0"
     exponential-backoff: "npm:^3.1.1"
@@ -224,13 +224,13 @@ __metadata:
     nopt: "npm:^10.0.0"
     proc-log: "npm:^7.0.0"
     semver: "npm:^7.3.5"
-    tar: "npm:^7.5.4"
+    tar: "npm:^7.5.7"
     tinyglobby: "npm:^0.2.12"
     undici: "npm:^8.4.1"
     which: "npm:^7.0.0"
   bin:
     node-gyp: bin/node-gyp.js
-  checksum: 10c0/29d33ccf47ffeeb5e7af925550b416f698a26a72eb10975c7eb5775c1d0cecacd76d164a4aa45503d3ddcece209db65c712be00423c69381a4cd14e2e6540559
+  checksum: 10c0/c6693e52e0e111b21f5cd8ff303b41b51f40338adcc79ac5c6a02399eba7039d50dc816dcafcc485870291a641f7cb75db8887a9bdd0de537fe635a3a81cba5b
   languageName: node
   linkType: hard
 
@@ -267,15 +267,15 @@ __metadata:
   linkType: hard
 
 "semver@npm:^7.3.5":
-  version: 7.8.5
-  resolution: "semver@npm:7.8.5"
+  version: 7.8.6
+  resolution: "semver@npm:7.8.6"
   bin:
     semver: bin/semver.js
-  checksum: 10c0/b1f3127a5be8125a94f37188b361c212466c292c6910adce3ec106cff5dc211ccaedc4739c11bb70fda59d6fc1f040a9bca289f4e093451521a2372e5231fe0c
+  checksum: 10c0/bf0a4d16eb067e5391323649e46b4a268644d7f8ee88e37c7668d35e861ec145b6e7df576d898007fc0d9a2cedcbc33f71460aa3bbea18eedfa5af58c064d7fe
   languageName: node
   linkType: hard
 
-"tar@npm:^7.5.4":
+"tar@npm:^7.5.7":
   version: 7.5.22
   resolution: "tar@npm:7.5.22"
   dependencies:
@@ -299,9 +299,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^8.4.1":
-  version: 8.12.3
-  resolution: "undici@npm:8.12.3"
-  checksum: 10c0/714919e62b4160eea195fb35c7f5c4907235741e47bfde8a014ac58f6d24df13434e23400d7f48e2c455fd2b259d27f07fce514f04a5b4e99936ba62cbc4bb71
+  version: 8.12.4
+  resolution: "undici@npm:8.12.4"
+  checksum: 10c0/2a83590ce3347ca4e8fb83917bd7ad1d0bcb72ecb6d1a5066f01a89b4941becac569412aa27d7318119ea1a20d217018cce535f8eeed3c1b307d87426f96cfe3
   languageName: node
   linkType: hard
 
