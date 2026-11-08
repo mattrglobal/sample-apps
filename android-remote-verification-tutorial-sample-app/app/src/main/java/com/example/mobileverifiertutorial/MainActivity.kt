@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
@@ -91,6 +93,7 @@ fun Content(modifier: Modifier = Modifier) {
     val viewModel: VerifierViewModel = viewModel()
 
     val documents by viewModel.receivedDocuments.collectAsState()
+    val sessionId by viewModel.sessionId.collectAsState()
 
     Column(
         modifier = modifier.fillMaxSize(),
@@ -101,6 +104,17 @@ fun Content(modifier: Modifier = Modifier) {
             viewModel.requestCredentials(activity)
         }) {
             Text("Request credentials")
+        }
+        // When the tenant returns the session ID without the verification results, your backend
+        // retrieves the results for this session from your MATTR VII tenant.
+        sessionId?.let { id ->
+            Text(
+                "Retrieve the verification results from your backend with this session ID:",
+                modifier = Modifier.padding(16.dp)
+            )
+            SelectionContainer {
+                Text(id)
+            }
         }
         // Step 4.5: Render any received documents.
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
@@ -127,6 +141,9 @@ class VerifierViewModel : ViewModel() {
         MutableStateFlow<List<MobileCredentialPresentation>>(emptyList())
     val receivedDocuments: StateFlow<List<MobileCredentialPresentation>> = _receivedDocuments
 
+    private val _sessionId = MutableStateFlow<String?>(null)
+    val sessionId: StateFlow<String?> = _sessionId
+
     fun requestCredentials(activity: Activity) {
         // Step 3.1: Build the MobileCredentialRequest. docType selects the credential type
         // and namespaces declares which claims to request. Each claim's boolean flag
@@ -145,6 +162,7 @@ class VerifierViewModel : ViewModel() {
 
         viewModelScope.launch {
             _receivedDocuments.value = emptyList()
+            _sessionId.value = null
             try {
                 // Step 3.2: Request credentials. The SDK launches the wallet via OID4VP and
                 // suspends until the wallet redirects back via the deep link registered in
@@ -159,8 +177,16 @@ class VerifierViewModel : ViewModel() {
                 // Step 4.2: Surface the verified credentials to the UI. From v7.0.0,
                 // OnlinePresentationSessionResult is a sealed interface with Success/Failure variants.
                 _receivedDocuments.value = when (onlinePresentationResult) {
-                    is OnlinePresentationSessionResult.Success ->
-                        onlinePresentationResult.mobileCredentialResponse?.credentials ?: emptyList()
+                    is OnlinePresentationSessionResult.Success -> {
+                        val response = onlinePresentationResult.mobileCredentialResponse
+                        // mobileCredentialResponse is null when the tenant delivers the results to
+                        // your backend, for example when the redirect URI uses a custom URL scheme.
+                        // Keep the session ID so your backend can retrieve the results.
+                        if (response == null) {
+                            _sessionId.value = onlinePresentationResult.sessionId
+                        }
+                        response?.credentials ?: emptyList()
+                    }
                     is OnlinePresentationSessionResult.Failure -> {
                         // onlinePresentationResult.error is available here.
                         emptyList()

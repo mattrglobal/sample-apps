@@ -151,11 +151,16 @@ export default function App() {
         throw new Error(`Verification session failed: ${session.error.message}`);
       }
 
-      // `mobileCredentialResponse` is absent when the verifier application is configured to deliver
-      // results over the back channel only, so the credentials never reach this app.
+      // `mobileCredentialResponse` is absent when the tenant delivers the results to your backend,
+      // for example when the redirect URI uses a custom URL scheme. Your backend retrieves the results
+      // for this session from your MATTR VII tenant using the session ID.
       const response = session.mobileCredentialResponse;
       if (!response) {
-        throw new Error("No verification results were returned by the tenant.");
+        Alert.alert(
+          "Presentation complete",
+          `Retrieve the verification results from your backend with this session ID:\n\n${session.sessionId}`
+        );
+        return;
       }
 
       // Store the verification results and display them to the verifier app user.

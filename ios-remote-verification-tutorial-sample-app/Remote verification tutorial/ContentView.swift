@@ -40,7 +40,20 @@ struct ContentView: View {
 
     var presentationResponseView: some View {
         ZStack {
-            if viewModel.receivedDocuments.isEmpty {
+            if let sessionId = viewModel.sessionId {
+                // The tenant returned the session ID without the verification results. Your backend
+                // retrieves the results for this session from your MATTR VII tenant.
+                VStack(spacing: 20) {
+                    Text("Presentation complete")
+                        .font(.title)
+                    Text("Retrieve the verification results from your backend with this session ID:")
+                        .multilineTextAlignment(.center)
+                    Text(sessionId)
+                        .font(.system(.body, design: .monospaced))
+                        .textSelection(.enabled)
+                }
+                .padding()
+            } else if viewModel.receivedDocuments.isEmpty {
                 VStack(spacing: 40) {
                     Text("Waiting for response...")
                         .font(.title)
@@ -67,6 +80,7 @@ struct ContentView: View {
 final class VerifierViewModel: ObservableObject {
     @Published var navigationPath = NavigationPath()
     @Published var receivedDocuments: [MobileCredentialPresentation] = []
+    @Published var sessionId: String?
 
     // From v6.0.0, the applicationId is supplied via PlatformConfiguration (it is no longer passed
     // to requestMobileCredentials) and also drives SDK Tethering.
@@ -122,6 +136,7 @@ final class VerifierViewModel: ObservableObject {
     func requestCredentials() {
         Task { @MainActor in
             receivedDocuments = []
+            sessionId = nil
             do {
                 // From v6.0.0, applicationId is no longer passed here (it comes from
                 // PlatformConfiguration) and challenge is optional — omit it to let the SDK generate
@@ -135,8 +150,15 @@ final class VerifierViewModel: ObservableObject {
                 // fields. success carries (sessionId, challenge, mobileCredentialResponse); failure
                 // carries (sessionId, challenge, error).
                 switch onlinePresentationResult {
-                case .success(_, _, let mobileCredentialResponse):
-                    receivedDocuments = mobileCredentialResponse?.credentials ?? []
+                case .success(let sessionId, _, let mobileCredentialResponse):
+                    // mobileCredentialResponse is nil when the tenant delivers the results to your
+                    // backend, for example when the redirect URI uses a custom URL scheme. Keep the
+                    // session ID so your backend can retrieve the results.
+                    guard let mobileCredentialResponse else {
+                        self.sessionId = sessionId
+                        return
+                    }
+                    receivedDocuments = mobileCredentialResponse.credentials
                 case .failure(_, _, let error):
                     print("No response received: \(error.message)")
                     return
