@@ -1,7 +1,8 @@
 name: Weekly dependency refresh
 
 # Re-resolves every app's lockfile to the newest versions its package.json ranges allow,
-# and opens (or updates) a single PR listing what changed.
+# commits them to deps/weekly-refresh, and opens (or updates) a tracking issue with a
+# one-click link to open the PR. The org doesn't let GITHUB_TOKEN open PRs.
 
 on:
   schedule:
@@ -15,7 +16,8 @@ concurrency:
 
 permissions:
   contents: write
-  pull-requests: write
+  issues: write
+  pull-requests: read
   actions: write
 
 jobs:
@@ -38,26 +40,9 @@ jobs:
         id: refresh
         run: node scripts/deps/refresh.mjs --report "$RUNNER_TEMP/deps-report.md"
 
-      - name: Open or update the PR
-        id: pr
-        if: steps.refresh.outputs.changed == 'true'
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
-        with:
-          branch: deps/weekly-refresh
-          base: master
-          add-paths: |
-            **/package-lock.json
-            **/yarn.lock
-          commit-message: "build(deps): weekly in-range dependency refresh"
-          title: "build(deps): weekly in-range dependency refresh"
-          body-path: ${{ runner.temp }}/deps-report.md
-          sign-commits: true
-          delete-branch: true
-
-      # Pushes made with GITHUB_TOKEN don't trigger pull_request workflows, so start the
-      # app checks on the PR branch directly. They report on the PR's head commit.
-      - name: Run app checks on the PR
-        if: steps.pr.outputs.pull-request-operation == 'created' || steps.pr.outputs.pull-request-operation == 'updated'
+      - name: Commit lockfiles and update the tracking issue
         env:
-          GH_TOKEN: ${{ github.token }}
-        run: gh workflow run ci-apps.yml --repo "$GITHUB_REPOSITORY" --ref deps/weekly-refresh
+          GITHUB_TOKEN: ${{ github.token }}
+          REFRESH_ASSIGNEES: avner-m
+          REFRESH_MENTIONS: "@avner-m @mattrglobal/labs-engs"
+        run: node scripts/deps/publish.mjs --report "$RUNNER_TEMP/deps-report.md" --changed "${{ steps.refresh.outputs.changed }}"
