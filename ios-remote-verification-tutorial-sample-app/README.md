@@ -10,7 +10,7 @@ This project accompanies the [Remote mobile verifiers tutorial](https://learn.ma
 
 1. Shows a **Request credentials** button that builds a presentation request for an mDL (`org.iso.18013.5.1.mDL`) and asks for the `family_name`, `given_name`, and `birth_date` claims.
 2. Redirects to a compliant wallet app on the device, where the holder consents to share the requested claims.
-3. Receives the verification result back via a deep link (a custom URL scheme) and displays the verified claims, the overall verification status, and any claim errors.
+3. Receives the wallet's redirect back via a deep link (a custom URL scheme) and displays the session ID. With a custom URL scheme redirect, your backend retrieves the verification results for that session from your MATTR VII tenant. When the results are returned to the app, it displays the verified claims, the overall verification status, and any claim errors.
 
 ## Prerequisites
 
