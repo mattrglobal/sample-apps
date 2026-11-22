@@ -62,6 +62,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
     // MATTR MobileCredentialVerifier SDK — resolved from the local `repo` directory.
-    implementation("global.mattr.mobilecredential:verifier:7.0.1")
+    implementation("global.mattr.mobilecredential:verifier:8.0.0")
     implementation("androidx.navigation:navigation-compose:2.10.2")
 }

@@ -37,7 +37,8 @@ fun DocumentView(document: MobileCredentialPresentation, modifier: Modifier = Mo
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(
-                text = document.docType,
+                // From v8.0.0, docType is nullable.
+                text = document.docType ?: "Unknown",
                 color = Color.Black,
                 style = MaterialTheme.typography.titleLarge,
                 fontWeight = FontWeight.Bold,

@@ -83,7 +83,7 @@ final class VerifierViewModel: ObservableObject {
     @Published var sessionId: String?
 
     // From v6.0.0, the applicationId is supplied via PlatformConfiguration (it is no longer passed
-    // to requestMobileCredentials) and also drives SDK Tethering.
+    // to requestMobileCredentials) and also drives the SDK Backend connection.
     let platformConfiguration = PlatformConfiguration(
         tenantHost: Constants.tenantHost,
         applicationId: Constants.applicationID
@@ -113,7 +113,7 @@ final class VerifierViewModel: ObservableObject {
     // in your MATTR VII tenant rather than in the app for this workflow.
     init() {
         mobileCredentialVerifier = MobileCredentialVerifier.shared
-        // From v6.0.0, initialize is asynchronous and drives SDK Tethering: on first launch it
+        // From v6.0.0, initialize is asynchronous and drives the SDK Backend connection: on first launch it
         // registers this app instance with the tenant and obtains a license, so it can throw
         // failedToRegister and invalidLicense.
         Task {

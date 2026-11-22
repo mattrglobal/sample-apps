@@ -109,7 +109,8 @@ class DocumentViewModel: ObservableObject {
     let verificationFailedReason: String?
 
     init(from presentation: MobileCredentialPresentation) {
-        self.docType = presentation.docType
+        // From v7.0.0, `docType` is optional.
+        self.docType = presentation.docType ?? "Unknown"
         self.verificationResult = presentation.verificationResult.verified ? "Verified" : "Invalid"
         // From v6.0.0, the failure detail is exposed via `failureType` (was `reason`).
         // `MobileCredentialVerificationFailureType` is a String-backed enum; its `rawValue`
