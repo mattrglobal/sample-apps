@@ -232,18 +232,31 @@ struct ContentView: View {
         mobileCredentialHolder = MobileCredentialHolder.shared
     }
 
-   // `initialize` is asynchronous as of iOS Holder SDK v6.0.0, so it runs in an async method called
-   // from the view's `.task` modifier when the view appears.
+   // `initialize` is asynchronous, so it runs in an async method called from the view's `.task`
+   // modifier when the view appears. From v7.0.0, initialize requires a PlatformConfiguration. On first
+   // launch it registers this app instance with the tenant and obtains a license, so it can throw
+   // failedToRegister and invalidLicense.
     @MainActor
     func initialize() async {
         do {
+            let platformConfiguration = PlatformConfiguration(
+                tenantHost: Constants.tenantHost,
+                applicationId: Constants.applicationId
+            )
             try await mobileCredentialHolder.initialize(
+                platformConfiguration: platformConfiguration,
                 userAuthenticationConfiguration: UserAuthenticationConfiguration(userAuthenticationBehavior: .onDeviceKeyAccess),
                 credentialIssuanceConfiguration: CredentialIssuanceConfiguration(
                     redirectUri: Constants.redirectUri,
                     autoTrustMobileCredentialIaca: true
                 )
             )
+        } catch MobileCredentialHolderError.failedToRegister(let reason) {
+            // Registration with the MATTR VII tenant failed. Check connectivity and configuration.
+            print("Failed to register: \(reason)")
+        } catch MobileCredentialHolderError.invalidLicense {
+            // The SDK license is missing, invalid, or expired.
+            print("Invalid license")
         } catch {
             print(error)
         }
@@ -296,12 +309,14 @@ extension ViewModel {
                    var credentials: [MobileCredential] = []
                    for result in retrievedCredentialResults {
                        switch result {
-                       case .success(_, let credentialId):
+                       case .success(_, let credentialId, _, _):
                            if let credential = try? await mobileCredentialHolder.getCredential(credentialId: credentialId) {
                                credentials.append(credential)
                            }
-                       case .failure(let docType, let error):
+                       case .failure(let docType, let error, _):
                            print("Failed to retrieve \(docType): \(error)")
+                       @unknown default:
+                           break
                        }
                    }
                    self.retrievedCredentials = credentials
