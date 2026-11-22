@@ -57,9 +57,9 @@ __metadata:
   linkType: hard
 
 "@stablelib/base64@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "@stablelib/base64@npm:2.0.1"
-  checksum: 10c0/54a7d98bc6f5d939100843954f351f7859708c0803ed087afba2db67ed4dc98500e2d2f1325479d448d80cfbc5027e850d61429bb2c060a89b28244b144e32d5
+  version: 2.0.2
+  resolution: "@stablelib/base64@npm:2.0.2"
+  checksum: 10c0/bc49513201a89936429b3c171a1fb8a5be69f95bd81dbb71105fac502c464b617645ffdc01cfcc8b2502a183f98b00abd97ead59f0c36310be93bccee3df5247
   languageName: node
   linkType: hard
 
