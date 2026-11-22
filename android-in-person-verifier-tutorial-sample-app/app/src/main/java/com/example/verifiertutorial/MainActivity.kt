@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         // The SDK must be initialized before any other SDK functions are called.
         // Initialize SDK - Step 1.1: Initialize the SDK
         lifecycleScope.launch {
-            // From Android Verifier SDK v7.0.0, the SDK is tethered to a MATTR VII tenant. Initialization
+            // From Android Verifier SDK v7.0.0, the SDK connects to a MATTR VII tenant through the SDK Backend. Initialization
             // registers this app instance with the tenant and obtains a license, so a PlatformConfiguration
             // pointing at your tenant and Verifier Application is required.
             val platformConfiguration = PlatformConfiguration(

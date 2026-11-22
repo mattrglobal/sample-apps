@@ -9,7 +9,7 @@
 import Foundation
 
 enum Constants {
-    // From iOS Verifier SDK v6.0.0, the SDK is tethered to a MATTR VII tenant. Replace these with
+    // From iOS Verifier SDK v6.0.0, the SDK connects to a MATTR VII tenant through the SDK Backend. Replace these with
     // your tenant host and the Verifier Application `id` created on that tenant.
     static let tenantHost = URL(string: "https://your-tenant.vii.mattr.global")!
     static let applicationId = "<YOUR_VERIFIER_APPLICATION_ID>"

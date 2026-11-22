@@ -64,7 +64,7 @@ class MainActivity : ComponentActivity() {
 
         // Step 2.3: Setup platform configuration with the MATTR VII tenant host and Verifier
         // Application id. From Android Verifier SDK v7.0.0, the applicationId is supplied here (it is
-        // no longer passed to requestMobileCredentials) and also drives SDK Tethering.
+        // no longer passed to requestMobileCredentials) and also drives the SDK Backend connection.
         val platformConfiguration = PlatformConfiguration(
             tenantHost = URL(Constants.TENANT_HOST),
             applicationId = Constants.APPLICATION_ID
