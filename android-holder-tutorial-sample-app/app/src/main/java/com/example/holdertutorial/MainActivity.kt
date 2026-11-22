@@ -39,11 +39,15 @@ import com.example.holdertutorial.ui.theme.HolderTutorialTheme
 import global.mattr.mobilecredential.holder.dto.MobileCredential
 import global.mattr.mobilecredential.holder.MobileCredentialHolder
 import global.mattr.mobilecredential.holder.ProximityPresentationSession
+import global.mattr.mobilecredential.holder.exception.HolderException.FailedToRegisterException
+import global.mattr.mobilecredential.holder.exception.HolderException.InvalidLicenseException
 import global.mattr.mobilecredential.holder.issuance.CredentialIssuanceConfiguration
 import global.mattr.mobilecredential.holder.issuance.dto.DiscoveredCredentialOffer
 import global.mattr.mobilecredential.holder.issuance.dto.RetrieveCredentialResult
+import global.mattr.mobilecredential.holder.platformconfig.PlatformConfiguration
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.net.URL
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,14 +55,23 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         // Claim Credential - Step 1.2: Initialize the SDK
         lifecycleScope.launch {
+            // From Android Holder SDK v8.0.0, the SDK requires an SDK Backend on a MATTR VII tenant. Initialization
+            // registers this app instance with the tenant and obtains a license, so a PlatformConfiguration
+            // pointing at your tenant and Holder Application is required.
+            val platformConfiguration = PlatformConfiguration(
+                tenantHost = URL(Constants.TENANT_HOST),
+                applicationId = Constants.APPLICATION_ID
+            )
             try {
-                // This function initializes storage and performs validations to ensure the SDK is ready for use.
+                // This function initializes storage, registers the app instance, obtains a license,
+                // and performs validations to ensure the SDK is ready for use.
                 // Application context is derived from the passed context and persisted.
                 // redirectUri must be registered during initialization and in the manifest file for the credential issuance workflow to be able to redirect the user back to the application.
                 // autoTrustMobileCredentialIaca is an optional parameter that, when set to true, will automatically trust any IACAs received during the credential issuance flow.
                 // This is not recommended for production applications, but can be useful for the quickstart.
                 MobileCredentialHolder.getInstance().initialize(
                     context = this@MainActivity,
+                    platformConfiguration = platformConfiguration,
                     // Step 4.1: Add credential issuance configuration
                     credentialIssuanceConfiguration = CredentialIssuanceConfiguration(
                         redirectUri = "io.mattrlabs.sample.mobilecredentialtutorialholderapp:" +
@@ -66,6 +79,12 @@ class MainActivity : ComponentActivity() {
                         autoTrustMobileCredentialIaca = true
                     )
                 )
+            } catch (e: FailedToRegisterException) {
+                // Registration with the MATTR VII tenant failed. Check connectivity and configuration.
+                Log.e("MainActivity", "Failed to register with the MATTR VII tenant", e)
+            } catch (e: InvalidLicenseException) {
+                // The SDK license is missing, invalid, or expired.
+                Log.e("MainActivity", "Invalid SDK license", e)
             } catch (e: Exception) {
                 Log.e("MainActivity", "SDK initialization failed", e)
             }
